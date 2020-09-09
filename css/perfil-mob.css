@@ -1,0 +1,353 @@
+@font-face {
+    font-family: Century Gothic;
+    src: url(../GOTHIC.TTF)
+    /*url('./GOTHICB.TTF'),*/
+    /*url('./GOTHICBI.TTF'), */
+    /*url('./GOTHICI.TTF'), */
+  }
+  @font-face {
+    font-family: Century Gothic;
+    src: url(../GOTHICB.TTF);
+    font-weight: bold;
+  }
+  
+
+/*marron #d4bfaa*/
+::selection{ background: #d4bfaa; color: white}
+*{ margin: 0; padding: 0; }
+a{ text-decoration: none; color: inherit }
+li{ list-style: none; }
+body{ font-family: 'Century Gothic'; overflow-x: hidden; color: #272727; background-color: #fafafa;}
+button, input{ font-family: 'Century Gothic'; outline: none; }
+.cont90{
+   width: 90%;
+   display: flex;
+    margin: auto;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.contC{
+   /* width: 33.33%; */
+}
+.contG{
+   /* width: 60%; */
+
+}
+
+nav{
+    position: absolute;
+    top: 0vh;
+    left: 0;
+    width: 100%;
+    padding-top: 2vh;
+    z-index: 99;
+}
+nav>div>div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 99%;
+}
+nav>div>div>div{
+    width: 10%;
+    cursor: pointer;
+}
+nav>div>div>div>img{
+    width: 100%;
+}
+#linea-menu1, #linea-menu1{
+   width: 30px;
+   float: right;
+   background: #272727;
+   height: 4px;
+   margin: 10% 0%;
+   border-radius: 35px;
+   display: block;
+}
+main{
+    padding-top: 14vh;
+}
+
+#foto-perfil{
+    width: 90px;
+    border-radius: 55px;
+    overflow: hidden;
+    height: 90px;
+    margin-right: 10%;
+}
+#foto-perfil>img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#datos-usuario>div{
+    display: flex;
+}
+
+#info-perfil li{
+  color: #464646;
+  font-size: .9em;
+  margin: 8px 0;
+}
+
+#opciones{
+  justify-self: flex-end;
+}
+
+#opciones li{
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  margin: 12px 0;
+  cursor: pointer;
+  transition: .2s;
+}
+#opciones li:hover{
+    opacity: 0.7;
+}
+
+#opciones li img{
+  height: 14px;
+  margin-right: 10px;
+}
+#datos-reservas-cont{
+}
+#reservas-cont{
+    margin: 10% auto;
+}
+
+#reservas-actuales, #historial-reservas{
+    padding: 25px;
+    width: calc(100% - 50px);
+    background: white;
+    margin-bottom: 7vw;
+}
+#reservas-actuales>div>:first-child{
+    display: flex;
+    align-items: baseline;
+}
+#reservas-actuales h2, #historial-reservas h2{
+    font-weight: 500;
+    display: inline-block;
+    margin-right: 10px;
+}
+#reservas-actuales>div>div>span{
+    font-size: 0.9em;
+    font-style: italic;
+}
+.actual-reserva-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+.foto-prop-cont{
+    width: 48px;
+    height: 48px;
+    background-color: #e2e2e2;
+    border-radius: 2px;
+}
+.foto-prop-cont>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nombre-prop{
+    font-size: 0.9em;
+    width: 26%;
+    padding: 0 2%;
+}
+.nombre-prop h4{
+    font-weight: 500;
+}
+.fechas-reserva{
+    width: 20%;
+    padding: 0 2%;
+    font-weight: 700;
+    font-size: .8em;
+    text-align: center;
+}
+.fechas-reserva>img{
+
+    
+    width: 16px;
+    display: block;
+    margin: auto;
+    transform: rotate(-90deg);
+}
+
+.ver-reserva{
+    background: #d4bfaa;
+    border: 1px solid #d4bfaa;
+    color: white;
+    /* font-weight: 600; */
+    font-size: 0.7em;
+    letter-spacing: 0.5px;
+    padding: 6px 15px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.15s;
+    width: 70px;
+}
+.ver-reserva:hover{
+    background: transparent;
+    color: #d4bfaa;
+}
+
+#historial-vacio>div{
+    margin: 5% auto;
+    display: block;
+    width: 64px;
+    height: 64px;
+}
+#historial-vacio>b{
+    width: 100%;
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    font-size: 0.8em;
+    color: #545454;
+}
+#historial-vacio>p{
+    text-align: center;
+    width: 70%;
+    margin: auto;
+    font-size: 0.8em;
+    margin: 3.5% auto;
+    color: #545454;
+}
+#historial-vacio>button{
+    background: transparent;
+    border: 1px solid #d4bfaa;
+    color: #d4bfaa;
+    font-weight: 700;
+    font-size: 0.7em;
+    letter-spacing: 0.5px;
+    padding: 6px 15px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.15s;
+    min-width: 90px;
+    margin: auto;
+    display: block;
+}
+#historial-vacio>button:hover{
+    background-color: #d4bfaa;
+    color: white;
+}
+
+
+
+#puntos-cont{
+    /* width: 35%; */
+}
+#puntos-cont>button{
+    background: #d4bfaa;
+    border: 1px solid #d4bfaa;
+    color: white;
+    /* font-weight: 600; */
+    font-size: 0.75em;
+    letter-spacing: 0.5px;
+    padding: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.15s;
+    width: 100%;
+}
+#puntos-cont>button:hover{
+    background: transparent;
+    color: #d4bfaa;
+}
+#puntos-cont>div{
+    background-color: white;
+    border-radius: 2px;
+    width: calc(100% - 50px);
+    height: 60vh;
+    margin: 7vw 0;
+    padding: 25px;
+
+}
+#puntuacion{
+    display: flex;
+    justify-content: space-around;
+    width: 85%;
+    align-items: center;
+    margin: auto;
+}
+
+#puntuacion>div:first-child{
+    border: 2px solid #ddd;
+    border-radius: 55px;
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    position: relative;
+    z-index: 2;
+}
+#puntuacion>div img{
+    width: 37%;
+    position: absolute;
+    transform: translate(-50%, -55%);
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+}
+#progreso{
+    width: 121%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60.5%);
+}
+
+#puntuacion p{
+    font-size: 3.4em;
+    line-height: 0.9;
+    color: #464646;
+    padding-top: 17%;
+}
+#puntuacion span{
+    font-size: 0.9em;
+font-weight: bold;
+color: #676767;
+}
+
+#ciruclito-svg{
+    stroke-dashoffset: 650;
+    stroke-dasharray: 1235;
+    transition: .2s;
+    transform: rotate(-90deg);
+}
+
+#beneficios-cont>h4{
+    font-weight: 500;
+    font-size: 1em;
+    margin-top: 8vh;
+    padding-bottom: 2vh;
+}
+#beneficios-cont>div{
+    padding: 15px 0;
+    overflow: auto;
+    max-height: 36vh;
+    height: 230px;
+}
+.beneficios-nivel{
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+.beneficios-nivel h5{
+    text-align: center;
+}
+.beneficios-nivel h6{
+    text-align: center;
+    font-size: 3em;
+}
+.beneficios-nivel li{
+    font-size: .75em;
+    margin: 10px 0;
+}

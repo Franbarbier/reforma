@@ -1,0 +1,269 @@
+@font-face {
+  font-family: Century Gothic;
+  src: url(../GOTHIC.TTF)
+  /*url('./GOTHICB.TTF'),*/
+  /*url('./GOTHICBI.TTF'), */
+  /*url('./GOTHICI.TTF'), */
+}
+@font-face {
+  font-family: Century Gothic;
+  src: url(../GOTHICB.TTF);
+  font-weight: bold;
+}
+
+
+/* @font-face{font-family:swiper-icons;src:url("data:application/font-woff;charset=utf-8;base64, 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") format("woff");} */
+
+
+/*marron #d4bfaa*/
+::selection {
+  background: #d4bfaa;
+  color: white;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+li {
+  list-style: none;
+}
+body {
+  font-family: "Century Gothic"!important;
+  overflow: hidden;
+  color: #272727;
+}
+button,
+input {
+  font-family: "Century Gothic"!important;
+  outline: none;
+}
+.cont90 {
+  width: 90%;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+}
+.cont90Block{
+  width: 90%;
+  display: block;
+  margin: auto;
+}
+.contC {
+  width: 33.33%;
+}
+.contG {
+  width: 60%;
+}
+
+nav {
+  position: relative;
+  width: 100%;
+  /* padding: 2vh 0; */
+  height: 10vh;
+  display: flex;
+  align-self: center;
+  z-index: 99;
+  border-bottom: 1px solid #ddd;
+}
+nav > div > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+nav > div > div > div {
+  width: 4%;
+  cursor: pointer;
+}
+nav > div > div > div > a > img {
+  width: 75%;
+}
+#menu-cont>div{
+  display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+#linea-menu1,
+#linea-menu1 {
+  width: 30px;
+  float: right;
+  background: #272727;
+  height: 4px;
+  margin: 7% 0%;
+  border-radius: 35px;
+  display: block;
+}
+#filtros-cont{
+  width: 80%;
+  font-size: .8em;
+  
+}
+#filtros-cont>aside{
+display: none;
+}
+#filtros-cont>div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#filtros-cont li, #filtros-cont li>div{
+    display: flex;
+    align-items: center;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+
+#filtros-cont li>img, #filtros-cont li>div>img, #filtros-cont li>aside{
+  margin-right: 5px;
+  height: 18px;
+}
+#filtros-cont li>aside{
+  font-size: .9em;
+  font-weight: bold;
+  color: #d4bfaa;
+}
+#aplicar{
+  display:none
+}
+.checkin{
+  margin-right: 5px;
+}
+#filter-cant-hues{
+    border: none;
+    background: none;
+    color: #272727;
+    transition: 0.2s;
+    cursor: pointer;
+    text-align: center;
+    width: 25px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#filter-minus{
+  margin-right: 0!important;
+  margin-left: 7px;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+section{
+  display: flex;
+  justify-content: space-between;
+}
+section article{
+  width: 50%;
+  height: 90vh;
+  overflow: hidden;
+}
+
+#ver-mapa{ display:none; }
+
+#map-cont{
+  width: 100%;
+  height: 100%;
+}
+#propiedades{
+  height: 100%;
+  overflow: auto;
+}
+#propiedades::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+#propiedades::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #f0f0f0;
+}
+ 
+/* Handle */
+#propiedades::-webkit-scrollbar-thumb {
+  background: #d4bfaa; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+#propiedades::-webkit-scrollbar-thumb:hover {
+  background: #aa9a8a; 
+}
+.propiedad{
+  display: flex;
+  justify-content: space-between;
+  height: 30%;
+  padding: 5% 3%;
+  border-bottom: 1px solid #ddd;
+
+}
+.foto-cont{
+  overflow: hidden;
+  width: 50%;
+  border-radius: 2px;
+  height: 100%;
+
+}
+.foto-cont>img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+}
+.prop-info{
+  width: 47.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.prop-info h4{
+  font-weight: normal;
+  color: #3e3e3e;
+  font-size: 0.85em;
+}
+
+.prop-info h2{
+  /* font-weight: normal; */
+    font-size: 1.3em;
+    color: #272727;
+    margin: 2% 0px;
+}
+
+.prop-info hr{
+  width: 15%;
+    margin-bottom: 3%;
+    border: #ddd solid 0.5px;
+}
+
+.prop-info p{
+    font-size: .75em;
+    color: #8a8a8a;
+}
+.btn-precio{
+  padding: 3% 7%;
+    border-radius: 2px;
+    display: block;
+    background: #d4bfaa;
+    width: fit-content;
+    color: white;
+}
+
+.btn-precio strong{
+  font-size: 1.3em!important;
+  color: white;
+
+}
+.btn-precio span{
+  color: white;
+
+  font-size: 0.8em;
+}

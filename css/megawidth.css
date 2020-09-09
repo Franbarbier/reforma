@@ -1,0 +1,68 @@
+.cont{
+    max-width: 1200px;
+}
+
+.contG>main>h1{
+    font-size: 60px;
+}
+#linea-menu1, #linea-menu1 {
+    width: 80%;
+}
+
+.contG>main h3{
+    font-size: 24px;
+}
+.contG>main>div>img, #sticky-price>div:nth-child(3) img, #mas-info li img{
+    width: 33px;
+}
+#opciones>div>p, #capacidad>div>h5, #artist-cont h6, .contG h4, #ubicacion h4, #mas-info h4, #reseñas h4, #related h4{
+    font-size: 26px;
+}
+#opciones>div>img{
+ width: 35px;
+}
+
+
+#artist-cont p, #features li p {
+    font-size: 21px;
+}
+
+
+#camas>div>div h5,#mas-info h6, #reseñas b, #related>div>div h5, #sticky-price>span{
+    font-size: 23px;
+}
+#camas>div>div p, #seccion-calendar>p, #ubicacion p, #mas-info li,#reseñas>div>div>div span, #reseñas>div>div>p, #reseñas button, #related>div>div>div:nth-child(3) p, #related>div>div span
+#sticky-price>div:nth-child(3) p, .info-box div, #descuentos, #sticky-reservar{
+    font-size: 19px;
+}
+
+
+#features li img{
+    width: 40px;
+}
+
+#mas-info li img{
+
+    margin-right: 10px;
+
+}
+
+#reseñas>div>div>div>div:first-child {
+    width: 84px;
+    height: 84px;
+}
+
+
+#sticky-price>span>strong{
+    font-size: 55px;
+}
+
+
+#sticky-price h3{
+    font-size: 30px;
+}
+
+
+#mas,#menos{
+    width: 20px;
+}
