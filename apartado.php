@@ -118,7 +118,7 @@
         <main>
             <h1>Nombre de la Propiedad</h1>
             <div>
-                <img src="imgs/location-brown.svg" alt=""><h3>Localidad, Provincia</h3>
+                <img src="imgs/location-brown.svg" alt=""><h3 id="localidad-provincia">Localidad, Provincia</h3>
             </div>
             <div id="opciones">
                 <div id="share">
