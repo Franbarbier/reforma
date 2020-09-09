@@ -445,7 +445,7 @@
 <?php include 'footer.php';?>
 </body>
 
-
+<script src="js/apartado.js"></script>
 <script>
 $(document).ready(function(){
 
