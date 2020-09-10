@@ -2,6 +2,8 @@ var queryString = window.location.search;
 var urlParams = new URLSearchParams(queryString);
 const id_propiedad = urlParams.get('id')
 
+var this_amenities;
+
 // Traemos la info de la propiedad
 function verPropiedad(id) {
     fetch('php/api/propiedades.php?func=verPropiedad&id=' + id)
@@ -23,4 +25,112 @@ function render_apartado(propiedad) {
 
     var localidad_provincia = document.getElementById('localidad-provincia')
     localidad_provincia.innerHTML = propiedad.localidad + ', ' + propiedad.provincia
+
+    var huespedes = $('.huespedes')
+    huespedes.html(propiedad.huespedes)
+
+    var tarifa = document.getElementById('tarifa')
+    tarifa.innerHTML = propiedad.tarifa
+
+    var concepto = document.getElementById('concepto-text')
+    concepto.innerHTML = propiedad.concepto_espacio
+
+    var distribucion_camas = JSON.parse(propiedad.distribucion_camas)
+
+    var dormitorios = $('.dormitorios')
+    dormitorios.html(distribucion_camas.length)
+    console.log(propiedad.distribucion_camas)
+
+    var banos = $('.banos')
+    var banos_text = 'Baño'
+    if (parseInt(propiedad.banos) > 1) {
+        banos_text = 'Baños'
+    }
+    banos.html(propiedad.banos + ' ' + banos_text)
+
+    this_amenities = JSON.parse(propiedad.amenities)
+
+    html = ''
+    for (c in distribucion_camas) {
+        html += comp_distribucion(distribucion_camas[c].dormitorio, distribucion_camas[c].descripcion, distribucion_camas[c].img)
+    }
+    $('#distribucion_de_camas').html(html)
+
+    // Traemos la info del diseñador
+    fetch('php/api/globales.php?func=verDisenador&id=' + propiedad.id_disenador)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (disenador) {
+            console.log(disenador)
+
+            document.getElementById('disenador-nombre').innerHTML = disenador.nombre
+            document.getElementById('disenador-descripcion').innerHTML = disenador.descripcion
+            document.getElementById('disenador-img').src = disenador.img
+
+        });
+
+
+    // Traemos las amanities
+    fetch('php/api/globales.php?func=verAmenities')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (amenities) {
+            console.log(amenities)
+
+            // Por cada amenitie inyectamos un componente de amenity. Si el amenity no lo tiene esta propiedad, agregamos el class "lacks"
+            var html = ''
+            for (c in amenities) {
+                var status = '';
+                if (!this_amenities.includes(amenities[c].id)) {
+                    status = 'lacks'
+                }
+                html += comp_amenity(amenities[c].img, amenities[c].nombre, status)
+            }
+            $('#amenities-list').html(html)
+        });
+
+    // Traemos las resenas
+    fetch('php/api/globales.php?func=verResenas&id_propiedad=' + id_propiedad + '&limit=' + 4)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (resenas) {
+            console.log(resenas)
+
+            // Las inyectamos en el html
+            var html = ''
+            for (c in resenas) {
+                html += comp_resena(resenas[c].usuario, resenas[c].detalle, resenas[c].fecha)
+            }
+            $('#resenas-cont').html(html)
+
+        });
+
+
+    // Traemos propiedades recomendadas
+
+
+
+
+
+
+}
+
+// Seccion de componentes
+function comp_distribucion(dormitorio, descripcion, img) {
+    return '<div><img src="imgs/' + img + '.svg" alt=""><h5>' + dormitorio + '</h5><p>' + descripcion + '</p></div>'
+}
+
+function comp_amenity(img, nombre, status) {
+    return '<li class="' + status + '"><img src="imgs/icons/' + img + '.svg" alt=""><p>' + nombre + '</p></li>'
+}
+
+function comp_resena(usuario, detalle, fecha) {
+    return '<div> <div> <div> <img src="" alt=""> </div> <div> <p><b>' + usuario + '</b></p> <span>' + fecha + '</span> </div> </div> <p>' + detalle + '</p> </div>'
+}
+
+function comp_recomendada(nombre, localidad, provincia, huespedes, banos, dormitorios, camas) {
+    return '<div> <div> </div> <h5>' + nombre + '</h5> <div> <img src="imgs/location-brown.svg" alt=""> <p>' + localidad + ', ' + provincia + '</p> </div> <span>' + huespedes + ' huéspedes · ' + dormitorios + ' dormitorios · ' + camas + ' camas · ' + banos + ' baño</span> </div>'
 }

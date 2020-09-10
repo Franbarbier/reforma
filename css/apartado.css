@@ -621,3 +621,9 @@ main>div>img{
 .daterangepicker:before, .daterangepicker:after{
   display: none!important;
 }
+
+
+/* Agregados de juan aca abajo */
+.lacks p{
+  text-decoration: line-through;
+}

@@ -131,15 +131,15 @@
             <div id="capacidad">
                 <div>
                     <img src="imgs/users-handmade.svg" alt="">
-                    <h5>4 Huespedes</h5>
+                    <h5><span class="huespedes"></span> Huespedes</h5>
                 </div>
                 <div>
                     <img src="imgs/cama-handmade.svg" alt="">
-                    <h5>2 Dormitorios</h5>
+                    <h5><span class="dormitorios"></span> Dormitorios</h5>
                 </div>
                 <div>
                     <img src="imgs/ducha-handmade.svg" alt="">
-                    <h5>2 Baños</h5>
+                    <h5><span class="banos"></span></h5>
                 </div>
             </div>
         </main>
@@ -147,44 +147,30 @@
         <div id="artist-cont">
             <div>
                 <div>
-                    <img src="https://news.artnet.com/app/news-upload/2019/02/IMG_5085-768x1024.jpeg" alt="">
+                    <img src="" alt="" id="disenador-img">
                 </div>
                 <div>
-                    <h6>Diseñador: Andrew Warhola</h6>
-                    <p>Andrew Warhola (Pittsburgh; 6 de agosto de 1928 - Nueva York; 22 de febrero de 1987), comúnmente conocido como Andy Warhol, fue un artista plástico y cineasta estadounidense que desempeñó un papel crucial en el nacimiento y desarrollo del pop art. Tras una exitosa carrera como ilustrador profesional, Warhol adquirió fama mundial por su trabajo en pintura, cine de vanguardia y literatura, notoriedad que vino respaldada por una hábil relación con los medios y por su rol como gurú de la modernidad. Warhol actuó como enlace entre artistas e intelectuales, pero también entre aristócratas, homosexuales, celebridades de Hollywood, drogadictos, modelos, bohemios y pintorescos personajes urbanos.</p>
+                    <h6>Diseñador: <span id="disenador-nombre">Andrew Warhola</span></h6>
+                    <p id="disenador-descripcion">Andrew Warhola (Pittsburgh; 6 de agosto de 1928 - Nueva York; 22 de febrero de 1987), comúnmente conocido como Andy Warhol, fue un artista plástico y cineasta estadounidense que desempeñó un papel crucial en el nacimiento y desarrollo del pop art. Tras una exitosa carrera como ilustrador profesional, Warhol adquirió fama mundial por su trabajo en pintura, cine de vanguardia y literatura, notoriedad que vino respaldada por una hábil relación con los medios y por su rol como gurú de la modernidad. Warhol actuó como enlace entre artistas e intelectuales, pero también entre aristócratas, homosexuales, celebridades de Hollywood, drogadictos, modelos, bohemios y pintorescos personajes urbanos.</p>
                 </div>
             </div>
             <div>
                 <h6>Concepto detrás del espacio</h6>
-                <p class="ver-mas">La composición es el planeamiento del arte, la colocación o el arreglo de elementos o de ingredientes en un trabajo de arte, o la selección y la colocación de elementos del diseño según principios del diseño dentro del trabajo. Contribuye a una respuesta del espectador; la obra de arte se considera dentro de lo estético (que satisface al ojo), si los elementos dentro del trabajo se ordenan en una composición equilibrada (Dunstan, 1979).1 No obstante, existen artistas que prefieren romper las reglas de la composición tradicional, desafiando a los espectadores a reconsiderar las nociones de equilibrio, y a diseñar elementos dentro de trabajos de arte, por ejemplo los como Salvador Dali. También puede ser pensado como la organización de los elementos del arte de acuerdo a los principios del arte. El término composición significa básicamente “organizar”. Cualquier obra de arte, de la música a la escritura, se arregla o se compone junto con el pensamiento consciente. Los diversos elementos en el total del diseño se relacionan generalmente entre sí.</p>
+                <p class="ver-mas" id="concepto-text">La composición es el planeamiento del arte, la colocación o el arreglo de elementos o de ingredientes en un trabajo de arte, o la selección y la colocación de elementos del diseño según principios del diseño dentro del trabajo. Contribuye a una respuesta del espectador; la obra de arte se considera dentro de lo estético (que satisface al ojo), si los elementos dentro del trabajo se ordenan en una composición equilibrada (Dunstan, 1979).1 No obstante, existen artistas que prefieren romper las reglas de la composición tradicional, desafiando a los espectadores a reconsiderar las nociones de equilibrio, y a diseñar elementos dentro de trabajos de arte, por ejemplo los como Salvador Dali. También puede ser pensado como la organización de los elementos del arte de acuerdo a los principios del arte. El término composición significa básicamente “organizar”. Cualquier obra de arte, de la música a la escritura, se arregla o se compone junto con el pensamiento consciente. Los diversos elementos en el total del diseño se relacionan generalmente entre sí.</p>
             </div>
         </div>
 
         <div id="camas">
             <h4>Distribución de camas</h4>
-            <div>
-                <div>
-                    <img src="imgs/double-bed.svg" alt="">
-                    <h5>Dormitorio 1</h5>
-                    <p>1 cama matrimonial</p>
-                </div>
-                <div>
-                    <img src="imgs/single-bed.svg" alt="">
-                    <h5>Dormitorio 2</h5>
-                    <p>1 cama particular</p>
-                </div>
-                <div>
-                    <img src="imgs/sofa.svg" alt="">
-                    <h5>Zonas Comunes</h5>
-                    <p>Colchón en el suelo/futón</p>
-                </div>
+            <div id="distribucion_de_camas">
+               
             </div>
         </div>
 
         <div id="features">
             <h4>Servicios</h4>
             <div>
-                <ul>
+                <ul id="amenities-list">
                     
                 </ul>
             </div>
@@ -204,13 +190,13 @@
     <div class="contC">
             <button>Comprobar disponibilidad</button>
         <div id="sticky-price">
-            <span><strong>$65</strong> por noche</span>
+            <span><strong>$<span id="tarifa"></span></strong> por noche</span>
             <h3>Nombre del Hospedaje</h3>
             <div>
                 <img src="imgs/location-brown.svg" alt="">
                 <p>Recoleta, Buenos Aires</p>
             </div>
-            <span>5 huéspedes · 2 dormitorios · 3 camas · 1 baño</span>
+            <span><span class="huespedes"></span> huéspedes · <span class="dormitorios"></span> dormitorios · <span class="camas"></span> camas · <span class="banos"></span></span>
             
             <div class="info-box" id="sticky-calendar">
                 <div>
@@ -343,7 +329,7 @@
     </article>
     <article id="reseñas">
         <h4>Ultimas reseñas</h4>
-        <div>
+        <div id="resenas-cont">
             
             <div>
                 <div>
