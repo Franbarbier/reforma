@@ -1,12 +1,18 @@
-	<!-- flickity, para sliders -->
+<!-- Consultamos la galeria de esta propiedad -->
+<?php
 
-    <script src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
+$galeria = $_POST['galeria'];
 
+?>
+
+<!-- flickity, para sliders -->
+
+<script src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
 
 <!-- Flickity HTML init -->
 <div class="carousel" data-flickity='{ "groupCells": true }'>
   <!-- <div onmousedown="mouseDown()" class="carousel-cell"></div> -->
-  <div class="carousel-cell">
+  <!-- <div class="carousel-cell">
       <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="">
   </div>
   <div class="carousel-cell">
@@ -32,7 +38,10 @@
   </div>
   <div class="carousel-cell">
       <img src="https://a0.muscache.com/im/pictures/fcc4c745-ec92-45c6-9852-dbb20574c231.jpg" alt="">
-  </div>
+  </div> -->
+  <?php
+    echo $galeria;
+  ?>
 </div>
 
 

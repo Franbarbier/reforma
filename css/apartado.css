@@ -444,6 +444,9 @@ main>div>img{
   border-radius: 2px;
   background: #f0f0f0;
   height: 35vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 #related>div>div h5{
     margin: 3% 0px;

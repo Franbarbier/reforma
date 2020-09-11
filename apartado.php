@@ -89,7 +89,7 @@
 </nav>
 
 <div id="galeria-great-cont">
-    <div>
+    <div id="cont-carousel">
         <!-- <div id="primeras-tres">
             <div>
                 <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="">
@@ -108,7 +108,7 @@
                 <img src="https://image.flaticon.com/icons/svg/860/860790.svg" alt="">
             </aside>
         </div> -->
-        <?php include 'slider-apartado.php'; ?>
+        
 
     </div>
 </div>
@@ -385,7 +385,7 @@
     </article>
     <article id="related">
         <h4>Otros alojamientos</h4>
-        <div>
+        <div id="otros-alojamientos">
             <div>
                 <div>
 

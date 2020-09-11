@@ -4,6 +4,14 @@ const id_propiedad = urlParams.get('id')
 
 var this_amenities;
 
+// Empieza handlers
+
+$(document).on('click', '.prop-recomendada', function () {
+    window.location = 'apartado.php?id=' + $(this).attr('id')
+})
+
+// Termina handlers
+
 // Traemos la info de la propiedad
 function verPropiedad(id) {
     fetch('php/api/propiedades.php?func=verPropiedad&id=' + id)
@@ -41,6 +49,7 @@ function render_apartado(propiedad) {
     dormitorios.html(distribucion_camas.length)
     console.log(propiedad.distribucion_camas)
 
+
     var banos = $('.banos')
     var banos_text = 'Baño'
     if (parseInt(propiedad.banos) > 1) {
@@ -55,6 +64,17 @@ function render_apartado(propiedad) {
         html += comp_distribucion(distribucion_camas[c].dormitorio, distribucion_camas[c].descripcion, distribucion_camas[c].img)
     }
     $('#distribucion_de_camas').html(html)
+
+    // renderizamos las imgs de la galeria
+    var galeria = JSON.parse(propiedad.galeria)
+    var html = ''
+    for (img in galeria) {
+        html += comp_img_carrousel(galeria[img])
+    }
+
+    console.log('galeria: ' + html)
+
+    $('#cont-carousel').load('slider-apartado.php', { galeria: html })
 
     // Traemos la info del diseñador
     fetch('php/api/globales.php?func=verDisenador&id=' + propiedad.id_disenador)
@@ -71,7 +91,7 @@ function render_apartado(propiedad) {
         });
 
 
-    // Traemos las amanities
+    // Traemos las amenities
     fetch('php/api/globales.php?func=verAmenities')
         .then(function (response) {
             return response.json();
@@ -110,12 +130,22 @@ function render_apartado(propiedad) {
 
 
     // Traemos propiedades recomendadas
+    fetch('php/api/globales.php?func=verRecomendados&id_propiedad=' + id_propiedad + '&localidad=' + propiedad.localidad + '&limit=' + 4)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (recomendados) {
+            console.log(recomendados)
 
-
-
-
-
-
+            var html = ''
+            // Las inyectamos en el html
+            for (c in recomendados) {
+                var thumbnail = "'imgs/propiedades_imgs/" + JSON.parse(recomendados[c].galeria)[0] + "'"
+                var dormitorios = JSON.parse(recomendados[c].distribucion_camas).length
+                html += comp_recomendado(recomendados[c].nombre, recomendados[c].localidad, recomendados[c].provincia, recomendados[c].huespedes, recomendados[c].banos, dormitorios, recomendados[c].camas, thumbnail, recomendados[c].id)
+            }
+            $('#otros-alojamientos').html(html)
+        });
 }
 
 // Seccion de componentes
@@ -131,6 +161,15 @@ function comp_resena(usuario, detalle, fecha) {
     return '<div> <div> <div> <img src="" alt=""> </div> <div> <p><b>' + usuario + '</b></p> <span>' + fecha + '</span> </div> </div> <p>' + detalle + '</p> </div>'
 }
 
-function comp_recomendada(nombre, localidad, provincia, huespedes, banos, dormitorios, camas) {
-    return '<div> <div> </div> <h5>' + nombre + '</h5> <div> <img src="imgs/location-brown.svg" alt=""> <p>' + localidad + ', ' + provincia + '</p> </div> <span>' + huespedes + ' huéspedes · ' + dormitorios + ' dormitorios · ' + camas + ' camas · ' + banos + ' baño</span> </div>'
+function comp_recomendado(nombre, localidad, provincia, huespedes, banos, dormitorios, camas, thumbnail, id) {
+    if (parseInt(banos) > 1) {
+        banos = banos + ' baños'
+    } else {
+        banos = banos + ' baño'
+    }
+    return '<div class="prop-recomendada" id="' + id + '"> <div style="background-image: url(' + thumbnail + ')"> </div> <h5>' + nombre + '</h5> <div> <img src="imgs/location-brown.svg" alt=""> <p>' + localidad + ', ' + provincia + '</p> </div> <span>' + huespedes + ' huéspedes · ' + dormitorios + ' dormitorios · ' + camas + ' camas · ' + banos + '</span> </div>'
+}
+
+function comp_img_carrousel(img) {
+    return '<div class="carousel-cell"><img src="imgs/propiedades_imgs/' + img + '" alt=""></div>'
 }
