@@ -65,47 +65,7 @@
                     <img src="imgs/logo-chico.svg" alt="logo reforma alquiler de hospedajes premium">
                 </a>
 			</div>
-            <ul id="filtros-cont">
-                <aside><img src="imgs/filter.svg" alt=""><div>FILTROS</div></aside>
-                <div>
-                    <li>
-                        <img src="imgs/location-brown.svg" alt="">
-                        <p>Ciudad</p>
-                    </li>
-                    <li>
-                        <div class="checkin">    
-                            <img src="imgs/calendar-brown.svg" alt="">
-                            <p>Check-in</p>
-                        </div>
-                        <div>
-                        <img src="imgs/arrow.svg" alt="">
-                            <p>Check-out</p>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="imgs/cant-huespedesBrown.svg" alt="">
-                        <p>Huespedes</p>
-                        <img src="imgs/minusBrown.svg" id="filter-minus" alt="">
-                        <input type="number" id="filter-cant-hues" value="1">
-                        <img src="imgs/moreBrown.svg" id="filter-more" alt="">
-
-                    </li>
-                    <li>
-                        <aside>$</aside>
-                        <p>Precio</p>
-                    </li>
-                    <li>
-                        <img src="imgs/filters-brown.svg" alt="">
-                        <p>Más filtros</p>
-                    </li>
-                    <li>
-                        <img src="imgs/listBrown.svg" alt="">
-                        <p>Ordenar Por</p>
-                    </li>
-
-                    <button id="aplicar">APLICAR</button>
-                </div>
-            </ul>
+            
 			<div id="menu-cont">
 				<div>
 					<div id="linea-menu1"></div>
@@ -113,8 +73,14 @@
 				</div>
 				
 			</div>
-		</div>
+        </div>
 	</div>
+    <ul id="filtros-cont">
+            <!-- Boton para filtros en celu  -->
+            <aside><img src="imgs/filter.svg" alt=""><div>FILTROS</div></aside>
+
+            <?php include 'filtros.php'; ?>
+        </ul>
 </nav>
 
 
@@ -239,9 +205,13 @@ $('#filtros-cont>aside').click(function () {
 
 
 
+
+
+
+
+
+
+
 });
-
-
-
 </script>
 </html>

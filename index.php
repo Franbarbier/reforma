@@ -86,7 +86,7 @@
 			<h2>Modificando tu manera de viajar.</h2>
 		</hgroup>
 		<form action="">
-			<div  id="select-city">
+			<div id="select-city">
 				<label for="">
 					<img src="imgs/location.svg" alt="ubicacion alquiler departamentos">
 				</label>

@@ -62,12 +62,13 @@ input {
 nav {
   position: relative;
   width: 100%;
-  /* padding: 2vh 0; */
+  padding-top: 3vh;
   height: 10vh;
-  display: flex;
+  /* display: flex; */
   align-self: center;
   z-index: 99;
   border-bottom: 1px solid #ddd;
+  position: relative;
 }
 nav > div > div {
   display: flex;
@@ -94,7 +95,11 @@ nav>div>div>div>img{
  
 #filtros-cont{
   width: 75%;
+  position: absolute;
   font-size: 1.1em;
+  left: 50%;
+  top: 4vh;
+  transform: translateX(-50%);
   
 }
 #filtros-cont>aside{
@@ -206,7 +211,7 @@ input[type=number] {
 }
 
 section article:first-child{
-  height: 80vh;
+  height: 75.2vh;
   overflow: hidden;
 }
 section article{
