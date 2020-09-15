@@ -1,3 +1,22 @@
+<!-- Renderizamos lo mas importante  -->
+<?php
+
+$id = $_GET['id'];
+
+require 'php/connection.php';
+require 'php/models/Usuarios.php';
+
+$usuarios = new Usuarios();
+
+$usuario = $usuarios->verUsuario($id);
+
+$reservas_activas = $usuarios->verReservasActivas($id);
+
+$nivel = $usuarios->verNivel($id);
+
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="es">
@@ -51,6 +70,8 @@
 
 <body>
 
+<input type="hidden" id="id_usuario" value="<?php echo $id ?>">
+
 <nav>
 	<div class="cont90">
 		<div>
@@ -79,10 +100,10 @@
 			<img src="https://cdn.urgente24.com/sites/default/files/2020-08/lionel-messi-manchester-city.jpg" alt="">
 		</div>
 		<div>
-			<h1>Hola, <span>Pedro</span></h1>
+			<h1>Hola, <span><?php echo $usuario['nombre'] ?></span></h1>
 			<ul id="info-perfil">
-				<li>tumail@ejemplo.com</li>
-				<li>+54 9 11 3453-6136</li>
+				<li><?php echo $usuario['mail'] ?></li>
+				<li><?php echo $usuario['telefono'] ?></li>
 				<li>Argentina</li>
 			</ul>
 		</div>
@@ -106,21 +127,31 @@
 		<div id="reservas-actuales">
 			<div>
 				<div>
-					<h2>Reservas activas</h2><span>(1)</span>
+					<h2>Reservas activas</h2><span>(<?php echo count($reservas_activas) ?>)</span>
 				</div>
 				<div>
+			
+			<?php
+			foreach($reservas_activas as $key=>$reserva){
+			
+			?>
 					<div class="actual-reserva-row">
 						<div class="foto-prop-cont">
 							<img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="">
 						</div>
 						<div class="nombre-prop">
-							<h4>Nombre de la propiedad</h4>
+							<h4><?php echo $reserva['nombre_propiedad'] ?></h4>
 						</div>
 						<div class="fechas-reserva">
-							<p>17/12</p> <img src="imgs/down-arrow.svg" alt=""> <p>28/12</p>
+							<p><?php echo $reserva['check_in'] ?></p> <img src="imgs/down-arrow.svg" alt=""> <p><?php echo $reserva['check_out'] ?></p>
 						</div>
 						<button class="ver-reserva">VER MAS</button>
 					</div>
+
+			<?php
+			}
+			?>
+
 				</div>
 			</div>
 		</div>
@@ -169,8 +200,8 @@
 					</div>
 				</div>
 				<div>
-					<p id="value2">33</p>
-					<span>Nivel 2</span>
+					<p id="value2"><?php echo $nivel['score'] ?></p>
+					<span id="nivel"><?php  echo $nivel['nivel'] ?></span>
 				</div>
 			</div>
 			<div id="beneficios-cont">
@@ -216,6 +247,8 @@
 
 
 </body>
+
+<script src="js/perfil.js"></script>
 <script>
 $( document ).ready( function(){
 
@@ -230,10 +263,6 @@ var progreso = parseFloat( '0.'+nivel_porcentaje )
 
 console.log(  next - (dif * progreso)  );
 var total =  next - (dif * progreso);
-
-setTimeout(() => {
-	$('.ciruclito-svg').css('stroke-dashoffset', total)
-}, 250);
 
 function foo(){
 var cnt = 0;
@@ -250,7 +279,13 @@ var timerMy = setInterval(function(){
 },20
 );
  }
-foo();
+
+ foo()
+
+setTimeout(() => {
+	$('.ciruclito-svg').css('stroke-dashoffset', total)
+}, 250);
+
 
 
 
