@@ -64,13 +64,14 @@
 			<div id="menu-cont">
 				<div>
 					<div id="linea-menu1"></div>
-					<div id="linea-menu1"></div>
+					<div id="linea-menu2"></div>
 				</div>
 				
 			</div>
 		</div>
 	</div>
 </nav>
+<?php include 'menu.php' ?>
 <main>
 	<div>
 		<img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="alquiler de departamentos premium">
@@ -522,7 +523,7 @@ $(window).scroll( function(){
     
     let bottom_of_screen = $(window).scrollTop() + $(window).innerHeight();
     let top_of_screen = $(window).scrollTop();   
-	console.log(bottom_of_screen)
+	// console.log(bottom_of_screen)
 	if (destinos_bottom + 200 < bottom_of_screen) {
 		$('#destinos > figure').css({'transform':'translateX(0%)','opacity':'1'})
 	}
@@ -572,8 +573,8 @@ $(window).scroll( function(){
     
     let bottom_of_screen = $(window).scrollTop() + $(window).innerHeight();
     let top_of_screen = $(window).scrollTop();   
-	console.log(bottom_of_screen)
-	console.log(bottom_of_screen)
+	// console.log(bottom_of_screen)
+	// console.log(bottom_of_screen)
 	
     if (destinos_bottom - 200 < bottom_of_screen) {
 		$('#destinos > figure').css({'transform':'translateX(0%)','opacity':'1'})

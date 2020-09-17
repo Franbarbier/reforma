@@ -216,7 +216,7 @@
             </div>
             <div class="info-box" id="sticky-huespedes">
                 <div>
-                    <img src="imgs/users-handmade.svg" alt="">
+                    <img src="imgs/coin.svg" alt="">
                 </div>
                 <div id="precio-final-cont">
                     <div>
@@ -228,6 +228,13 @@
                     <div id="precio-final">
                         <span>U$D 415</span>
                         <img src="imgs/flecha-abajo.svg" alt="">
+                        <article id="descripcion-precio">
+                            <ul>
+                                <li>Por noche: $24</li>
+                                <li>Fee de Reforma: $2</li>
+                                <li>Descuento: -$7</li>
+                            </ul>
+                        </article>
                     </div>
                 </div>
             </div>
@@ -468,6 +475,15 @@ let servicios = {
 Object.entries(servicios).forEach(([key, value]) => $('#features ul').append('<li><img src="'+ value +'" alt=""><p>'+ key +'</p></li>') )
 
 // $('#features ul').append('<li><img src="'+ servicios +'" alt=""><p>'+ features +'</p></li>')
+
+
+
+
+$('#precio-final').click(function(){
+    $('#descripcion-precio').slideToggle(150)
+    $('#precio-final>img').toggleClass('rotation')
+})
+
 
 
 // para celu

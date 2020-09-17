@@ -45,27 +45,22 @@
    <div class="easy-basket-filter-histogram">
        <ul class="histogram-list">
            <li price-range-from="0" price-range-to="1000">
-               <div class="histogram-ballon">цена</div>
                <div class="histogram-height" style="height:76.85714285714286%;">
                </div>
            </li>
            <li price-range-from="1001" price-range-to="2000">
-               <div class="histogram-ballon">в этом диапазоне 35 товаров</div>
                <div class="histogram-height" style="height:10.0%;">
                </div>
            </li>
            <li price-range-from="2001" price-range-to="3000">
-               <div class="histogram-ballon">цена</div>
                <div class="histogram-height" style="height:12.57142857142857%;">
                </div>
            </li>
            <li price-range-from="3001" price-range-to="4000">
-               <div class="histogram-ballon">цена</div>
                <div class="histogram-height" style="height:56.285714285714285%;">
                </div>
            </li>
            <li price-range-from="4001" price-range-to="5000">
-               <div class="histogram-ballon">цена</div>
                <div class="histogram-height" style="height:87.14285714285714%;">
                </div>
            </li>
@@ -74,18 +69,18 @@
 
 
    <div class="easy-basket-filter-info">
-       <p class="iLower"><input type="text" class="easy-basket-lower" value="0" min="0" max="5000" maxlength=6/></p>
-       <p class="iUpper"><input type="text" class="easy-basket-upper" value="5000" min="0" max="5000" maxlength=6/></p>
+       <p class="iLower"><input type="text" class="easy-basket-lower" value="0" min="0" max="300" maxlength=6/></p>
+       <p class="iUpper"><input type="text" class="easy-basket-upper" value="300" min="0" max="300" maxlength=6/></p>
    </div>
    
    <div class="easy-basket-filter-range">
-       <input type="range" class="lower range" step="any" min="0" max="5000" value="0"/>
-       <input type="range" class="upper range" step="any" min="0" max="5000" value="5000"/>
+       <input type="range" class="lower range" step="any" min="0" max="300" value="0"/>
+       <input type="range" class="upper range" step="any" min="0" max="300" value="300"/>
        <div class="fill"></div>
    </div>
    
    <div class="easy-basket-filter-ticks">
-       <div data-value="0"></div><div data-value="100"></div><div data-value="200"></div><div data-value="300"></div><div data-value="400"></div><div data-value="500"></div><div data-value="600"></div><div data-value="700"></div><div data-value="800"></div><div data-value="900"></div><div data-value="1000"></div><div data-value="1100"></div><div data-value="1200"></div><div data-value="1300"></div><div data-value="1400"></div><div data-value="1500"></div><div data-value="1600"></div><div data-value="1700"></div><div data-value="1800"></div><div data-value="1900"></div><div data-value="2000"></div><div data-value="2100"></div><div data-value="2200"></div><div data-value="2300"></div><div data-value="2400"></div><div data-value="2500"></div><div data-value="2600"></div><div data-value="2700"></div><div data-value="2800"></div><div data-value="2900"></div><div data-value="3000"></div><div data-value="3100"></div><div data-value="3200"></div><div data-value="3300"></div><div data-value="3400"></div><div data-value="3500"></div><div data-value="3600"></div><div data-value="3700"></div><div data-value="3800"></div><div data-value="3900"></div><div data-value="4000"></div><div data-value="4100"></div><div data-value="4200"></div><div data-value="4300"></div><div data-value="4400"></div><div data-value="4500"></div><div data-value="4600"></div><div data-value="4700"></div><div data-value="4800"></div><div data-value="4900"></div><div data-value="5000"></div>
+       <!-- <div data-value="0"></div><div data-value="100"></div><div data-value="200"></div><div data-value="300"></div><div data-value="400"></div><div data-value="500"></div><div data-value="600"></div><div data-value="700"></div><div data-value="800"></div><div data-value="900"></div><div data-value="1000"></div><div data-value="1100"></div><div data-value="1200"></div><div data-value="1300"></div><div data-value="1400"></div><div data-value="1500"></div><div data-value="1600"></div><div data-value="1700"></div><div data-value="1800"></div><div data-value="1900"></div><div data-value="2000"></div><div data-value="2100"></div><div data-value="2200"></div><div data-value="2300"></div><div data-value="2400"></div><div data-value="2500"></div><div data-value="2600"></div><div data-value="2700"></div><div data-value="2800"></div><div data-value="2900"></div><div data-value="3000"></div><div data-value="3100"></div><div data-value="3200"></div><div data-value="3300"></div><div data-value="3400"></div><div data-value="3500"></div><div data-value="3600"></div><div data-value="3700"></div><div data-value="3800"></div><div data-value="3900"></div><div data-value="4000"></div><div data-value="4100"></div><div data-value="4200"></div><div data-value="4300"></div><div data-value="4400"></div><div data-value="4500"></div><div data-value="4600"></div><div data-value="4700"></div><div data-value="4800"></div><div data-value="4900"></div><div data-value="5000"></div> -->
    </div>
    
 </div>
@@ -105,10 +100,19 @@
             </div>
         </article>
     </li>
-    <li>
+    <!-- <li>
         <img src="imgs/listBrown.svg" alt="">
         <p>Ordenar Por</p>
-    </li>
+        <article>
+            <div id="ordernar">
+                <ul>
+                    <li>Huespedes</li>
+                    <li>Habitaciones</li>
+                    <li>Baños</li>
+                </ul>
+            </div>
+        </article>
+    </li> -->
     <button id="aplicar">APLICAR</button>
 </div>
 
@@ -178,6 +182,9 @@ window.addEventListener('click', function(e){
 		$('#price-range').slideUp(125)
   }
 });
+
+
+
 jQuery(document).ready(function() {
 	$('.upper').on('input', setFill);
 	$('.lower').on('input', setFill);
@@ -206,7 +213,7 @@ jQuery(document).ready(function() {
 			$('.easy-basket-lower').val(parseInt(valLower));
 		}
 		if (parseInt(valUpper) == max) {
-			$('.easy-basket-upper').val('5000');
+			$('.easy-basket-upper').val($('.upper').val());
 		} else {
 			$('.easy-basket-upper').val(parseInt(valUpper));
 		}
@@ -219,7 +226,7 @@ jQuery(document).ready(function() {
 		var valLower = $('.easy-basket-lower').val();
 		var width = valUpper * 100 / max;
 		var left = valLower * 100 / max;
-		if ( valUpper > 5000 ) {
+		if ( valUpper > $('.upper').val() ) {
 			var left = max;
 		}
 		if ( valLower < 0 ) {

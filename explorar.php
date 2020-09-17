@@ -65,7 +65,12 @@
                     <img src="imgs/logo-chico.svg" alt="logo reforma alquiler de hospedajes premium">
                 </a>
 			</div>
-            
+            <ul id="filtros-cont">
+                <!-- Boton para filtros en celu  -->
+                <aside><img src="imgs/filter.svg" alt=""><div>FILTROS</div></aside>
+
+                <?php include 'filtros.php'; ?>
+            </ul>
 			<div id="menu-cont">
 				<div>
 					<div id="linea-menu1"></div>
@@ -75,12 +80,7 @@
 			</div>
         </div>
 	</div>
-    <ul id="filtros-cont">
-            <!-- Boton para filtros en celu  -->
-            <aside><img src="imgs/filter.svg" alt=""><div>FILTROS</div></aside>
 
-            <?php include 'filtros.php'; ?>
-        </ul>
 </nav>
 
 

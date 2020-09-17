@@ -55,7 +55,7 @@ nav>div>div>div{
 nav>div>div>div>img{
      width: 100%;
 }
-#linea-menu1, #linea-menu1{
+#linea-menu1, #linea-menu2{
     width: 30px;
     float: right;
     background: #272727;
@@ -63,6 +63,8 @@ nav>div>div>div>img{
     margin: 10% 0%;
     border-radius: 35px;
     display: block;
+    transition: 0.5s cubic-bezier(0.13, 0.77, 0.33, 1);
+    transition-delay: 0.15s;
 }
 main{
     display: flex;
@@ -233,7 +235,7 @@ main form>div>img:nth-child(2){
 
 
 /* secciones */
-section:nth-child(3) article{
+section:nth-child(6) article{
      padding: 10vh 0;
      background: #fafafa;
 }

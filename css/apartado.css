@@ -599,17 +599,38 @@ main>div>img{
   justify-content: space-between;
 }
 #precio-final{
+  width: 40%;
   display: flex;
   align-items: center;
-  width: 40%; 
+  position: relative;
   cursor: pointer;
-
 }
-
-
+#precio-final>span{ 
+  display: block;
+  margin-right: 4px;
+}
 #precio-final>img{
-  width: 9px;
-  margin-left: 8px;
+  width: 12px;
+  transition: .2s cubic-bezier(00, 0.77, 0.33, 1)
+}
+.rotation{
+  transform: rotate(180deg);
+}
+#descripcion-precio{
+  top: 180%;
+  position: absolute;
+  padding: 9px;
+  background: #fafafa;
+  border: 1px #ddd solid;
+  width: 200%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85em;
+  border-radius: 2px;
+  display: none;
+}
+#descripcion-precio li{
+  margin: 7px 0;
 }
 
 

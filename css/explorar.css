@@ -96,7 +96,7 @@ nav > div > div > div > a > img {
   display: block;
 }
 #filtros-cont{
-  width: 90%;
+  width: 80%;
   font-size: .8em;
   margin: auto;
   padding: 4vh 0;
@@ -164,7 +164,7 @@ section{
 }
 section article{
   width: 50%;
-  height: 90vh;
+  height: 87vh;
   overflow: hidden;
 }
 
@@ -305,7 +305,7 @@ section article{
   position: absolute;
   top: 170%;
   background: #fafafa;
-  left: 0%;
+  right: -25%;
   z-index: 2;
   width: 240px;
   border: 1px solid #dadada;
@@ -394,6 +394,11 @@ input[type="checkbox"]{
   /* border: 2px dotted #d4bfaa; */
 }
 
+
+
+
+
+
 /* hover style just for information */
 label:hover:before {
   border: 2px solid #d4bfaa!important;
@@ -412,16 +417,24 @@ label:hover:before {
   backdrop-filter: blur(8px);
   display: none;
   border-radius: 2px;
+  font-family: 'Century Gothic';
 }
 .easy-basket-filter {
-	width: 50%;
-	margin: 100px 25%;
-	position: relative;
+  width: 80%;
+  margin: 35% 10% 15% 10%;
+  position: relative;
+}
+.easy-basket-filter-ticks>div{
+  font-family: 'Century Gothic';
+
+}
+.histogram-list>li{
+  display: none!important;
 }
 .fill {
 	height: 3px;
 	width: 100%;
-	background-color: #01BAB0;
+	background-color: #d4bfaa;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -438,7 +451,7 @@ label:hover:before {
 .easy-basket-filter-info p{
 	color: #fff;
 	padding: 2px 6px;
-	background-color: #01BAB0;
+	background-color: #d4bfaa;
 	border-radius: 4px;
 	margin:0;
 }
@@ -451,11 +464,11 @@ label:hover:before {
 	display: inline-block;
 }
 /* .easy-basket-filter-info p:after{
-	border-color: #01BAB0 transparent transparent;
+	border-color: #d4bfaa transparent transparent;
 	content: "";
 	position: absolute;
 	bottom: -3px;
-	border-color: #01BAB0 transparent transparent;
+	border-color: #d4bfaa transparent transparent;
 	border-style: solid;
 	border-width: 3px 4px;
 	-webkit-transform: translate(-50%, 50%);
@@ -473,7 +486,7 @@ label:hover:before {
 	border: none;
 	color: #fff;
 	font: 11px Open Sans;
-	background-color: #01bab0;
+	background-color: #d4bfaa;
 	width: 30px;
 	text-align:center;
 }
@@ -509,7 +522,7 @@ input[type=range]::-webkit-slider-thumb {
 	border: 5px solid #f1f1f1;
 	box-shadow: 0 1px 5px -1px rgba(0, 0, 0, 0.5);
 	border-radius: 100%;
-	background: #01BAB0;
+	background: #d4bfaa;
 	cursor: pointer;
 	margin-top: -9px;
 }
