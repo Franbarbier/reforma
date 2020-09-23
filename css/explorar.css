@@ -267,3 +267,22 @@ section article{
 
   font-size: 0.8em;
 }
+
+/* Empiezan propiedades para el mapa */
+#map{
+  width: 100%;
+  height: 100%;
+}
+
+.marker div{
+  background-color: #d4bfaa;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  width: 45px;
+  cursor: pointer;
+}
+
+/* Terminan propiedades para el mapa */

@@ -1,3 +1,20 @@
+<?php
+
+require 'php/connection.php';
+require 'php/models/Propiedades.php';
+
+// Agarramos los posibles filtros de busqueda. 
+$ciudad = $_GET['ciudad'];
+$huespedes = $_GET['huespedes'];
+$check_in = $_GET['check_in'];
+$check_out = $_GET['check_out'];
+
+// $propiedades = new Propiedades();
+// $disponibles = $propiedades->verDisponibles($ciudad, $huespedes, $check_in, $check_out);
+// var_dump($disponibles);
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="es">
@@ -50,6 +67,8 @@
 	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/explorarMob.css" />
     
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- CDN Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Qo1frNfH6ocqoAIjuiygiTvzwJ8R7tI"></script>
 
     <link rel="preload" href="icons-720172e6.woff2" type="font/woff2" as="font" crossorigin="crossorigin"></link>
 
@@ -70,16 +89,16 @@
                 <div>
                     <li>
                         <img src="imgs/location-brown.svg" alt="">
-                        <p>Ciudad</p>
+                        <p id="f-ciudad">Ciudad</p>
                     </li>
                     <li>
                         <div class="checkin">    
                             <img src="imgs/calendar-brown.svg" alt="">
-                            <p>Check-in</p>
+                            <p id="f-check-in">Check-in</p>
                         </div>
                         <div>
                         <img src="imgs/arrow.svg" alt="">
-                            <p>Check-out</p>
+                            <p id="f-check-out">Check-out</p>
                         </div>
                     </li>
                     <li>
@@ -92,7 +111,7 @@
                     </li>
                     <li>
                         <aside>$</aside>
-                        <p>Precio</p>
+                        <p id="f-precio">Precio</p>
                     </li>
                     <li>
                         <img src="imgs/filters-brown.svg" alt="">
@@ -122,41 +141,7 @@
 <section>
     <article>
         <div id="propiedades">
-            <a class="propiedad" href="#">
-                <div class="foto-cont">
-                    <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="">
-                </div>
-                <div class="prop-info">
-                    <div>
-                        <h4>Loft entero en Recoleta</h4>
-                        <h2>En el medio del Todo</h2>
-                        <hr>
-                        <p>2 huéspedes - 1 dormitorio - 1 cama - 1 baño</p>
-                        <p>Wifi - Cocina - Calefaccion</p>
-                    </div>
-                    <div> 
-                        <p class="btn-precio"><strong>$95</strong><span>/noche</span></p>
-                    </div>
-                </div>
-            </a>
-            <a class="propiedad" href="#">
-                <div class="foto-cont">
-                    <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="">
-                </div>
-                <div class="prop-info">
-                    <div>
-                        <h4>Loft entero en Recoleta</h4>
-                        <h2>En el medio del Todo</h2>
-                        <hr>
-                        <p>2 huéspedes - 1 dormitorio - 1 cama - 1 baño</p>
-                        <p>Wifi - Cocina - Calefaccion</p>
-                    </div>
-                    <div> 
-                        <p class="btn-precio"><strong>$95</strong><span>/noche</span></p>
-                    </div>
-                </div>
-            </a>
-            <a class="propiedad" href="#">
+        <a class="propiedad" href="#">
                 <div class="foto-cont">
                     <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="">
                 </div>
@@ -177,15 +162,14 @@
     </article>
     <article>
         <div id="map-cont">
-            <aside id="ver-mapa">VER MAPA</aside>
-            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.564358979692!2d-58.39355818505271!3d-34.589888064272934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccaa3293e5c59%3A0xb88e1847ae2b3cce!2sAyacucho%201741%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1597668968631!5m2!1ses!2sar" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
-            <iframe src="https://snazzymaps.com/embed/255390" width="100%" height="100%" style="border:none;"></iframe>
+            <div id="map"></div>
         </div>
     </article>
 </section>
 
 
 </body>
+<script src="js/explorar.js"></script>
 <script>
 $( document ).ready( function(){
 

@@ -96,9 +96,10 @@
 					<ul>
 						<li>Buenos Aires</li>
 						<li>San Antonio de Areco</li>
-						<li>San Carlos de Bariloche</li>
+						<li>Bariloche</li>
 					</ul>
 				</div>
+				<input type="hidden" id="ciudad">
 			</div>
 			
 			<div>
@@ -106,13 +107,13 @@
 					<label for="">
 						<img src="imgs/calendar-black.svg" alt="">
 					</label>
-					<input class="inputs" placeholder="Llegada" type="text">
+					<input class="inputs" placeholder="Llegada" type="text" id="check_in">
 				</div>
 				<div>
 					<label for="">
 						<img src="imgs/checkout-black.svg" alt="">
 					</label>
-					<input class="inputs" placeholder="Salida" type="text">
+					<input class="inputs" placeholder="Salida" type="text" id="check_out">
 				</div>
 			</div>
 			<div>
@@ -385,6 +386,8 @@
 <?php include 'footer.php'; ?>
 
 </body>
+
+<script src="js/index.js"></script>
 <script>
 
 $( document ).ready( function(){
@@ -409,6 +412,9 @@ $('#ciudades li').click(function () {
 
 	$(this).parents('div').css('border-bottom','2px solid #fafafa')
 	$('#ciudades').slideUp(125)
+
+	// Agregamos la ciudad seleccionada al input hidden ciudad
+	$('#ciudad').val($(this).html())
 })
 
 $('#mas').click(function () {

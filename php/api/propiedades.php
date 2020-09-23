@@ -26,10 +26,10 @@ if($_GET['func'] == 'verAmenities'){
 
 if($_GET['func']== 'verDisponibles'){
 
-	$huespedes = $_POST['huespedes'];
-	$ciudad = $_POST['ciudad'];
-	$check_in = $_POST['check_in'];
-	$check_out = $_POST['check_out'];
+	$huespedes = $_GET['huespedes'];
+	$ciudad = $_GET['ciudad'];
+	$check_in = $_GET['check_in'];
+	$check_out = $_GET['check_out'];
 
 	echo json_encode($propiedades->verDisponibles($ciudad, $huespedes, $check_in, $check_out));
 
