@@ -1,18 +1,18 @@
 <!-- Renderizamos lo mas importante  -->
 <?php
 
-$id = $_GET['id'];
+// $id = $_GET['id'];
 
-require 'php/connection.php';
-require 'php/models/Usuarios.php';
+// require 'php/connection.php';
+// require 'php/models/Usuarios.php';
 
-$usuarios = new Usuarios();
+// $usuarios = new Usuarios();
 
-$usuario = $usuarios->verUsuario($id);
+// $usuario = $usuarios->verUsuario($id);
 
-$reservas_activas = $usuarios->verReservasActivas($id);
+// $reservas_activas = $usuarios->verReservasActivas($id);
 
-$nivel = $usuarios->verNivel($id);
+// $nivel = $usuarios->verNivel($id);
 
 
 ?>
@@ -84,14 +84,14 @@ $nivel = $usuarios->verNivel($id);
 			<div id="menu-cont">
 				<div>
 					<div id="linea-menu1"></div>
-					<div id="linea-menu1"></div>
+					<div id="linea-menu2"></div>
 				</div>
 				
 			</div>
 		</div>
 	</div>
 </nav>
-
+<?php include 'menu.php' ?>
 <main class="cont90"> 
 
 <div id="datos-usuario">

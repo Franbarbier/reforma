@@ -85,7 +85,9 @@ $check_out = $_GET['check_out'];
                 </a>
 			</div>
             <ul id="filtros-cont">
+                <!-- Boton para filtros en celu  -->
                 <aside><img src="imgs/filter.svg" alt=""><div>FILTROS</div></aside>
+<<<<<<< HEAD
                 <div>
                     <li>
                         <img src="imgs/location-brown.svg" alt="">
@@ -124,6 +126,10 @@ $check_out = $_GET['check_out'];
 
                     <button id="aplicar">APLICAR</button>
                 </div>
+=======
+
+                <?php include 'filtros.php'; ?>
+>>>>>>> d1e4f96218c69a963c4a8a4eb111cfd5f845ca7c
             </ul>
 			<div id="menu-cont">
 				<div>
@@ -132,8 +138,9 @@ $check_out = $_GET['check_out'];
 				</div>
 				
 			</div>
-		</div>
+        </div>
 	</div>
+
 </nav>
 
 
@@ -223,9 +230,13 @@ $('#filtros-cont>aside').click(function () {
 
 
 
+
+
+
+
+
+
+
 });
-
-
-
 </script>
 </html>
