@@ -24,7 +24,7 @@ var markers_obj = [
 // Inicializacion del documento
 init_map(markers_obj)
 ver_disponibles()
-set_nav_filters()
+// set_nav_filters()
 
 
 // Componente de resultado de propiedad

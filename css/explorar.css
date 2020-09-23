@@ -269,7 +269,6 @@ section article{
   font-size: 0.8em;
 }
 
-<<<<<<< HEAD
 /* Empiezan propiedades para el mapa */
 #map{
   width: 100%;
@@ -288,7 +287,6 @@ section article{
 }
 
 /* Terminan propiedades para el mapa */
-=======
 
 /* Filtros */
 #ciudades {
@@ -672,4 +670,3 @@ input[type=range].lower::-webkit-slider-runnable-track {
 	left: 56px\9;
 	bottom: -4px\9;
 }
->>>>>>> d1e4f96218c69a963c4a8a4eb111cfd5f845ca7c
