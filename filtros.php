@@ -1,7 +1,7 @@
 <div>
     <li id="select-city">
         <img src="imgs/location-brown.svg" alt="">
-        <p>Ciudad</p>
+        <p id="f-ciudad">Ciudad</p>
         <article>
 
             <div id="ciudades">
@@ -17,11 +17,11 @@
     <li>
         <div class="checkin">    
             <img src="imgs/calendar-brown.svg" alt="">
-            <p>Check-in</p>
+            <p id="f-checkin">Check-in</p>
         </div>
         <div>
             <img src="imgs/arrow.svg" alt="">
-            <p>Check-out</p>
+            <p id="f-checkout">Check-out</p>
         </div>
     </li>
     <li>

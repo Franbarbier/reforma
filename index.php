@@ -126,7 +126,7 @@
 				<img id="mas" src="imgs/more.svg" alt="">
 
 			</div>
-			<input type="submit" class="explore" value="EXPLORAR">
+			<input type="submit" class="explore" value="EXPLORAR" id="explorar">
 		</form>
 	</header>
 
@@ -393,6 +393,10 @@
 
 $( document ).ready( function(){
 
+	$('#explorar').click(function(e){
+		e.preventDefault()
+		ver_disponibles()
+	})
 
 
 window.addEventListener('click', function(e){   
