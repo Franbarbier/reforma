@@ -187,7 +187,13 @@ $('#filtros-cont>aside').click(function () {
 //termina js celu
 
 
-
+// Si hoverean sobre una propiedad, se resalta en el mapa
+$(document).on("mouseover", ".propiedad", function(){
+    $("#map-cont #"+$(this).attr('id')).addClass('hovered')
+})
+$(document).on("mouseleave", ".propiedad", function(){
+    $("#map-cont #"+$(this).attr('id')).removeClass('hovered')
+})
 
 
 

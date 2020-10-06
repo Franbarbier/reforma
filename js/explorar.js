@@ -3,29 +3,38 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
 // Array de objetos estatico para simular los markers (1 por propiedad)
-var markers_obj = [
-    {
-        "price": 20,
-        "lat_lng": new google.maps.LatLng(-34.586911, -58.388361),
-        "name": "Pruebita 1!",
-    },
-    {
-        "price": 30,
-        "lat_lng": new google.maps.LatLng(-34.286911, -58.388361),
-        "name": "Pruebita 2!"
-    },
-    {
-        "price": 40,
-        "lat_lng": new google.maps.LatLng(-33.986911, -58.388361),
-        "name": "Pruebita 3!"
-    }
-]
+// var markers_obj = [
+//     {
+//         "price": 20,
+//         "lat_lng": new google.maps.LatLng(-34.586911, -58.388361),
+//         "name": "Pruebita 1!",
+//     },
+//     {
+//         "price": 30,
+//         "lat_lng": new google.maps.LatLng(-34.286911, -58.388361),
+//         "name": "Pruebita 2!"
+//     },
+//     {
+//         "price": 40,
+//         "lat_lng": new google.maps.LatLng(-33.986911, -58.388361),
+//         "name": "Pruebita 3!"
+//     }
+// ]
 
+var center_coordinates = [-34.255863, -59.466912]
 // Inicializacion del documento
-init_map(markers_obj)
 ver_disponibles()
 set_nav_filters()
 
+// Componente de marker del map
+function obj_marker(id, price, coordinates, name) {
+    return {
+        "id": id,
+        "price": price,
+        "lat_lng": new google.maps.LatLng(coordinates[0], coordinates[1]),
+        "name": name,
+    }
+}
 
 // Componente de resultado de propiedad
 function comp_resultado(propiedad) {
@@ -58,7 +67,7 @@ function comp_resultado(propiedad) {
     }
 
     console.log('id, ' + propiedad.id)
-    return `<a class="propiedad" href="apartado.php?id=${propiedad.id}">
+    return `<a class="propiedad" href="apartado.php?id=${propiedad.id}" id="${propiedad.id}">
         <div class="foto-cont">
             <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="">
         </div>
@@ -127,20 +136,35 @@ function ver_disponibles() {
         .then(function (disponibles) {
             console.log(disponibles)
 
-            // Inyectamos el objeto de propiedades en el listado 
+            // Inyectamos el objeto de propiedades en el listado y armamos los marker objs
+            var center_lat = 0;
+            var center_long = 0;
+            var markers_obj = [];
             html = '';
             for (d in disponibles) {
                 html += comp_resultado(disponibles[d])
+                markers_obj.push(obj_marker(disponibles[d].id, disponibles[d].tarifa, JSON.parse(disponibles[d].coordenadas), disponibles[d].nombre))
+                center_lat += parseFloat(JSON.parse(disponibles[d].coordenadas)[0])
+                center_long += parseFloat(JSON.parse(disponibles[d].coordenadas)[1])
             }
             $('#propiedades').html(html)
+            console.log('markers: ')
+            console.log(markers_obj)
 
-            // Inicializamos el mapa con la info de estas propiedades
+            // Dividimos lat por el length de propiedades para dar con el promedio
+            center_lat = center_lat / disponibles.length
+            center_long = center_long / disponibles.length
+
+            console.log('lat long: ', center_lat, ' , ', center_long)
+
+            init_map(markers_obj, [center_lat, center_long])
+
 
         });
 }
 
 // Funcion para inicializar el mapa
-function init_map(markers_obj) {
+function init_map(markers_obj, center_coordinates) {
 
     const createHTMLMapMarker = ({ OverlayView = google.maps.OverlayView, ...args }) => {
         class HTMLMapMarker extends OverlayView {
@@ -206,9 +230,9 @@ function init_map(markers_obj) {
         return new HTMLMapMarker();
     };
 
-    var center_lat_lng = new google.maps.LatLng(-34.586911, -58.388361);
+    var center_lat_lng = new google.maps.LatLng(center_coordinates[0], center_coordinates[1]);
     const mapOptions = {
-        zoom: 14,
+        zoom: 12,
         center: center_lat_lng,
         styles: [
             {
@@ -235,7 +259,7 @@ function init_map(markers_obj) {
         let marker = createHTMLMapMarker({
             latlng: lat_lng,
             map: map,
-            html: comp_marker(m)
+            html: comp_marker(markers_obj[m])
         });
 
         google.maps.event.addListener(marker, 'click', function (event) {
@@ -245,8 +269,8 @@ function init_map(markers_obj) {
 
 }
 
-function comp_marker(id) {
-    return `<div class="marker" id="${id}">
+function comp_marker(marker_info) {
+    return `<div class="marker" id="${marker_info.id}">
             <div>
                 <img src="imgs/logo-chico.svg" height="15px" alt="">
             </div>

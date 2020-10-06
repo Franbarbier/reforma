@@ -49,4 +49,12 @@ if($_GET['func']=='verRecomendados'){
     echo json_encode($globales->verRecomendados($id_propiedad, $localidad, $limit));
 }
 
+// if($_GET['func']=='verLocacion'){
+
+//     // Obtenemos estos parametros ya que los recomendados tienen que ser de la misma localidad y no pueden ser el mismo que esta viualizando al momento presente
+//     $locacion = $_GET['locacion'];
+
+//     echo json_encode($globales->verLocacion($locacion));
+// }
+
 ?>
