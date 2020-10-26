@@ -30,10 +30,10 @@
 
 }
 #menu-desp ul li{
-    margin: 20px 0;
-    padding: 15px 13px;
+    margin: 13px 0;
+    padding: 13px;
     border-radius: 2px;
-    font-size: 1.3em;
+    font-size: 1.1em;
     color:#5e5e5e;
     cursor: pointer;
     transition: 0.5s cubic-bezier(0.13, 0.77, 0.33, 1);
@@ -42,22 +42,23 @@
 }
 #menu-desp ul li:before{
     content: '';
-    position: absolute; 
+    position: absolute;
     z-index: -1;
-    top: 50%;
+    top: 90%;
     left: 0%;
-    transform: translateY(-50%);
-    width: 0%;
-    height: 100%;
+    transform: translateY(-50%) rotateY(90deg);
+    width: 100%;
+    height: 7%;
     background: #d4bfaa;
-    transition: 0.5s cubic-bezier(0.13, 0.77, 0.33, 1);
+    transition: 0.8s cubic-bezier(0.13, 0.77, 0.33, 1);
 }
 #menu-desp ul li:hover:before{
-    width: 100%;
-    
+    transform: translateY(-50%)
 }
 #menu-desp ul li:hover{
-    color: white;
+    /* color: white; */
+    opacity: 0.7;
+    letter-spacing: 2px;
 }
 
 
