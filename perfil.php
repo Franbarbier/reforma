@@ -1,18 +1,18 @@
 <!-- Renderizamos lo mas importante  -->
 <?php
 
-// $id = $_GET['id'];
+$id = $_GET['id'];
 
-// require 'php/connection.php';
-// require 'php/models/Usuarios.php';
+require 'php/connection.php';
+require 'php/models/Usuarios.php';
 
-// $usuarios = new Usuarios();
+$usuarios = new Usuarios();
 
-// $usuario = $usuarios->verUsuario($id);
+$usuario = $usuarios->verUsuario($id);
 
-// $reservas_activas = $usuarios->verReservasActivas($id);
+$reservas_activas = $usuarios->verReservasActivas($id);
 
-// $nivel = $usuarios->verNivel($id);
+$nivel = $usuarios->verNivel($id);
 
 
 ?>
