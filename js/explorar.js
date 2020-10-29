@@ -113,9 +113,6 @@ function set_nav_filters() {
     if (check_out != '') {
         $('#f-checkout').html(check_out)
     }
-
-
-
 }
 
 // Funcion para traer los resultados en funcion de la busqueda
@@ -267,6 +264,61 @@ function init_map(markers_obj, center_coordinates) {
         });
     }
 
+}
+
+// Funcion para actualizar propiedades siendo mostradas a partir de los filtros
+function update_from_filters() {
+
+    // Seleccionamos todos los valores obteniendolos de la barra de filtros
+    var ciudad = $('#f-ciudad').html()
+    var check_in = $('#f-checkin').html()
+    var check_out = $('#f-checkout').html()
+    if (check_in == 'Check-in') {
+        check_in = ''
+        check_out = ''
+    }
+    if (check_out == 'Check-out') {
+        check_in = ''
+        check_out = ''
+    }
+    var huespedes = $('#filter-cant-hues').val()
+    var minprice = $('#f-minprice').val()
+    var maxprice = $('#f-maxprice').val()
+    var amenities = global_selected_amenities
+
+    // Hacemos la consulta a la API
+    fetch('php/api/propiedades.php?func=filtrarResultados&ciudad=' + ciudad + '&check_in=' + check_in + '&check_out=' + check_out + '&huespedes=' + huespedes + '&minprice=' + minprice + '&maxprice=' + maxprice + '&amenities=' + amenities)
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (disponibles) {
+            console.log(disponibles)
+
+            // Inyectamos el objeto de propiedades en el listado y armamos los marker objs
+            // var center_lat = 0;
+            // var center_long = 0;
+            // var markers_obj = [];
+            // html = '';
+            // for (d in disponibles) {
+            //     html += comp_resultado(disponibles[d])
+            //     markers_obj.push(obj_marker(disponibles[d].id, disponibles[d].tarifa, JSON.parse(disponibles[d].coordenadas), disponibles[d].nombre))
+            //     center_lat += parseFloat(JSON.parse(disponibles[d].coordenadas)[0])
+            //     center_long += parseFloat(JSON.parse(disponibles[d].coordenadas)[1])
+            // }
+            // $('#propiedades').html(html)
+            // console.log('markers: ')
+            // console.log(markers_obj)
+
+            // // Dividimos lat por el length de propiedades para dar con el promedio
+            // center_lat = center_lat / disponibles.length
+            // center_long = center_long / disponibles.length
+
+            // console.log('lat long: ', center_lat, ' , ', center_long)
+
+            // init_map(markers_obj, [center_lat, center_long])
+
+
+        });
 }
 
 function comp_marker(marker_info) {

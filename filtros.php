@@ -69,8 +69,8 @@
 
 
    <div class="easy-basket-filter-info">
-       <p class="iLower"><input type="text" class="easy-basket-lower" value="0" min="0" max="300" maxlength=6/></p>
-       <p class="iUpper"><input type="text" class="easy-basket-upper" value="300" min="0" max="300" maxlength=6/></p>
+       <p class="iLower"><input type="text" class="easy-basket-lower" value="0" min="0" max="300" maxlength=6 id="f-minprice" /></p>
+       <p class="iUpper"><input type="text" class="easy-basket-upper" value="300" min="0" max="300" maxlength=6 id="f-maxprice" /></p>
    </div>
    
    <div class="easy-basket-filter-range">
@@ -94,7 +94,7 @@
         <p>Más filtros</p>
         <article>
             <div>
-                <ul>
+                <ul id="lista-filtros">
                     
                 </ul>
             </div>
@@ -120,6 +120,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 
 <script>
+
+var global_selected_amenities = []
 
 window.addEventListener('click', function(e){   
   if (document.getElementById('select-city').contains(e.target)){
@@ -267,5 +269,33 @@ jQuery(document).ready(function() {
 		$(this).addClass('ui-histogram-active');
 	});
 });
+
+// Creamos el array de servicios requeridos a medida que clickeamos el checkbox
+var first_click = true
+$(document).on("click", "#lista-filtros li", function(e){
+    e.stopPropagation()
+    if(first_click){
+        first_click = false
+        // var amenity = $(this).find('input').attr('id')
+        var amenity = $('#lista-filtros li').index($(this)) + 1
+        console.log(amenity)
+
+        
+        if(!global_selected_amenities.includes(amenity)){
+            global_selected_amenities.push(amenity)
+        }else{
+            var index = global_selected_amenities.indexOf(amenity);
+            global_selected_amenities.splice(index, 1);
+        }
+        
+        console.log(global_selected_amenities)
+    }
+
+    setTimeout(() => {
+        first_click = true
+    }, 200);
+
+})
+
 
 </script>

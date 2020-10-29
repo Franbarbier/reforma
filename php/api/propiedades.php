@@ -24,6 +24,7 @@ if($_GET['func'] == 'verAmenities'){
 
 }
 
+// Funcion para ver propiedades disponibles desde el filtrador de la home
 if($_GET['func']== 'verDisponibles'){
 
 	$huespedes = $_GET['huespedes'];
@@ -35,5 +36,19 @@ if($_GET['func']== 'verDisponibles'){
 
 }
 
+// Funcion para ver propiedades disponibles desde la barra compleja de filtros de "explorar"
+if($_GET['func']=='filtrarResultados'){
+
+	$huespedes = $_GET['huespedes'];
+	$ciudad = $_GET['ciudad'];
+	$check_in = $_GET['check_in'];
+	$check_out = $_GET['check_out'];
+	$minprice = $_GET['minprice'];
+	$maxprice = $_GET['maxprice'];
+
+	var_dump($propiedades->filtrarResultados($ciudad, $huespedes, $check_in, $check_out, $minprice, $maxprice));	
+
+
+}
 
 ?>

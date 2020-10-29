@@ -226,15 +226,7 @@
                         <img src="imgs/left-arrow.png" alt="">
                     </div>
                     <div id="precio-final">
-                        <span>U$D 415</span>
-                        <img src="imgs/flecha-abajo.svg" alt="">
-                        <article id="descripcion-precio">
-                            <ul>
-                                <li>Por noche: $24</li>
-                                <li>Fee de Reforma: $2</li>
-                                <li>Descuento: -$7</li>
-                            </ul>
-                        </article>
+                        
                     </div>
                 </div>
             </div>

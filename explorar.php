@@ -197,10 +197,6 @@ $(document).on("mouseleave", ".propiedad", function(){
 
 
 
-
-
-
-
 });
 </script>
 </html>

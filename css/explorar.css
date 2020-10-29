@@ -284,6 +284,7 @@ section article{
   height: 45px;
   width: 45px;
   cursor: pointer;
+  transition: .2s;
 }
 
 /* Terminan propiedades para el mapa */
@@ -669,4 +670,8 @@ input[type=range].lower::-webkit-slider-runnable-track {
 	box-shadow: 4px 1px 3px rgba(0,0,0,.09);
 	left: 56px\9;
 	bottom: -4px\9;
+}
+
+.hovered div{
+  background-color: #c9a27b;
 }

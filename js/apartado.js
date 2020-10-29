@@ -40,6 +40,8 @@ function render_apartado(propiedad) {
     var tarifa = document.getElementById('tarifa')
     tarifa.innerHTML = propiedad.tarifa
 
+    global_por_noche = tarifa
+
     var concepto = document.getElementById('concepto-text')
     concepto.innerHTML = propiedad.concepto_espacio
 
@@ -172,4 +174,16 @@ function comp_recomendado(nombre, localidad, provincia, huespedes, banos, dormit
 
 function comp_img_carrousel(img) {
     return '<div class="carousel-cell"><img src="imgs/propiedades_imgs/' + img + '" alt=""></div>'
+}
+
+function comp_precio_final_cont(precio, por_noche, descuento = '0') {
+    return `<span id="p-f-c">U$D <span id="p-f">${precio}</span></span>
+    <img src="imgs/flecha-abajo.svg" alt="">
+    <article id="descripcion-precio">
+        <ul>
+            <li>Por noche: $${por_noche}</li>
+            <li>Fee de Reforma: $2</li>
+            <li>Descuento: -$${descuento}</li>
+        </ul>
+    </article>`
 }
