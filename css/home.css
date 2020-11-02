@@ -56,7 +56,10 @@ nav {
   left: 0;
   width: 100%;
   padding-top: 2vh;
+  padding-bottom: 1vh;
   z-index: 99;
+  background-image: linear-gradient( #fafafa 0%, transparent 0%);
+  transition: .7s cubic-bezier(0.13, 0.77, 0.33, 1);
 }
 nav > div > div {
   display: flex;
@@ -71,8 +74,12 @@ nav > div > div > div {
   position: relative;
   z-index: 99;
 }
+nav > div > div > div:first-child{
+  display: flex;
+  align-items: center;
+}
 nav > div > div > div > a > img {
-  width: 75%;
+  width: 3vw;
 }
 #menu-cont>div{
   display: flex;
@@ -237,7 +244,7 @@ main form > div > img:nth-child(2) {
   text-align: center;
 }
 
-#ciudades {
+#ciudades{
   position: absolute;
   top: 110%;
   background: #fafafa;
@@ -248,25 +255,65 @@ main form > div > img:nth-child(2) {
   backdrop-filter: blur(8px);
   display: none;
 }
-#ciudades ul {
+#ciudades-nav{
+    position: absolute;
+    top: 110%;
+    background: rgba(250 250 250/ 0.6);
+    left: 45px;
+    z-index: 2;
+    width: max-content;
+    border: 1px solid #dadada;
+    backdrop-filter: blur(8px);
+    display: none;
+    border-radius: 2px;
+}
+#ciudades ul, #ciudades-nav ul {
   padding: 2% 7%;
 }
-#ciudades ul li {
+#ciudades ul li, #ciudades-nav ul li {
   margin: 5% 0;
   cursor: pointer;
 }
-#ciudades ul li:hover {
+#ciudades ul li:hover, #ciudades-nav ul li:hover {
   font-weight: 600;
 }
-#select-city {
+#select-city, #select-city-nav {
   border-bottom: 0px solid transparent;
   cursor: pointer;
 }
-#select-city p {
+#select-city p, #select-city-nav p {
   color: #7b7b7b;
 }
+#f-ciudad-nav{
+  position: relative;
+  color: #484848;
+  margin-left: 45px;
+  width: max-content;
+}
+#select-city-nav{
+  position: relative;
+  display: flex;
+  align-items: center;
+  display: none;
+}
+#select-city-nav button{
+  margin-left: 25px;
+  background: transparent;
+  border: none;
+  padding: 5px 15px;
+  background: #d4bfaa;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  border: 1px solid #d4bfaa;
+  transition: .2s cubic-bezier(0.13, 0.77, 0.33, 1);
+}
+#select-city-nav button:hover{
+  background-color: transparent;
+  color: #d4bfaa;
+}
 
-/* secciones */
+  /* secciones */
 section:nth-child(6) article {
   padding: 21vh 0;
   background: #fafafa;
@@ -700,3 +747,4 @@ color: white
   padding-top: 30%;
   font-size: 2.5em;
 }
+
