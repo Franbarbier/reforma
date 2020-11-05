@@ -497,10 +497,18 @@ color: white
      transition: 1s;
      transition-timing-function: cubic-bezier(0.13, 0.77, 0.33, 1);
 }
-#amenities>div img{
+#amenities > div >div{ 
      width: 100%;
+     height: 15vh;
+     overflow: hidden;
+     margin-bottom: 2px;
+   }
+   #amenities > div img {
      border-radius: 2px;
-}
+     object-fit: cover;
+     width: 100%;
+     height: 100%;
+   }
 
 .row2, .row3{
      transition-delay: .3s!important;

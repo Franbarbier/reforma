@@ -235,52 +235,76 @@
 			<div class="contG">
 				<div id="amenities">
 					<div class="row1">
-						<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+						<div>
+							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+						</div>
 						<p>Auto Check-in</p>
 					</div>
 					<div class="row1">
-						<img src="imgs/Soporte.jpg" alt="">
+						<div>
+							<img src="imgs/Soporte.jpg" alt="">
+						</div>
 						<p>Soporte 24/7</p>
 					</div>
 					<div class="row1">
-						<img src="imgs/ServicioWiFi.jpg" alt="">
+						<div>
+							<img src="imgs/ServicioWiFi.jpg" alt="">
+						</div>
 						<p>Servicio wifi</p>
 					</div>
 					<div class="row2">
-						<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+						<div>
+							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+						</div>
 						<p>Cocina totalemnte equipada</p>
 					</div>
 					<div class="row2">
-						<img src="imgs/LimpiezaProfesional.jpg" alt="">
+						<div>
+							<img src="imgs/LimpiezaProfesional.jpg" alt="">
+						</div>
 						<p>Limpieza profesional</p>
 					</div>
 					<div class="row2">
-						<img src="imgs/Toallas.jpg" alt="">
+						<div>
+							<img src="imgs/Toallas.jpg" alt="">
+						</div>
 						<p>Toallas y articulos de ducha</p>
 					</div>
 					<!-- <div id="hide-amenities"> -->
 						<div class="row3">
-							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							<div>
+								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							</div>
 							<p>Auto Check-in</p>
 						</div>
 						<div class="row3">
-							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							<div>
+								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							</div>
 							<p>Auto Check-in</p>
 						</div>
 						<div class="row3">
-							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							<div>
+								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							</div>
 							<p>Auto Check-in</p>
 						</div>
 						<div class="row4">
-							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							<div>
+								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							</div>
 							<p>Auto Check-in</p>
 						</div>
 						<div class="row4">
-							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							<div>
+								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							</div>
 							<p>Auto Check-in</p>
 						</div>
 						<div class="row4">
-							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							<div>
+								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							</div>
 							<p>Auto Check-in</p>
 						</div>
 					<!-- </div> -->
