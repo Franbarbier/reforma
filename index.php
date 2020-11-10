@@ -60,6 +60,21 @@
 				<a href="http://67.222.7.138/~reforma/">
 					<img src="imgs/logo-chico.svg" alt="logo reforma alquile de inmuebles">
 				</a>
+				<div id="select-city-nav">
+					<p id="f-ciudad-nav">Seleccione una ciudad</p>
+					<article>
+
+						<div id="ciudades-nav">
+							<ul>
+								<li>Todas</li>
+								<li>Buenos Aires</li>
+								<li>San Antonio de Areco</li>
+								<li>San Carlos de Bariloche</li>
+							</ul>
+						</div>
+					</article>
+					<button>BUSCAR</button>
+				</div>
 			</div>
 			<div id="menu-cont">
 				<div>
@@ -220,52 +235,76 @@
 			<div class="contG">
 				<div id="amenities">
 					<div class="row1">
-						<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+						<div>
+							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+						</div>
 						<p>Auto Check-in</p>
 					</div>
 					<div class="row1">
-						<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
-						<p>Auto Check-in</p>
+						<div>
+							<img src="imgs/Soporte.jpg" alt="">
+						</div>
+						<p>Soporte 24/7</p>
 					</div>
 					<div class="row1">
-						<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
-						<p>Auto Check-in</p>
+						<div>
+							<img src="imgs/ServicioWiFi.jpg" alt="">
+						</div>
+						<p>Servicio wifi</p>
 					</div>
 					<div class="row2">
-						<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
-						<p>Auto Check-in</p>
+						<div>
+							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+						</div>
+						<p>Cocina totalemnte equipada</p>
 					</div>
 					<div class="row2">
-						<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
-						<p>Auto Check-in</p>
+						<div>
+							<img src="imgs/LimpiezaProfesional.jpg" alt="">
+						</div>
+						<p>Limpieza profesional</p>
 					</div>
 					<div class="row2">
-						<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
-						<p>Auto Check-in</p>
+						<div>
+							<img src="imgs/Toallas.jpg" alt="">
+						</div>
+						<p>Toallas y articulos de ducha</p>
 					</div>
 					<!-- <div id="hide-amenities"> -->
 						<div class="row3">
-							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							<div>
+								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							</div>
 							<p>Auto Check-in</p>
 						</div>
 						<div class="row3">
-							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							<div>
+								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							</div>
 							<p>Auto Check-in</p>
 						</div>
 						<div class="row3">
-							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							<div>
+								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							</div>
 							<p>Auto Check-in</p>
 						</div>
 						<div class="row4">
-							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							<div>
+								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							</div>
 							<p>Auto Check-in</p>
 						</div>
 						<div class="row4">
-							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							<div>
+								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							</div>
 							<p>Auto Check-in</p>
 						</div>
 						<div class="row4">
-							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							<div>
+								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
+							</div>
 							<p>Auto Check-in</p>
 						</div>
 					<!-- </div> -->
@@ -296,7 +335,7 @@
 				<h5>Modificamos la forma de viajar, reformando los espacios.</h5>
 				<div>
 					<p>- Pedro Grampa</p>
-					<i>Fundador de Reforma</i>
+					<i>Fundador y CEO</i>
 				</div>
 			</header>
 		</div>
@@ -420,6 +459,22 @@ $('#ciudades li').click(function () {
 
 	// Agregamos la ciudad seleccionada al input hidden ciudad
 	$('#ciudad').val($(this).html())
+})
+window.addEventListener('click', function(e){   
+  if (document.getElementById('select-city-nav').contains(e.target)){
+	  if( $('#ciudades-nav').css('display') == "none" ){
+		$('#ciudades-nav').slideDown(125)
+	  }
+  } else{
+		$('#ciudades-nav').slideUp(125)
+  }
+});
+$('#ciudades-nav li').click(function () {
+	$('#select-city-nav p').text( $(this).text() )
+	$('#select-city-nav p').css('color','#272727')
+	$('#ciudades-nav').slideUp(125)
+	// Agregamos la ciudad seleccionada al input hidden ciudad
+	$('#ciudad-nav').val($(this).html())
 })
 
 $('#mas').click(function () {

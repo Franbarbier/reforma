@@ -35,11 +35,13 @@ button, input{ font-family: 'Century Gothic'; outline: none; }
 }
 
 nav{
-     position: absolute;
+     position: fixed;
      top: 0vh;
      left: 0;
      width: 100%;
      padding-top: 2vh;
+     padding-bottom: 1vh;
+
      z-index: 99;
 }
 nav>div>div{
@@ -52,8 +54,11 @@ nav>div>div>div{
      width: 10%;
      cursor: pointer;
 }
-nav>div>div>div>img{
-     width: 100%;
+nav>div>div>div>a>img{
+     width: 9vw;
+}
+nav .cont90>div>div{
+     display: flex;
 }
 #linea-menu1, #linea-menu2{
     width: 30px;
@@ -233,7 +238,63 @@ main form>div>img:nth-child(2){
      color: #7b7b7b;
 }
 
-
+#ciudades-nav{
+     position: absolute;
+     top: 110%;
+     background: rgba(250 250 250/ 0.6);
+     left: 10px;
+     z-index: 2;
+     width: max-content;
+     border: 1px solid #dadada;
+     backdrop-filter: blur(8px);
+     display: none;
+     border-radius: 2px;
+ }
+ #ciudades-nav ul {
+   padding: 2% 7%;
+ }
+ #ciudades-nav ul li {
+   margin: 5% 0;
+   cursor: pointer;
+ }
+ #ciudades-nav ul li:hover {
+   font-weight: 600;
+ }
+ #select-city-nav {
+   border-bottom: 0px solid transparent;
+   cursor: pointer;
+ }
+ #select-city-nav p {
+   color: #7b7b7b;
+ }
+ #f-ciudad-nav{
+   position: relative;
+   color: #484848;
+   margin-left: 10px;
+   font-size: 1.1em;
+   width: max-content;
+ }
+ #select-city-nav{
+   position: relative;
+   align-items: center;
+   display: none;
+ }
+ #select-city-nav button{
+   margin-left: 10px;
+   background: transparent;
+   border: none;
+   padding: 2px 15px;
+   background: #d4bfaa;
+   border-radius: 2px;
+   color: white;
+   cursor: pointer;
+   border: 1px solid #d4bfaa;
+   transition: .2s cubic-bezier(0.13, 0.77, 0.33, 1);
+ }
+ #select-city-nav button:hover{
+   background-color: transparent;
+   color: #d4bfaa;
+ }
 /* secciones */
 section:nth-child(6) article{
      padding: 10vh 0;
@@ -436,10 +497,18 @@ color: white
      transition: 1s;
      transition-timing-function: cubic-bezier(0.13, 0.77, 0.33, 1);
 }
-#amenities>div img{
+#amenities > div >div{ 
      width: 100%;
+     height: 15vh;
+     overflow: hidden;
+     margin-bottom: 2px;
+   }
+   #amenities > div img {
      border-radius: 2px;
-}
+     object-fit: cover;
+     width: 100%;
+     height: 100%;
+   }
 
 .row2, .row3{
      transition-delay: .3s!important;

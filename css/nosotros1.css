@@ -1,0 +1,352 @@
+@font-face {
+  font-family: Century Gothic;
+  src: url(../GOTHIC.TTF)
+  /*url('./GOTHICB.TTF'),*/
+  /*url('./GOTHICBI.TTF'), */
+  /*url('./GOTHICI.TTF'), */
+}
+@font-face {
+  font-family: Century Gothic;
+  src: url(../GOTHICB.TTF);
+  font-weight: bold;
+}
+
+/*marron #d4bfaa*/
+::selection {
+  background: #d4bfaa;
+  color: white;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+li {
+  list-style: none;
+}
+body {
+  font-family: "Century Gothic";
+  overflow-x: hidden;
+  color: #272727;
+  background-color: #fafafa;
+}
+button,
+input {
+  font-family: "Century Gothic";
+  outline: none;
+}
+.cont90 {
+  width: 90%;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+}
+.contC {
+  width: 33.33%;
+}
+.contG {
+  width: 60%;
+}
+
+nav {
+  position: fixed;
+  top: 0vh;
+  left: 0;
+  width: 100%;
+  padding-top: 2vh;
+  padding-bottom: 1vh;
+  z-index: 99;
+  background-image: linear-gradient( #fafafa 0%, transparent 0%);
+  transition: .7s cubic-bezier(0.13, 0.77, 0.33, 1);
+}
+nav > div > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+nav > div > div > div {
+  width: 4%;
+  cursor: pointer;
+  z-index: 99;
+  position: relative;
+  z-index: 99;
+}
+nav > div > div > div:first-child{
+  display: flex;
+  align-items: center;
+}
+nav > div > div > div > a > img {
+  width: 3vw;
+}
+#menu-cont>div{
+  display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+#linea-menu1,
+#linea-menu2 {
+  width: 30px;
+  float: right;
+  background: #272727;
+  height: 4px;
+  margin: 3px 0%;
+  border-radius: 35px;
+  display: block;
+  transition: 0.5s cubic-bezier(0.13, 0.77, 0.33, 1);
+  transition-delay: 0.15s;
+}
+#ciudades{
+  position: absolute;
+  top: 110%;
+  background: #fafafa;
+  /* cursor: pointer; */
+  z-index: 2;
+  width: 100%;
+  border: 1px solid #dadada;
+  backdrop-filter: blur(8px);
+  display: none;
+}
+#ciudades-nav{
+    position: absolute;
+    top: 110%;
+    background: rgba(250 250 250/ 0.6);
+    left: 45px;
+z-index: 2;
+    width: max-content;
+    border: 1px solid #dadada;
+    backdrop-filter: blur(8px);
+    display: none;
+    border-radius: 2px;
+}
+#ciudades ul, #ciudades-nav ul {
+  padding: 2% 7%;
+}
+#ciudades ul li, #ciudades-nav ul li {
+  margin: 5% 0;
+  cursor: pointer;
+}
+#ciudades ul li:hover, #ciudades-nav ul li:hover {
+  font-weight: 600;
+}
+#select-city, #select-city-nav {
+  border-bottom: 0px solid transparent;
+  cursor: pointer;
+}
+#select-city p, #select-city-nav p {
+  color: #7b7b7b;
+}
+#f-ciudad-nav{
+  position: relative;
+  color: #484848;
+  margin-left: 45px;
+  width: max-content;
+}
+#select-city-nav{
+  position: relative;
+  display: flex;
+  align-items: center;
+  display: none;
+}
+#select-city-nav button{
+  margin-left: 25px;
+  background: transparent;
+  border: none;
+  padding: 5px 15px;
+  background: #d4bfaa;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  border: 1px solid #d4bfaa;
+  transition: .2s cubic-bezier(0.13, 0.77, 0.33, 1);
+}
+#select-city-nav button:hover{
+  background-color: transparent;
+  color: #d4bfaa;
+}
+
+body>header{
+  height: 75vh;
+  padding: 15vh 0 10vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+body>header>h5{
+  width: 90%;
+  font-size: 0.8em;
+  text-align: center;
+  /* font-weight: 500; */
+  margin: auto;
+  margin-bottom: 6%;
+  color: dimgrey;
+}
+body>header>.cont90{
+  align-items: flex-start;
+}
+body>header>.cont90>div{
+  width: 45%;
+}
+body>header>.cont90>div>h1{
+  font-size: 3em;
+}
+
+body>header>.cont90>div>div{
+  padding: 5%;
+  border-radius: 6px;
+  width: 59%;
+  margin-top: 12%;
+  /* backdrop-filter: blur(7px); */
+  background: #ffffff38;
+  box-shadow: 0px 6px 12px 0px rgb(0 0 0 / 0.1);
+}
+#definicion-cont>h5{
+  margin-bottom: 2%;
+    font-size: 2.3em;
+    font-weight: bold;
+}
+#definicion-cont>span{
+  font-size: .85em;
+}
+#definicion-cont>span i{
+  color: #848484;
+  margin-left: 4%;
+  font-size: 0.85em;
+}
+#definicion-cont>p{
+  margin-top: 3.5%;
+  font-size: 1em;
+}
+
+body>header main{
+  width: 45%;
+  padding: 4% 5%;
+  border-radius: 6px;
+  line-height: 1.5;
+  position: relative;
+}
+#mas-info{
+  display: none;
+  position: absolute;
+  margin-top: 5%;
+  border-radius: 6px;
+  line-height: 1.5;
+  position: absolute;
+  left: 0;
+}
+#mas-info>div{
+  background: rgb(255 255 255 / 0.4);
+  padding: 4% 5%;
+  width: 90%;
+  height: 100%;
+  position: relative;
+  background: rgb(255 255 255 / 0.4);
+
+}
+
+#leer-mas{
+  background: #d4bfaa;
+    border: 2px solid #d4bfaa;
+    color: white;
+    /* font-weight: 600; */
+    font-size: 0.95em;
+    letter-spacing: 0.5px;
+    padding: 6px 18px;
+    border-radius: 2px;
+    cursor: pointer;
+    margin: 4% 0 0;
+    transition: 0.15s;
+    display: block;
+}
+/* body>header main>div{
+  backdrop-filter: blur(27px);
+  padding: 4% 5%;
+  background: rgb(255 255 255 / 0.4);
+  border-radius: 6px;
+} */
+
+#franja-ofi{
+  height: 70vh;
+  background-image: url(https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.historia{
+  margin: 12% 0;
+}
+.historia>div>header{
+  width: 40%;
+
+}
+.historia>div>div{
+  width: 50%;
+  overflow: hidden;
+}
+.historia h3, #team>div>div>h3{
+  margin-bottom: 3px;
+  font-size: 2.3em;
+}
+.historia p{
+  font-size: .9em;
+}
+.historia>div>div>img{
+  object-fit: cover;
+  width: 100%;
+  height: 60vh;
+  border-radius: 3px;
+}
+#team>div>div{
+  width: 100%;
+  text-align: center;
+}
+#team>div>div>h3{
+  font-size: 2.3em;
+}
+#team>div>div>p{
+  font-weight: 600;
+  font-size: .9em;
+}
+#team>div>div>div{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 7% 0;
+}
+.member{
+  width: 25%;
+  margin-bottom: 5%;
+}
+.frego{
+    width: 100%!important;
+    left: 25%!important;
+    object-position: 45% 37%!important;
+    object-fit: none!important;
+}
+.member>div{
+  width: 16vw;
+  height: 16vw;
+  display: block;
+  margin: auto;
+  margin-bottom: 2%;
+  margin-bottom: 15px;
+  overflow: hidden;
+  border-radius: 55%;
+}
+.member>div img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.member h5{
+  font-size: 1.1em;
+  margin-bottom: 5px;
+}
+.member p{
+  font-size: .9em;
+
+}
+

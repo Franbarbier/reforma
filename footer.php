@@ -130,17 +130,17 @@ footer .cont90{
         <div>
             <b>REFORMA</b>
             <ul>
-                <li>Destinos</li>
-                <li>Proceso</li>
-                <li>Nosotros</li>
-                <li>Blog</li>
+                <li><a href="explorar.php">Destinos</a></li>
+                <li><a href="#seccion-proceso">Proceso</a></li>
+                <li><a href="nosotros.php">Nosotros</a></li>
+                
             </ul>
         </div>
         <div>
             <b>CONTACTO</b>
             <ul>
-                <li>info@reforma.com</li>
-                <li>reservas@reforma.com</li>
+                <li>administracion@reformastays.co</li>
+                <li>reservas@reformastays.co</li>
                 <li>+54 9 11 3568-8874</li>
             </ul>
         </div>
@@ -150,7 +150,7 @@ footer .cont90{
                 <li><img src="imgs/instagram.svg" alt="">Instagram</li>
                 <li><img src="imgs/pinterest.svg" alt="">Pinterest</li>
                 <li><img src="imgs/facebook.svg" alt="">Facebook</li>
-
+                <li><img src="imgs/edit.svg" alt="">Blog</li>
             </ul>
         </div>
     </div>

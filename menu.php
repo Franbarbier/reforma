@@ -121,7 +121,8 @@
                         <li>Puntos</li>
                         <li>Historial</li>
                 </div>
-                <li>BUSCAR DESTINOS</li>
+                <li><a href="/#seccion-proceso">NUESTRO PROCESO PARA REFORMAR</a></li>
+                <li>SOBRE NOSOTROS</li>
             </ul>
         </div>
     </div>
