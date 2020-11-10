@@ -106,23 +106,7 @@ $check_out = $_GET['check_out'];
 <section>
     <article>
         <div id="propiedades">
-        <a class="propiedad" href="#">
-                <div class="foto-cont">
-                    <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="">
-                </div>
-                <div class="prop-info">
-                    <div>
-                        <h4>Loft entero en Recoleta</h4>
-                        <h2>En el medio del Todo</h2>
-                        <hr>
-                        <p>2 huéspedes - 1 dormitorio - 1 cama - 1 baño</p>
-                        <p>Wifi - Cocina - Calefaccion</p>
-                    </div>
-                    <div> 
-                        <p class="btn-precio"><strong>$95</strong><span>/noche</span></p>
-                    </div>
-                </div>
-            </a>
+        
         </div>
     </article>
     <article>
@@ -136,18 +120,8 @@ $check_out = $_GET['check_out'];
 </body>
 <script src="js/explorar.js"></script>
 <script>
+
 $( document ).ready( function(){
-
-$('#filter-more').click(function () {
-	$('#filter-cant-hues').val( parseInt($('#filter-cant-hues').val()) + 1 )
-})
-$('#filter-minus').click(function () {
-	if ($('#filter-cant-hues').val() > 1) {
-		$('#filter-cant-hues').val( parseInt($('#filter-cant-hues').val()) - 1 )
-		
-	}
-})
-
 
 // para celu
 if ($(window).width() < 800) {

@@ -19,7 +19,14 @@ if($_GET['func'] == 'verNivel'){
 
     $id = $_GET['id'];
 
-    echo $usuarios->verNivel($id);
+    echo json_encode($usuarios->verNivel($id));
+
+}
+
+
+if($_GET['func'] == 'verNiveles'){
+
+    echo json_encode($usuarios->verNiveles());
 
 }
 

@@ -115,7 +115,7 @@ class Propiedades{
     }    
 
 
-    public function filtrarResultados($ciudad, $huespedes, $check_in, $check_out, $minprice, $maxprice){
+    public function filtrarResultados($ciudad, $huespedes, $check_in, $check_out, $minprice, $maxprice, $amenities){
 
         global $pdo;
 
@@ -135,7 +135,6 @@ class Propiedades{
 
         // Realizamos el filtrado inicial
         $query = 'SELECT * FROM propiedades WHERE '.implode(' AND ', $filters);
-        echo $query;
             
         $q = $pdo->prepare($query);
         $q->execute(); 
@@ -164,6 +163,8 @@ class Propiedades{
 
             $id_propiedad = $propiedad['id'];
 
+            $this_amenities = json_decode($propiedad['amenities']);
+
             $q = $pdo->prepare("SELECT * FROM reservas WHERE id_propiedad=:id_propiedad AND estado=1");
             $q->execute(['id_propiedad' => $id_propiedad]); 
             $q = $q->fetchAll();
@@ -187,6 +188,15 @@ class Propiedades{
                 }
 
             }
+
+            // Por cada uno de los global amenities, nos fijemos que este presente en "this amenities"
+            foreach ($amenities as $a) { 
+
+                // Si uno de los amenities del filtro, no esta en la propiedad, pasamos el disponible a false
+                if(!in_array($a, $this_amenities)){
+                    $disponible = false;
+                }
+            }
             
             // Si disponible es true, pusheamos esta propiedad al array de propiedades disponibles
             if($disponible){
@@ -196,15 +206,30 @@ class Propiedades{
 
     }else{
 
-        // Por cada uno de los alojamientos devueltos, consultamos reservas activas
+        // Por cada uno de los alojamientos devueltos,consultmaos sus amenities
         foreach ($q as $propiedad) { 
-            array_push($propiedades_disponibles, $propiedad);
+
+            $disponible = true;
+
+            $this_amenities = json_decode($propiedad['amenities']);
+
+            // Por cada uno de los global amenities, nos fijemos que este presente en "this amenities"
+            foreach ($amenities as $a) { 
+
+                // Si uno de los amenities del filtro, no esta en la propiedad, pasamos el disponible a false
+                if(!in_array($a, $this_amenities)){
+                    $disponible = false;
+                }
+            }
+
+            if($disponible){
+                array_push($propiedades_disponibles, $propiedad);
+            }
         }
 
 
     }
 
-        // Hacemos un filtrado final sobre los amenities
 
         return $propiedades_disponibles;
 

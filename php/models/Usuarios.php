@@ -141,20 +141,45 @@ class Usuarios{
         $q = $q->fetchAll();
 
         $nivel_usuario = '';
+        $nivel_numero = 0;
 
         foreach($q as $key=>$nivel){
             if($score>=$nivel['score']){
 
                 $nivel_usuario = $nivel['nivel'];
+                $nivel_numero += 1;
             }else{
+                $next_level = $q[$key];
             break;
             }
         }
 
-        return ["score"=>$score, "nivel"=>$nivel_usuario];
+        if($score == null){
+            $score = 0;
+        }
+
+        return ["score"=>$score, "nivel"=>$nivel_usuario, "numero"=>$nivel_numero, "next_level_score"=>$next_level['score']];
 
 
     }
+
+    public function verNiveles(){
+        global $pdo;
+
+        // Traemos sus reservas para obtener el score
+        $q = $pdo->prepare("SELECT * FROM niveles");
+        $q->execute(); 
+        $q = $q->fetchAll();
+
+        foreach ($q as $key => $value) {
+            $q[$key]['numero'] = $key + 1;
+            // $q[$key]['nombre_clean'] = str_replace($key + 1, "", $q[$key]['nivel']);
+        }
+
+        return $q;
+
+    }
+
 
 
 }

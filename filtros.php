@@ -9,7 +9,7 @@
                     <li>Todas</li>
                     <li>Buenos Aires</li>
                     <li>San Antonio de Areco</li>
-                    <li>San Carlos de Bariloche</li>
+                    <li>Bariloche</li>
                 </ul>
             </div>
         </article>
@@ -138,7 +138,9 @@ $('#ciudades li').click(function () {
 	$('#select-city p').css('color','#272727')
 
 
-	$('#ciudades').slideUp(125)
+    $('#ciudades').slideUp(125)
+    
+    update_from_filters()
 })
 
 
@@ -272,12 +274,12 @@ jQuery(document).ready(function() {
 
 // Creamos el array de servicios requeridos a medida que clickeamos el checkbox
 var first_click = true
-$(document).on("click", "#lista-filtros li", function(e){
+$(document).on("click", "#lista-filtros li label", function(e){
     e.stopPropagation()
     if(first_click){
         first_click = false
         // var amenity = $(this).find('input').attr('id')
-        var amenity = $('#lista-filtros li').index($(this)) + 1
+        var amenity = $('#lista-filtros li label').index($(this)) + 1
         console.log(amenity)
 
         
@@ -295,7 +297,29 @@ $(document).on("click", "#lista-filtros li", function(e){
         first_click = true
     }, 200);
 
+    update_from_filters()
+
 })
 
+// Listeners que a medida que cambian los valores de la barra, llaman a la funcion "update_from_filters"
+    $(document).on("click", "#filter-more", function(){
+    $('#filter-cant-hues').val( parseInt($('#filter-cant-hues').val()) + 1 )
+    update_from_filters()
+})
+    $(document).on("click", "#filter-minus", function(){
+	if ($('#filter-cant-hues').val() > 1) {
+        $('#filter-cant-hues').val( parseInt($('#filter-cant-hues').val()) - 1 )
+        update_from_filters()
+		
+	}
+})
+
+$(document).on("mouseup", ".range", function(){
+    update_from_filters()
+})
+
+$('#f-checkin, #f-checkout').bind('DOMSubtreeModified', function(){
+    update_from_filters()
+});
 
 </script>

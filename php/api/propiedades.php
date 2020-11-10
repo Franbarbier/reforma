@@ -45,8 +45,9 @@ if($_GET['func']=='filtrarResultados'){
 	$check_out = $_GET['check_out'];
 	$minprice = $_GET['minprice'];
 	$maxprice = $_GET['maxprice'];
+	$amenities = json_decode($_GET['amenities']);
 
-	var_dump($propiedades->filtrarResultados($ciudad, $huespedes, $check_in, $check_out, $minprice, $maxprice));	
+	echo json_encode($propiedades->filtrarResultados($ciudad, $huespedes, $check_in, $check_out, $minprice, $maxprice, $amenities));	
 
 
 }

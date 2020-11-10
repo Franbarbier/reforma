@@ -242,7 +242,7 @@ main{
 #puntos-cont{
     /* width: 35%; */
 }
-#puntos-cont>button{
+#puntos-cont button{
     background: #d4bfaa;
     border: 1px solid #d4bfaa;
     color: white;
@@ -255,7 +255,7 @@ main{
     transition: 0.15s;
     width: 100%;
 }
-#puntos-cont>button:hover{
+#puntos-cont button:hover{
     background: transparent;
     color: #d4bfaa;
 }
@@ -350,4 +350,8 @@ color: #676767;
 .beneficios-nivel li{
     font-size: .75em;
     margin: 10px 0;
+}
+
+.active-level{
+    background-color: #fff7f0;
 }

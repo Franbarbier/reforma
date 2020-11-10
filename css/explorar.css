@@ -177,6 +177,7 @@ section article{
 #propiedades{
   height: 100%;
   overflow: auto;
+  position: relative;
 }
 #propiedades::-webkit-scrollbar {
   width: 5px;
@@ -256,6 +257,11 @@ section article{
     background: #d4bfaa;
     width: fit-content;
     color: white;
+    transition: .2s;
+}
+
+.btn-precio:hover{
+  background-color: #b09b86;
 }
 
 .btn-precio strong{
@@ -673,5 +679,30 @@ input[type=range].lower::-webkit-slider-runnable-track {
 }
 
 .hovered div{
-  background-color: #c9a27b;
+  background-color: #b09b86;
+}
+
+#sin-propiedades{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sin-propiedades>div{
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+#sin-propiedades>div>div{
+  text-align: center;
+}
+
+#sin-propiedades img{
+  margin-bottom: 15px;
 }

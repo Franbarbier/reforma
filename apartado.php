@@ -1,3 +1,16 @@
+<?php
+
+$check_in = 'Check-In';
+$check_out = 'Check-Out';
+if(isset($_GET['check_in'])){
+    $check_in = $_GET['check_in'];
+}
+if(isset($_GET['check_out'])){
+    $check_out = $_GET['check_out'];
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="es">
@@ -116,9 +129,9 @@
 <section class="cont90">
     <div class="contG">
         <main>
-            <h1>Nombre de la Propiedad</h1>
+            <h1></h1>
             <div>
-                <img src="imgs/location-brown.svg" alt=""><h3 id="localidad-provincia">Localidad, Provincia</h3>
+                <img src="imgs/location-brown.svg" alt=""><h3 id="localidad-provincia"></h3>
             </div>
             <div id="opciones">
                 <div id="share">
@@ -204,13 +217,13 @@
                 </div>
                 <div>
                     <div id="checkin">
-                        Check-in
+                        <?php echo $check_in ?>
                     </div>
                     <div class="flechin">
                         <img src="imgs/left-arrow.png" alt="">
                     </div>
                     <div id="checkout">
-                        Check-out
+                    <?php echo $check_out ?>
                     </div>
                 </div>
             </div>
@@ -330,7 +343,7 @@
         <h4>Ultimas reseñas</h4>
         <div id="resenas-cont">
             
-            <div>
+            <!-- <div>
                 <div>
                     <div>
                         <img src="" alt="">
@@ -377,7 +390,7 @@
                     </div>
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque quae consectetur sequi distinctio quia neque consequatur eos maxime sint?</p>
-            </div>
+            </div> -->
 
         </div>
         <button>RESERVAR AHORA</button>
@@ -385,41 +398,6 @@
     <article id="related">
         <h4>Otros alojamientos</h4>
         <div id="otros-alojamientos">
-            <div>
-                <div>
-
-                </div>
-                <h5>Nombre del Alojamiento</h5>
-                <div>
-                    <img src="imgs/location-brown.svg" alt="">
-                    <p>Recoleta, Buenos Aires</p>
-                </div>
-                <span>5 huéspedes · 2 dormitorios · 3 camas · 1 baño</span>
-            </div>
-            <div>
-                <div>
-
-                </div>
-                <h5>Nombre del Alojamiento</h5>
-                <div>
-                    <img src="imgs/location-brown.svg" alt="">
-                    <p>Recoleta, Buenos Aires</p>
-                </div>
-                <span>5 huéspedes · 2 dormitorios · 3 camas · 1 baño</span>
-            </div>
-
-            <div>
-                <div>
-
-                </div>
-                <h5>Nombre del Alojamiento</h5>
-                <div>
-                    <img src="imgs/location-brown.svg" alt="">
-                    <p>Recoleta, Buenos Aires</p>
-                </div>
-                <span>5 huéspedes · 2 dormitorios · 3 camas · 1 baño</span>
-            </div>
-
 
         </div>  
     </article>
@@ -510,11 +488,43 @@ $( ".ver-mas" ).delegate( "aside", "click", function() {
 else {
 } //termina JS para desk
 
-
-
-
-
-
 })
+
+// Calculando el precio final a partir de las fechas de checkin y checkout
+function tarifa_final(){
+
+    console.log('function tarifa_final')
+
+var checkin = $('#checkin').html()
+var checkout = $('#checkout').html()
+
+console.log('checkinn ', checkin, ' checkout ', checkout)
+
+if(!checkin.includes('Check') && !checkout.includes('Check')){
+    console.log('Calculamos las fechas')
+    
+    var day_in_milli = 86400 * 1000
+    checkin = new Date(checkin)
+    checkout = new Date(checkout)
+    var days_to_stay = Math.abs(checkout - checkin);
+    days_to_stay = days_to_stay / day_in_milli
+
+    console.log('Days to stay: ', days_to_stay)
+    
+    var tarifa = $('#tarifa').html()
+    console.log('tarifa: '+ tarifa)
+
+    var tarifa_final = tarifa * days_to_stay
+
+    console.log('Precio final: ', tarifa_final)
+
+    $('#precio-final').html('$'+tarifa_final)
+
+}else{
+    console.log('Se debe introducir una fecha de checkin y checkout')
+}
+
+}
+
 </script>
 </html>

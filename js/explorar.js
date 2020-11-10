@@ -2,6 +2,26 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
+var global_checkin;
+var global_checkout;
+
+function update_global_vars() {
+
+    global_checkin = $('#f-checkin').html()
+    global_checkout = $('#f-checkout').html()
+    if (global_checkin.includes('Check')) {
+        global_checkin = ''
+    }
+
+    if (global_checkout.includes('Check')) {
+        global_checkout = ''
+    }
+}
+
+
+update_global_vars()
+
+
 // Array de objetos estatico para simular los markers (1 por propiedad)
 // var markers_obj = [
 //     {
@@ -67,7 +87,14 @@ function comp_resultado(propiedad) {
     }
 
     console.log('id, ' + propiedad.id)
-    return `<a class="propiedad" href="apartado.php?id=${propiedad.id}" id="${propiedad.id}">
+
+    var dates_to_stay = '';
+    if (global_checkin != "" && global_checkout != "") {
+        console.log('no vacias!')
+        dates_to_stay = '&check_in=' + global_checkin + '&check_out=' + global_checkout
+    }
+
+    return `<a class="propiedad" href="apartado.php?id=${propiedad.id}${dates_to_stay}" id="${propiedad.id}">
         <div class="foto-cont">
             <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="">
         </div>
@@ -269,6 +296,8 @@ function init_map(markers_obj, center_coordinates) {
 // Funcion para actualizar propiedades siendo mostradas a partir de los filtros
 function update_from_filters() {
 
+    update_global_vars()
+
     // Seleccionamos todos los valores obteniendolos de la barra de filtros
     var ciudad = $('#f-ciudad').html()
     var check_in = $('#f-checkin').html()
@@ -284,39 +313,48 @@ function update_from_filters() {
     var huespedes = $('#filter-cant-hues').val()
     var minprice = $('#f-minprice').val()
     var maxprice = $('#f-maxprice').val()
-    var amenities = global_selected_amenities
+    var amenities = JSON.stringify(global_selected_amenities)
 
     // Hacemos la consulta a la API
     fetch('php/api/propiedades.php?func=filtrarResultados&ciudad=' + ciudad + '&check_in=' + check_in + '&check_out=' + check_out + '&huespedes=' + huespedes + '&minprice=' + minprice + '&maxprice=' + maxprice + '&amenities=' + amenities)
         .then(function (response) {
-            return response.text();
+            return response.json();
         })
         .then(function (disponibles) {
             console.log(disponibles)
 
-            // Inyectamos el objeto de propiedades en el listado y armamos los marker objs
-            // var center_lat = 0;
-            // var center_long = 0;
-            // var markers_obj = [];
-            // html = '';
-            // for (d in disponibles) {
-            //     html += comp_resultado(disponibles[d])
-            //     markers_obj.push(obj_marker(disponibles[d].id, disponibles[d].tarifa, JSON.parse(disponibles[d].coordenadas), disponibles[d].nombre))
-            //     center_lat += parseFloat(JSON.parse(disponibles[d].coordenadas)[0])
-            //     center_long += parseFloat(JSON.parse(disponibles[d].coordenadas)[1])
-            // }
-            // $('#propiedades').html(html)
-            // console.log('markers: ')
-            // console.log(markers_obj)
+            if (disponibles.length != 0) {
 
-            // // Dividimos lat por el length de propiedades para dar con el promedio
-            // center_lat = center_lat / disponibles.length
-            // center_long = center_long / disponibles.length
 
-            // console.log('lat long: ', center_lat, ' , ', center_long)
+                // Inyectamos el objeto de propiedades en el listado y armamos los marker objs
+                var center_lat = 0;
+                var center_long = 0;
+                var markers_obj = [];
+                html = '';
+                for (d in disponibles) {
+                    html += comp_resultado(disponibles[d])
+                    markers_obj.push(obj_marker(disponibles[d].id, disponibles[d].tarifa, JSON.parse(disponibles[d].coordenadas), disponibles[d].nombre))
+                    center_lat += parseFloat(JSON.parse(disponibles[d].coordenadas)[0])
+                    center_long += parseFloat(JSON.parse(disponibles[d].coordenadas)[1])
+                }
+                $('#propiedades').html(html)
+                console.log('markers: ')
+                console.log(markers_obj)
 
-            // init_map(markers_obj, [center_lat, center_long])
+                // Dividimos lat por el length de propiedades para dar con el promedio
+                center_lat = center_lat / disponibles.length
+                center_long = center_long / disponibles.length
 
+                console.log('lat long: ', center_lat, ' , ', center_long)
+
+                init_map(markers_obj, [center_lat, center_long])
+
+            } else {
+
+                $('#propiedades').html(comp_sin_propiedades())
+                init_map(0, 0)
+
+            }
 
         });
 }
@@ -327,4 +365,15 @@ function comp_marker(marker_info) {
                 <img src="imgs/logo-chico.svg" height="15px" alt="">
             </div>
             </div>`
+}
+
+
+// Componente que se renderiza cuando ya no hay propiedades para mostrar
+function comp_sin_propiedades() {
+    return `<div id="sin-propiedades">
+                <div>
+                    <img src="imgs/archive.svg" height="30px">
+                    <div>No se encontraron resultados.</div>
+                </div>
+            <div>`
 }

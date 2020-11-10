@@ -29,7 +29,7 @@
 $( document ).ready( function(){
 
 
-var fechasTomadas = ['2020-09-22', '2020-09-30']
+var fechasTomadas = ['2020-11-22', '2020-12-30']
 
 // var picker = new Lightpick({ field: document.getElementById('datepicker') });
 
@@ -44,7 +44,7 @@ var picker = new Lightpick({
     numberOfColumns: 3,
     orientation: "top left",
     numberOfMonths: 2,
-    disableDates: ['2020-09-23','2020-09-30'],
+    // disableDates: ['2020-11-20', '2020-11-30'] ,
     disabledDatesInRange: false,
     tooltipNights: true,
     inline: true,
@@ -63,16 +63,79 @@ var picker = new Lightpick({
         str += start ? start.format('Do MMMM YYYY') + ' to ' : '';
         str += end ? end.format('Do MMMM YYYY') : '...';
         document.getElementById('result-3').innerHTML = str;
+        
+        // Actualizamos valores del checkin checkout
+        setTimeout(() => {
+
+            var start_date = unix_to_ymd($('.is-start-date').attr('data-time'))
+            var end_date = unix_to_ymd($('.is-end-date').attr('data-time'))
+
+
+            // Si nos de undefined, intentamos usar los start date y end date de la URL. Sino, lo dejamos vacio.
+            if($('.is-start-date').attr('data-time')==undefined && $('.is-end-date').attr('data-time') == undefined){
+
+                start_date = urlParams.get('check_in')
+                end_date = urlParams.get('check_out')
+
+                if(start_date==null || end_date ==null){
+                    start_date = ''
+                    end_date = ''
+                }
+
+                picker.setDateRange(start_date, end_date)
+
+            }
+
+            // Actualizamos los global checkin checkout
+            $('#checkin').html(start_date)
+            $('#checkout').html(end_date)
+
+            tarifa_final()
+        
+        }, 200);
     }
 });
 
+    
+if(!$('#checkin').html().includes('Check') && !$('#checkin').html().includes('Check')){
+    var start_date = $('#checkin').html().replace(/ /g,'')
+    var end_date = $('#checkout').html().replace(/ /g,'')
+
+    console.log(start_date + ', ' + end_date )
+    picker.setDateRange(start_date, end_date)
+}
 
 
+function unix_to_ymd(timestamp){
+
+    timestamp = parseInt(timestamp)
+
+    var date = new Date(timestamp);
+
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+
+    return year + "-" + month +"-" + day
+
+}
+
+function ymd_to_unix(ymd_date){
+
+}
 
 
+function disable_dates(dates_array){
 
+    for(date in dates_array){
 
+        var unix_date = ymd_to_unix(dates_array[date])
 
+        $( ".lightpick__day[data-time='"+unix_date+"']").css('color', 'red')
+
+    }
+
+}
 
 
 // Month here is 1-indexed (January is 1, February is 2, etc). This is because we're using 0 as the day so that it returns the last day of the last month, so you have to add 1 to the month number so it returns the correct amount of days
@@ -91,10 +154,6 @@ var l = new Date("2020-10-01");
 
 const meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 const dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ]
-
-
-
-
 
 
 });

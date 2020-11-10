@@ -2,6 +2,20 @@ var queryString = window.location.search;
 var urlParams = new URLSearchParams(queryString);
 const id_propiedad = urlParams.get('id')
 
+// var global_checkin;
+// var global_checkout;
+
+// if (urlParams.get('check_in') != '') {
+//     global_checkin = urlParams.get('check_in')
+//     // $('#checkin').html(global_checkin)
+// }
+
+// if (urlParams.get('check_out') != '') {
+//     global_checkout = urlParams.get('check_out')
+//     // $('#checkout').html(global_checkout)
+// }
+
+
 var this_amenities;
 
 // Empieza handlers
@@ -39,6 +53,8 @@ function render_apartado(propiedad) {
 
     var tarifa = document.getElementById('tarifa')
     tarifa.innerHTML = propiedad.tarifa
+
+    tarifa_final()
 
     global_por_noche = tarifa
 
@@ -121,13 +137,18 @@ function render_apartado(propiedad) {
         .then(function (resenas) {
             console.log(resenas)
 
-            // Las inyectamos en el html
-            var html = ''
-            for (c in resenas) {
-                html += comp_resena(resenas[c].usuario, resenas[c].detalle, resenas[c].fecha)
-            }
-            $('#resenas-cont').html(html)
+            // Si no hay resenas, ocultamos esa seccion
+            if (resenas.length == 0) {
+                $('#reseñas').html('')
+            } else {
 
+                // Las inyectamos en el html
+                var html = ''
+                for (c in resenas) {
+                    html += comp_resena(resenas[c].usuario, resenas[c].detalle, resenas[c].fecha)
+                }
+                $('#resenas-cont').html(html)
+            }
         });
 
 

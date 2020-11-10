@@ -14,7 +14,6 @@ $reservas_activas = $usuarios->verReservasActivas($id);
 
 $nivel = $usuarios->verNivel($id);
 
-
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +68,7 @@ $nivel = $usuarios->verNivel($id);
 </head>
 
 <body>
-
+<input type="hidden" value="<?php echo $nivel['next_level_score'] ?>" id="next_level_score">
 <input type="hidden" id="id_usuario" value="<?php echo $id ?>">
 
 <nav>
@@ -176,7 +175,8 @@ $nivel = $usuarios->verNivel($id);
 	</div>
 
 	<div id="puntos-cont">
-		<button>IR AL EXPLORADOR</button>
+
+	<a href="index.php"><button>IR AL EXPLORADOR</button></a>
 		<div>
 			<div id="puntuacion">
 				<div>
@@ -188,8 +188,8 @@ $nivel = $usuarios->verNivel($id);
 <style type="text/css">
 	.st0{fill:none;stroke:#D4BFAA;stroke-width:13;stroke-miterlimit:10;}
 	.ciruclito-svg{
-	    stroke-dashoffset: 1235;
-		stroke-dasharray: 1235;
+	    stroke-dashoffset: 615;
+		stroke-dasharray: 615;
 		transition: .7s;
 		transform: rotateZ(-90deg);
 		transform-origin: 50% 50%;
@@ -207,32 +207,7 @@ $nivel = $usuarios->verNivel($id);
 			<div id="beneficios-cont">
 				<h4>Beneficios por niveles</h4>
 				<div>
-					<div class="beneficios-nivel">
-						<h5>Nivel</h5>
-						<h6>1</h6>
-						<ul>
-							<li>Lorem ipsum dolor sit amet amet.</li>
-							<li>Lorem ipsum dolor sit amet amet.</li>
-						</ul>
-					</div>
-					<div class="beneficios-nivel">
-						<h5>Nivel</h5>
-						<h6>2</h6>
-						<ul>
-							<li>Lorem ipsum dolor sit amet amet.</li>
-							<li>Lorem ipsum dolor sit amet amet.</li>
-							<li>Lorem ipsum dolor sit amet amet.</li>
-						</ul>
-					</div>
-					<div class="beneficios-nivel">
-						<h5>Nivel</h5>
-						<h6>3</h6>
-						<ul>
-							<li>Lorem ipsum dolor sit amet amet.</li>
-							<li>Lorem ipsum dolor sit amet amet.</li>
-							<li>Lorem ipsum dolor sit amet amet.</li>
-						</ul>
-					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -252,41 +227,46 @@ $nivel = $usuarios->verNivel($id);
 <script>
 $( document ).ready( function(){
 
+// Esta variable corresponde a el valor que lleva .circulito-svg en algunas de sus propiedades de CSS
+var base = 615
+// Este es un valor hardcodeado necesario para que el fill del circulito svg sea preciso
+var residual = 34
+
+var next_level = $('#next_level_score').val()
+var score = parseInt($('#value2').html())
+
+var score_left = next_level - score
+
+var perc_left = (score_left * 100) / next_level
+console.log('perc left: ', perc_left)
+
+var multiplier = parseFloat(perc_left / 100)
+console.log('multiplier: ', multiplier)
+
+score_left = (615 * multiplier) + residual
 
 
-
-var base = 635 //dash terminado
-var next = 1235 //dash en 0
-var nivel_porcentaje = parseInt($('#puntuacion p').text())
-var dif = next - base 
-var progreso = parseFloat( '0.'+nivel_porcentaje )
-
-console.log(  next - (dif * progreso)  );
-var total =  next - (dif * progreso);
-
-function foo(){
-var cnt = 0;
-var obj1 = document.getElementById("value2");
+// function foo(){
+// var cnt = 0;
+// var obj1 = document.getElementById("value2");
   
-var timerMy = setInterval(function(){
-  cnt++;
-  obj1.innerHTML = cnt;
+// var timerMy = setInterval(function(){
+//   cnt++;
+//   obj1.innerHTML = cnt;
 
-  if(cnt == nivel_porcentaje){
-    clearInterval(timerMy);
-  }
+//   if(cnt == score){
+//     clearInterval(timerMy);
+//   }
   
-},20
-);
- }
+// },20
+// );
+//  }
 
- foo()
+//  foo()
 
 setTimeout(() => {
-	$('.ciruclito-svg').css('stroke-dashoffset', total)
+	$('.ciruclito-svg').css('stroke-dashoffset', score_left)
 }, 250);
-
-
 
 
 });
