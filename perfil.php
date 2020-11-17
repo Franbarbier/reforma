@@ -14,6 +14,11 @@ $reservas_activas = $usuarios->verReservasActivas($id);
 
 $nivel = $usuarios->verNivel($id);
 
+// Descomentar esto de abajo una vez que se active el login
+// if(!isset($_SESSION['user'])){
+// 	header('location: http://localhost/reforma');
+// }
+
 ?>
 
 <!DOCTYPE html>
@@ -70,6 +75,7 @@ $nivel = $usuarios->verNivel($id);
 <body>
 <input type="hidden" value="<?php echo $nivel['next_level_score'] ?>" id="next_level_score">
 <input type="hidden" id="id_usuario" value="<?php echo $id ?>">
+<input type="hidden" id="numero_nivel" value="<?php echo $nivel['numero'] ?>">
 
 <nav>
 	<div class="cont90">

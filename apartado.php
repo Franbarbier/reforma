@@ -9,6 +9,12 @@ if(isset($_GET['check_out'])){
     $check_out = $_GET['check_out'];
 }
 
+// Chequeando si el usuario esta logeado o no
+$logeado = 'no';
+if(isset($_SESSION['access_token'])){
+	$logeado = 'si';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -79,6 +85,7 @@ if(isset($_GET['check_out'])){
 </head>
 <body>
 
+<input type="hidden" value="<?php echo $logeado ?>" id="logeado">
 
 <nav>
 	<div class="cont90">

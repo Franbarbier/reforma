@@ -1,3 +1,13 @@
+<?php
+
+// Chequeando si el usuario esta logeado o no
+$logeado = 'no';
+if(isset($_SESSION['access_token'])){
+	$logeado = 'si';
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="es">
@@ -51,6 +61,7 @@
 
 <body>
 
+<input type="hidden" value="<?php echo $logeado ?>" id="logeado">
 
 <nav>
 	<div class="cont90">
@@ -67,9 +78,6 @@
 						<div id="ciudades-nav">
 							<ul>
 								<li>Todas</li>
-								<li>Buenos Aires</li>
-								<li>San Antonio de Areco</li>
-								<li>San Carlos de Bariloche</li>
 							</ul>
 						</div>
 					</article>

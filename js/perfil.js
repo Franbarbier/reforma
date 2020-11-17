@@ -34,6 +34,7 @@ function verNivel() {
         .then(function (xp) {
             console.log('xp')
             console.log(xp);
+
         });
 
 }
@@ -57,6 +58,8 @@ function comp_beneficio_nivel(obj) {
 }
 
 function initNiveles() {
+
+
     fetch('php/api/usuarios.php?func=verNiveles')
         .then(function (response) {
             return response.json();
@@ -68,6 +71,10 @@ function initNiveles() {
                 html += comp_beneficio_nivel(niveles[n])
             }
             $('#beneficios-cont>div').html(html)
+
+            var current_level_num = $('#numero_nivel').val()
+            $('#level' + current_level_num).addClass('active-level')
+
         });
 }
 initNiveles()

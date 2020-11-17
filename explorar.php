@@ -13,6 +13,12 @@ $check_out = $_GET['check_out'];
 // $disponibles = $propiedades->verDisponibles($ciudad, $huespedes, $check_in, $check_out);
 // var_dump($disponibles);
 
+// Chequeando si el usuario esta logeado o no
+$logeado = 'no';
+if(isset($_SESSION['access_token'])){
+	$logeado = 'si';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -74,6 +80,8 @@ $check_out = $_GET['check_out'];
 
 </head>
 <body>
+
+<input type="hidden" value="<?php echo $logeado ?>" id="logeado">
 
 <nav>
 	<div class="cont90">
