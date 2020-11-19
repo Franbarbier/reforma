@@ -43,7 +43,7 @@
     <!--<meta property="fb:app_id" content="">-->
 
 	<link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/nosotros.css" />
-	<!-- <link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/nosotrosMob.css?refrescate=1" /> -->
+	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/nosotrosMob.css?refrescate=1" />
     
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -202,6 +202,12 @@ $('#leer-mas').click(function () {
 	$('#mas-info').slideDown(200)
 	$(this).remove()
 })
+
+
+setTimeout(() => {
+	$('h1').css({ 'opacity':'1', 'transform':'translateX(0%)' })
+}, 250);
+
 
 const interval = setInterval(function() {
 	$('#frego').attr('src','https://instagram.faep8-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/123148535_221840519503431_1532435149639692857_n.jpg?_nc_ht=instagram.faep8-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=_zo6XaZlprEAX-_ziJG&tp=19&oh=80373e5149e39e1cde1b640e4271487a&oe=5FCBC724')

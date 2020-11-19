@@ -92,7 +92,7 @@ $check_out = $_GET['check_out'];
 			<div id="menu-cont">
 				<div>
 					<div id="linea-menu1"></div>
-					<div id="linea-menu1"></div>
+					<div id="linea-menu2"></div>
 				</div>
 				
 			</div>
@@ -101,7 +101,7 @@ $check_out = $_GET['check_out'];
 
 </nav>
 
-
+<?php include 'menu.php' ?>
 
 <section>
     <article>

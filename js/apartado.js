@@ -208,3 +208,25 @@ function comp_precio_final_cont(precio, por_noche, descuento = '0') {
         </ul>
     </article>`
 }
+
+function comp_accion_confir() {
+    return `<div id="accion-confir">
+                <div>
+                    <img src="imgs/love-filled.svg">
+                    <p>Agregado a Favoritos</p>
+                </div>
+            </div>`
+}
+
+function favear() {
+    console.log(id_propiedad)
+    let save_img = $('#save img');
+    if (!save_img.hasClass('fav')) {
+        save_img.attr('src','imgs/love-filled.svg')
+        save_img.addClass('fav')
+
+    }else{
+        save_img.attr('src','imgs/love.svg')
+        save_img.removeClass('fav')
+    }
+}

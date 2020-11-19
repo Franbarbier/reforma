@@ -57,7 +57,7 @@ input {
   background: #fafafa;
   width: 100%;
   padding-bottom: 5%;
-  z-index: 99;
+  z-index: 100000;
 }
 .contG {
   width: 100%;
@@ -84,7 +84,7 @@ nav>div>div>div{
 nav>div>div>div>img{
   width: 100%;
 }
-#linea-menu1, #linea-menu1{
+#linea-menu1, #linea-menu2{
  width: 30px;
  float: right;
  background: #272727;
@@ -92,6 +92,8 @@ nav>div>div>div>img{
  margin: 10% 0%;
  border-radius: 35px;
  display: block;
+ transition: .5s;
+
 }
 
 
@@ -346,9 +348,17 @@ main>div>img{
 #mas-info ul{
   padding: 1% 5%;
 }
+
 #mas-info li{
+  display: flex;
+  align-items: center;
   font-size: .9em;
-  padding: 2% 0;
+  padding: 3% 0;
+}
+
+#mas-info li img {
+    width: 20px;
+    margin-right: 5px;
 }
 
 #reseñas{
@@ -596,7 +606,10 @@ main>div>img{
 #checkout{
   width: 40%;
 }
-
+#checkin>input, #checkout>input{
+  width: 100%;
+  border: none;
+}
 #precio-final{
   width: 40%;
   display: flex;
