@@ -8,6 +8,20 @@ class Propiedades{
         $q->execute(); 
         $q = $q->fetch();
 
+        // Traemos la info de sus localidades en funcion del  id_localidad
+        foreach ($q as $key => $prop) {
+
+            // Traer la info de localidad y provincia a partir del id_localidad
+            $id_localidad = $prop['id_localidad'];
+            $q_l = $pdo->prepare("SELECT * FROM localidades WHERE id=:id_localidad");
+            $q_l->execute(['id_localidad' => $id_localidad]); 
+            $q_l = $q_l->fetch();
+
+            $q[$key]['localidad'] = $q_l['nombre'];
+            $q[$key]['provincia'] = $q_l['provincia'];
+            
+        }
+
         return $q;
     }
 
@@ -17,6 +31,15 @@ class Propiedades{
 		$q = $pdo->prepare("SELECT * FROM propiedades WHERE id=:id");
         $q->execute(['id' => $id]); 
         $q = $q->fetch();
+
+        // Traer la info de localidad y provincia a partir del id_localidad
+        $id_localidad = $q['id_localidad'];
+        $q_l = $pdo->prepare("SELECT * FROM localidades WHERE id=:id_localidad");
+        $q_l->execute(['id_localidad' => $id_localidad]); 
+        $q_l = $q_l->fetch();
+
+        $q['localidad'] = $q_l['nombre'];
+        $q['provincia'] = $q_l['provincia'];
 
         return $q;
     }

@@ -72,6 +72,16 @@ class Globales{
 
     }
 
+    public function verLocalidades(){
+        global $pdo;
+
+        $q = $pdo->prepare("SELECT * FROM localidades");
+        $q->execute(); 
+        $q = $q->fetchAll();
+
+        return $q;
+    }
+
     // public function verLocacion($locacion){
     //     global $pdo;
 

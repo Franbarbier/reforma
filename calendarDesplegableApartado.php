@@ -43,8 +43,6 @@
 $( document ).ready( function(){
 
 
-var fechasTomadas = ['2020-11-22', '2020-12-30']
-
 // var picker = new Lightpick({ field: document.getElementById('datepicker') });
 // var picker = new Lightpick({
 //     field: document.getElementById('demo-3_1'),
@@ -114,8 +112,16 @@ var picker = new Lightpick({
             // $('#checkin').html(start_date)
             // $('#checkout').html(end_date)
             $('#demo-3_1_1, #demo-3_2_1').css('background-image','')
-             
-            tarifa_final()
+            
+            // Tarifa final solo se va a ejecutar en apartado.php
+            if (window.location.href.indexOf("apartado") > -1) {
+                tarifa_final()
+            }
+
+            // Update from filters solo se ejecuta si estan en explorar
+            if (window.location.href.indexOf("explorar") > -1) {
+                update_from_filters()
+            }
         
         }, 200);
     }

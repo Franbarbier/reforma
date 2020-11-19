@@ -149,17 +149,19 @@ function ver_disponibles() {
     var check_in = urlParams.get('check_in')
     var check_out = urlParams.get('check_out')
     var huespedes = urlParams.get('huespedes')
-
+    
     console.log(ciudad)
-
+    
     // Hacemos la consulta a la API
     fetch('php/api/propiedades.php?func=verDisponibles&ciudad=' + ciudad + '&check_in=' + check_in + '&check_out=' + check_out + '&huespedes=' + huespedes)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (disponibles) {
-            console.log(disponibles)
-
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (disponibles) {
+        console.log(disponibles)
+        
+        if(disponibles.length>0){
+            
             // Inyectamos el objeto de propiedades en el listado y armamos los marker objs
             var center_lat = 0;
             var center_long = 0;
@@ -182,6 +184,11 @@ function ver_disponibles() {
             console.log('lat long: ', center_lat, ' , ', center_long)
 
             init_map(markers_obj, [center_lat, center_long])
+
+            }else{
+                $('#propiedades').html(comp_sin_propiedades())
+                init_map(0, 0)
+            }
 
 
         });
@@ -300,8 +307,14 @@ function update_from_filters() {
 
     // Seleccionamos todos los valores obteniendolos de la barra de filtros
     var ciudad = $('#f-ciudad').html()
-    var check_in = $('#f-checkin').html()
-    var check_out = $('#f-checkout').html()
+    var check_in = $('#checkin input').val()
+    var check_out = $('#checkout input').val()
+
+    // Formateamos barras a guiones
+    check_in = check_in.replace(/\//g,'-')
+    check_out = check_out.replace(/\//g,'-')
+
+
     if (check_in == 'Check-in') {
         check_in = ''
         check_out = ''

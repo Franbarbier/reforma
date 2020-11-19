@@ -322,8 +322,5 @@ $(document).on("mouseup", ".range", function(){
     update_from_filters()
 })
 
-$('#f-checkin, #f-checkout').bind('DOMSubtreeModified', function(){
-    update_from_filters()
-});
 
 </script>

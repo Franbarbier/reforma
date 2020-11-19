@@ -36,22 +36,26 @@ $(window).scroll(function () {
 // Funcion que inyecta las ciudades disponibles a partir de la base de datos
 function init_localidades() {
 
-    fetch('php/api/globales.php?func=ver_localidades')
+    fetch('php/api/globales.php?func=verLocalidades')
         .then(function (response) {
             return response.json();
         })
-        .then(function (historial_reservas) {
-            console.log(historial_reservas);
+        .then(function (localidades) {
+            console.log(localidades);
 
-            // Inyectamos las reservas a la seccion de historial reservas
+            // Inicializamos las localidades en el desplegable
             var html = ''
-            for (hr in historial_reservas) {
-                html += comp_reserva_row(historial_reservas[hr])
+            for(l in localidades){
+                var loc = localidades[l]
+                html += '<li>'+loc.nombre+'</li>'
             }
 
-            $('#reservas-historicas').html(html)
+            $('#ciudades-nav ul').append(html)
+            $('#ciudades ul').append(html)
 
         });
 
 }
+
+init_localidades()
 

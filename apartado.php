@@ -515,8 +515,15 @@ function tarifa_final(){
 
 console.log('function tarifa_final')
 
-var checkin = $('#checkin').html()
-var checkout = $('#checkout').html()
+var checkin = $('#checkin input').val()
+var checkout = $('#checkout input').val()
+
+checkin = checkin.replace(/\//g,'-')
+checkout = checkout.replace(/\//g,'-')
+
+// Convirtiendo el d-m-y a Y-m-d
+var checkin = checkin.split("-").reverse().join("-");
+var checkout = checkout.split("-").reverse().join("-");
 
 console.log('checkinn ', checkin, ' checkout ', checkout)
 
@@ -526,6 +533,7 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
     var day_in_milli = 86400 * 1000
     checkin = new Date(checkin)
     checkout = new Date(checkout)
+    console.log('created checkin checkout: ', checkin, checkout)
     var days_to_stay = Math.abs(checkout - checkin);
     days_to_stay = days_to_stay / day_in_milli
 
@@ -537,6 +545,11 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
     var tarifa_final = tarifa * days_to_stay
 
     console.log('Precio final: ', tarifa_final)
+
+    if(isNaN(tarifa_final)){
+        console.log('not a number')
+        tarifa_final = ""
+    }
 
     $('#precio-final').html('$'+tarifa_final)
 

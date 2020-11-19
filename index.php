@@ -118,9 +118,7 @@ if(isset($_SESSION['access_token'])){
 				<p class="inputs">Ciudad</p>
 				<div id="ciudades">
 					<ul>
-						<li>Buenos Aires</li>
-						<li>San Antonio de Areco</li>
-						<li>Bariloche</li>
+
 					</ul>
 				</div>
 				<input type="hidden" id="ciudad">
@@ -166,26 +164,26 @@ if(isset($_SESSION['access_token'])){
 			</div>
 			<div class="contG">
 				<div id="destinos">
-					<figure>
+					<figure data-city="Buenos Aires">
 						<div>
 							<img src="imgs/destino-bsas.jpg" alt="alojamientos en Buenos Bires">
 							<aside></aside>
 						</div>
 						<figcaption>Buenos Aires</figcaption>
 					</figure>
-					<figure>
+					<figure data-city="San Antonio de Areco">
 						<div>
 							<img src="imgs/destino-areco.jpg" alt="alojamientos en Areco">
 							<aside></aside>
 						</div>
 						<figcaption>San Antonio de Areco</figcaption>
 					</figure>
-					<figure>
+					<figure data-city="Bariloche">
 						<div>
 							<img src="imgs/destino-bariloche.webp" alt="alojamientos en Bariloche">
 							<aside></aside>
 						</div>
-						<figcaption>San Carlos de Bariloche</figcaption>
+						<figcaption>Bariloche</figcaption>
 					</figure>
 				</div>
 			</div>
@@ -828,7 +826,25 @@ function setTyper(element, words) {
 }
 
 
+// Handler para hacer cliqueables los cuadrados de las ciudades
+$('figure').click(function(){
+	city = $(this).attr('data-city')
+	window.location = 'explorar.php?ciudad=' + city + '&check_in=&check_out=&huespedes=1'
+})
 
+// Handler para cuando cliquean alguna ciudad de #ciudades-nav
+$(document).on("click", "#ciudades-nav ul li", function(){
+	$('#f-ciudad-nav').html($(this).html())
+	$('#ciudades-nav').slideUp(100)
+})
+
+$(document).on("click", "#select-city-nav button", function(e){
+	e.preventDefault()
+	e.stopPropagation()
+	if($('#f-ciudad-nav').html()!='Seleccione una ciudad'){
+		window.location = 'explorar.php?ciudad='+$('#f-ciudad-nav').html() + '&check_in=&check_out=&huespedes=1'
+	}
+})
 
 });
 </script>
