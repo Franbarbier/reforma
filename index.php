@@ -456,7 +456,7 @@ window.addEventListener('click', function(e){
   }
 });
 
-$('#ciudades li').click(function () {
+$(document).on("click", "#ciudades li", function(){
 	$('#select-city p').text( $(this).text() )
 	$('#select-city p').css('color','#272727')
 
@@ -466,6 +466,9 @@ $('#ciudades li').click(function () {
 	// Agregamos la ciudad seleccionada al input hidden ciudad
 	$('#ciudad').val($(this).html())
 })
+
+
+
 window.addEventListener('click', function(e){   
   if (document.getElementById('select-city-nav').contains(e.target)){
 	  if( $('#ciudades-nav').css('display') == "none" ){

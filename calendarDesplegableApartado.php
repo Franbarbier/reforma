@@ -188,13 +188,20 @@ const dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "S
 
 
 // #demo-3_1_1, #demo-3_2_1{
+
 $('#demo-3_1_1').css('background-image','url(imgs/checkin-fondo.jpg)')
 $('#demo-3_2_1').css('background-image','url(imgs/checkout-fondo.jpg)')
 
-$('#demo-3_1_1, #demo-3_2_1').change(function(){
+// $('#demo-3_1_1, #demo-3_2_1').change(function(){
+//     if ($(this).val() != '') {
+//         $(this).css('background-image','')
+//     }
+// })
+$(document).on("change", "#demo-3_1_1, #demo-3_2_1", function(){
     if ($(this).val() != '') {
         $(this).css('background-image','')
     }
+})
 })
 
 });

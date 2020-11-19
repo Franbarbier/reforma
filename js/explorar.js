@@ -133,17 +133,19 @@ function set_nav_filters() {
 
     var check_in = urlParams.get('check_in')
     if (check_in != '') {
-        $('#f-checkin').html(check_in)
+        $('#checkin input').val(check_in)
     }
 
     var check_out = urlParams.get('check_out')
     if (check_out != '') {
-        $('#f-checkout').html(check_out)
+        $('#checkout input').val(check_out)
     }
 }
 
 // Funcion para traer los resultados en funcion de la busqueda
 function ver_disponibles() {
+
+    console.log('function: verDisponibles()')
 
     var ciudad = urlParams.get('ciudad')
     var check_in = urlParams.get('check_in')

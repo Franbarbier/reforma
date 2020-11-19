@@ -60,11 +60,18 @@ class Propiedades{
 
         global $pdo;
 
+        // Obtenemos el id de la localidad a partir de la ciudad
+        $q = $pdo->prepare("SELECT * FROM localidades WHERE nombre=:ciudad");
+        $q->execute(['ciudad' => $ciudad]); 
+        $localidad = $q->fetch();
+
+        $id_localidad = $localidad['id'];
+
         // Si ningun campo esta incompleto, hacemos la busqueda entera
         if($ciudad != '' && $huespedes != '' && $check_in != '' && $check_out != ''){
             
-            $q = $pdo->prepare("SELECT * FROM propiedades WHERE localidad=:ciudad AND huespedes>=:huespedes");
-            $q->execute(['ciudad' => $ciudad, 'huespedes'=>$huespedes]); 
+            $q = $pdo->prepare("SELECT * FROM propiedades WHERE id_localidad=:id_localidad AND huespedes>=:huespedes");
+            $q->execute(['id_localidad' => $id_localidad, 'huespedes'=>$huespedes]); 
             $q = $q->fetchAll();
 
             $propiedades_disponibles = [];
@@ -82,10 +89,16 @@ class Propiedades{
             }
 
             // Por cada uno de los alojamientos devueltos, consultamos reservas activas
-            foreach ($q as $propiedad) {
+            foreach ($q as $key => $propiedad) {
                 $disponible = true;
 
                 $id_propiedad = $propiedad['id'];
+
+                // Asignamos localidad y provincia en funcion a la row de localidad traida al principio
+                $q[$key]['localidad'] = $localidad['nombre'];
+                $q[$key]['provincia'] = $localidad['provincia'];
+                $propiedad['localidad'] = $localidad['nombre'];
+                $propiedad['provincia'] = $localidad['provincia'];
 
                 $q = $pdo->prepare("SELECT * FROM reservas WHERE id_propiedad=:id_propiedad AND estado=1");
                 $q->execute(['id_propiedad' => $id_propiedad]); 
@@ -121,16 +134,22 @@ class Propiedades{
 
         }else if($ciudad!='' || $huespedes!=''){
 
-            $query = "SELECT * FROM propiedades WHERE localidad=:ciudad AND huespedes>=:huespedes";
-            
+            $query = "SELECT * FROM propiedades WHERE id_localidad=:id_localidad AND huespedes>=:huespedes";
+        
             // Si huespedes esta vacio, su valor pasa a ser 0 
             if($huespedes==''){
                 $huespedes = 0;
             }
 
             $q = $pdo->prepare($query);
-            $q->execute(['ciudad' => $ciudad, 'huespedes'=>$huespedes]); 
+            $q->execute(['id_localidad' => $id_localidad, 'huespedes'=>$huespedes]); 
             $q = $q->fetchAll();
+
+            // Asignamos provincia y localidad en fucion de los datos obtenidos a partir del id localidad
+            foreach ($q as $key => $prop) {
+                $q[$key]['localidad']=$localidad['nombre'];
+                $q[$key]['provincia']=$localidad['provincia'];
+            }
 
             return $q;
         }
