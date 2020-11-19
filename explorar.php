@@ -100,7 +100,7 @@ if(isset($_SESSION['access_token'])){
 			<div id="menu-cont">
 				<div>
 					<div id="linea-menu1"></div>
-					<div id="linea-menu1"></div>
+					<div id="linea-menu2"></div>
 				</div>
 				
 			</div>
@@ -109,7 +109,7 @@ if(isset($_SESSION['access_token'])){
 
 </nav>
 
-
+<?php include 'menu.php' ?>
 
 <section>
     <article>

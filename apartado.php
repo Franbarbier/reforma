@@ -100,13 +100,14 @@ if(isset($_SESSION['access_token'])){
 			<div id="menu-cont">
 				<div>
 					<div id="linea-menu1"></div>
-					<div id="linea-menu1"></div>
+					<div id="linea-menu2"></div>
 				</div>
 				
 			</div>
 		</div>
 	</div>
 </nav>
+<?php include 'menu.php' ?>
 
 <div id="galeria-great-cont">
     <div id="cont-carousel">
@@ -145,7 +146,8 @@ if(isset($_SESSION['access_token'])){
                     <img src="imgs/share.png"> <p>Compartir</p>
                 </div>
                 <div id="save">
-                    <img src="imgs/fav.png"> <p>Guardar</p>
+                    <img src="imgs/fav.png">
+                    <p>Guardar</p>
                 </div>
             </div>
             <div id="capacidad">
@@ -174,9 +176,9 @@ if(isset($_SESSION['access_token'])){
                     <p id="disenador-descripcion">Andrew Warhola (Pittsburgh; 6 de agosto de 1928 - Nueva York; 22 de febrero de 1987), comúnmente conocido como Andy Warhol, fue un artista plástico y cineasta estadounidense que desempeñó un papel crucial en el nacimiento y desarrollo del pop art. Tras una exitosa carrera como ilustrador profesional, Warhol adquirió fama mundial por su trabajo en pintura, cine de vanguardia y literatura, notoriedad que vino respaldada por una hábil relación con los medios y por su rol como gurú de la modernidad. Warhol actuó como enlace entre artistas e intelectuales, pero también entre aristócratas, homosexuales, celebridades de Hollywood, drogadictos, modelos, bohemios y pintorescos personajes urbanos.</p>
                 </div>
             </div>
-            <div>
+            <div  class="ver-mas">
                 <h6>Concepto detrás del espacio</h6>
-                <p class="ver-mas" id="concepto-text">La composición es el planeamiento del arte, la colocación o el arreglo de elementos o de ingredientes en un trabajo de arte, o la selección y la colocación de elementos del diseño según principios del diseño dentro del trabajo. Contribuye a una respuesta del espectador; la obra de arte se considera dentro de lo estético (que satisface al ojo), si los elementos dentro del trabajo se ordenan en una composición equilibrada (Dunstan, 1979).1 No obstante, existen artistas que prefieren romper las reglas de la composición tradicional, desafiando a los espectadores a reconsiderar las nociones de equilibrio, y a diseñar elementos dentro de trabajos de arte, por ejemplo los como Salvador Dali. También puede ser pensado como la organización de los elementos del arte de acuerdo a los principios del arte. El término composición significa básicamente “organizar”. Cualquier obra de arte, de la música a la escritura, se arregla o se compone junto con el pensamiento consciente. Los diversos elementos en el total del diseño se relacionan generalmente entre sí.</p>
+                <p id="concepto-text">La composición es el planeamiento del arte, la colocación o el arreglo de elementos o de ingredientes en un trabajo de arte, o la selección y la colocación de elementos del diseño según principios del diseño dentro del trabajo. Contribuye a una respuesta del espectador; la obra de arte se considera dentro de lo estético (que satisface al ojo), si los elementos dentro del trabajo se ordenan en una composición equilibrada (Dunstan, 1979).1 No obstante, existen artistas que prefieren romper las reglas de la composición tradicional, desafiando a los espectadores a reconsiderar las nociones de equilibrio, y a diseñar elementos dentro de trabajos de arte, por ejemplo los como Salvador Dali. También puede ser pensado como la organización de los elementos del arte de acuerdo a los principios del arte. El término composición significa básicamente “organizar”. Cualquier obra de arte, de la música a la escritura, se arregla o se compone junto con el pensamiento consciente. Los diversos elementos en el total del diseño se relacionan generalmente entre sí.</p>
             </div>
         </div>
 
@@ -218,20 +220,28 @@ if(isset($_SESSION['access_token'])){
             </div>
             <span><span class="huespedes"></span> huéspedes · <span class="dormitorios"></span> dormitorios · <span class="camas"></span> camas · <span class="banos"></span></span>
             
-            <div class="info-box" id="sticky-calendar">
+            <!-- <div class="info-box" id="sticky-calendar">
                 <div>
                     <img src="imgs/calendar.svg" alt="">
                 </div>
                 <div>
                     <div id="checkin">
-                        <?php echo $check_in ?>
+                        <?php //echo $check_in ?>
                     </div>
                     <div class="flechin">
                         <img src="imgs/left-arrow.png" alt="">
                     </div>
                     <div id="checkout">
-                    <?php echo $check_out ?>
+                        <?php //echo $check_out ?>
                     </div>
+                </div>
+            </div> -->
+            <div class="info-box" id="sticky-calendar">
+                <div>
+                    <img src="imgs/calendar.svg" alt="">
+                </div>
+                <div style="position: relative;">
+                    <?php include 'calendarDesplegableApartado.php'; ?>
                 </div>
             </div>
             <div class="info-box" id="sticky-huespedes">
@@ -478,9 +488,12 @@ $('.contC>button').click(function () {
     }
 })    
 
+$('.ver-mas').each(function(){
+    $(this).append('<aside>LEER MAS</aside>')
+    // $(this).append('<aside>LEER MAS</aside>')
 
+})
 
-$('.ver-mas').append('<aside>LEER MAS</aside>')
 $( ".ver-mas" ).delegate( "aside", "click", function() {
   $( this ).parent().css({'height':'fit-content'})
   $( this ).remove();
@@ -500,7 +513,7 @@ else {
 // Calculando el precio final a partir de las fechas de checkin y checkout
 function tarifa_final(){
 
-    console.log('function tarifa_final')
+console.log('function tarifa_final')
 
 var checkin = $('#checkin').html()
 var checkout = $('#checkout').html()
@@ -532,6 +545,16 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
 }
 
 }
+
+$('#demo-3_1_1').css({'background-image':''})
+
+$(window).scroll(function() {   
+    $('body>.lightpick').css({'top':  $("#sticky-calendar").offset().top + $("#sticky-calendar").innerHeight() + 'px'})
+});
+
+$('#save').click(function() {
+    favear($(this));
+})
 
 </script>
 </html>

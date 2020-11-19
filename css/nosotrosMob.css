@@ -80,7 +80,7 @@ nav > div > div > div:first-child{
   align-items: center;
 }
 nav > div > div > div > a > img {
-  width: 3vw;
+  width: 9vw;
 }
 #menu-cont>div{
   display: flex;
@@ -177,11 +177,10 @@ body>header{
   background-position: center;
 }
 body>header>h5{
-  width: 27%;
-  font-size: 0.8em;
-  margin-bottom: 2%;
-  font-weight: 500;
-  margin-left: 5%;
+      font-size: 0.8em;
+    margin-bottom: 2%;
+    font-weight: 500;
+    margin-left: 5%;
 }
 body>header>.cont90{
   align-items: flex-start;
@@ -191,9 +190,6 @@ body>header>.cont90>div{
 }
 body>header>.cont90>div>h1{
   font-size: 3em;
-  opacity: 0;
-  transition: 1s cubic-bezier(0.13, 0.77, 0.33, 1);
-  transform: translateX(-25%);
 }
 
 body>header>.cont90>div>div{

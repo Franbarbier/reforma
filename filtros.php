@@ -14,15 +14,17 @@
             </div>
         </article>
     </li>
-    <li>
+    <li class="checkinli">
         <div class="checkin">    
             <img src="imgs/calendar-brown.svg" alt="">
-            <p id="f-checkin">Check-in</p>
+            <div id="check-cont">
+                <?php include 'calendarDesplegableApartado.php'; ?>
+            </div>
         </div>
-        <div>
+        <!-- <div>
             <img src="imgs/arrow.svg" alt="">
             <p id="f-checkout">Check-out</p>
-        </div>
+        </div> -->
     </li>
     <li>
         <img src="imgs/cant-huespedesBrown.svg" alt="">
@@ -90,8 +92,10 @@
 
     </li>
     <li id="mas-filtros">
-        <img src="imgs/filters-brown.svg" alt="">
-        <p>Más filtros</p>
+        <div>
+            <img src="imgs/filters-brown.svg" alt="">
+            <p>Más filtros</p>
+        </div>
         <article>
             <div>
                 <ul id="lista-filtros">

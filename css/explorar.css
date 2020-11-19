@@ -65,6 +65,7 @@ nav {
   padding-top: 2vh;
   z-index: 99;
   border-bottom: 1px solid #ddd;
+  background-color: white;
 }
 nav > div > div {
   display: flex;
@@ -86,7 +87,7 @@ nav > div > div > div > a > img {
     align-items: flex-end;
 }
 #linea-menu1,
-#linea-menu1 {
+#linea-menu2 {
   width: 30px;
   float: right;
   background: #272727;
@@ -134,6 +135,42 @@ display: none;
 }
 .checkin{
   margin-right: 5px;
+}
+#checkin{
+  width: 40%; 
+ }
+ .flechin{
+   margin-bottom: -5px;
+   width: 20px;
+ }
+ 
+ #checkout{
+   width: 40%;
+ }
+ 
+ 
+ #checkin>input, #checkout>input{
+   width: 100%;
+   border: none;
+ }
+ 
+ .flechin>img{
+   transform: rotate(180deg);
+   width: 16px;
+ }
+ #check-cont{
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+ }
+ .checkin{
+   width: 100%;
+ }
+body>.lightpick{
+  transform: translateX(75%)
+}
+.checkinli{
+  width: 30%;
 }
 #filter-cant-hues{
     border: none;

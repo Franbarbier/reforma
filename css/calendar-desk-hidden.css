@@ -1,0 +1,104 @@
+
+.lightpick__apply-action{
+    display: none;
+}
+.lightpick__footer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.lightpick__reset-action{
+
+    color: #909090;
+    background: transparent;
+    text-decoration: underline;
+    margin-top: 5%;
+    cursor: pointer;
+}
+
+.lightpick__day.is-start-date.is-in-range, .lightpick__day.is-end-date.is-in-range.is-flipped,.lightpick__day.is-end-date.is-in-range, .lightpick__day.is-start-date.is-in-range.is-flipped {
+    background-color: #d4bfaa;
+    background-image: none;
+    border-radius: 2px;
+}
+.lightpick__day.is-in-range {
+    border-radius: 0;
+    background-color: rgb(212 191 170 / 0.3);
+}
+.lightpick__day:not(.is-disabled):hover {
+    background-size: contain;
+    background: #d4bfaa;
+    cursor: pointer;
+    color: white;
+}
+.lightpick__day.is-today {
+    background: none;
+    border: 1px solid #d4bfaa;
+    color: #d4bfaa;
+}
+.lightpick__month-title {
+    /* margin-top: 4px; */
+    /* margin-bottom: 4px; */
+    margin: 4px auto;
+    font-size: 0.8em;
+    font-weight: normal;
+    line-height: 24px;
+    text-transform: uppercase;
+    cursor: default;
+    border-radius: 4px;
+}
+.lightpick__day{
+    font-size: 0.7em;
+}
+/* #demo-3, #demo-3_1, #demo-3_2, #result-3{
+    visibility: hidden;
+} */
+select{
+    font-family: 'Century Gothic';
+}
+button{
+    cursor: pointer;
+}
+.lightpick {
+    position: absolute;
+    z-index: 99999;
+    padding: 4px;
+    border-radius: 2px;
+    background-color: #FFF;
+    box-shadow: none;
+    color: #000;
+    font-family: 'Century Gothic';
+    line-height: 1.125em;
+    width: 100%;
+}
+body>.lightpick {
+    width: 50%;
+}
+
+.lightpick__toolbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: -33px;
+    z-index: 99;
+    position: relative;
+}
+.lightpick__month-title-bar {
+    margin-bottom: 12px;
+}
+.lightpick__previous-action, .lightpick__next-action {
+    font-size: 18px;
+    background: transparent!important;
+    font-family: sans-serif!important;
+}
+.lightpick__months{
+    display: flex;
+    justify-content: space-between;
+    background: white;
+}
+.lightpick__month{
+    padding: 4px 8px;
+    width: 49%;
+    min-width: 220px;
+    background-color: #FFF;
+    display: block!important;
+}
