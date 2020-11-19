@@ -61,9 +61,9 @@ if(isset($_SESSION['access_token'])){
 
 <body>
 
-<input type="hidden" value="<?php echo $logeado ?>" id="logeado">
 
 <nav>
+    <input type="hidden" value="<?php echo $logeado ?>" id="logeado">	
 	<div class="cont90">
 		<div>
 
