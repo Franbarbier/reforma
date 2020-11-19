@@ -7,8 +7,8 @@ var global_checkout;
 
 function update_global_vars() {
 
-    global_checkin = $('#f-checkin').html()
-    global_checkout = $('#f-checkout').html()
+    global_checkin = $('#checkin input').val()
+    global_checkout = $('#checkout input').val()
     if (global_checkin.includes('Check')) {
         global_checkin = ''
     }
