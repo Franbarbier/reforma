@@ -42,8 +42,8 @@
     <!--<meta property="og:image:height" content="1024">-->
     <!--<meta property="fb:app_id" content="">-->
 
-	<link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/nosotros.css" />
-	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/nosotrosMob.css?refrescate=1" />
+	<link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/nosotros1.css" />
+	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/nosotrosMob.css" />
     
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -105,15 +105,9 @@
 		<main>
 			<div>
 				<div>
-					<!-- <p>El nombre del proyecto nace del concepto de la palabra "Reformar"; Modificacion de una cosa con el fin de mejorarla. Nosotros buscamos modificar la forma en la cual la gente viaja y a su vez describe la modificacion que hacemos de cada espacio que tomamos. Aplica en ambas cosas. Ademas es un nombre fuerte</p> -->
-					<p>Texto de ejemplo Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, id, deserunt suscipit, iusto facere veritatis neque perspiciatis est enim fugit vero veniam ex cumque eos laboriosam quas. Et, blanditiis hic! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet rerum nesciunt quod molestias saepe harum architecto odit. Doloribus, provident eius! Porro dolores nisi ut placeat. Eius, placeat. Qui, vitae corrupti.</p>
-					<!-- <button id="leer-mas">LEER MAS</button> -->
+					<p>
+					A diferencia del resto de las empresas de la industria del hospedaje y del turismo, el equipo de Reforma no solo está compuesto por emprendedores que entienden como administrar un negocio, sino que  además cuentan con un amplio grupo de arquitectos, diseñadores y artistas apasionados por lo que hacen. Los mismos entienden como crear el espacio ideal para habitar y eso marca la direfencia entre una experiencia standard y la experiencia que ofrece Reforma en todos sus alojamientos.</p><p>El equipo primero estudia y analiza el sitio donde está implantado el inmueble, luego se asocia con los mejores arquitectos, artistas y diseñadores del vecindario y en conjunto diseñan no solo el espacio sino que además la experiencia que buscan revivir en cada lugar. La empresa cree que cada espacio tiene una esencia única y buscan sacarla a luz para ponerla al alcance de cada uno de sus clientes mediante este proceso.</p><p>Este fuerte enfoque en el diseño de cada parte del proceso que conforma una experiencia inolvidable son las bases y la filosofía sobre la cual se ha construido Reforma…</p>
 				</div>
-				<!-- <div id="mas-info">
-					<div>
-						<p>El equipo primero estudia y analiza el sitio donde esta implantado el inmueble, luego se asocia con los mejores arquitectos, artistas y diseñadores del vecindario y en conjunto diseñan no solo el espacio sino que ademas la experiencia que buscan revivir en cada lugar. La empresa cree que cada espacio tiene una esencia unica y buscan sacarla a luz para ponerla al alcance de cada uno de sus clientes mediante este proceso.<br>Este fuerte enfoque en el diseño de cada parte del proceso que conforma una experiencia inolvidable son las bases y la filosofia sobre la cual se ha construido Reforma…</p>
-					</div>
-				</div> -->
 			</div>
 		</main>
     </div>
@@ -124,21 +118,24 @@
 	<div class="cont90">
 		<header>
 			<h3>Como empezamos</h3>
-			<p>El verano después de terminar sus estudios universitarios de Arquitectura, Pedro Grampa decidio subarrendar su apartamento en Buenos Aires durante las vacaciones de verano.<br>Impulsado por el deseo de hacer valer y poner a prueba sus habilidades como diseñador de un espacio y una experiencia, paso sus dias recibiendo visitantes de todas partes del mundo con distintas visiones y perspectivas acerca de la que habian vivido en sus departamentos.<br>En este proceso, no solo aprendio y perfecciono la idea de lo que significa “tener una buena experiencia”, sino que ademas se dio cuenta de que estaba detrás de algo grande.<br>Un año mas tarde, se junto con su Co-Fundador y mejor amigo, Ramiro Fregonese (licenciado en Marketing) y juntos construyeron un sitio web para convertir su vision del futuro de los viajes en un negocio y una experiencia al alcance de todos.</p>
+			<p>El verano de 2017, nuestro fundador Pedro Grampa, para ese entonces estudiante universitario de la carrera de Arquitectura, decidio subarrendar su apartamento en Buenos Aires.</p>
+			<p>Impulsado por el deseo de hacer valer y poner a prueba sus habilidades como diseñador de un espacio y una experiencia, paso sus dias recibiendo visitantes de todas partes del mundo con distintas visiones y perspectivas acerca de la experiencia que habian vivido en sus departamentos.</p>
+			<p>En este proceso, no solo encontro su verdadera pasion, sino que ademas aprendio y perfecciono la idea de lo que significa “ofrecer una buena experiencia”.</p>
+			<p>Con el paso de los meses fue adquiriendo propiedades y formando un grupo de trabajo excepcional, cuya unica mision es brindar una experiencia inolvidable a todos las personas que se hospedan en las propiedades Reforma. Hoy, la start up ofrece sus propiedades mediante su propio sitio web y la experiencia esta al alcance de todos…</p>
 		</header>
 		<div>
 			<img src="https://images.pexels.com/photos/2102416/pexels-photo-2102416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
 		</div>
 	</div>
 </div>
-<div class="historia">
+<div class="historia hist2">
 	<div class="cont90">
 		<div>
 			<img src=https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
 		</div>
 		<header>
 			<h3>Hacia donde vamos</h3>
-			<p>El verano después de terminar sus estudios universitarios de Arquitectura, Pedro Grampa decidio subarrendar su apartamento en Buenos Aires durante las vacaciones de verano.<br>Impulsado por el deseo de hacer valer y poner a prueba sus habilidades como diseñador de un espacio y una experiencia, paso sus dias recibiendo visitantes de todas partes del mundo con distintas visiones y perspectivas acerca de la que habian vivido en sus departamentos.<br>En este proceso, no solo aprendio y perfecciono la idea de lo que significa “tener una buena experiencia”, sino que ademas se dio cuenta de que estaba detrás de algo grande.<br>Un año mas tarde, se junto con su Co-Fundador y mejor amigo, Ramiro Fregonese (licenciado en Marketing) y juntos construyeron un sitio web para convertir su vision del futuro de los viajes en un negocio y una experiencia al alcance de todos.</p>
+			<p>Desde Reforma siempre buscamos salir del esquema tradicional de hospedaje mediante la creacion de espacios con un diseño moderno y minimalista, combinados con la consistencia en el servicio de un hotel de lujo. Esto se da gracias al increible grupo de artistas, arquitectos y diseñadores con los que trabajamos dia a dia y al uso eficiente de tecnologia de vanguardia que utilizamos para manejar de manera mas eficientes todos los procesos involucrados en cada estadia.</p>
 		</header>
 	</div>
 </div>
@@ -181,7 +178,7 @@
 					<div>
 						<img id="frego" src="https://aws.glamour.es/prod/designs/v1/assets/620x620/655515.jpeg" alt="">
 					</div>
-					<h5>Mr. Frego</h5>
+					<h5>Ramiro Fregonese</h5>
 					<p>Marketing y Administración</p>
 				</div>
 			</div>
@@ -202,12 +199,6 @@ $('#leer-mas').click(function () {
 	$('#mas-info').slideDown(200)
 	$(this).remove()
 })
-
-
-setTimeout(() => {
-	$('h1').css({ 'opacity':'1', 'transform':'translateX(0%)' })
-}, 250);
-
 
 const interval = setInterval(function() {
 	$('#frego').attr('src','https://instagram.faep8-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/123148535_221840519503431_1532435149639692857_n.jpg?_nc_ht=instagram.faep8-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=_zo6XaZlprEAX-_ziJG&tp=19&oh=80373e5149e39e1cde1b640e4271487a&oe=5FCBC724')

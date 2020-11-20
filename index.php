@@ -68,7 +68,7 @@ if(isset($_SESSION['access_token'])){
 		<div>
 
 			<div>
-				<a href="http://67.222.7.138/~reforma/">
+				<a href="/">
 					<img src="imgs/logo-chico.svg" alt="logo reforma alquile de inmuebles">
 				</a>
 				<div id="select-city-nav">
@@ -340,10 +340,33 @@ if(isset($_SESSION['access_token'])){
 			</div>
 			<header>
 				<span>‘‘</span>
-				<h5>Modificamos la forma de viajar, reformando los espacios.</h5>
-				<div>
-					<p>- Pedro Grampa</p>
-					<i>Fundador y CEO</i>
+				<div class="text-roll">
+					<div class="text-roll-mask-wrapper">
+						<!--  main part    -->
+						<div class="text-roll-mask">
+							<div class="texts">
+								<div class="text-wrapper">
+									<div class="text">
+										<h5>Modificamos la forma de viajar, reformando los espacios.</h5>
+										<div>
+											<p>- Pedro Grampa</p>
+											<i>Fundador y CEO</i>
+										</div>
+									</div>
+								</div>
+								<div class="text-wrapper">
+									<div class="text">
+										<!-- <span>‘‘</span> -->
+										<h5>Frase que no me acuerdo donde me la pasaron.</h5>
+										<div>
+											<p>- Ramiro Fregonese</p>
+											<i>Marketing y Administracion</i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</header>
 		</div>
@@ -827,6 +850,36 @@ function setTyper(element, words) {
 
 }
 
+
+// roller text quotes
+console.clear();
+var texts = $('.text-roll-mask .text');
+var indexText = -1;
+var preIndexText;
+var rollTextTimer;
+var rollText = function() {
+  if (indexText == -1 || indexText == texts.length-1 ) {
+    indexText = 0;
+    preIndexText = texts.length-1;
+  } else {
+    preIndexText = indexText;
+    ++indexText;
+  }
+  
+  texts.removeClass('rol');
+  texts.parent()
+    .removeClass('rol-active')
+    .removeClass('rol-pre');
+  
+  texts.eq(indexText).addClass('rol');
+  texts.eq(indexText).parent().addClass('rol-active');
+  texts.eq(preIndexText).parent().addClass('rol-pre');
+  
+  var h = $('.text-roll-mask .rol').height();
+  $('.text-roll-mask').css('height', h + 'px');
+  rollTextTimer = setTimeout(rollText, 7000);
+}
+rollText();
 
 
 
