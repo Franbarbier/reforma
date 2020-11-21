@@ -87,35 +87,21 @@ var picker = new Lightpick({
         document.getElementById('result-3_1').innerHTML = str;
         
         // Actualizamos valores del checkin checkout
-        setTimeout(() => {
 
-            var start_date = unix_to_ymd($('.is-start-date').attr('data-time'))
-            var end_date = unix_to_ymd($('.is-end-date').attr('data-time'))
-
-
-            // Si nos de undefined, intentamos usar los start date y end date de la URL. Sino, lo dejamos vacio.
-            if($('.is-start-date').attr('data-time')==undefined && $('.is-end-date').attr('data-time') == undefined){
-
-                start_date = urlParams.get('check_in')
-                end_date = urlParams.get('check_out')
-
-                if(start_date==null || end_date ==null){
-                    start_date = ''
-                    end_date = ''
-                }
-
-                picker.setDateRange(start_date, end_date)
-
-            }
+            var start_date = start.format("YYYY-MM-DD")
+            var end_date = end.format("YYYY-MM-DD")
 
             // Actualizamos los global checkin checkout
-            // $('#checkin').html(start_date)
-            // $('#checkout').html(end_date)
             $('#demo-3_1_1, #demo-3_2_1').css('background-image','')
             
             // Tarifa final solo se va a ejecutar en apartado.php
             if (window.location.href.indexOf("apartado") > -1) {
                 tarifa_final()
+                // Actualizamos el calendario de el body de apartado
+                if(start_date!=end_date){
+                }
+                picker2.setDateRange(start_date, end_date)
+
             }
 
             // Update from filters solo se ejecuta si estan en explorar
@@ -123,18 +109,8 @@ var picker = new Lightpick({
                 update_from_filters()
             }
         
-        }, 200);
     }
 });
-
-    
-// if(!$('#checkin').html().includes('Check') && !$('#checkin').html().includes('Check')){
-//     var start_date = $('#checkin').html().replace(/ /g,'')
-//     var end_date = $('#checkout').html().replace(/ /g,'')
-
-//     console.log(start_date + ', ' + end_date )
-//     picker.setDateRange(start_date, end_date)
-// }
 
 
 function unix_to_ymd(timestamp){
@@ -192,19 +168,10 @@ const dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "S
 $('#demo-3_1_1').css('background-image','url(imgs/checkin-fondo.jpg)')
 $('#demo-3_2_1').css('background-image','url(imgs/checkout-fondo.jpg)')
 
-// $('#demo-3_1_1, #demo-3_2_1').change(function(){
-//     if ($(this).val() != '') {
-//         $(this).css('background-image','')
-//     }
-// })
-$(document).on("change", "#demo-3_1_1, #demo-3_2_1", function(){
-    if ($(this).val() != '') {
-        $(this).css('background-image','')
-    }
-})
+
 })
 
-});
+
 </script>
 
 </html>

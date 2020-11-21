@@ -26,14 +26,10 @@
 
 <script>
 
-$( document ).ready( function(){
+// $( document ).ready( function(){
 
 
-var fechasTomadas = ['2020-11-22', '2020-12-30']
-
-// var picker = new Lightpick({ field: document.getElementById('datepicker') });
-
-var picker = new Lightpick({
+var picker2 = new Lightpick({
     field: document.getElementById('demo-3_1'),
     secondField: document.getElementById('demo-3_2'),
     singleDate: false,
@@ -63,36 +59,47 @@ var picker = new Lightpick({
         str += start ? start.format('Do MMMM YYYY') + ' to ' : '';
         str += end ? end.format('Do MMMM YYYY') : '...';
         document.getElementById('result-3').innerHTML = str;
-        
-        // Actualizamos valores del checkin checkout
-        setTimeout(() => {
+    
+        start_date = start.format("YYYY-MM-DD")
+        end_date = end.format("YYYY-MM-DD")
 
-            var start_date = unix_to_ymd($('.is-start-date').attr('data-time'))
-            var end_date = unix_to_ymd($('.is-end-date').attr('data-time'))
+        if(end_date == start_date){
+            end_date = ''
+        }
 
 
-            // Si nos de undefined, intentamos usar los start date y end date de la URL. Sino, lo dejamos vacio.
-            if($('.is-start-date').attr('data-time')==undefined && $('.is-end-date').attr('data-time') == undefined){
+        // Si nos de undefined, intentamos usar los start date y end date de la URL. Sino, lo dejamos vacio.
+        if($('.is-start-date').attr('data-time')==undefined && $('.is-end-date').attr('data-time') == undefined){
 
-                start_date = urlParams.get('check_in')
-                end_date = urlParams.get('check_out')
+            start_date = urlParams.get('check_in')
+            end_date = urlParams.get('check_out')
 
-                if(start_date==null || end_date ==null){
-                    start_date = ''
-                    end_date = ''
-                }
-
-                picker.setDateRange(start_date, end_date)
-
+            if(start_date==null || end_date ==null){
+                start_date = ''
+                end_date = ''
             }
 
-            // Actualizamos los global checkin checkout
-            // $('#checkin').html(start_date)
-            // $('#checkout').html(end_date)
+            picker2.setDateRange(start_date, end_date)
 
+        }
+
+        start_date = start_date.replace(/\-/g,'/')
+        end_date = end_date.replace(/\-/g,'/')
+
+        // Convirtiendo el d-m-y a Y-m-d
+        var start_date = start_date.split("/").reverse().join("/");
+        var end_date = end_date.split("/").reverse().join("/");
+
+        // Tarifa final solo se va a ejecutar en apartado.php
+        if (window.location.href.indexOf("apartado") > -1) {
+            $('#checkin input').val(start_date)
+            $('#checkout input').css('background-image', '')
+            $('#checkout input').val(end_date)
+            $('#checkin input').css('background-image', '')
             tarifa_final()
+        }
+
         
-        }, 200);
     }
 });
 
@@ -102,7 +109,7 @@ if(!$('#checkin').html().includes('Check') && !$('#checkin').html().includes('Ch
     var end_date = $('#checkout').html().replace(/ /g,'')
 
     console.log(start_date + ', ' + end_date )
-    picker.setDateRange(start_date, end_date)
+    picker2.setDateRange(start_date, end_date)
 }
 
 
@@ -144,19 +151,12 @@ function daysInMonth (month, year) {
     return new Date(year, month, 0).getDate();
 }
 
-var d = new Date();
-var m = d.getMonth();
-
-
-// console.log( daysInMonth( m,2020) )
-var l = new Date("2020-10-01");
-
-
 const meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 const dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ]
 
 
-});
+
+// });
 </script>
 
 </html>

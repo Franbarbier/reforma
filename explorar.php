@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require 'php/connection.php';
 require 'php/models/Propiedades.php';
 
@@ -81,9 +83,9 @@ if(isset($_SESSION['id_user'])){
 </head>
 <body>
 
-<input type="hidden" value="<?php echo $logeado ?>" id="logeado">
 
 <nav>
+<input type="hidden" value="<?php echo $logeado ?>" id="logeado">
 	<div class="cont90">
 		<div>
 

@@ -6,13 +6,9 @@ require 'php/connection.php';
 $google_client = new Google_Client();
 
 $google_client->setClientId('92245027168-u8nqp166ck2hs7rt9tr9t21toidereud.apps.googleusercontent.com');
-
 $google_client->setClientSecret('JQ70A5nMJ0bPGHHjVc99EInP');
-
-$google_client->setRedirectUri('http://localhost/reforma/prueba_login.php');
-
+$google_client->setRedirectUri('http://localhost/reforma/oauth.php');
 $google_client->addScope('email');
-
 $google_client->addScope('profile');
 
 session_start();

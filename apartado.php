@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $check_in = 'Check-In';
 $check_out = 'Check-Out';
 if(isset($_GET['check_in'])){
@@ -14,6 +16,7 @@ $logeado = 'no';
 if(isset($_SESSION['id_user'])){
 	$logeado = 'si';
 }
+
 
 ?>
 
@@ -85,9 +88,9 @@ if(isset($_SESSION['id_user'])){
 </head>
 <body>
 
-<input type="hidden" value="<?php echo $logeado ?>" id="logeado">
 
 <nav>
+    <input type="hidden" value="<?php echo $logeado ?>" id="logeado">
 	<div class="cont90">
 		<div>
 
@@ -517,6 +520,7 @@ console.log('function tarifa_final')
 
 var checkin = $('#checkin input').val()
 var checkout = $('#checkout input').val()
+
 
 checkin = checkin.replace(/\//g,'-')
 checkout = checkout.replace(/\//g,'-')

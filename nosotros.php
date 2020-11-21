@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Chequeando si el usuario esta logeado o no
+$logeado = 'no';
+if(isset($_SESSION['id_user'])){
+	$logeado = 'si';
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="es">
@@ -53,6 +64,7 @@
 
 
 <nav>
+	<input type="hidden" value="<?php echo $logeado ?>" id="logeado">	
 	<div class="cont90">
 		<div>
 
