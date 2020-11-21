@@ -82,16 +82,19 @@ class Globales{
         return $q;
     }
 
-    // public function verLocacion($locacion){
-    //     global $pdo;
+    public function crearUsuario($nombre, $apellido='', $mail, $telefono=''){
+        global $pdo;
 
-    //     $q = $pdo->prepare("SELECT * FROM locaciones WHERE locacion=:locacion");
-    //     $q->execute(['locacion' => $locacion]); 
-    //     $q = $q->fetch();
-
-    //     return $q;
-    // }
-
+        $q = "INSERT INTO usuarios (nombre, apellido, mail, telefono) VALUES (?,?,?,?)";
+        
+        $stmt= $pdo->prepare($q);
+        $stmt->execute([$nombre, $apellido, $mail, $telefono]);
+        if($stmt){
+            return '{"error": 0}';
+        }else{
+            return '{"error": 1}';
+        }
+    }
    
 }
 

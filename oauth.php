@@ -2,6 +2,11 @@
 
 require_once 'vendor/autoload.php';
 require 'php/connection.php';
+require 'php/models/Globales.php';
+
+global $pdo;
+
+$globales = new Globales();
 
 $google_client = new Google_Client();
 
@@ -20,6 +25,7 @@ $login_button = '';
 //This $_GET["code"] variable value received after user has login into their Google Account redirct to PHP script then this variable value has been received
 if(isset($_GET["code"]))
 {
+
  //It will Attempt to exchange a code for an valid authentication token.
  $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
 
@@ -38,47 +44,64 @@ if(isset($_GET["code"]))
   //Get user profile data from google
   $data = $google_service->userinfo->get();
 
-  //Below you can find Get profile data and store into $_SESSION variable
-  if(!empty($data['given_name']))
-  {
-   $_SESSION['user_first_name'] = $data['given_name'];
-  }
-
-  if(!empty($data['family_name']))
-  {
-   $_SESSION['user_last_name'] = $data['family_name'];
-  }
-
   if(!empty($data['email']))
   {
    $_SESSION['user_email_address'] = $data['email'];
    $mail = $data['email'];
   }
 
-  if(!empty($data['gender']))
-  {
-   $_SESSION['user_gender'] = $data['gender'];
-  }
+   //  Nos fijamos si ya tiene una cuenta creada con nosotros a partir de su mail
 
-  if(!empty($data['picture']))
-  {
-   $_SESSION['user_image'] = $data['picture'];
-  }
+    // Buscamos el usuario a partir del mail y guardamos su ID en la sesion
+    $q = $pdo->prepare("SELECT * FROM usuarios WHERE mail=:mail");
+    $q->execute(['mail' => $mail]); 
+    $user = $q->fetch();   
+
+
+   if($user){
+
+    var_dump($user);
+
+    echo 'YA TIENE CUENTA!';
+
+    $_SESSION['id_user'] = $user['id'];
+    // header('location: index.php');
+
+   }else{
+
+        echo 'NO TIENE CUENTA. HAY QUE CREARSELA';
+
+       //Below you can find Get profile data and store into $_SESSION variable
+       if(!empty($data['given_name']))
+       {
+        $nombre = $data['given_name'];
+       }
+     
+       if(!empty($data['family_name']))
+       {
+        $apellido = $data['family_name'];
+       }
+
+       if(!empty($data['email']))
+       {
+        $mail = $data['email'];
+       }
+
+        //    Por ahora telefono lo vamos a tener vacio
+        $telefono = '';
+        
+        //    if(!empty($data['picture']))
+        //    {
+        //     $_SESSION['user_image'] = $data['picture'];
+        //    }
+
+
+        // Creamos el usuario
+        var_dump($globales->crearUsuario($nombre, $apellido, $mail, $telefono));
+
+   }
+
  }
-
-
- 
-// Buscamos el usuario a partir del mail y guardamos su ID en la sesion
-global $pdo;
-$q = $pdo->prepare("SELECT * FROM usuarios WHERE mail=:mail");
-$q->execute(['mail' => $mail]); 
-$user = $q->fetch();   
-
-var_dump($user);
-
-$_SESSION['id_user'] = $user['id'];
-
-header('location: index.php');
 
 }
 

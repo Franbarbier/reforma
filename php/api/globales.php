@@ -53,6 +53,16 @@ if($_GET['func']=='verLocalidades'){
     echo json_encode($globales->verLocalidades());
 }
 
+if($_GET['func']=='crearUsuario'){
+
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $mail = $_POST['mail'];
+    $telefono = $_POST['telefono'];
+
+    echo json_encode($globales->crearUsuario($nombre, $apellido, $mail, $telefono));
+}
+
 
 // if($_GET['func']=='verLocacion'){
 

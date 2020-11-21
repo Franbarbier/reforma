@@ -521,7 +521,6 @@ console.log('function tarifa_final')
 var checkin = $('#checkin input').val()
 var checkout = $('#checkout input').val()
 
-
 checkin = checkin.replace(/\//g,'-')
 checkout = checkout.replace(/\//g,'-')
 
