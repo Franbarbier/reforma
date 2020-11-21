@@ -225,9 +225,15 @@ body>header main{
   width: 45%;
   padding: 4% 5%;
   border-radius: 6px;
-  line-height: 1.5;
+  line-height: 1.4;
   position: relative;
+  font-size: 0.8em;
+  font-weight: 600;
 }
+body>header main p{
+  margin-bottom: 2%;
+}
+
 #mas-info{
   display: none;
   position: absolute;
@@ -293,6 +299,7 @@ body>header main{
 }
 .historia p{
   font-size: .9em;
+  margin-bottom: 2%;
 }
 .historia>div>div>img{
   object-fit: cover;

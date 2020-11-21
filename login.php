@@ -57,7 +57,7 @@
 		<div>
 
 			<div>
-				<a href="http://67.222.7.138/~reforma/">
+				<a href="/">
 					<img src="imgs/logo-chico.svg" alt="logo reforma alquile de inmuebles">
 				</a>
 			</div>

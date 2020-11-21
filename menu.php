@@ -112,17 +112,14 @@
         <div>
             <ul>
                 <div id="sin-logear">
-                    <li id="registrarse-btn">CREAR CUENTA</li>
-                    <li>INICIAR SESION</li>
+                    <li id="registrarse-btn"><a href="login.php?regitrar">CREAR CUENTA</a></li>
+                    <li><a href="login.php?login">INICIAR SESION</a></li>
                 </div>
                 <div id="logeado">
-                    <li>MI PERFIL</li>
-                        <li>Reservas</li>
-                        <li>Puntos</li>
-                        <li>Historial</li>
+                    <li><a href="nosotros.php">MI PERFIL</a></li>
                 </div>
                 <li><a href="/#seccion-proceso">NUESTRO PROCESO PARA REFORMAR</a></li>
-                <li>SOBRE NOSOTROS</li>
+                <li><a href="nosotros.php">SOBRE NOSOTROS</a></li>
             </ul>
         </div>
     </div>
