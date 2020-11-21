@@ -11,7 +11,7 @@ if(isset($_GET['check_out'])){
 
 // Chequeando si el usuario esta logeado o no
 $logeado = 'no';
-if(isset($_SESSION['access_token'])){
+if(isset($_SESSION['id_user'])){
 	$logeado = 'si';
 }
 

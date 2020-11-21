@@ -7,9 +7,6 @@
             <div id="ciudades">
                 <ul>
                     <li>Todas</li>
-                    <li>Buenos Aires</li>
-                    <li>San Antonio de Areco</li>
-                    <li>Bariloche</li>
                 </ul>
             </div>
         </article>

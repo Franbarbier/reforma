@@ -1,6 +1,11 @@
 <?php
 class Usuarios{
 
+    
+    function __construct($id) {
+		$this->id = $id;
+	}
+
     public function verUsuarios(){
         global $pdo;
 
@@ -11,21 +16,21 @@ class Usuarios{
         return $q;
     }
 
-    public function verUsuario($id){
+    public function verUsuario(){
         global $pdo;
 
 		$q = $pdo->prepare("SELECT * FROM usuarios WHERE id=:id");
-        $q->execute(['id' => $id]); 
+        $q->execute(['id' => $this->id]); 
         $q = $q->fetch();
 
         return $q;
     }
 
-    public function verReservas($id_usuario){
+    public function verReservas(){
         global $pdo;
 
 		$q = $pdo->prepare("SELECT * FROM reservas WHERE id_usuario=:id_usuario");
-        $q->execute(['id_usuario' => $id_usuario]); 
+        $q->execute(['id_usuario' => $this->id]); 
         $q = $q->fetchAll();
 
         $reservas_array = [];
@@ -54,13 +59,13 @@ class Usuarios{
     }
 
     
-    public function verReservasActivas($id_usuario){
+    public function verReservasActivas(){
         global $pdo;
 
         $fecha_actual = date('Y-m-d');
 
 		$q = $pdo->prepare("SELECT * FROM reservas WHERE id_usuario=:id_usuario AND check_out>:fecha_actual");
-        $q->execute(['id_usuario' => $id_usuario, 'fecha_actual' => $fecha_actual]); 
+        $q->execute(['id_usuario' => $this->id, 'fecha_actual' => $fecha_actual]); 
         $q = $q->fetchAll();
 
         $reservas_array = [];
@@ -88,13 +93,13 @@ class Usuarios{
 
     }
 
-    public function verHistorialReservas($id_usuario){
+    public function verHistorialReservas(){
         global $pdo;
 
         $fecha_actual = date('Y-m-d');
 
 		$q = $pdo->prepare("SELECT * FROM reservas WHERE id_usuario=:id_usuario AND check_out <:fecha_actual");
-        $q->execute(['id_usuario' => $id_usuario, 'fecha_actual' => $fecha_actual]); 
+        $q->execute(['id_usuario' => $this->id, 'fecha_actual' => $fecha_actual]); 
         $q = $q->fetchAll();
 
         $reservas_array = [];
@@ -123,14 +128,14 @@ class Usuarios{
     }
 
 
-    public function verNivel($id_usuario){
+    public function verNivel(){
         global $pdo;
 
         // Calculamos el nivel del usuario
 
         // Traemos sus reservas para obtener el score
         $q = $pdo->prepare("SELECT SUM(precio_final) as score FROM reservas WHERE id_usuario=:id_usuario");
-        $q->execute(['id_usuario' => $id_usuario]); 
+        $q->execute(['id_usuario' => $this->id]); 
         $q = $q->fetch();
 
         $score = $q['score'];

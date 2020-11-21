@@ -392,3 +392,27 @@ function comp_sin_propiedades() {
                 </div>
             <div>`
 }
+
+// Funcion que inyecta las ciudades disponibles a partir de la base de datos
+function init_localidades() {
+
+    fetch('php/api/globales.php?func=verLocalidades')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (localidades) {
+            console.log(localidades);
+
+            // Inicializamos las localidades en el desplegable
+            var html = ''
+            for(l in localidades){
+                var loc = localidades[l]
+                html += '<li>'+loc.nombre+'</li>'
+            }
+
+            $('#ciudades ul').append(html)
+
+        });
+
+}
+init_localidades()

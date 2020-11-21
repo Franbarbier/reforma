@@ -1,18 +1,19 @@
 <!-- Renderizamos lo mas importante  -->
 <?php
+session_start();
 
-$id = $_GET['id'];
+$id = $_SESSION['id_user'];
 
 require 'php/connection.php';
 require 'php/models/Usuarios.php';
 
-$usuarios = new Usuarios();
+$usuarios = new Usuarios($id);
 
-$usuario = $usuarios->verUsuario($id);
+$usuario = $usuarios->verUsuario();
 
-$reservas_activas = $usuarios->verReservasActivas($id);
+$reservas_activas = $usuarios->verReservasActivas();
 
-$nivel = $usuarios->verNivel($id);
+$nivel = $usuarios->verNivel();
 
 // Descomentar esto de abajo una vez que se active el login
 // if(!isset($_SESSION['user'])){

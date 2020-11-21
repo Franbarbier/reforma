@@ -1,14 +1,15 @@
 <?php
 
 require_once 'vendor/autoload.php';
+require 'php/connection.php';
 
 $google_client = new Google_Client();
 
-$google_client->setClientId('386181325549-c4ohmafm4q1h4jpf5f3ltpiqj541lt93.apps.googleusercontent.com');
+$google_client->setClientId('92245027168-u8nqp166ck2hs7rt9tr9t21toidereud.apps.googleusercontent.com');
 
-$google_client->setClientSecret('27RrtAzKvo3vwzZLbO10pH0x');
+$google_client->setClientSecret('JQ70A5nMJ0bPGHHjVc99EInP');
 
-$google_client->setRedirectUri('http://localhost/reforma/index.php');
+$google_client->setRedirectUri('http://localhost/reforma/prueba_login.php');
 
 $google_client->addScope('email');
 
@@ -55,6 +56,7 @@ if(isset($_GET["code"]))
   if(!empty($data['email']))
   {
    $_SESSION['user_email_address'] = $data['email'];
+   $mail = $data['email'];
   }
 
   if(!empty($data['gender']))
@@ -67,6 +69,26 @@ if(isset($_GET["code"]))
    $_SESSION['user_image'] = $data['picture'];
   }
  }
+
+
+ 
+// Buscamos el usuario a partir del mail y guardamos su ID en la sesion
+global $pdo;
+$q = $pdo->prepare("SELECT * FROM usuarios WHERE mail=:mail");
+$q->execute(['mail' => $mail]); 
+$user = $q->fetch();   
+
+var_dump($user);
+
+$_SESSION['id_user'] = $user['id'];
+
+header('location: index.php');
+
+}
+
+// Para logoutear
+if(isset($_GET['logout'])){
+    session_destroy();
 }
 
 //This is for check user has login into system by using Google account, if User not login into system then it will execute if block of code and make code for display Login link for Login using Google account.
