@@ -43,7 +43,7 @@
     <!--<meta property="fb:app_id" content="">-->
 
 	<link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/login.css" />
-	<!-- <link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/homeMobile.css?refrescate=1" /> -->
+	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/loginMob.css" />
     
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -87,16 +87,23 @@
 			<input class="inputes" type="password" id="Contraseña">
 			<input id="loginear" type="submit" value="INGRESAR">
 		</form>
+		<button id="google-init">
+			<img src="imgs/search.svg" alt="">
+			<span>Inicia sesion con Google</span>
+		</button>
 		<p>¿Olvidaste tu contraseña?</p>
     </header>
     <div>
 		<img src="https://a0.muscache.com/im/pictures/58e33f93-3b69-4d91-b0aa-8801b61cd059.jpg" alt="">
 		<div>
 			<div>
-				<img src="imgs/logo-chico.svg" alt="">
-				<h4>Reforma</h4>		
+
+				<div>
+					<img src="imgs/logo-chico.svg" alt="">
+					<h4>Reforma</h4>		
+				</div>
+				<p>Modificando tu manera de viajar.</p>
 			</div>
-			<p>Modificando tu manera de viajar.</p>
 		</div>
     </div>
 </main>
