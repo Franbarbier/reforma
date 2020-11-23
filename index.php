@@ -127,18 +127,7 @@ if(isset($_SESSION['id_user'])){
 			</div>
 			
 			<div>
-				<div>
-					<label for="">
-						<img src="imgs/calendar-black.svg" alt="">
-					</label>
-					<input class="inputs" placeholder="Llegada" type="text" id="check_in">
-				</div>
-				<div>
-					<label for="">
-						<img src="imgs/checkout-black.svg" alt="">
-					</label>
-					<input class="inputs" placeholder="Salida" type="text" id="check_out">
-				</div>
+				<?php include 'calendar-index.php'; ?>
 			</div>
 			<div>
 				<label for="">

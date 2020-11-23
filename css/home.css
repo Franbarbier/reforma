@@ -223,6 +223,7 @@ main form > div {
 }
 main form > div > div {
   display: flex;
+  align-items: center;
 }
 main label img {
   width: 20px;
@@ -234,6 +235,9 @@ main form > div > img {
   width: 16px;
   opacity: 0.7;
   cursor: pointer;
+}
+.inputs{
+  background: none!important;
 }
 main form > div > img:nth-child(2) {
   margin-left: 2px;
@@ -630,7 +634,7 @@ color: white
   /* line-height: 0; */
   font-weight: bold;
 }
-#seccion-frases header h5 {
+#seccion-frases header h5 { 
   font-size: 1.5em;
   font-style: italic;
 }
