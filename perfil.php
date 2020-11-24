@@ -22,6 +22,13 @@ $nivel = $usuarios->verNivel();
 // 	header('location: http://localhost/reforma');
 // }
 
+// Chequeando si el usuario esta logeado o no
+$logeado = 'no';
+if(isset($_SESSION['id_user'])){
+	$logeado = 'si';
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -81,6 +88,7 @@ $nivel = $usuarios->verNivel();
 <input type="hidden" id="numero_nivel" value="<?php echo $nivel['numero'] ?>">
 
 <nav>
+<input type="hidden" value="<?php echo $logeado ?>" id="logeado">
 	<div class="cont90">
 		<div>
 
