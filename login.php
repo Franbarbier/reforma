@@ -1,3 +1,14 @@
+<?php 
+
+require 'oauth_login.php';
+
+// Chequeando si está logeado
+if(isset($_SESSION['id_user'])){
+	header('location: index.php');
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="es">
@@ -82,15 +93,17 @@
 
 		<form action="">
 			<label for="name">Mail</label>
-			<input class="inputes" type="text" id="name">
+			<input class="inputes" type="text" id="mail">
 			<label for="Contraseña">Contraseña</label>
-			<input class="inputes" type="password" id="Contraseña">
+			<input class="inputes" type="password" id="psw">
 			<input id="loginear" type="submit" value="INGRESAR">
 		</form>
-		<button id="google-init">
-			<img src="imgs/search.svg" alt="">
-			<span>Inicia sesion con Google</span>
-		</button>
+		<a href="<?php echo $login_url ?>">
+			<button id="google-init">
+				<img src="imgs/search.svg" alt="">
+				<span>Inicia sesion con Google</span>
+			</button>
+		</a>
 		<p>¿Olvidaste tu contraseña?</p>
     </header>
     <div>
@@ -128,6 +141,36 @@ $('.inputes').focusout(function(){
 		$("label[for="+$(this).attr("id")+"]").css({'transform':'translate(12% , 160%) scale(1.2)','color':'#b5b5b5'})
 		$(this).css({  'color': '#d4bfaa', 'border-color': '#b5b5b5'})
 	}
+})
+
+// Listener para cuando cliquean en loginear (login sin el ouath)
+$(document).on("click", "#loginear", function(e){
+
+	e.preventDefault()
+
+	var mail = $('#mail').val()
+	var psw = $('#psw').val()
+
+	$.ajax({
+            url:'php/api/globales.php?func=loginRequest',
+            method:'POST',
+            cache: false,
+            data:{
+                mail,
+				psw
+            },
+            dataType:'text',
+            success:function(data){
+			 var res = JSON.parse(data)
+			 if(res.error==0){
+				 window.location = 'index.php'
+			 }else{
+				 console.log('Error al iniciar sesión.')
+			 }
+             console.log(data)
+            }
+        });
+
 })
 
 });

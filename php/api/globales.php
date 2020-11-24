@@ -63,6 +63,14 @@ if($_GET['func']=='crearUsuario'){
     echo json_encode($globales->crearUsuario($nombre, $apellido, $mail, $telefono));
 }
 
+if($_GET['func']=='loginRequest'){
+
+    $mail = $_POST['mail'];
+    $psw = $_POST['psw'];
+
+    echo $globales->loginRequest($mail, $psw);
+
+}
 
 // if($_GET['func']=='verLocacion'){
 

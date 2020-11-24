@@ -8,6 +8,10 @@ if(isset($_SESSION['id_user'])){
 	$logeado = 'si';
 }
 
+if(isset($_GET['logout'])){
+	session_destroy();
+}
+
 ?>
 
 <!DOCTYPE html>

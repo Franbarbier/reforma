@@ -95,6 +95,29 @@ class Globales{
             return '{"error": 1}';
         }
     }
+
+    public function loginRequest($mail, $psw){
+        global $pdo;
+        $psw = md5($psw);
+        $q = $pdo->prepare("SELECT * FROM usuarios WHERE mail=:mail AND password=:psw");
+        $q->execute(['mail' => $mail, 'psw'=>$psw]); 
+        $q = $q->fetch();
+
+        if($q){
+
+            // Iniciamos la sesion
+            session_start();
+
+            $_SESSION['id_user'] = $q['id'];
+            $_SESSION['nombre_user'] = $q['nombre'];
+            $_SESSION['mail_user'] = $q['mail'];
+
+            return '{"error": 0}';
+        }else{
+            return '{"error": 1}';
+        }
+
+    }
    
 }
 
