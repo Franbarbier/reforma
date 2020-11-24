@@ -177,7 +177,7 @@ main{
     transform: rotate(-90deg);
 }
 
-.ver-reserva{
+.ver-reserva, .ir-al-apartado{
     background: #d4bfaa;
     border: 1px solid #d4bfaa;
     color: white;
@@ -190,7 +190,7 @@ main{
     transition: 0.15s;
     width: 70px;
 }
-.ver-reserva:hover{
+.ver-reserva:hover, .ir-al-apartado:hover{
     background: transparent;
     color: #d4bfaa;
 }
@@ -479,4 +479,10 @@ color: #676767;
 #dejar-resena:hover{
     background: transparent;
     color: #d4bfaa;
+}
+.row-fav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5% 0;
 }

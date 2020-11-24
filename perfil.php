@@ -118,7 +118,7 @@ $nivel = $usuarios->verNivel();
 	</div>
 	<div id="opciones">
 		<ul>
-			<li>
+			<li id="admin-config">
 				<img src="imgs/configuracion.svg" alt=""><span>Configuración</span>
 			</li>
 			<li>
@@ -239,6 +239,10 @@ $nivel = $usuarios->verNivel();
 $( document ).ready( function(){
 
 $('body').append(modal_reserva())
+$('body').append(modal_favoritos())
+$('body').append(modal_config())
+
+
 
 // Esta variable corresponde a el valor que lleva .circulito-svg en algunas de sus propiedades de CSS
 var base = 615

@@ -101,6 +101,9 @@
 
 }
 
+#sin-logear, #logeado{
+    display: none;
+}
 
 
 </style>
@@ -116,7 +119,7 @@
                     <li><a href="login.php?login">INICIAR SESION</a></li>
                 </div>
                 <div id="logeado">
-                    <li><a href="nosotros.php">MI PERFIL</a></li>
+                    <li><a href="perfil.php">MI PERFIL</a></li>
                 </div>
                 <li><a href="/#seccion-proceso">NUESTRO PROCESO PARA REFORMAR</a></li>
                 <li><a href="nosotros.php">SOBRE NOSOTROS</a></li>
@@ -147,6 +150,12 @@ $('#menu-overlay').click(function (event)
    }     
 });
 
+
+if ($('#logeado').val() == "si") {
+    $('#logeado').css('display',"block")
+}else{
+    $('#sin-logear').css('display',"block")
+}
 
 });
 </script>
