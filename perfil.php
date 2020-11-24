@@ -2,7 +2,9 @@
 <?php
 session_start();
 
-$id = $_SESSION['id_user'];
+// $id = $_SESSION['id_user'];
+$id = 2;
+
 
 require 'php/connection.php';
 require 'php/models/Usuarios.php';
@@ -184,6 +186,8 @@ $nivel = $usuarios->verNivel();
 	<div id="puntos-cont">
 
 	<a href="index.php"><button>IR AL EXPLORADOR</button></a>
+	<button id="ver-favoritos">VER FAVORITOS</button>
+
 		<div>
 			<div id="puntuacion">
 				<div>
@@ -234,6 +238,8 @@ $nivel = $usuarios->verNivel();
 <script>
 $( document ).ready( function(){
 
+$('body').append(modal_reserva())
+
 // Esta variable corresponde a el valor que lleva .circulito-svg en algunas de sus propiedades de CSS
 var base = 615
 // Este es un valor hardcodeado necesario para que el fill del circulito svg sea preciso
@@ -253,23 +259,9 @@ console.log('multiplier: ', multiplier)
 score_left = (615 * multiplier) + residual
 
 
-// function foo(){
-// var cnt = 0;
-// var obj1 = document.getElementById("value2");
-  
-// var timerMy = setInterval(function(){
-//   cnt++;
-//   obj1.innerHTML = cnt;
-
-//   if(cnt == score){
-//     clearInterval(timerMy);
-//   }
-  
-// },20
-// );
-//  }
-
-//  foo()
+function ver_reserva(id) {
+	abrir_reserva()
+}
 
 setTimeout(() => {
 	$('.ciruclito-svg').css('stroke-dashoffset', score_left)
