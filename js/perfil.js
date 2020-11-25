@@ -1,4 +1,4 @@
-const id_usuario = document.getElementById('id_usuario').value;
+const id_usuario = 2;
 
 // Seccion de inicializacion
 verHistorialReservas();
@@ -80,7 +80,7 @@ function initNiveles() {
 initNiveles()
 
 function modal_reserva(){
-    $(document).on("click", ".ver-mas-resena", function (e) {
+    $(document).on("click", ".ver-reserva", function (e) {
         $('#modal-reserva').fadeTo(0, 150)
         e.stopPropagation()
     });

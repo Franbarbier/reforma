@@ -604,16 +604,56 @@ color: white
      line-height: 0;
      font-weight: bold;
 }
-#seccion-frases header>h5{    
+#seccion-frases header h5{    
      font-size: 1.5em;
      font-style: italic;
 }
 #seccion-frases header>div p{
      margin-top: 10%
 }    
-#seccion-frases header>div i{
+#seccion-frases header >div i{
      color: #969696;
 }
+
+/* main part below  */
+
+.text-roll-mask {
+     height: 40px;
+     width: 100%;
+     overflow: hidden;
+   /*   background: red; */
+     display: block;
+     position: relative;
+     transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
+     /* z-index: 10; */
+     top: 0;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     margin: auto;
+   }
+   
+   .text-roll .text-wrapper {
+   
+     position: absolute;
+     overflow: hidden;
+     top: 0;
+     left: 0;
+     width: 100%;
+     min-height: 100%;
+     transform: translateY(100%);
+     transition: none;
+   }
+   
+   .text-roll .text-wrapper.rol-active {
+     transform: translateY(0);
+     transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
+   }
+   
+   .text-roll .text-wrapper.rol-pre {
+     transform: translateY(-100%);
+     transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
+   }
 
 /* PROCESO */
 

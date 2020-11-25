@@ -101,7 +101,7 @@
 
 }
 
-#sin-logear, #logeado{
+#sin-logear, #con-logear{
     display: none;
 }
 
@@ -118,7 +118,7 @@
                     <li id="registrarse-btn"><a href="login.php?regitrar">CREAR CUENTA</a></li>
                     <li><a href="login.php?login">INICIAR SESION</a></li>
                 </div>
-                <div id="logeado">
+                <div id="con-logear">
                     <li><a href="perfil.php">MI PERFIL</a></li>
                 </div>
                 <li><a href="/#seccion-proceso">NUESTRO PROCESO PARA REFORMAR</a></li>
@@ -151,8 +151,8 @@ $('#menu-overlay').click(function (event)
 });
 
 
-if ($('#logeado').val() == "si") {
-    $('#logeado').css('display',"block")
+if ($('#logeado').val() === "si") {
+    $('#con-logear').css('display',"block")
 }else{
     $('#sin-logear').css('display',"block")
 }
