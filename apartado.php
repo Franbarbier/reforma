@@ -216,10 +216,10 @@ if(isset($_SESSION['id_user'])){
             <button>Comprobar disponibilidad</button>
         <div id="sticky-price">
             <span><strong>$<span id="tarifa"></span></strong> por noche</span>
-            <h3>Nombre del Hospedaje</h3>
+            <h3 id="nombre-propiedad2">Nombre del Hospedaje</h3>
             <div>
                 <img src="imgs/location-brown.svg" alt="">
-                <p>Recoleta, Buenos Aires</p>
+                <p id="localidad-provincia2"></p>
             </div>
             <span><span class="huespedes"></span> huéspedes · <span class="dormitorios"></span> dormitorios · <span class="camas"></span> camas · <span class="banos"></span></span>
             

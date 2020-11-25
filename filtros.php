@@ -68,13 +68,13 @@
 
 
    <div class="easy-basket-filter-info">
-       <p class="iLower"><input type="text" class="easy-basket-lower" value="0" min="0" max="300" maxlength=6 id="f-minprice" /></p>
-       <p class="iUpper"><input type="text" class="easy-basket-upper" value="300" min="0" max="300" maxlength=6 id="f-maxprice" /></p>
+       <p class="iLower"><input type="text" class="easy-basket-lower lowclass" value="0" min="0" max="200" maxlength=6 id="f-minprice" /></p>
+       <p class="iUpper"><input type="text" class="easy-basket-upper highclass" value="200" min="0" max="200" maxlength=6 id="f-maxprice" /></p>
    </div>
    
    <div class="easy-basket-filter-range">
-       <input type="range" class="lower range" step="any" min="0" max="300" value="0"/>
-       <input type="range" class="upper range" step="any" min="0" max="300" value="300"/>
+       <input type="range" class="lower range lowclass" step="any" min="0" max="200" value="0" id="r-minprice"/>
+       <input type="range" class="upper range highclass" step="any" min="0" max="200" value="200" id="r-maxprice"/>
        <div class="fill"></div>
    </div>
    
@@ -190,30 +190,39 @@ window.addEventListener('click', function(e){
 
 
 
-jQuery(document).ready(function() {
+function set_pricerange_fill(){
 	$('.upper').on('input', setFill);
 	$('.lower').on('input', setFill);
 
 	var max = $('.upper').attr('max');
-	var min = $('.lower').attr('min');
+    var min = $('.lower').attr('min');
 
 	function setFill(evt) {
+        console.log('holu')
 		var valUpper = $('.upper').val();
 		var valLower = $('.lower').val();
 		if (parseFloat(valLower) > parseFloat(valUpper)) {
 			var trade = valLower;
 			valLower = valUpper;
 			valUpper = trade;
-		}
-		
-		var width = valUpper * 100 / max;
-		var left = valLower * 100 / max;
+        }
+        
+        // Medio hardcodeado pero va... NO son horas para estar con esto
+        var width = valUpper * 100 /(max - min + 1);
+        width -= max - min
+        var left = valLower * 100 / max;
+        var left = valLower * 100 / (max - min)
+        left -= max - min
+        console.log('vallower ', valLower)
+
+        
+
 		$('.fill').css('left', 'calc(' + left + '%)');
 		$('.fill').css('width', width - left + '%');
 		
 		// Update info
 		if (parseInt(valLower) == min) {
-			$('.easy-basket-lower').val('0');
+			$('.easy-basket-lower').val(min);
 		} else {
 			$('.easy-basket-lower').val(parseInt(valLower));
 		}
@@ -234,7 +243,7 @@ jQuery(document).ready(function() {
 		if ( valUpper > $('.upper').val() ) {
 			var left = max;
 		}
-		if ( valLower < 0 ) {
+		if ( valLower < min ) {
 			var left = min;
 		} else if ( valLower > max ) {
 			var left = min;
@@ -271,7 +280,7 @@ jQuery(document).ready(function() {
 		$('.upper').val(range_to);
 		$(this).addClass('ui-histogram-active');
 	});
-});
+}
 
 // Creamos el array de servicios requeridos a medida que clickeamos el checkbox
 var first_click = true

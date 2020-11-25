@@ -163,6 +163,8 @@ function ver_disponibles() {
         console.log(disponibles)
         
         if(disponibles.length>0){
+
+            var tarifas = []
             
             // Inyectamos el objeto de propiedades en el listado y armamos los marker objs
             var center_lat = 0;
@@ -174,10 +176,38 @@ function ver_disponibles() {
                 markers_obj.push(obj_marker(disponibles[d].id, disponibles[d].tarifa, JSON.parse(disponibles[d].coordenadas), disponibles[d].nombre))
                 center_lat += parseFloat(JSON.parse(disponibles[d].coordenadas)[0])
                 center_long += parseFloat(JSON.parse(disponibles[d].coordenadas)[1])
+
+                tarifas.push(disponibles[d].tarifa)
             }
             $('#propiedades').html(html)
             console.log('markers: ')
             console.log(markers_obj)
+
+            console.log('TARIFAS: ', tarifas)
+            // Determinamos el maximo y minimo de tarifas y agregamos 20% de margen sobre cada una de ellas
+            var max_tarifa = Math.round(Math.max(...tarifas) * 1.2)
+            var min_tarifa = Math.round(Math.min(...tarifas) * 0.8)
+            console.log('max: ', max_tarifa, ' min: ', min_tarifa)
+
+            // ESTO DE ABAJO ESTA RE FALOPA, TENGO QUE TEMRINARLO
+            // Inicializamos este max y min tarifa en la barra de filtros
+            $('#f-minprice').attr('value', min_tarifa)
+            $('#f-minprice').attr('min', min_tarifa)
+            $('#f-minprice').attr('max', max_tarifa)
+
+            $('#f-maxprice').attr('value', max_tarifa)
+            $('#f-maxprice').attr('min', min_tarifa)
+            $('#f-maxprice').attr('max', max_tarifa)
+
+            $('#r-minprice').attr('value', min_tarifa)
+            $('#r-minprice').attr('min', min_tarifa)
+            $('#r-minprice').attr('max', max_tarifa)
+
+            $('#r-maxprice').attr('value', max_tarifa)
+            $('#r-maxprice').attr('min', min_tarifa)
+            $('#r-maxprice').attr('max', max_tarifa)
+
+            set_pricerange_fill()
 
             // Dividimos lat por el length de propiedades para dar con el promedio
             center_lat = center_lat / disponibles.length

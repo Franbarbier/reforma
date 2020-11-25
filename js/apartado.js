@@ -44,9 +44,13 @@ verPropiedad(id_propiedad)
 function render_apartado(propiedad) {
     var nombre_propiedad = document.querySelector('h1')
     nombre_propiedad.innerHTML = propiedad.nombre
+    var nombre_propiedad2 = document.querySelector('#nombre-propiedad2')
+    nombre_propiedad2.innerHTML = propiedad.nombre
 
     var localidad_provincia = document.getElementById('localidad-provincia')
     localidad_provincia.innerHTML = propiedad.localidad + ', ' + propiedad.provincia
+    var localidad_provincia2 = document.getElementById('localidad-provincia2')
+    localidad_provincia2.innerHTML = propiedad.localidad + ', ' + propiedad.provincia
 
     var huespedes = $('.huespedes')
     huespedes.html(propiedad.huespedes)
