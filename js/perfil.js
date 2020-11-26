@@ -130,6 +130,12 @@ function init_modal_reserva(id_reserva){
     $('#mr-huespedes').html(reserva.huespedes)
     $('#mr-fecha-realizada').html(reserva.fecha_creada)
     $('#mr-idpropiedad').val(reserva.id_propiedad)
+    $('#modal-reserva').attr('data-reserva-id', id_reserva)
+
+    // Si la info de la resena esta vacia, lo dejamos crear una. Sino, no puede dejar una resena y se muestra la resena que dejó
+    if(reserva.resena!=''){
+        
+    }
 
 }
 
@@ -215,7 +221,9 @@ function getFavoritos(){
 function dejarResena(){
 
     var resena = $('#mr-resena').val()
-    var id_propiedad = 1;
+    var id_propiedad = $('#mr-idpropiedad').val();
+    var id_reserva = $('#modal-reserva').attr('data-reserva-id')
+    console.log('id reserva: ', id_reserva)
 
     $.ajax({
         url:'php/api/usuarios.php?func=dejarResena',
@@ -223,7 +231,8 @@ function dejarResena(){
         cache: false,
         data:{
             resena,
-            id_propiedad
+            id_propiedad,
+            id_reserva
         },
         dataType:'text',
         success:function(data){

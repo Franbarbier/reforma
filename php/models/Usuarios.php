@@ -123,6 +123,19 @@ class Usuarios{
             $reservas_array[$c]['huespedes'] =  $propiedad['huespedes'];
             $reservas_array[$c]['fecha_creada'] =  $reserva['fecha_creada'];
             $reservas_array[$c]['id_propiedad'] =  $reserva['id_propiedad'];
+            $id_reserva = $reserva['id'];
+
+            // Traemos la posible reseña
+            $q = $pdo->prepare("SELECT * FROM resenas WHERE id_reserva=:id_reserva");
+            $q->execute(['id_reserva' => $id_reserva]); 
+            $resena = $q->fetch();
+
+            if($resena){
+                $reservas_array[$c]['resena'] = $resena['detalle'];
+            }else{
+                $reservas_array[$c]['resena'] = '';
+            }
+
 
             $c++;
 
@@ -303,12 +316,12 @@ class Usuarios{
 
     }
 
-    public function dejarResena($id_propiedad, $resena){
+    public function dejarResena($id_propiedad, $resena, $id_reserva){
         global $pdo;
 
-        $q = "INSERT INTO resenas (id_usuario, id_propiedad, detalle) VALUES (?,?,?)";
+        $q = "INSERT INTO resenas (id_usuario, id_propiedad, id_reserva, detalle) VALUES (?,?,?,?)";
         $stmt= $pdo->prepare($q);
-        $stmt->execute([$this->id, $id_propiedad, $resena]);
+        $stmt->execute([$this->id, $id_propiedad, $id_reserva, $resena]);
 
         if($stmt){
             $error = 0;

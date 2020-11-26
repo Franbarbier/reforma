@@ -59,8 +59,9 @@ if($_GET['func'] == 'dejarResena'){
 
     $id_propiedad = $_POST['id_propiedad'];
     $resena = $_POST['resena'];
+    $id_reserva = $_POST['id_reserva'];
 
-    echo $usuarios->dejarResena($id_propiedad, $resena);
+    echo $usuarios->dejarResena($id_propiedad, $resena, $id_reserva);
 
 }
 

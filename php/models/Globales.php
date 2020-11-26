@@ -38,7 +38,7 @@ class Globales{
         // Array que vamos a ir llenando con info de la resena e info del usuario
         $array_resenas = [];
 
-        $q = $pdo->prepare("SELECT * FROM resenas WHERE id_propiedad=:id LIMIT :lim");
+        $q = $pdo->prepare("SELECT * FROM resenas WHERE id_propiedad=:id ORDER BY fecha DESC LIMIT :lim");
         $q->execute(['id' => $id_propiedad, 'lim'=>$limit]); 
         $q = $q->fetchAll();
     
