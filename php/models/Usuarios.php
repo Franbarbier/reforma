@@ -122,6 +122,7 @@ class Usuarios{
             $reservas_array[$c]['precio_final'] =  $reserva['precio_final'];
             $reservas_array[$c]['huespedes'] =  $propiedad['huespedes'];
             $reservas_array[$c]['fecha_creada'] =  $reserva['fecha_creada'];
+            $reservas_array[$c]['id_propiedad'] =  $reserva['id_propiedad'];
 
             $c++;
 
@@ -300,6 +301,23 @@ class Usuarios{
 
         return $arr_fav_props;
 
+    }
+
+    public function dejarResena($id_propiedad, $resena){
+        global $pdo;
+
+        $q = "INSERT INTO resenas (id_usuario, id_propiedad, detalle) VALUES (?,?,?)";
+        $stmt= $pdo->prepare($q);
+        $stmt->execute([$this->id, $id_propiedad, $resena]);
+
+        if($stmt){
+            $error = 0;
+        }else{
+            $error = 1;
+        }
+
+        return '{"error": '.$error.'}';
+        
     }
 
 

@@ -108,7 +108,11 @@ function modal_reserva(){
         $(this).parent().parent().fadeOut(150)
     })
 
-    return '<div class="main-modal" id="modal-reserva" style="display: none"> <div> <div class="cerrar-main-modal"> <img src="imgs/letter-x.svg" height="8px" alt=""> </div> <div> <div class="modal-header">Detalle de tu reserva</div><div class="actual-reserva-row" id="1"> <div class="foto-prop-cont"> <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt=""> </div> <div class="nombre-prop"><strong id="mr-localidad-ciudad">Localidad/ciudad</strong><h4 id="mr-nombre">Nombre d ela Propiedad</h4> <p>Fecha realizada: <span id="mr-fecha-realizada">5/9/2020</span></p> </div> </div> <div class="info-row"> <div><p>LLegada</p><strong id="mr-checkin">17/10/2020</strong></div><div><p>Salida</p><strong id="mr-checkout">26/10/2020</strong></div> </div> <div class="info-row"><div><p>Importe total</p><strong>$ <span id="mr-total">514</span></strong></div><div><p>Huespedes</p><strong id="mr-huespedes">3</strong></div> </div><textarea placeholder="Como estuvo tu alojamiento?"></textarea><button id="dejar-resena">DEJAR RESEÑA</button></div></div> </div> </div>';
+    $(document).on("click", "#dejar-resena", function(){
+        dejarResena();
+    })
+
+    return '<div class="main-modal" id="modal-reserva" style="display: none"><input type="hidden" id="mr-idpropiedad"> <div> <div class="cerrar-main-modal"> <img src="imgs/letter-x.svg" height="8px" alt=""> </div> <div> <div class="modal-header">Detalle de tu reserva</div><div class="actual-reserva-row" id="1"> <div class="foto-prop-cont"> <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt=""> </div> <div class="nombre-prop"><strong id="mr-localidad-ciudad">Localidad/ciudad</strong><h4 id="mr-nombre">Nombre d ela Propiedad</h4> <p>Fecha realizada: <span id="mr-fecha-realizada">5/9/2020</span></p> </div> </div> <div class="info-row"> <div><p>LLegada</p><strong id="mr-checkin">17/10/2020</strong></div><div><p>Salida</p><strong id="mr-checkout">26/10/2020</strong></div> </div> <div class="info-row"><div><p>Importe total</p><strong>$ <span id="mr-total">514</span></strong></div><div><p>Huespedes</p><strong id="mr-huespedes">3</strong></div> </div><textarea placeholder="Como estuvo tu alojamiento?" id="mr-resena"></textarea><button id="dejar-resena">DEJAR RESEÑA</button><div id="msg" style="display:none"></div></div></div> </div> </div>';
 
 }
 
@@ -125,8 +129,7 @@ function init_modal_reserva(id_reserva){
     $('#mr-total').html(reserva.precio_final)
     $('#mr-huespedes').html(reserva.huespedes)
     $('#mr-fecha-realizada').html(reserva.fecha_creada)
-
-
+    $('#mr-idpropiedad').val(reserva.id_propiedad)
 
 }
 
@@ -205,6 +208,43 @@ function getFavoritos(){
             $('body').append(modal_favoritos(favs))
 
         });
+
+}
+
+
+function dejarResena(){
+
+    var resena = $('#mr-resena').val()
+    var id_propiedad = 1;
+
+    $.ajax({
+        url:'php/api/usuarios.php?func=dejarResena',
+        method:'POST',
+        cache: false,
+        data:{
+            resena,
+            id_propiedad
+        },
+        dataType:'text',
+        success:function(data){
+         console.log(data)
+         res = JSON.parse(data)
+         if(res.error==0){
+             console.log('resena anadida con exito!')
+             $('#msg').html('Reseña añadida con éxito!')
+             $('#mr-resena').val('')
+             $('#msg').slideDown(100)
+             setTimeout(() => {
+                 $('#msg').slideUp(100)
+             }, 2000);
+
+             setTimeout(() => {
+                 $('.cerrar-main-modal').click()
+             }, 2600);
+
+         }
+        }
+    });
 
 }
 

@@ -564,3 +564,10 @@ color: #676767;
     margin: 5% 0;
     cursor: pointer;
 }
+
+#msg{
+    font-size: 0.8em;
+    margin-top: 7px;
+    font-weight: bold;
+    color: #d4bfaa;
+}

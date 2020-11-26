@@ -55,5 +55,15 @@ if($_GET['func'] == 'verFavoritos'){
 
 }
 
+if($_GET['func'] == 'dejarResena'){
+
+    $id_propiedad = $_POST['id_propiedad'];
+    $resena = $_POST['resena'];
+
+    echo $usuarios->dejarResena($id_propiedad, $resena);
+
+}
+
+
 
 ?>
