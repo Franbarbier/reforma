@@ -42,6 +42,9 @@ verPropiedad(id_propiedad)
 
 // Funcion para renderizar el apartado con la info de la propiedad
 function render_apartado(propiedad) {
+
+    $('#id_propiedad').val(propiedad.id)
+
     var nombre_propiedad = document.querySelector('h1')
     nombre_propiedad.innerHTML = propiedad.nombre
     var nombre_propiedad2 = document.querySelector('#nombre-propiedad2')
@@ -233,4 +236,20 @@ function favear() {
         save_img.attr('src','imgs/love.svg')
         save_img.removeClass('fav')
     }
+}
+
+function anadirFavorito(id_favorito, action){
+    console.log('function anadirFavorito')
+
+    fetch('php/api/usuarios.php?func=anadirFavorito&favorito=' + id_favorito + '&action='+action) 
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (res) {
+        console.log(res)
+        if(res.error==0){
+            console.log('Favorito modificado con exito!')
+        }
+    });
+
 }

@@ -33,5 +33,14 @@ if($_GET['func'] == 'verNiveles'){
 
 }
 
+if($_GET['func'] == 'anadirFavorito'){
+
+    $favorito = $_GET['favorito'];
+    $action = $_GET['action'];
+
+    echo $usuarios->anadirFavorito($favorito, $action);
+
+}
+
 
 ?>

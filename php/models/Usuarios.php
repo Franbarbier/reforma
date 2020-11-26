@@ -185,6 +185,47 @@ class Usuarios{
 
     }
 
+    public function anadirFavorito($id_favorito, $action){
+
+        global $pdo;
+
+        // Traemos sus favoritos actuales
+        $q = $pdo->prepare("SELECT favoritos FROM usuarios WHERE id=:id_usuario");
+        $q->execute(['id_usuario' => $this->id]); 
+        $q = $q->fetch();
+
+        if($q['favoritos']==''){
+            $q['favoritos'] = '[]';
+        }
+
+        
+        $favoritos = json_decode($q['favoritos']);
+
+        // Por las dudas eliminamos duplicados
+        $favoritos = array_unique($favoritos);
+
+        if($action == 'add'){
+            if(!in_array($id_favorito, $favoritos)){
+                array_push($favoritos, $id_favorito);
+            }
+        }else{
+            array_splice($favoritos, array_search($id_favorito, $favoritos), 1);
+        }
+
+        $favoritos = json_encode($favoritos);
+        
+        $sql = "UPDATE usuarios SET favoritos=? WHERE id=?";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$favoritos, $this->id]);
+
+        if($stmt){
+            return '{"error": 0}';
+        }else{
+            return '{"error": 1}';
+        }
+
+    }
+
 
 
 }

@@ -91,6 +91,7 @@ if(isset($_SESSION['id_user'])){
 
 <nav>
     <input type="hidden" value="<?php echo $logeado ?>" id="logeado">
+    <input type="hidden" id="id_propiedad">
 	<div class="cont90">
 		<div>
 
@@ -570,6 +571,19 @@ $(window).scroll(function() {
 
 $('#save').click(function() {
     favear($(this));
+
+    if($(this).find('img').hasClass('fav')){
+        action = 'add'
+    }else{
+        action = 'delete'
+    }
+
+    var id_favorito = $('#id_propiedad').val()
+
+    anadirFavorito(id_favorito, action)
+
+
+
 })
 
 </script>
