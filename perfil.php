@@ -247,7 +247,6 @@ if(isset($_SESSION['id_user'])){
 $( document ).ready( function(){
 
 $('body').append(modal_reserva())
-$('body').append(modal_favoritos())
 $('body').append(modal_config())
 
 

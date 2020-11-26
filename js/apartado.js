@@ -1,6 +1,11 @@
 var queryString = window.location.search;
 var urlParams = new URLSearchParams(queryString);
 const id_propiedad = urlParams.get('id')
+var global_logeado = $('#logeado').val()
+
+if(global_logeado!='si'){
+    $('#save').css('display', 'none')
+}
 
 // var global_checkin;
 // var global_checkout;
@@ -253,3 +258,31 @@ function anadirFavorito(id_favorito, action){
     });
 
 }
+
+// Funcion que chequea si la propiedad pertenece a los favoritos del usuario
+function checkFavorito(){
+
+    fetch('php/api/usuarios.php?func=checkFavorito&id_propiedad=' + id_propiedad) 
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (res) {
+        console.log(res)
+        if(res.error==0){
+
+            if(res.favorito==1){
+
+                console.log('holu')
+
+                $('#save img').addClass('fav');
+                $('#save img').attr('src','imgs/love-filled.svg')
+
+            }
+
+        }
+    });
+
+
+}
+
+checkFavorito();

@@ -39,6 +39,19 @@ if($_GET['func'] == 'anadirFavorito'){
     $action = $_GET['action'];
 
     echo $usuarios->anadirFavorito($favorito, $action);
+}
+
+if($_GET['func'] == 'checkFavorito'){
+
+    $id_propiedad = $_GET['id_propiedad'];
+
+    echo $usuarios->checkFavorito($id_propiedad);
+
+}
+
+if($_GET['func'] == 'verFavoritos'){
+
+    echo json_encode($usuarios->verFavoritos());
 
 }
 
