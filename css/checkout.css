@@ -1,0 +1,438 @@
+@font-face {
+  font-family: Century Gothic;
+  src: url(../GOTHIC.TTF)
+  /*url('./GOTHICB.TTF'),*/
+  /*url('./GOTHICBI.TTF'), */
+  /*url('./GOTHICI.TTF'), */
+}
+@font-face {
+  font-family: Century Gothic;
+  src: url(../GOTHICB.TTF);
+  font-weight: bold;
+}
+
+/*marron #d4bfaa*/
+::selection {
+  background: #d4bfaa;
+  color: white;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+li {
+  list-style: none;
+}
+body {
+  font-family: "Century Gothic";
+  overflow-x: hidden;
+  color: #272727;
+}
+button,
+input {
+  font-family: "Century Gothic";
+  outline: none;
+}
+.cont90 {
+  width: 90%;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+}
+.contC {
+  width: 33.33%;
+}
+.contG {
+  width: 60%;
+  padding-left: 10%;
+}
+
+nav {
+  position: fixed;
+  top: 0vh;
+  left: 0;
+  width: 100%;
+  padding-top: 2vh;
+  padding-bottom: 1vh;
+  z-index: 99;
+  background-image: linear-gradient( #fafafa 0%, transparent 0%);
+  transition: .7s cubic-bezier(0.13, 0.77, 0.33, 1);
+}
+nav > div > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+nav > div > div > div {
+  width: 4%;
+  cursor: pointer;
+  z-index: 99;
+  position: relative;
+  z-index: 99;
+}
+nav > div > div > div:first-child{
+  display: flex;
+  align-items: center;
+}
+nav > div > div > div > a > img {
+  width: 3vw;
+}
+#menu-cont>div{
+  display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+#linea-menu1,
+#linea-menu2 {
+  width: 30px;
+  float: right;
+  background: #272727;
+  height: 4px;
+  margin: 3px 0%;
+  border-radius: 35px;
+  display: block;
+  transition: 0.5s cubic-bezier(0.13, 0.77, 0.33, 1);
+  transition-delay: 0.15s;
+}
+main {
+  display: flex;
+  transition: 0.2s;
+  padding-top: 10%;
+  background: #fafafa;
+}
+main > div {
+  width: 0%;
+
+  transition: 1s;
+  transition-timing-function: cubic-bezier(0.13, 0.77, 0.33, 1);
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  border-bottom-right-radius: 2px;
+
+  background-repeat: no-repeat;
+  
+}
+
+
+
+/* sticky con el precio y la info */
+
+#sticky-price{
+  padding: 4% 7%;
+  border-left: 1px solid #ddd;
+  position: sticky;
+  top:2%;
+}
+.contC>button{
+  display: none;
+}
+#sticky-price>div:first-child{
+  width: 100%;
+  height: 25vh;
+  overflow: hidden;
+  border-radius: 2px;
+}
+#sticky-price>div:first-child img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.info-box{
+  /* width: 91%; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    border-radius: 2px;
+    padding: 2% 4%;
+    border: 1px solid #ddd;
+    margin: 5% auto;
+}
+
+.info-box>div:first-child{
+    width: 7%;
+    display: block;
+    margin: 0% 4% 0 1.5%;    
+}
+.info-box>div:first-child img{
+  display: block;
+  width: 100%;
+  
+}
+
+.info-box>div:last-child{
+    width: 80%;
+    padding: 4% 0;
+    padding-left: 5%;
+    padding-right: 1%;
+    border-left: 1px #ddd solid;
+    font-size: .85em;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+#descuentos{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
+}
+#sticky-price h3{
+  opacity: 0.85;
+  margin-top: 2.5%;
+}
+#sticky-price>div:nth-child(3){
+  display: flex;
+  align-items: center;
+  margin: 3% 0;
+  margin-left: -2px;
+}
+#sticky-price>div:nth-child(3) img{
+  width: 14px;
+  padding-right: 1%;
+
+}
+
+#sticky-price>div:nth-child(3) p{
+  font-size: .95em;
+  color: #757575;
+
+}
+#sticky-price>span{ 
+  font-size: 0.8em;
+  color: #757575;
+}
+
+#sticky-reservar{
+  
+  background: #d4bfaa;
+  border: 2px solid #d4bfaa;
+  color: white;
+  margin-top: 10%;
+  font-weight: 600;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+  padding: 10px 0;
+  width: 100%;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: 0.15s;
+  display: block;
+}
+#sticky-reservar:hover{
+  background: transparent;
+  color: #d4bfaa;
+}
+#sticky-price table{
+  width: 100%;
+  font-size: 0.9em;
+  border-bottom: 1px #ddd solid;
+  /* border-top: 1px #ddd solid; */
+  margin-bottom: 5%;
+  padding: 3% 0;
+}
+#precio-bruto, #fee, #dcto, #total {
+  text-align: right;
+}
+#precio-bruto:before, #fee:before, #dcto:before, #total:before {
+  content: '$';
+  margin-right: 2px;
+}
+#sticky-price table td{
+  padding: 7px 0;
+}
+
+#por-noche ~ span{
+  margin: 0 3px;
+}
+#total-cont{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#checkin{
+ width: 40%; 
+}
+.flechin{
+  margin-bottom: -5px;
+  width: 20px;
+}
+
+#checkout{
+  width: 40%;
+}
+
+
+#checkin>input, #checkout>input{
+  width: 100%;
+  border: none;
+  background: transparent;
+}
+
+.flechin>img{
+  transform: rotate(180deg);
+  width: 16px;
+}
+#precio-final-cont{
+  display: flex;
+  justify-content: space-between;
+}
+#precio-final{
+  width: 40%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+#precio-final>span{ 
+  display: block;
+  margin-right: 4px;
+}
+#precio-final>img{
+  width: 12px;
+  transition: .2s cubic-bezier(00, 0.77, 0.33, 1)
+}
+.rotation{
+  transform: rotate(180deg);
+}
+#descripcion-precio{
+  top: 180%;
+  position: absolute;
+  padding: 9px;
+  background: #fafafa;
+  border: 1px #ddd solid;
+  width: 200%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85em;
+  border-radius: 2px;
+  display: none;
+}
+#descripcion-precio li{
+  margin: 7px 0;
+}
+.icons{
+  width: 100%;
+}
+main header>div{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25%;
+}
+main header>div>div:first-child{
+  width: 7%;
+}
+main header>div>div:last-child{
+  width: 89%;
+}
+main header h4{
+  font-size: 1.5em;
+}
+#login-cont{
+  display: flex;
+    margin: 5% 0;
+    align-items: center;
+}
+#login-cont button{
+  background: #d4bfaa;
+    border: 2px solid #d4bfaa;
+    color: white;
+    transition: .2s;
+    font-size: 0.8em;
+    letter-spacing: 0.5px;
+    padding: 7px 17px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.15s;
+    margin-left: 5%;
+}
+form>div {
+  width: 49%;
+  display: inline-block;
+  margin: 2% 0;
+}
+
+form>div label {
+  display: block;
+  font-size: 0.8em;
+  color: dimgrey;
+  margin-top: 1.9%;
+}
+
+form>div input, form>div select{
+  background: none;
+  border: 1px solid #a4a4a4;
+  padding: 4% 6%;
+  border-radius: 3px;
+  margin-top: 2%;
+  width: 87%;
+  font-size: 0.8em;
+}
+.cartas{
+  padding: 5%;
+  border: 1px solid #929292;
+  border-radius: 5px;
+  margin: 5% 0;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: .1s;
+}
+.cartas:hover{
+  opacity: 1;
+}
+.active-carta{
+  border: 2px solid #d4bfaa ;
+  opacity: 1;
+  background: #f3ebe3;
+}
+.cartas h5{
+  font-size: 1.2em;
+    display: inline-block;
+    width: 80%;
+}
+.cartas h6{
+  display: inline-block;
+    font-size: 1.4em;
+    color: #3c3c3c;
+    width: 10%;
+    margin-left: 10%;
+}
+
+.cartas li{
+  margin: 3% 0;
+  font-size: 0.9em;
+  color: dimgray;
+  margin-left: 3%;
+}
+#pay-info{
+  margin-top: 5%;
+  font-size: .9em;
+  color: dimgray;
+}
+#completar-pago{
+  background: #d4bfaa;
+    border: 2px solid #d4bfaa;
+    color: white;
+    transition: .2s;
+    font-size: 0.8em;
+    letter-spacing: 0.5px;
+    padding: 7px 17px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.15s;
+    display: block;
+    margin: 15% auto;
+}
+#completar-pago:hover{
+  background: transparent;
+  color: #d4bfaa;
+}

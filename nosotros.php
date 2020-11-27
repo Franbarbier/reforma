@@ -64,12 +64,12 @@ if(isset($_SESSION['id_user'])){
 
 
 <nav>
-	<input type="hidden" value="<?php echo $logeado ?>" id="logeado">	
+    <input type="hidden" value="<?php echo $logeado ?>" id="logeado">	
 	<div class="cont90">
 		<div>
 
 			<div>
-				<a href="http://67.222.7.138/~reforma/">
+				<a href="/">
 					<img src="imgs/logo-chico.svg" alt="logo reforma alquile de inmuebles">
 				</a>
 				<div id="select-city-nav">
@@ -79,9 +79,6 @@ if(isset($_SESSION['id_user'])){
 						<div id="ciudades-nav">
 							<ul>
 								<li>Todas</li>
-								<li>Buenos Aires</li>
-								<li>San Antonio de Areco</li>
-								<li>San Carlos de Bariloche</li>
 							</ul>
 						</div>
 					</article>
@@ -225,6 +222,84 @@ const interval = setInterval(function() {
  }, 4000);
 
 // clearInterval(interval); // thanks @Luca D'Amico
+
+window.addEventListener('click', function(e){   
+  if (document.getElementById('select-city-nav').contains(e.target)){
+	  if( $('#ciudades-nav').css('display') == "none" ){
+		$('#ciudades-nav').slideDown(125)
+	  }
+  } else{
+		$('#ciudades-nav').slideUp(125)
+  }
+});
+$('#ciudades-nav li').click(function () {
+	$('#select-city-nav p').text( $(this).text() )
+	$('#select-city-nav p').css('color','#272727')
+	$('#ciudades-nav').slideUp(125)
+	// Agregamos la ciudad seleccionada al input hidden ciudad
+	$('#ciudad-nav').val($(this).html())
+})
+// SI SCROLLEAN
+$(window).scroll(function () {
+
+let bottom_of_screen = $(window).scrollTop() + $(window).innerHeight();
+let top_of_screen = $(window).scrollTop();
+
+if (top_of_screen > 200) {
+	// console.log(top_of_screen)
+	$('nav').css('background-image', ' linear-gradient( #fafafa 100%, transparent 0%)')
+	$('#select-city-nav').fadeIn(200)
+	if ($(window).width() > 800) {
+		$('#select-city-nav').css('display', 'flex')
+	}
+} else {
+	$('nav').css('background-image', ' linear-gradient( #fafafa 0%, transparent 0%)')
+	$('#select-city-nav').fadeOut(200)
+}
+
+}); // termina el F() scroll
+
+
+// Funcion que inyecta las ciudades disponibles a partir de la base de datos
+function init_localidades() {
+
+fetch('php/api/globales.php?func=verLocalidades')
+	.then(function (response) {
+		return response.json();
+	})
+	.then(function (localidades) {
+		console.log(localidades);
+
+		// Inicializamos las localidades en el desplegable
+		var html = ''
+		for(l in localidades){
+			var loc = localidades[l]
+			html += '<li>'+loc.nombre+'</li>'
+		}
+
+		$('#ciudades-nav ul').append(html)
+		$('#ciudades ul').append(html)
+
+	});
+
+}
+
+init_localidades()
+
+// Handler para cuando cliquean alguna ciudad de #ciudades-nav
+$(document).on("click", "#ciudades-nav ul li", function(){
+	$('#f-ciudad-nav').html($(this).html())
+	$('#ciudades-nav').slideUp(100)
+})
+
+$(document).on("click", "#select-city-nav button", function(e){
+	e.preventDefault()
+	e.stopPropagation()
+	if($('#f-ciudad-nav').html()!='Seleccione una ciudad'){
+		window.location = 'explorar.php?ciudad='+$('#f-ciudad-nav').html() + '&check_in=&check_out=&huespedes=1'
+	}
+})
+
 
 });
 </script>
