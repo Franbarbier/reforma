@@ -563,7 +563,7 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
 
 }
 
-$('#demo-3_1_1').css({'background-image':''})
+
 
 $(window).scroll(function() {   
     $('body>.lightpick').css({'top':  $("#sticky-calendar").offset().top + $("#sticky-calendar").innerHeight() + 'px'})

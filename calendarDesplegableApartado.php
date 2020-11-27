@@ -10,25 +10,20 @@
     <link rel="stylesheet" type="text/css" href="calendar/Lightpick-master/css/lightpick.css">
     <link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/calendar-desk-hidden.css" />
 	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/calendar-mob.css" />
-<style>
-#demo-3_1_1, #demo-3_2_1{
-    background-size: cover;
-    background-position: center;
-}
-</style>
+
 </head>
 
 <body>
 
 
 <div id="checkin">
-    <input type="text" value="<?php echo $check_in ?>" id="demo-3_1_1"/>
+    <input type="text" placeholder="Check in" value="<?php echo $check_in ?>" id="demo-3_1_1"/>
 </div>
 <div class="flechin">
     <img src="imgs/left-arrow.png" alt="">
 </div>
 <div id="checkout">
-    <input type="text" value="<?php echo $check_out ?>" id="demo-3_2_1"/>
+    <input type="text" placeholder="Check out" value="<?php echo $check_out ?>" id="demo-3_2_1"/>
 </div>
 
 <p style="display:none;" id="result-3_1">&nbsp;</p>
@@ -92,7 +87,6 @@ var picker = new Lightpick({
             var end_date = end.format("YYYY-MM-DD")
 
             // Actualizamos los global checkin checkout
-            $('#demo-3_1_1, #demo-3_2_1').css('background-image','')
             
             // Tarifa final solo se va a ejecutar en apartado.php
             if (window.location.href.indexOf("apartado") > -1) {
@@ -163,10 +157,8 @@ const meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
 const dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ]
 
 
-// #demo-3_1_1, #demo-3_2_1{
 
-$('#demo-3_1_1').css('background-image','url(imgs/checkin-fondo.jpg)')
-$('#demo-3_2_1').css('background-image','url(imgs/checkout-fondo.jpg)')
+
 
 
 })

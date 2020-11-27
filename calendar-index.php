@@ -10,12 +10,7 @@
     <link rel="stylesheet" type="text/css" href="calendar/Lightpick-master/css/lightpick.css">
     <link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/calendar-desk-hidden.css" />
 	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/calendar-mob.css" />
-<style>
-#demo-3_1_1, #demo-3_2_1{
-    background-size: cover;
-    background-position: center;
-}
-</style>
+
 </head>
 
 <body>
@@ -167,12 +162,6 @@ var l = new Date("2020-10-01");
 
 const meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 const dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ]
-
-
-// #demo-3_1_1, #demo-3_2_1{
-
-$('#demo-3_1_1').css('background-image','url(imgs/checkin-fondo.jpg)')
-$('#demo-3_2_1').css('background-image','url(imgs/checkout-fondo.jpg)')
 
 
 })
