@@ -2,8 +2,13 @@
 <?php
 session_start();
 
-// $id = $_SESSION['id_user'];
-$id = 2;
+$id = $_SESSION['id_user'];
+// $id = 2;
+
+if(isset($_GET['logout'])){
+	session_destroy();
+	header('location: login.php');
+}
 
 
 require 'php/connection.php';
@@ -130,7 +135,7 @@ if(isset($_SESSION['id_user'])){
 				<img src="imgs/configuracion.svg" alt=""><span>Configuración</span>
 			</li>
 			<li>
-				<img src="imgs/logout.svg" alt=""><span>Salir</span>
+				<img src="imgs/logout.svg" alt="" id="salir"><span>Salir</span>
 			</li>
 		</ul>
 	</div>
@@ -250,6 +255,9 @@ $('body').append(modal_reserva())
 $('body').append(modal_config())
 
 
+$(document).on('click', '#salir', function(){
+	window.location = '?logout=1'
+})
 
 // Esta variable corresponde a el valor que lleva .circulito-svg en algunas de sus propiedades de CSS
 var base = 615
