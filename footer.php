@@ -130,7 +130,7 @@ footer .cont90{
         <div>
             <b>REFORMA</b>
             <ul>
-                <li><a href="explorar.php">Destinos</a></li>
+                <li><a href="#seccion-destinos">Destinos</a></li>
                 <li><a href="#seccion-proceso">Proceso</a></li>
                 <li><a href="nosotros.php">Nosotros</a></li>
                 
