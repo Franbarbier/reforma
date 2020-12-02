@@ -81,7 +81,7 @@ if(isset($_SESSION['id_user'])){
     <!--<meta property="fb:app_id" content="">-->
 
 	<link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/perfil-desk.css" />
-	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/perfil-mob.css?refrescate=1" />
+	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/perfil-mob.css?refrescate=4" />
     
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 

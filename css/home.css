@@ -120,7 +120,7 @@ main > div {
 
 main > div > img {
   position: absolute;
-  height: 100%;
+  height: 114%;
   transition: 1.5s;
   transition-timing-function: cubic-bezier(0.13, 0.77, 0.33, 1);
   left: 50%;
