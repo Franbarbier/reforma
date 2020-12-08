@@ -97,6 +97,13 @@ class ComposerStaticInit3f36e67816e4e62e3fd49aff0430604e
     );
 
     public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'PayPal' => 
+            array (
+                0 => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib',
+            ),
+        ),
         'G' => 
         array (
             'Google_Service_' => 
@@ -107,6 +114,7 @@ class ComposerStaticInit3f36e67816e4e62e3fd49aff0430604e
     );
 
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Google_Task_Composer' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
     );
 

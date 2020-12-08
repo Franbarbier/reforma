@@ -112,7 +112,43 @@ function modal_reserva(){
         dejarResena();
     })
 
-    return '<div class="main-modal" id="modal-reserva" style="display: none"><input type="hidden" id="mr-idpropiedad"> <div> <div class="cerrar-main-modal"> <img src="imgs/letter-x.svg" height="8px" alt=""> </div> <div> <div class="modal-header">Detalle de tu reserva</div><div class="actual-reserva-row" id="1"> <div class="foto-prop-cont"> <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt=""> </div> <div class="nombre-prop"><strong id="mr-localidad-ciudad">Localidad/ciudad</strong><h4 id="mr-nombre">Nombre d ela Propiedad</h4> <p>Fecha realizada: <span id="mr-fecha-realizada">5/9/2020</span></p> </div> </div> <div class="info-row"> <div><p>LLegada</p><strong id="mr-checkin">17/10/2020</strong></div><div><p>Salida</p><strong id="mr-checkout">26/10/2020</strong></div> </div> <div class="info-row"><div><p>Importe total</p><strong>$ <span id="mr-total">514</span></strong></div><div><p>Huespedes</p><strong id="mr-huespedes">3</strong></div> </div><textarea placeholder="Como estuvo tu alojamiento?" id="mr-resena"></textarea><button id="dejar-resena">DEJAR RESEÑA</button><div id="msg" style="display:none"></div></div></div> </div> </div>';
+    return `<div class="main-modal" id="modal-reserva" style="display: none">
+                <input type="hidden" id="mr-idpropiedad"> 
+                <div> 
+                    <div class="cerrar-main-modal"> 
+                        <img src="imgs/letter-x.svg" height="8px" alt=""> 
+                    </div> 
+                    <div> 
+                        <div class="modal-header">Detalle de tu reserva</div>
+                        <div class="actual-reserva-row" id="1"> 
+                            <div class="foto-prop-cont"> 
+                                <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt=""> 
+                            </div> 
+                            <div class="nombre-prop">
+                                <strong id="mr-localidad-ciudad">Localidad/ciudad</strong>
+                                <h4 id="mr-nombre">Nombre de la Propiedad</h4> 
+                                <p>Fecha realizada: <span id="mr-fecha-realizada">5/9/2020</span></p> 
+                            </div> 
+                        </div> 
+                        <div class="info-row"> 
+                            <div><p>LLegada</p><strong id="mr-checkin">17/10/2020</strong></div>
+                            <div><p>Salida</p><strong id="mr-checkout">26/10/2020</strong></div> 
+                        </div> 
+                        <div class="info-row">
+                            <div>
+                                <p>Importe total</p><strong>$ <span id="mr-total">514</span></strong>
+                            </div>
+                            <div>
+                                <p>Huespedes</p><strong id="mr-huespedes">3</strong>
+                            </div> 
+                        </div>
+                        <textarea placeholder="Como estuvo tu alojamiento?" id="mr-resena"></textarea>
+                        <button id="dejar-resena">DEJAR RESEÑA</button>
+                        <div id="msg" style="display:none"></div>
+                    
+                    </div>
+                </div> 
+            </div>`;
 
 }
 
@@ -133,8 +169,12 @@ function init_modal_reserva(id_reserva){
     $('#modal-reserva').attr('data-reserva-id', id_reserva)
 
     // Si la info de la resena esta vacia, lo dejamos crear una. Sino, no puede dejar una resena y se muestra la resena que dejó
-    if(reserva.resena!=''){
-        
+    if(reserva.resena==''){
+        $('#mr-resena').css('display', 'none')
+        $('#dejar-resena').css('display', 'none')
+    }else{
+        $('#mr-resena').css('display', 'block')
+        $('#dejar-resena').css('display', 'block')
     }
 
 }

@@ -436,3 +436,7 @@ form>div input, form>div select{
   background: transparent;
   color: #d4bfaa;
 }
+
+#paypal-button-container{
+  margin-top: 20px;
+}

@@ -664,3 +664,87 @@ main>div>img{
 .lacks p{
   text-decoration: line-through;
 }
+
+
+/* Estilos del main-modal */
+#main-modal-cont{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255,255,255, 0.6);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+}
+
+#main-modal{
+  background-color: white;
+    padding: 25px 30px;
+    border-radius: 4px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.38);
+    position: relative;
+    width: 600px;
+}
+
+#mm-titulo{
+  font-weight: bold;
+  font-size: 1.4em;
+  margin-bottom: 5px;
+}
+
+#mm-descripcion{
+  font-size: 0.85em;
+}
+
+#mm-heading{
+  margin-bottom: 25px;
+}
+
+#mm-contenido{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#mm-entendido-btn{
+  background: #d4bfaa;
+    border: 2px solid #d4bfaa;
+    color: white;
+    font-weight: 600;
+    font-size: 0.85em;
+    letter-spacing: 0.5px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.15s;
+    padding: 10px 20px;
+}
+
+#mm-entendido-btn:hover{
+  background-color: transparent;
+  color: #d4bfaa;
+  border: 2px solid #d4bfaa;
+}
+
+#mm-cerrar{
+  position: absolute;
+  right: 9px;
+  top: 5px;
+  font-size: 0.8em;
+  width: 18px;
+  height: 18px;
+  background-color: rgba(212, 191, 170, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9px;
+  color: gray;
+  transition: .2s;
+}
+
+#mm-cerrar:hover{
+  color: black;
+  cursor: pointer;
+  background-color: rgba(212, 191, 170, 0.5);
+}

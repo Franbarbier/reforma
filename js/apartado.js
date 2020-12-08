@@ -285,4 +285,52 @@ function checkFavorito(){
 
 }
 
-checkFavorito();
+if(logeado=='si'){
+    checkFavorito();
+}
+
+// Componente main modal
+function comp_main_modal(){
+
+    $(document).on('click', '#mm-cerrar, #main-modal-cont, #mm-entendido-btn', function(){
+        $('#main-modal-cont').fadeOut(100)
+    })
+
+    $(document).on('click', '#main-modal', function(e){
+        e.stopPropagation()
+    })
+
+    return `<div id="main-modal-cont" style="display:none">
+
+                <div id="main-modal">
+
+                    <div id="mm-cerrar">x</div>
+
+                    <div id="mm-heading">
+                        <div id="mm-titulo">Titulo de prueba</div>
+                        <div id="mm-descripcion">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt magni.</div>
+                    </div>
+
+                    <div id="mm-contenido">
+                        
+                    </div>
+                
+                </div>
+
+            </div>` 
+}
+
+// Funcion que abre el modal inyectandole cierto contenido
+function render_modal(titulo, descripcion='', contenido='ENTENDIDO'){
+
+    if(contenido=='ENTENDIDO'){
+        contenido = `<div id="mm-entendido-btn">ENTENDIDO</div>`
+    }
+
+    $('#mm-titulo').html(titulo)
+    $('#mm-descripcion').html(descripcion)
+    $('#mm-contenido').html(contenido)
+
+    $('#main-modal-cont').fadeIn(100)
+
+}

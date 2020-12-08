@@ -262,6 +262,7 @@ if(isset($_SESSION['id_user'])){
                     <div id="precio-final">
                         
                     </div>
+                    <input type="hidden"  id="precio-final-hidden">
                 </div>
             </div>
             <!-- <div class="info-box">
@@ -431,7 +432,12 @@ if(isset($_SESSION['id_user'])){
 
 <script src="js/apartado.js"></script>
 <script>
+
+const logeado = $('#logeado').val()
+
 $(document).ready(function(){
+
+$('body').append(comp_main_modal())
 
 
 $('#mas').click(function () {
@@ -556,6 +562,7 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
     }
 
     $('#precio-final').html('$'+tarifa_final)
+    $('#precio-final-hidden').val(tarifa_final)
 
 }else{
     console.log('Se debe introducir una fecha de checkin y checkout')
@@ -581,6 +588,54 @@ $('#save').click(function() {
     var id_favorito = $('#id_propiedad').val()
 
     anadirFavorito(id_favorito, action)
+
+
+
+})
+
+// Cuando cliquean en reservar
+$(document).on('click', '#sticky-reservar', function(){
+
+    console.log('holu!')
+
+    // Nos fijamos si esta logeado
+    if(logeado=='no'){
+
+        // Si no está logeado, le abrimos el modal para logearse
+    
+    }else if(logeado=='si'){
+
+        // Si está logeado, nos fijamos si tiene seteada una fecha
+        if($('#checkin input').val()=='' || $('#checkout input').val()==''){
+            console.log('checkin o checkout vacios')
+            $('#sticky-calendar').css('border', '2px solid #d4bfaa')
+            render_modal('Campos incompletos', 'Por favor, introducí una fecha de Check-in y una fecha de Check-out para poder calcular el importe total de tu estadía.')
+        }else{
+
+            const importe_total = $('#precio-final-hidden').val() 
+            console.log('importe total: ', importe_total)
+
+            // Lo llevamos al checkout pasando los parametros checkin, checkout y precio final
+            fetch('init_checkout.php?importe_total=' + importe_total)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (res) {
+                console.log(res)
+
+                if(res.error==0){
+                    console.log('redirigir')
+                    window.location.replace("checkout.php");
+
+                }
+
+            });
+
+
+        }
+        
+    }
+
 
 
 
