@@ -92,9 +92,9 @@ if(isset($_SESSION['id_user'])){
 			</div>
 
 		<form action="">
-			<label for="name">Mail</label>
+			<label for="mail">Mail</label>
 			<input class="inputes" type="text" id="mail">
-			<label for="Contraseña">Contraseña</label>
+			<label for="psw">Contraseña</label>
 			<input class="inputes" type="password" id="psw">
 			<input id="loginear" type="submit" value="INGRESAR">
 		</form>

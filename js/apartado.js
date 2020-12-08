@@ -79,11 +79,18 @@ function render_apartado(propiedad) {
     dormitorios.html(distribucion_camas.length)
     console.log(propiedad.distribucion_camas)
 
+    var camas = $('.camas')
+    var camas_text = 'cama'
+    if(propiedad.camas>1){
+        camas_text = 'camas'
+    }
+    camas.html(propiedad.camas + ' ' + camas_text)
+
 
     var banos = $('.banos')
-    var banos_text = 'Baño'
+    var banos_text = 'baño'
     if (parseInt(propiedad.banos) > 1) {
-        banos_text = 'Baños'
+        banos_text = 'baños'
     }
     banos.html(propiedad.banos + ' ' + banos_text)
 

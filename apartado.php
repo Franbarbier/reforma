@@ -222,7 +222,7 @@ if(isset($_SESSION['id_user'])){
                 <img src="imgs/location-brown.svg" alt="">
                 <p id="localidad-provincia2"></p>
             </div>
-            <span><span class="huespedes"></span> huéspedes · <span class="dormitorios"></span> dormitorios · <span class="camas"></span> camas · <span class="banos"></span></span>
+            <span><span class="huespedes"></span> huéspedes · <span class="dormitorios"></span> dormitorios · <span class="camas"></span> · <span class="banos"></span></span>
             
             <!-- <div class="info-box" id="sticky-calendar">
                 <div>
@@ -615,8 +615,11 @@ $(document).on('click', '#sticky-reservar', function(){
             const importe_total = $('#precio-final-hidden').val() 
             console.log('importe total: ', importe_total)
 
+            const checkin = $('#checkin input').val()
+            const checkout = $('#checkout input').val()
+
             // Lo llevamos al checkout pasando los parametros checkin, checkout y precio final
-            fetch('init_checkout.php?importe_total=' + importe_total)
+            fetch('init_checkout.php?importe_total=' + importe_total + '&checkin=' + checkin + '&checkout=' + checkout + '&id_propiedad='+id_propiedad)
             .then(function (response) {
                 return response.json();
             })

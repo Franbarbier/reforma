@@ -65,6 +65,12 @@ if($_GET['func'] == 'dejarResena'){
 
 }
 
+if($_GET['func'] == 'verUsuario'){
+
+    echo json_encode($usuarios->verUsuario());
+
+}
+
 
 
 ?>

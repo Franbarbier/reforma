@@ -32,6 +32,10 @@ class Propiedades{
         $q->execute(['id' => $id]); 
         $q = $q->fetch();
 
+        $dormitorios = json_decode($q['distribucion_camas']);
+        $dormitorios = sizeof($dormitorios);
+        $q['num_dormitorios'] = $dormitorios;
+
         // Traer la info de localidad y provincia a partir del id_localidad
         $id_localidad = $q['id_localidad'];
         $q_l = $pdo->prepare("SELECT * FROM localidades WHERE id=:id_localidad");
