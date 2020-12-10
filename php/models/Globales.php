@@ -119,6 +119,44 @@ class Globales{
 
     }
    
+
+    public function registrarCheckout($id_usuario, $id_propiedad, $check_in, $check_out, $importe_total){
+        
+        global $pdo;
+
+        $q = "INSERT INTO checkouts (id_usuario, id_propiedad, check_in, check_out, importe_total) VALUES (?,?,?,?,?)";
+        
+        $stmt= $pdo->prepare($q);
+        $stmt->execute([$id_usuario, $id_propiedad, $check_in, $check_out, $importe_total]);
+        $last_insert_id = $pdo->lastInsertId();
+
+        if($stmt){
+            return '{"error": 0, "last_insert_id":'.$last_insert_id.'}';
+        }else{
+            return '{"error": 1}';
+        }
+    }
+
+    public function checkoutCompletado($id){
+        global $pdo;
+
+        $sql = "UPDATE checkouts SET estado=? WHERE id=?";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([1, $id]);
+
+        return $stmt;
+    }
+
+    public function verCheckout($id){
+        global $pdo;
+
+        $q = $pdo->prepare("SELECT * FROM checkouts WHERE id=:id");
+        $q->execute(['id' => $id]); 
+        $q = $q->fetch();
+
+        return $q;
+    }
+
 }
 
 ?>

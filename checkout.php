@@ -9,6 +9,7 @@ if(isset($_SESSION['id_user'])){
 }
 
 $importe_total = $_SESSION['checkout_importe_total'];
+$checkout_id = $_SESSION['checkout_id'];
 
 if(isset($_GET['logout'])){
 	session_destroy();
@@ -78,7 +79,7 @@ $propiedad = $propiedades->verPropiedad($_SESSION['checkout_id_propiedad']);
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 	<!-- SDK de cliente para PayPal -->
-	<script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+	<script src="https://www.paypal.com/sdk/js?client-id=AcSOQzXrlRL_ERTh5svonn3GXR-HYzxEsdGqsjNczLmJUueoLS96o6byOgYsPEGWtc4MzMQ-KfPyXLv4"></script>
 
 </head>
 
@@ -88,6 +89,7 @@ $propiedad = $propiedades->verPropiedad($_SESSION['checkout_id_propiedad']);
 <nav>
     <input type="hidden" value="<?php echo $logeado ?>" id="logeado">	
     <input type="hidden" value="<?php echo $importe_total ?>" id="importe_total">	
+    <input type="hidden" value="<?php echo $checkout_id ?>" id="checkout_id">	
 	<div class="cont90">
 		<div>
 
@@ -258,6 +260,7 @@ $propiedad = $propiedades->verPropiedad($_SESSION['checkout_id_propiedad']);
 <script>
 
 const importe_total = document.getElementById('importe_total').value
+const checkout_id = document.getElementById('checkout_id').value
 console.log('importe total: ', importe_total)
 
 paypal.Buttons({
@@ -267,7 +270,8 @@ paypal.Buttons({
 	  purchase_units: [{
 		amount: {
 		  value: importe_total
-		}
+		},
+		custom_id: checkout_id,
 	  }]
 	});
   },
@@ -275,7 +279,7 @@ paypal.Buttons({
 return actions.order.capture().then(function() {
 	console.log('data: ')
 	console.log(data)
-//   window.location = "paypal-transaction-complete.php?&orderID="+data.orderID;				
+     window.location = "paypal-transaction-complete.php?&orderID="+data.orderID;				
 });
 }
 }).render('#paypal-button-container');
