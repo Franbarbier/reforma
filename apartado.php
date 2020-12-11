@@ -602,6 +602,7 @@ $(document).on('click', '#sticky-reservar', function(){
     if(logeado=='no'){
 
         // Si no está logeado, le abrimos el modal para logearse
+        render_modal('Inicia Sesión', 'Para proceder con la reserva necesitamos que inicies sesión en tu cuenta.', comp_btns_login())
     
     }else if(logeado=='si'){
 

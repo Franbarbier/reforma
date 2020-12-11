@@ -162,7 +162,7 @@ function init_modal_reserva(id_reserva){
     $('#mr-nombre').html(reserva.nombre_propiedad)
     $('#mr-checkin').html(reserva.check_in)
     $('#mr-checkout').html(reserva.check_out)
-    $('#mr-total').html(reserva.precio_final)
+    $('#mr-total').html(reserva.importe_total)
     $('#mr-huespedes').html(reserva.huespedes)
     $('#mr-fecha-realizada').html(reserva.fecha_creada)
     $('#mr-idpropiedad').val(reserva.id_propiedad)

@@ -1,9 +1,12 @@
 <?php 
 
-// $date = new DateTime('22/11/2020');
-$date = DateTime::createFromFormat('d/m/Y', '22/11/2020');
+require 'php/connection.php';
+require 'php/models/Reservas.php';
+require 'php/models/Globales.php';
 
-// var_dump($date);
-echo $date->format('Y-m-d');
+$globales = new Globales();
+
+var_dump($globales->verDetalleReserva(6));
+
 
 ?>

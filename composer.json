@@ -1,6 +1,7 @@
 {
     "require" : {
       "braintree/braintree_php" : "5.4.0",
-        "paypal/paypal-checkout-sdk": "1.0.1"
+        "paypal/paypal-checkout-sdk": "1.0.1",
+        "google/apiclient": "^2.7"
     }
   }

@@ -748,3 +748,40 @@ main>div>img{
   cursor: pointer;
   background-color: rgba(212, 191, 170, 0.5);
 }
+
+/* Clases del main modal */
+.mm-btn{
+  background: #d4bfaa;
+  border: 2px solid #d4bfaa;
+  color: white;
+  font-size: 0.9em;
+  padding: 7px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: 0.15s;
+  font-size: 0.7em;
+  margin-right: 7px;
+  display: block;
+}
+
+.mm-positive:hover{
+  background-color: transparent!important;
+  color: #d4bfaa!important;
+}
+
+
+.mm-negative{
+  background-color:transparent;
+  color: #d4bfaa;
+}
+
+.mm-negative:hover{
+  background: #d4bfaa;
+  color: white;
+}
+
+.mm-btns-cont{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

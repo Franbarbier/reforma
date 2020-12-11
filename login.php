@@ -4,7 +4,13 @@ require 'oauth_login.php';
 
 // Chequeando si está logeado
 if(isset($_SESSION['id_user'])){
-	header('location: index.php');
+
+	if($_SESSION['returnuri']!=''){
+        header('location: '.$_SESSION['returnuri']);
+    }else{
+        header('location: index.php');
+    }
+
 }
 
 ?>

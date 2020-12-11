@@ -22,13 +22,13 @@ class Reservas{
     }
 
 
-    public function crearReserva($check_in, $check_out, $huespedes, $precio_final, $id_usuario, $id_propiedad){
+    public function crearReserva($check_in, $check_out, $importe_total, $id_usuario, $id_propiedad){
         global $pdo;
 
-		$q = "INSERT INTO reservas (check_in, check_out, huespedes, precio_final, id_usuario, id_propiedad) VALUES (?,?,?,?,?,?)";
+		$q = "INSERT INTO reservas (check_in, check_out, importe_total, id_usuario, id_propiedad) VALUES (?,?,?,?,?)";
         
         $stmt= $pdo->prepare($q);
-        $stmt->execute([$check_in, $check_out, $huespedes, $precio_final, $id_usuario, $id_propiedad]);
+        $stmt->execute([$check_in, $check_out, $importe_total, $id_usuario, $id_propiedad]);
         if($stmt){
             return '{"error": 0}';
         }else{

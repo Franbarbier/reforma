@@ -144,7 +144,11 @@ class Globales{
         $stmt= $pdo->prepare($sql);
         $stmt->execute([1, $id]);
 
-        return $stmt;
+        if($stmt){
+            return '{"error": 0}';
+        }else{
+            return '{"error": 1}';
+        }
     }
 
     public function verCheckout($id){
@@ -155,6 +159,86 @@ class Globales{
         $q = $q->fetch();
 
         return $q;
+    }
+
+    public function verDetalleReserva($id_reserva){
+
+        global $pdo;
+
+        $info_reserva = [];
+
+        $r = $pdo->prepare("SELECT * FROM reservas WHERE id=:id");
+        $r->execute(['id' => $id_reserva]); 
+        $r = $r->fetch();
+
+        $id_propiedad = $r['id_propiedad'];
+
+        $p = $pdo->prepare("SELECT * FROM propiedades WHERE id=:id");
+        $p->execute(['id' => $id_propiedad]); 
+        $p = $p->fetch();
+
+        $info_reserva['check_in'] = $r['check_in'];
+        $info_reserva['check_out'] = $r['check_out'];
+        $info_reserva['importe_total'] = $r['importe_total'];
+        $info_reserva['nombre_propiedad'] = $p['nombre'];
+        $info_reserva['thumbnail'] = 'https://reformastays.co/imgs/propiedades_imgs/' . json_decode($p['galeria'])[0];
+        $info_reserva['huespedes'] = $p['huespedes'];
+        $info_reserva['camas'] = $p['camas'];
+        $info_reserva['url'] = 'https://reformastays.co/apartado.php?id='.$id_propiedad;
+
+        $id_localidad = $p['id_localidad'];
+
+        $l = $pdo->prepare("SELECT * FROM localidades WHERE id=:id");
+        $l->execute(['id' => $id_localidad]); 
+        $l = $l->fetch();
+
+        $info_reserva['localidad'] = $l['nombre'];
+        $info_reserva['provincia'] = $l['provincia'];
+
+        $id_usuario = $r['id_usuario'];
+
+        $u = $pdo->prepare("SELECT * FROM usuarios WHERE id=:id");
+        $u->execute(['id' => $id_usuario]); 
+        $u = $u->fetch();
+
+        $info_reserva['nombre_usuario'] = $u['nombre'];
+        $info_reserva['mail'] = $u['mail'];
+
+        return $info_reserva;
+
+    }
+
+    public function enviarDetalleReserva($reserva){
+
+        global $pdo;
+
+        $nombre_usuario = $reserva['nombre_usuario'];
+        $mail_usuario = $reserva['mail'];
+
+        
+        $mail = new PHPMailer;
+
+        $mail->SMTPDebug=3;
+
+        $mail->setFrom('noreply@reformastays.co', 'Reforma');
+        $mail->addAddress($mail_usuario, $nombre_usuario);
+        $mail->addReplyTo('noreply@reformastays.co', 'Reforma');
+
+        $mail->isHTML(true);
+
+        $mail->Subject=$nombre_usuario . ', acá están los detalles de tu reserva';
+
+        // Armar un custom HTML para esta parte
+        $mail->Body = '';
+
+        if(!$mail->send()){
+            return false;
+        }else{
+            return true;
+        }
+
+        
+
     }
 
 }
