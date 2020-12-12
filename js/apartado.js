@@ -290,6 +290,7 @@ function checkFavorito(){
         return response.json();
     })
     .then(function (res) {
+        console.log('check fav res')
         console.log(res)
         if(res.error==0){
 
@@ -308,9 +309,6 @@ function checkFavorito(){
 
 }
 
-if(logeado=='si'){
-    checkFavorito();
-}
 
 // Componente main modal
 function comp_main_modal(){

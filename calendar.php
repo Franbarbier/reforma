@@ -104,13 +104,13 @@ var picker2 = new Lightpick({
 });
 
     
-if(!$('#checkin').html().includes('Check') && !$('#checkin').html().includes('Check')){
-    var start_date = $('#checkin').html().replace(/ /g,'')
-    var end_date = $('#checkout').html().replace(/ /g,'')
+// if(!$('#checkin').html().includes('Check') && !$('#checkin').html().includes('Check')){
+//     var start_date = $('#checkin').html().replace(/ /g,'')
+//     var end_date = $('#checkout').html().replace(/ /g,'')
 
-    console.log(start_date + ', ' + end_date )
-    picker2.setDateRange(start_date, end_date)
-}
+//     console.log(start_date + ', ' + end_date )
+//     picker2.setDateRange(start_date, end_date)
+// }
 
 
 function unix_to_ymd(timestamp){

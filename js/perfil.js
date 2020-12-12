@@ -249,6 +249,7 @@ function getFavoritos(){
             return response.json();
         })
         .then(function (favs) {
+            console.log('Favoritos')
             console.log(favs)
 
             $('body').append(modal_favoritos(favs))

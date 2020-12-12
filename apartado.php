@@ -437,6 +437,10 @@ const logeado = $('#logeado').val()
 
 $(document).ready(function(){
 
+if(logeado=='si'){
+    checkFavorito();
+}
+
 $('body').append(comp_main_modal())
 
 
