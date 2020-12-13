@@ -716,3 +716,24 @@ footer>div{
     padding: 20% 0 3% 0;
     background-image: linear-gradient(0deg, white 42%, rgba(255,255,255,0.5));
 }
+
+.descuento{
+  opacity: 0.5;
+}
+
+.descuento img{
+  opacity: 0;
+  transform: translateY(27%);
+}
+
+.aplicado{
+  opacity: 1!important;
+}
+
+.aplicado b{
+  color: #c99d71;
+}
+
+.aplicado img{
+  opacity: 1!important;
+}

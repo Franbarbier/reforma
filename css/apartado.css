@@ -785,3 +785,24 @@ main>div>img{
   justify-content: center;
   align-items: center;
 }
+
+.descuento{
+  opacity: 0.5;
+}
+
+.descuento img{
+  opacity: 0;
+  transform: translateY(27%);
+}
+
+.aplicado{
+  opacity: 1!important;
+}
+
+.aplicado b{
+  color: #c99d71;
+}
+
+.aplicado img{
+  opacity: 1!important;
+}

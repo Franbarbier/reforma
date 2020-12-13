@@ -22,10 +22,6 @@ if(isset($_GET['returnuri'])){
 	$_SESSION['returnuri'] = $_GET['returnuri'];
 }
 
-if($_SESSION['returnuri']!=''){
-    echo $_SESSION['returnuri'];
-}
-
 // Termina el CONFIG aca
 
 $login_url = '';

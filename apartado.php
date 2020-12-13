@@ -280,8 +280,8 @@ if(isset($_SESSION['id_user'])){
                 <div id="descuentos">
                     <p>Descuentos por estadias largas:</p>
                     <ul>
-                        <li>20% 14 + noches</li>
-                        <li>40% 30 + noches</li>
+                        <li class="descuento" id="d-seis"><b>6%</b> 7 + noches <img src="imgs/checked.svg" height="16px"></li>
+                        <li class="descuento" id="d-doce"><b>12%</b> 30 + noches <img src="imgs/checked.svg" height="16px"></li>
                     </ul>
                 </div>
             </div>
@@ -552,11 +552,28 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
     days_to_stay = days_to_stay / day_in_milli
 
     console.log('Days to stay: ', days_to_stay)
+
     
     var tarifa = $('#tarifa').html()
     console.log('tarifa: '+ tarifa)
-
+    
     var tarifa_final = tarifa * days_to_stay
+
+    if(days_to_stay>=7 && days_to_stay<30){
+        console.log('Descuento del 6%')
+        $('.descuento').removeClass('aplicado')
+        $('#d-seis').addClass('aplicado')
+        // Le sacamos el 6%
+        tarifa_final = Math.round(tarifa_final * 0.94)
+    }else if(days_to_stay >= 30){
+        console.log('Descuento del 12%')
+        $('.descuento').removeClass('aplicado')
+        $('#d-doce').addClass('aplicado')
+        tarifa_final = Math.round(tarifa_final * 0.88)
+    }else{
+        $('.descuento').removeClass('aplicado')
+    }
+    
 
     console.log('Precio final: ', tarifa_final)
 
