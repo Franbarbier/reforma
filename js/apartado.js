@@ -65,6 +65,7 @@ function render_apartado(propiedad) {
 
     var tarifa = document.getElementById('tarifa')
     tarifa.innerHTML = propiedad.tarifa
+    global_tarifa = tarifa
 
     tarifa_final()
 

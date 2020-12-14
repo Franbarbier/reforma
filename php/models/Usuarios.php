@@ -182,8 +182,16 @@ class Usuarios{
             $score = 0;
         }
 
-        return ["score"=>$score, "nivel"=>$nivel_usuario, "numero"=>$nivel_numero, "next_level_score"=>$next_level['score']];
+        $q = $pdo->prepare("SELECT noches_gratis_usadas FROM usuarios WHERE id=:id_usuario");
+        $q->execute(['id_usuario' => $this->id]); 
+        $q = $q->fetch();
+        $noches_usadas = $q['noches_gratis_usadas'];
 
+        if($noches_usadas == ''){
+            $noches_usadas = '[]';
+        }
+
+        return ["score"=>$score, "nivel"=>$nivel_usuario, "numero"=>$nivel_numero, "next_level_score"=>$next_level['score'], "noches_usadas"=>$noches_usadas];
 
     }
 

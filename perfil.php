@@ -229,7 +229,7 @@ if(isset($_SESSION['id_user'])){
 				</div>
 			</div>
 			<div id="beneficios-cont">
-				<h4>Beneficios por niveles</h4>
+				<h4>Beneficios por puntos</h4>
 				<div>
 					
 				</div>
@@ -249,6 +249,9 @@ if(isset($_SESSION['id_user'])){
 
 <script src="js/perfil.js"></script>
 <script>
+
+var global_nivel;
+
 $( document ).ready( function(){
 
 $('body').append(modal_reserva())

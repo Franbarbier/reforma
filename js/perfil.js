@@ -50,6 +50,10 @@ function verNivel() {
             console.log('xp')
             console.log(xp);
 
+            global_nivel = xp
+
+            init_beneficios()
+
         });
 
 }
@@ -63,14 +67,40 @@ function comp_reserva_row(reserva) {
 }
 
 // Componente de beneficio por nivel
-function comp_beneficio_nivel(obj) {
-    return `<div class="beneficios-nivel" id="level${obj.numero}">
-                <h5>Nivel</h5>
-                <h6>${obj.numero}</h6>
+// function comp_beneficio_nivel(obj) {
+//     return `<div class="beneficios-nivel" id="level${obj.numero}">
+//                 <h5>Nivel</h5>
+//                 <h6>${obj.numero}</h6>
+//                 <ul>
+//                     <li>Lorem ipsum dolor sit amet amet.</li>
+//                     <li>Lorem ipsum dolor sit amet amet.</li>
+//                 </ul>
+//             </div>`
+// }
+
+function comp_noche_gratis(obj) {
+
+    var text;
+    var opacity = 0.35;
+    var img = 'moon';
+
+    if(obj.status == 'active'){
+        text = 'Ya podes usarlo en estadías mayores a 2 noches.'
+        opacity = 1;
+    }else if(obj.status=='inactive'){
+        text = 'Al sumar un total de ' + obj.puntos + ' puntos.'
+    }else if(obj.status=='used'){
+        text = 'Este beneficio ya fue usado.'
+        img = 'checked'
+    }
+
+    return `<div class="beneficios-nivel" style="opacity: ${opacity}">
+                <h6>1</h6>
+                <h5>Noche Gratis</h5>
                 <ul>
-                    <li>Lorem ipsum dolor sit amet amet.</li>
-                    <li>Lorem ipsum dolor sit amet amet.</li>
+                    <li>${text}</li>
                 </ul>
+                <img src="imgs/${img}.svg" height="35px" class="moon" style="opacity: 0.8">
             </div>`
 }
 
@@ -83,11 +113,6 @@ function initNiveles() {
         })
         .then(function (niveles) {
             console.log(niveles)
-            var html = ''
-            for (n in niveles) {
-                html += comp_beneficio_nivel(niveles[n])
-            }
-            $('#beneficios-cont>div').html(html)
 
             var current_level_num = $('#numero_nivel').val()
             $('#level' + current_level_num).addClass('active-level')
@@ -95,6 +120,34 @@ function initNiveles() {
         });
 }
 initNiveles()
+
+function init_beneficios(){
+
+    // Objeto de beneficios que el día de mañana tal vez provenga de una base de datos
+    var noches_gratis = [2000, 4000, 6000];
+
+    var html = ''
+    for(n in noches_gratis){
+
+        var noche = noches_gratis[n]
+        var noches_usadas = JSON.parse(global_nivel.noches_usadas)
+        
+        var status = 'inactive';
+        if(global_nivel.score>noche){
+            status = 'active'
+        }
+
+        if(noches_usadas.includes(noche)){
+            status = 'used'
+        }
+
+        html += comp_noche_gratis({"status":status, "puntos":noche})
+
+    }
+
+    $('#beneficios-cont div').html(html)
+
+}
 
 function modal_reserva(){
     $(document).on("click", ".ver-reserva", function (e) {

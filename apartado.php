@@ -434,6 +434,8 @@ if(isset($_SESSION['id_user'])){
 <script>
 
 const logeado = $('#logeado').val()
+var global_days_to_stay;
+var global_descuento = '';
 
 $(document).ready(function(){
 
@@ -552,6 +554,7 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
     days_to_stay = days_to_stay / day_in_milli
 
     console.log('Days to stay: ', days_to_stay)
+    global_days_to_stay = days_to_stay
 
     
     var tarifa = $('#tarifa').html()
@@ -565,11 +568,13 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
         $('#d-seis').addClass('aplicado')
         // Le sacamos el 6%
         tarifa_final = Math.round(tarifa_final * 0.94)
+        global_descuento = 6
     }else if(days_to_stay >= 30){
         console.log('Descuento del 12%')
         $('.descuento').removeClass('aplicado')
         $('#d-doce').addClass('aplicado')
         tarifa_final = Math.round(tarifa_final * 0.88)
+        global_descuento = 12
     }else{
         $('.descuento').removeClass('aplicado')
     }
@@ -641,7 +646,7 @@ $(document).on('click', '#sticky-reservar', function(){
             const checkout = $('#checkout input').val()
 
             // Lo llevamos al checkout pasando los parametros checkin, checkout y precio final
-            fetch('init_checkout.php?importe_total=' + importe_total + '&checkin=' + checkin + '&checkout=' + checkout + '&id_propiedad='+id_propiedad)
+            fetch('init_checkout.php?importe_total=' + importe_total + '&checkin=' + checkin + '&checkout=' + checkout + '&id_propiedad='+id_propiedad+'&days_to_stay='+global_days_to_stay+'&descuento='+global_descuento)
             .then(function (response) {
                 return response.json();
             })
