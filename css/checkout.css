@@ -326,7 +326,7 @@ main > div {
 main header>div{
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25%;
+  margin-bottom: 17%;
 }
 main header>div>div:first-child{
   width: 7%;
@@ -435,4 +435,41 @@ form>div input, form>div select{
 #completar-pago:hover{
   background: transparent;
   color: #d4bfaa;
+}
+
+#paypal-button-container{
+  margin-top: 20px;
+}
+
+
+/* Campos de info personal */
+.row-fields{
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.info-label{
+  font-size: 0.7em;
+  text-transform: uppercase;
+  color: #929292;
+}
+
+#info-personal-cont h4{
+  margin-bottom: 20px;
+}
+
+.field-cont{
+  width: 250px;
+  margin-right: 20px;
+}
+
+.field-value{
+  font-size: 0.9em;
+}
+
+/* Termina info personal */
+
+#period-arrow{
+  transform: rotate(180deg);
+    width: 16px;
 }

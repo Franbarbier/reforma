@@ -96,7 +96,7 @@ if(isset($_SESSION['id_user'])){
 	</div>
 </nav>
 <?php include 'menu.php' ?>
-<header>
+<!-- <header>
 		<h5>Somos una empresa de jovenes que trabajan de manera apasionada y profesional, enfocados en brindar un servicio de excelencia.</h5>
     <div class="cont90">
 		<div>
@@ -115,22 +115,31 @@ if(isset($_SESSION['id_user'])){
 			<div>
 				<div>
 					<p>
-					A diferencia del resto de las empresas de la industria del hospedaje y del turismo, el equipo de Reforma no solo está compuesto por emprendedores que entienden como administrar un negocio, sino que  además cuentan con un amplio grupo de arquitectos, diseñadores y artistas apasionados por lo que hacen. Los mismos entienden como crear el espacio ideal para habitar y eso marca la direfencia entre una experiencia standard y la experiencia que ofrece Reforma en todos sus alojamientos.</p><p>El equipo primero estudia y analiza el sitio donde está implantado el inmueble, luego se asocia con los mejores arquitectos, artistas y diseñadores del vecindario y en conjunto diseñan no solo el espacio sino que además la experiencia que buscan revivir en cada lugar. La empresa cree que cada espacio tiene una esencia única y buscan sacarla a luz para ponerla al alcance de cada uno de sus clientes mediante este proceso.</p><p>Este fuerte enfoque en el diseño de cada parte del proceso que conforma una experiencia inolvidable son las bases y la filosofía sobre la cual se ha construido Reforma…</p>
+					A diferencia del resto de las empresas de la industria del hospedaje y del turismo, el equipo de Reforma no solo está compuesto por emprendedores que entienden como administrar un negocio, sino que además cuentan con un amplio grupo de arquitectos, diseñadores y artistas apasionados por lo que hacen. Los mismos entienden como crear el espacio ideal para habitar y eso marca la direfencia entre una experiencia standard y la experiencia que ofrece Reforma en todos sus alojamientos.</p><p>El equipo primero estudia y analiza el sitio donde está implantado el inmueble, luego se asocia con los mejores arquitectos, artistas y diseñadores del vecindario y en conjunto diseñan no solo el espacio sino que además la experiencia que buscan revivir en cada lugar. La empresa cree que cada espacio tiene una esencia única y buscan sacarla a luz para ponerla al alcance de cada uno de sus clientes mediante este proceso.</p><p>Este fuerte enfoque en el diseño de cada parte del proceso que conforma una experiencia inolvidable son las bases y la filosofía sobre la cual se ha construido Reforma…</p>
 				</div>
 			</div>
 		</main>
     </div>
 </header>
 <div id="franja-ofi">
-</div>
+</div> -->
+<main class="historia hist2">
+	<div class="cont90">
+		<div>
+			<img src="https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+		</div>
+		<header>
+			<h3>Quienes somos</h3>
+			<p>Somos una empresa de jovenes emprendedores que trabajan de manera apasionada y profesional, enfocados en brindar un servicio de excelencia.</p><p>Desde Reforma siempre buscamos salir del esquema tradicional de hospedaje mediante la creacion de espacios con un diseño moderno y minimalista, combinados con la consistencia en el servicio de un hotel de lujo.</p><p>Esto se da gracias al increible grupo de artistas, arquitectos y diseñadores con los que trabajamos dia a dia y al uso eficiente de tecnologia de vanguardia que utilizamos para administrar de manera eficiente todos los procesos involucrados dentro de cada estadia.</p>
+		</header>
+
+	</div>
+</main>
 <div class="historia">
 	<div class="cont90">
 		<header>
 			<h3>Como empezamos</h3>
-			<p>El verano de 2017, nuestro fundador Pedro Grampa, para ese entonces estudiante universitario de la carrera de Arquitectura, decidio subarrendar su apartamento en Buenos Aires.</p>
-			<p>Impulsado por el deseo de hacer valer y poner a prueba sus habilidades como diseñador de un espacio y una experiencia, paso sus dias recibiendo visitantes de todas partes del mundo con distintas visiones y perspectivas acerca de la experiencia que habian vivido en sus departamentos.</p>
-			<p>En este proceso, no solo encontro su verdadera pasion, sino que ademas aprendio y perfecciono la idea de lo que significa “ofrecer una buena experiencia”.</p>
-			<p>Con el paso de los meses fue adquiriendo propiedades y formando un grupo de trabajo excepcional, cuya unica mision es brindar una experiencia inolvidable a todos las personas que se hospedan en las propiedades Reforma. Hoy, la start up ofrece sus propiedades mediante su propio sitio web y la experiencia esta al alcance de todos…</p>
+			<p>El verano de 2017, nuestro fundador Pedro Grampa, para ese entonces estudiante universitario de la carrera de Arquitectura, decidio subarrendar su apartamento en Buenos Aires.</p><p>Impulsado por el deseo de hacer valer y poner a prueba sus habilidades como diseñador de un espacio y una experiencia, paso sus dias recibiendo visitantes de todas partes del mundo con distintas visiones y perspectivas acerca de la experiencia que habian vivido en sus departamentos.</p><p>En este proceso, no solo encontro su verdadera pasion, sino que ademas aprendio y perfecciono la idea de lo que significa “ofrecer una buena experiencia”.</p><p>Con el paso de los meses fue adquiriendo propiedades y formando un grupo de trabajo excepcional, cuya unica mision es brindar una experiencia excepcional a todos las personas que se hospedan en las propiedades Reforma. Hoy, la start up ofrece sus propiedades mediante su propio sitio web, la experiencia esta al alcance de todos…</p>
 		</header>
 		<div>
 			<img src="https://images.pexels.com/photos/2102416/pexels-photo-2102416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
@@ -140,11 +149,11 @@ if(isset($_SESSION['id_user'])){
 <div class="historia hist2">
 	<div class="cont90">
 		<div>
-			<img src=https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+			<img src="https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
 		</div>
 		<header>
 			<h3>Hacia donde vamos</h3>
-			<p>Desde Reforma siempre buscamos salir del esquema tradicional de hospedaje mediante la creacion de espacios con un diseño moderno y minimalista, combinados con la consistencia en el servicio de un hotel de lujo. Esto se da gracias al increible grupo de artistas, arquitectos y diseñadores con los que trabajamos dia a dia y al uso eficiente de tecnologia de vanguardia que utilizamos para manejar de manera mas eficientes todos los procesos involucrados en cada estadia.</p>
+			<p>Desde Reforma siempre buscamos salir del esquema tradicional de hospedaje mediante la creacion de espacios con un diseño excepcional, combinados con la consistencia en el servicio de un hotel de lujo. Esto se da gracias al increible grupo de artistas, arquitectos y diseñadores con los que trabajamos dia a dia y al uso de tecnologia de vanguardia que utilizamos para manejar de manera mas eficientes todos los procesos involucrados en cada estadia.</p>
 		</header>
 	</div>
 </div>

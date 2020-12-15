@@ -3,9 +3,24 @@
 * @copyright: Copyright (c) 2019 Rinat G.
 * @license: Licensed under the MIT license. See http://www.opensource.org/licenses/mit-license.php
 */
+var fechasOcupas = ['2020-12-20', '2020-12-30', '2021-1-6'];
+function check_ocupadas() {
+    for (let index = 0; index < fechasOcupas.length; index++) {
+        var ocuapa2 = fechasOcupas[index];
+        $('#'+ocuapa2).addClass('ocupa2')
+    }
+}
+function check_ocupadas_desplg(){
+    for (let index = 0; index < fechasOcupas.length; index++) {
+        var ocuapa2 = fechasOcupas[index];
+        $('body>.lightpick').find('#'+ocuapa2).css('background','red').addClass('ocupa2')
+        console.log('AAAAAAAAAAAAAAA')
+    }
+}
 
 // Following the UMD template https://github.com/umdjs/umd/blob/master/templates/returnExportsGlobal.js
 (function (root, factory) {
+    
     if (typeof define === 'function' && define.amd) {
         // AMD. Make globaly available as well
         define(['moment'], function (moment) {
@@ -107,6 +122,7 @@
 
     weekdayName = function(opts, day, weekdayStyle)
     {
+        
         return new Date(1970, 0, day, 12, 0, 0, 0).toLocaleString(opts.lang, { weekday: weekdayStyle || opts.weekdayStyle });
     },
 
@@ -261,7 +277,8 @@
         div.className = day.className.join(' ');
         div.innerHTML = date.get('date');
         div.setAttribute('data-time', day.time);
-
+        div.setAttribute('id', date.format('Y-M-D'));
+        
         return div.outerHTML;
     },
 
@@ -292,7 +309,7 @@
         if (!opts.dropdowns || !opts.dropdowns.months) {
             select.disabled = true;
         }
-
+        
         return select.outerHTML;
     },
 
@@ -359,6 +376,7 @@
             html += '<div class="lightpick__days-of-the-week">';
             for (var w = opts.firstDay + 4; w < 7 + opts.firstDay + 4; ++w) {
                 html += '<div class="lightpick__day-of-the-week" title="' + weekdayName(opts, w, 'long') + '">' + weekdayName(opts, w) + '</div>';
+               
             }
             html += '</div>'; // lightpick__days-of-the-week
 
@@ -487,12 +505,15 @@
 
         if (opts.parentEl instanceof Node) {
             opts.parentEl.appendChild(self.el)
+            
         }
         else if (opts.parentEl === 'body' && opts.inline) {
             opts.field.parentNode.appendChild(self.el);
+            
         }
         else {
             document.querySelector(opts.parentEl).appendChild(self.el);
+            
         }
 
         self._onMouseDown = function(e)
@@ -514,7 +535,10 @@
             }
 
             var opts = self._opts;
-
+            setTimeout(() => {
+                check_ocupadas();
+                check_ocupadas_desplg();
+            }, 250);
             if (target.classList.contains('lightpick__day') && target.classList.contains('is-available')) {
 
                 var day = moment(parseInt(target.getAttribute('data-time')));
@@ -1324,6 +1348,9 @@
         }
 
     };
-
+    
+    check_ocupadas();
+    check_ocupadas_desplg();
+    
     return Lightpick;
 }));

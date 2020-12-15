@@ -90,16 +90,14 @@ main {
 }
 main > div {
   width: 0%;
-
   transition: 1s;
   transition-timing-function: cubic-bezier(0.13, 0.77, 0.33, 1);
   height: 100vh;
   position: relative;
   overflow: hidden;
   border-bottom-right-radius: 2px;
-
   background-repeat: no-repeat;
-  
+
 }
 
 
@@ -483,4 +481,8 @@ form>div input, form>div select{
 #completar-pago:hover{
   background: transparent;
   color: #d4bfaa;
+}
+
+#paypal-button-container{
+  margin-top: 20px;
 }

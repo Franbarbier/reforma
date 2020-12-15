@@ -28,6 +28,8 @@
 
 // $( document ).ready( function(){
 
+var fechasOcupas = ['2020-12-20', '2020-12-30', '2021-1-6'];
+
 
 var picker2 = new Lightpick({
     field: document.getElementById('demo-3_1'),
@@ -40,7 +42,7 @@ var picker2 = new Lightpick({
     numberOfColumns: 3,
     orientation: "top left",
     numberOfMonths: 2,
-    // disableDates: ['2020-11-20', '2020-11-30'] ,
+    disableDates: fechasOcupas,
     disabledDatesInRange: false,
     tooltipNights: true,
     inline: true,
@@ -62,11 +64,9 @@ var picker2 = new Lightpick({
     
         start_date = start.format("YYYY-MM-DD")
         end_date = end.format("YYYY-MM-DD")
-
         if(end_date == start_date){
             end_date = ''
         }
-
 
         // Si nos de undefined, intentamos usar los start date y end date de la URL. Sino, lo dejamos vacio.
         if($('.is-start-date').attr('data-time')==undefined && $('.is-end-date').attr('data-time') == undefined){
@@ -98,7 +98,10 @@ var picker2 = new Lightpick({
             $('#checkin input').css('background-image', '')
             tarifa_final()
         }
-
+        
+        setTimeout(() => {
+            check_ocupadas();
+        }, 250);
         
     }
 });
@@ -154,6 +157,10 @@ function daysInMonth (month, year) {
 const meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 const dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ]
 
+for (let index = 0; index < fechasOcupas.length; index++) {
+    var ocuapa2 = fechasOcupas[index];
+    $('#'+ocuapa2).addClass('ocupa2') 
+}
 
 
 // });

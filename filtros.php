@@ -134,7 +134,8 @@ window.addEventListener('click', function(e){
   }
 });
 
-$('#ciudades li').click(function () {
+
+$(document).on('click', '#ciudades li', function(){
 	$('#select-city p').text( $(this).text() )
 	$('#select-city p').css('color','#272727')
 

@@ -33,5 +33,44 @@ if($_GET['func'] == 'verNiveles'){
 
 }
 
+if($_GET['func'] == 'anadirFavorito'){
+
+    $favorito = $_GET['favorito'];
+    $action = $_GET['action'];
+
+    echo $usuarios->anadirFavorito($favorito, $action);
+}
+
+if($_GET['func'] == 'checkFavorito'){
+
+    $id_propiedad = $_GET['id_propiedad'];
+
+    echo $usuarios->checkFavorito($id_propiedad);
+
+}
+
+if($_GET['func'] == 'verFavoritos'){
+
+    echo json_encode($usuarios->verFavoritos());
+
+}
+
+if($_GET['func'] == 'dejarResena'){
+
+    $id_propiedad = $_POST['id_propiedad'];
+    $resena = $_POST['resena'];
+    $id_reserva = $_POST['id_reserva'];
+
+    echo $usuarios->dejarResena($id_propiedad, $resena, $id_reserva);
+
+}
+
+if($_GET['func'] == 'verUsuario'){
+
+    echo json_encode($usuarios->verUsuario());
+
+}
+
+
 
 ?>

@@ -464,7 +464,7 @@ color: #676767;
 
 .main-modal>div{
     /* height: 65%; */
-    width: 33%;
+    max-width: 46%;
     background-color: white;
     border-radius: 5px;
     position: relative;
@@ -562,4 +562,119 @@ color: #676767;
     align-items: center;
     justify-content: space-between;
     margin: 5% 0;
+    cursor: pointer;
+}
+
+#msg{
+    font-size: 0.8em;
+    margin-top: 7px;
+    font-weight: bold;
+    color: #d4bfaa;
+}
+
+#modal-config form>div{
+    width: 46%;
+    display: inline-block;
+    margin: 1% 3% 1% 0;
+}
+#modal-config form>div:first-child{
+    margin: 4% 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.profile-img{
+    position: relative;
+    overflow: hidden;
+    width: 64px;
+    height: 64px;
+    background: #ddd;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.profile-img img{   
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+}
+.profile-img label{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+}
+#nombre, #apellido{
+    display: block;
+    margin-left: 15%;
+    background: none;
+    border: none;
+    font-size: 1.1em;
+    FONT-WEIGHT: 600;
+    color: #5e5e5e;
+    margin-bottom: 3%;
+}
+
+.labelss{
+    display: block;
+    font-size: 0.9em;
+    color: #5e5e5e;
+    margin-top: 5%;
+}
+.labelss ~ input,  .labelss ~ select:disabled,  .labelss ~ select{
+    background: none;
+    border: none;
+    font-size: 1.1em;
+    margin-bottom: 5%;
+    font-family: 'Century Gothic';
+    color: #272727;
+}
+.labelss ~ select:disabled{
+    color: black;
+}
+#config-buttons, #save-buttons{
+    margin-top: 5%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#editar-config, #guardar-config{
+    margin-left: 8%;
+    background: #d4bfaa;
+    border: 1px solid #d4bfaa;
+    color: white;
+    /* font-weight: 600; */
+    font-size: 0.75em;
+    letter-spacing: 0.5px;
+    padding: 8px 23px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+#cerrar-config, #descartar-config{
+    margin-left: 8%;
+    background: #f0f0f0;
+    border: 1px solid #f0f0f0;
+    color: #272727;
+    /* font-weight: 600; */
+    font-size: 0.75em;
+    letter-spacing: 0.5px;
+    padding: 8px 23px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+.editables{
+    background: #f0f0f0!important;
+    padding: 5px 13px!important;
+    border: 1px solid #ddd!important;
+    border-radius: 5px!important;
+    font-size: 0.9em!important;
+}
+#save-buttons{
+    display: none;
+}
+.p-pic ~ label{
+    cursor: pointer;
 }
