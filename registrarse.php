@@ -53,7 +53,7 @@ if(isset($_SESSION['id_user'])){
     <!--<meta property="og:image:height" content="1024">-->
     <!--<meta property="fb:app_id" content="">-->
 
-	<link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/login.css" />
+	<link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/registrarse-desk.css" />
 	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/loginMob.css" />
     
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -88,26 +88,38 @@ if(isset($_SESSION['id_user'])){
     <header>
 			<div>
 				<!-- <img src="imgs/logo-chico.svg" alt=""> -->
-				<h4>Iniciar sesión</h4>		
+				<h4>Crear cuenta</h4>		
 			</div>
 
 		<form action="">
-			<label for="mail">Mail</label>
-			<input class="inputes" type="text" id="mail">
-			<label for="psw">Contraseña</label>
-			<input class="inputes" type="password" id="psw">
-			<input id="loginear" type="submit" value="INGRESAR">
+			<div>
+				<label for="nombre">Nombre</label>
+				<input class="inputes" type="text" id="nombre">
+			</div>
+			<div>
+				<label for="apelido">Apellido</label>
+				<input class="inputes" type="text" id="apelido">
+			</div>
+			<div>
+				<label for="mail">Mail</label>
+				<input class="inputes" type="text" id="mail">
+			</div>
+			<div>
+				<label style="background:white;" for="nacimiento">Fecha de nacimiento</label>
+				<input class="inputes" type="date" id="nacimiento">
+			</div>
+			<div>
+				<label for="psw">Contraseña</label>
+				<input class="inputes" type="password" id="psw">
+			</div>
+			<div>
+				<label for="psw2">Confirmar contraseña</label>
+				<input class="inputes matching" type="password" id="psw2">
+				<span id="no-coinciden">No coinciden</span>
+			</div>
+			<input class="matching" id="registrarse" type="submit" value="REGISTRARSE">
 		</form>
-		<a href="<?php echo $login_url ?>">
-			<button id="google-init">
-				<img src="imgs/search.svg" alt="">
-				<span>Inicia sesion con Google</span>
-			</button>
-		</a>
-		<a href="registrarse.php">
-			<button id="crear-cuenta">CREAR CUENTA</button>
-		</a>
-		<p>¿Olvidaste tu contraseña?</p>
+		
     </header>
     <div>
 		<img src="https://a0.muscache.com/im/pictures/58e33f93-3b69-4d91-b0aa-8801b61cd059.jpg" alt="">
@@ -141,73 +153,50 @@ $('.inputes').focusin(function(){
 
 $('.inputes').focusout(function(){
 	if($(this).val()==""){
-		$("label[for="+$(this).attr("id")+"]").css({'transform':'translate(12% , 160%) scale(1.2)','color':'#b5b5b5'})
+		$("label[for="+$(this).attr("id")+"]").css({'transform':'translate(12%, 155%) scale(1.2)','color':'#b5b5b5'})
 		$(this).css({  'color': '#d4bfaa', 'border-color': '#b5b5b5'})
 	}
 })
 
 // Listener para cuando cliquean en loginear (login sin el ouath)
-$(document).on("click", "#loginear", function(e){
+// $(document).on("click", "#loginear", function(e){
 
-	e.preventDefault()
+// 	e.preventDefault()
 
-	var mail = $('#mail').val()
-	var psw = $('#psw').val()
+// 	var mail = $('#mail').val()
+// 	var psw = $('#psw').val()
 
-	$.ajax({
-            url:'php/api/globales.php?func=loginRequest',
-            method:'POST',
-            cache: false,
-            data:{
-                mail,
-				psw
-            },
-            dataType:'text',
-            success:function(data){
-			 var res = JSON.parse(data)
-			 if(res.error==0){
-				 window.location = 'index.php'
-			 }else{
-				 console.log('Error al iniciar sesión.')
-			 }
-             console.log(data)
-            }
-        });
+// 	$.ajax({
+//             url:'php/api/globales.php?func=loginRequest',
+//             method:'POST',
+//             cache: false,
+//             data:{
+//                 mail,
+// 				psw
+//             },
+//             dataType:'text',
+//             success:function(data){
+// 			 var res = JSON.parse(data)
+// 			 if(res.error==0){
+// 				 window.location = 'index.php'
+// 			 }else{
+// 				 console.log('Error al iniciar sesión.')
+// 			 }
+//              console.log(data)
+//             }
+//         });
+// })
 
-})
+$( "#psw2" ).keyup(function() {
+  if( $(this).val() != $('#psw').val() ){
+		$('#no-coinciden').css('display','block')
+  }else{
+		$('#no-coinciden').css('display','none')
+
+  }
+});
 
 
-function modal_change_pass(){
-    $(document).on("click", "main>header>p", function (e) {
-        $('#change-pass').fadeTo(0, 150)
-        e.stopPropagation()
-    });
-
-    $(document).on("click", ".cerrar-main-modal", function () {
-        $(this).parent().parent().fadeOut(150)
-    })
-    
-    
-
-    return `<div class="main-modal" id="change-pass" style="display: none">
-    <div>
-        <div class="cerrar-main-modal">
-            <img src="imgs/letter-x.svg" height="8px" alt="">
-        </div>
-        <div>
-            <div class="modal-header">Recuperar contraseña</div>
-			<div>
-				<h5>Ingresá el mail de la cuenta</h5>
-				<form>
-					<input id="mail-user" type="email">
-					<input type="submit" id="send-pass" value="RECUPERAR">
-				</form>
-			</div>
-        </div>
-    </div> </div>`;
-
-}
-$('body').append(modal_change_pass());
 
 });
 </script>

@@ -678,3 +678,46 @@ color: #676767;
 .p-pic ~ label{
     cursor: pointer;
 }
+
+/* cambiar pass */
+#cambiar-cont h2{
+    margin-bottom: 20px;
+    text-align: center;
+}
+#cambiar-cont, #cambiar-cont>form{
+    width: 100%;
+}
+#cambiar-cont label{
+    display: block;
+    text-align: center;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    color: #5e5e5e;
+}
+#cambiar-cont input{
+    background: #f0f0f0;
+    padding: 5px 13px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9em;
+    margin: auto;
+    display: block;
+    margin-bottom: 20px;
+}
+#ok-cambiar{
+    margin: auto;
+    background: #d4bfaa!important;
+    border: 1px solid #d4bfaa!important;
+    color: white;
+    /* font-weight: 600; */
+    font-size: 0.75em;
+    letter-spacing: 0.5px;
+    padding: 8px 23px!important;
+    border-radius: 2px!important;
+    cursor: pointer;
+    transition: 0.15s;
+}
+#ok-cambiar:hover{
+    color: #d4bfaa;
+    background-color: transparent!important;
+}

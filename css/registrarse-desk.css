@@ -148,22 +148,30 @@ main>div p{
   /* color: #fafafa; */
 }
 main>header{
-  width: 25%;
+  width: 75%;
   padding: 10% 10% 0 10%;
 
 }
 header h4{
   font-size: 2.3em;
+  text-align: center;
 }
-
-
+main form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+main form>div{
+  width: 48%;
+  margin-top: 20px;
+}
 main form label{
     display: block;
     margin-top: 10%;
     color: #b5b5b5;
-    font-size: 0.9em;
+    font-size: 0.8em;
     transition: .2s cubic-bezier(0.075, 0.82, 0.165, 1);
-    transform:translate(12% , 160%) scale(1.2);
+    transform:translate(12%, 155%) scale(1.2);
     width: 82%;
     cursor: text;
 } 
@@ -177,18 +185,20 @@ main form .inputes{
   padding: 2.5%;
 }
 
-#loginear{
+#registrarse{
   text-align: center;
-  width: 100%;
+  width: 48%;
+  margin: auto;
   margin-top: 10%;
-  padding: 3.5% 0;
+  padding: 1.5% 0;
   background: #d4bfaa;
   border: 2px solid #d4bfaa;
   color: white;
   transition: .2s;
   cursor: pointer;
+  border-radius: 2px;
 }
-#loginear:hover{
+#registrarse:hover{
   background:white ;
   color: #d4bfaa;
 }
@@ -288,29 +298,11 @@ main>header>p:hover{
   font-size: 1.2em;
   font-weight: 600;
 }
-#change-pass h5{
-    margin: 5% 0;
-    text-align: center;
-    color: #5e5e5e;
-}
-#mail-user{
-    width: 90%;
-    margin: 6% 0;
-    background: transparent;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 6px 5%;
-    background: #fafafa;
-    display: block;
-    margin: 6% auto;
-}
-#send-pass{
-  display: block;
-    margin: auto;
-    padding: 10px 17px;
-    background: #d4bfaa;
-    border: none;
-    cursor: pointer;
-    color: white;
-    border-radius: 2px;
+
+#no-coinciden{
+  font-weight: 600;
+  color: rgb(139, 41, 41);
+  font-size: 0.8em;
+  margin-top: 5px;
+  display: none;
 }

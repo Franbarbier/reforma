@@ -131,6 +131,11 @@ if(isset($_SESSION['id_user'])){
 	</div>
 	<div id="opciones">
 		<ul>
+			<li id="chanhe-pass">
+				<a href="cambiar-contrasena.php">
+					<img src="imgs/lock.svg" alt=""><span>Cambiar contraseña</span>
+				</a>
+			</li>
 			<li id="admin-config">
 				<img src="imgs/configuracion.svg" alt=""><span>Configuración</span>
 			</li>
