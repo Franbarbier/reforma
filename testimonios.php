@@ -9,70 +9,97 @@
                 <span id="right-arrow" class="arrow right fa fa-chevron-right"></span>
                 <span id="left-arrow" class="arrow left fa fa-chevron-left "></span>
                 <ul id="testim-dots" class="dots">
-                    <li class="dot active"></li><!--
-                    --><li class="dot"></li><!--
-                    --><li class="dot"></li>
-                    <li class="dot"></li><!--
-                    --><!-- <li class="dot"></li> -->
+                    <li class="dot active"><img src="imgs/quotes/maria.jpg"></li>
+                    <li class="dot"><img src="imgs/quotes/luis.jpg"></li>
+                    <li class="dot"><img src="imgs/quotes/victoria.jpg"></li>
+                     <li class="dot"><img src="imgs/quotes/yvan.jpg"></li>
+                     <li class="dot"><img src="imgs/quotes/juan.jpg"></li>
+                     <li class="dot"><img src="imgs/quotes/agustina.jpg"></li>
                 </ul>
                 <aside>‘‘</aside>
                 <div id="testim-content" class="cont">
                     <div>
-                        <p>Cuidan cada detalle, desde la atención hasta el orden y la prolijidad de la casa.</p>                    
+                        <p>El departamento es muy lindo, el edificio y la ambientación son espectaculares. Las respuestas y el trato por parte del equipo de Reforma impecable.</p>                    
                         <div class="data-autor">
 							<figure>
 								<img src="imgs/huespedMarron.svg" alt="">
-								<figcaption>Emmet Brown</figcaption>
+								<figcaption>Maria</figcaption>
 							</figure>
 							<figure>
 								<img src="imgs/location-brown.svg" alt="">
-								<figcaption>Dirección 1234, Localidad - País</figcaption>
+								<figcaption>Buenos Aires</figcaption>
 							</figure>
 						</div>
                     </div>
                     
                    <div class="active">
-                       <p>Die Unterkunft hat alles was man braucht. Was während der Quarantäne wirklich klasse war!</p>                    
+                       <p>Espectacular apartamento y muy buena atención de Reforma.</p>                    
                        <div class="data-autor">
 							<figure>
 								<img src="imgs/huespedMarron.svg" alt="">
-								<figcaption>Emmet Orange</figcaption>
+								<figcaption>Luis</figcaption>
 							</figure>
 							<figure>
 								<img src="imgs/location-brown.svg" alt="">
-								<figcaption>Dirección 3456, Localidad - País</figcaption>
+								<figcaption>Buenos Aires</figcaption>
                             </figure>
                         </div>
                     </div>
                     
                     <div>
-                        <p>Great place. Definitely would recommend. Guys are so friendly and always ready to help.</p>                    
+                        <p>Estadia simplemente perfecta. Sin dudas volveremos...</p>                    
                         <div class="data-autor">
 							<figure>
 								<img src="imgs/huespedMarron.svg" alt="">
-								<figcaption>Emmet Red</figcaption>
+								<figcaption>Victoria</figcaption>
 							</figure>
 							<figure>
 								<img src="imgs/location-brown.svg" alt="">
-								<figcaption>Dirección 9875, Localidad - País</figcaption>
+								<figcaption>San Antonio de Areco</figcaption>
 							</figure>
                         </div>
                     </div>
 
 
                     <div>
-                        <p>Excelente anfitrion!!</p>                    
+                        <p>La casa y la Estancia son un verdadero encanto. El asistente de Reforma siempre predispuesto a colaborar.</p>                    
                         <div class="data-autor">
 							<figure>
 								<img src="imgs/huespedMarron.svg" alt="">
-								<figcaption>Juanse Brown</figcaption>
+								<figcaption>Yvan</figcaption>
 							</figure>
 							<figure>
 								<img src="imgs/location-brown.svg" alt="">
-								<figcaption>Dirección 1234, Localidad - País</figcaption>
+								<figcaption>San Antonio de Areco</figcaption>
 							</figure>
                         </div>
-                  </div>
+                    </div>
+                    <div>
+                        <p>Super recomendable. Todo de super calidad!</p>                    
+                        <div class="data-autor">
+							<figure>
+								<img src="imgs/huespedMarron.svg" alt="">
+								<figcaption>Juan</figcaption>
+							</figure>
+							<figure>
+								<img src="imgs/location-brown.svg" alt="">
+								<figcaption>San Antonio de Areco</figcaption>
+							</figure>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Muy lindo el departamento, excelente ubicación, limpio y ordenado.</p>                    
+                        <div class="data-autor">
+							<figure>
+								<img src="imgs/huespedMarron.svg" alt="">
+								<figcaption>Agustina</figcaption>
+							</figure>
+							<figure>
+								<img src="imgs/location-brown.svg" alt="">
+								<figcaption>Buenos Aires</figcaption>
+							</figure>
+                        </div>
+                    </div>
 
             </div>
     </section>
@@ -82,7 +109,10 @@
 <style>
 	/*@import url(//cdn.rawgit.com/rtaibah/dubai-font-cdn/master/dubai-font.css);*/
 
-.arrow, .dots, .img, #test{
+/* .arrow, .dots, .img, #test{
+    display: none!important;
+} */
+.arrow, #test{
     display: none!important;
 }
 .inactive .data-autor{
@@ -158,35 +188,48 @@
 }
 
 .testim .dots {
-    width: 100%;
     position: absolute;
-    left: 0%;
-    bottom: 5%;
-    text-align: center;
-    padding-left: 0px;
+    left: -40%;
+    height: 137%;
+    transform: translateY(-8%);
+    width: 27%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .testim .dots .dot {
     list-style-type: none;
-    display: inline-block;
-    width: 12px;
-    height: 12px;
+    /* display: inline-block; */
+    width: 4.2vw;
+    height: 4.2vw;
     border-radius: 50%;
-    border: 1px solid #eee;
-    margin: 0 10px;
+    border: 2px solid #eee;
+    /* transition: none!important; */
     cursor: pointer;
-    -webkit-transition: all .5s ease-in-out;    
-    -ms-transition: all .5s ease-in-out;    
-    -moz-transition: all .5s ease-in-out;    
-    -o-transition: all .5s ease-in-out;    
+    -webkit-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
-		position: relative;
+    position: relative;
 }
+.testim .dots .dot img{
+    object-fit: ;
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
 
 .testim .dots .dot.active,
 .testim .dots .dot:hover {
-    background: #fcbf5d;
-    border-color: #bc8c3e;
+    border-color:#d4bfaa;
+    /* border-color: #bc8c3e; */
 }
 
 .testim .dots .dot.active {
@@ -306,13 +349,13 @@
     }
 
     70% {
-        -webkit-box-shadow: 0px 0px 10px 5px #ea830e;        
-        box-shadow: 0px 0px 10px 5px #ea830e;        
+        -webkit-box-shadow: 0px 0px 10px 5px #d4bfaa;        
+        box-shadow: 0px 0px 10px 5px #d4bfaa;        
     }
 
     100% {
-        -webkit-box-shadow: 0px 0px 0px 0px #ea830e;        
-        box-shadow: 0px 0px 0px 0px #ea830e;        
+        -webkit-box-shadow: 0px 0px 0px 0px #d4bfaa;        
+        box-shadow: 0px 0px 0px 0px #d4bfaa;        
     }
 }
 
@@ -328,13 +371,13 @@
     }
 
     70% {
-        -moz-box-shadow: 0px 0px 10px 5px #ea830e;        
-        box-shadow: 0px 0px 10px 5px #ea830e;        
+        -moz-box-shadow: 0px 0px 10px 5px #d4bfaa;        
+        box-shadow: 0px 0px 10px 5px #d4bfaa;        
     }
 
     100% {
-        -moz-box-shadow: 0px 0px 0px 0px #ea830e;        
-        box-shadow: 0px 0px 0px 0px #ea830e;        
+        -moz-box-shadow: 0px 0px 0px 0px #d4bfaa;        
+        box-shadow: 0px 0px 0px 0px #d4bfaa;        
     }
 }
 
@@ -350,13 +393,13 @@
     }
 
     70% {
-        -ms-box-shadow: 0px 0px 10px 5px #ea830e;        
-        box-shadow: 0px 0px 10px 5px #ea830e;        
+        -ms-box-shadow: 0px 0px 10px 5px #d4bfaa;        
+        box-shadow: 0px 0px 10px 5px #d4bfaa;        
     }
 
     100% {
-        -ms-box-shadow: 0px 0px 0px 0px #ea830e;        
-        box-shadow: 0px 0px 0px 0px #ea830e;        
+        -ms-box-shadow: 0px 0px 0px 0px #d4bfaa;        
+        box-shadow: 0px 0px 0px 0px #d4bfaa;        
     }
 }
 
@@ -372,13 +415,13 @@
     }
 
     70% {
-        -o-box-shadow: 0px 0px 10px 5px #ea830e;        
-        box-shadow: 0px 0px 10px 5px #ea830e;        
+        -o-box-shadow: 0px 0px 10px 5px #d4bfaa;        
+        box-shadow: 0px 0px 10px 5px #d4bfaa;        
     }
 
     100% {
-        -o-box-shadow: 0px 0px 0px 0px #ea830e;        
-        box-shadow: 0px 0px 0px 0px #ea830e;        
+        -o-box-shadow: 0px 0px 0px 0px #d4bfaa;        
+        box-shadow: 0px 0px 0px 0px #d4bfaa;        
     }
 }
 
@@ -392,11 +435,11 @@
     }
 
     70% {
-        box-shadow: 0px 0px 10px 5px #ea830e;        
+        box-shadow: 0px 0px 10px 5px #d4bfaa;        
     }
 
     100% {
-        box-shadow: 0px 0px 0px 0px #ea830e;        
+        box-shadow: 0px 0px 0px 0px #d4bfaa;        
     }
 }
 

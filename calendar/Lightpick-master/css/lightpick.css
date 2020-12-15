@@ -191,7 +191,11 @@
 .lightpick__day.is-next-month {
     opacity: 0.38;
 }
-
+.ocupa2{
+    color: rgb(158, 42, 42)!important;
+    background-color: rgb(255, 126, 126)!important;
+    font-weight: 600;
+}
 .lightpick__day.lightpick__day.is-in-range:not(.is-disabled) {
     opacity: 1;
 }

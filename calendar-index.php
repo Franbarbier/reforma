@@ -44,18 +44,10 @@
 $( document ).ready( function(){
 
 
-// var picker = new Lightpick({ field: document.getElementById('datepicker') });
-// var picker = new Lightpick({
-//     field: document.getElementById('demo-3_1'),
-//     secondField: document.getElementById('demo-3_2'),
-//     singleDate: false,
-//     onSelect: function(start, end){
-//         var str = '';
-//         str += start ? start.format('Do MMMM YYYY') + ' to ' : '';
-//         str += end ? end.format('Do MMMM YYYY') : '...';
-//         document.getElementById('result-3').innerHTML = str;
-//     }
-// });
+var fechasOcupas = ['2020-12-20', '2020-12-30', '2021-1-6'];
+
+
+
 var picker = new Lightpick({
     field: document.getElementById('demo-3_1_1'),
     secondField: document.getElementById('demo-3_2_1'),
@@ -67,7 +59,7 @@ var picker = new Lightpick({
     numberOfColumns: 3,
     orientation: "bottom right",
     numberOfMonths: 2,
-    // disableDates: ['2020-11-20', '2020-11-30'] ,
+    disableDates: fechasOcupas ,
     disabledDatesInRange: false,
     tooltipNights: true,
 
@@ -82,6 +74,7 @@ var picker = new Lightpick({
     dropdowns: true,
 
     onSelect: function(start, end){
+        
         var str = '';
         str += start ? start.format('Do MMMM YYYY') + ' to ' : '';
         str += end ? end.format('Do MMMM YYYY') : '...';
@@ -109,6 +102,9 @@ var picker = new Lightpick({
             if (window.location.href.indexOf("explorar") > -1) {
                 update_from_filters()
             }
+            setTimeout(() => {
+                check_ocupadas();
+            }, 250);
         
     }
 });
@@ -163,10 +159,19 @@ var l = new Date("2020-10-01");
 const meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 const dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ]
 
+setTimeout(() => {
+    check_ocupadas();
+}, 250);
 
+$('#checkin, #checkout').click( function() {
+    setTimeout(() => {
+        check_ocupadas(); 
+        check_ocupadas_desplg()
+    }, 250);
 })
 
 
+})
 </script>
 
 </html>

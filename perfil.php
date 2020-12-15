@@ -131,6 +131,11 @@ if(isset($_SESSION['id_user'])){
 	</div>
 	<div id="opciones">
 		<ul>
+			<li id="chanhe-pass">
+				<a href="cambiar-contrasena.php">
+					<img src="imgs/lock.svg" alt=""><span>Cambiar contraseña</span>
+				</a>
+			</li>
 			<li id="admin-config">
 				<img src="imgs/configuracion.svg" alt=""><span>Configuración</span>
 			</li>
@@ -156,7 +161,7 @@ if(isset($_SESSION['id_user'])){
 			foreach($reservas_activas as $key=>$reserva){
 			
 			?>
-					<div class="actual-reserva-row">
+					<div class="actual-reserva-row" id="<?php echo $reserva['id'] ?>">
 						<div class="foto-prop-cont">
 							<img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="">
 						</div>

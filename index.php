@@ -188,12 +188,12 @@ if(isset($_GET['logout'])){
 		<div class="cont90">
 			<div class="contG">
 				<div id="caritas-cont"> 
+					<!-- <div></div>
 					<div></div>
 					<div></div>
 					<div></div>
 					<div></div>
-					<div></div>
-					<div></div>
+					<div></div> -->
 				</div>
 				<div id="quote-cont">
 					<!-- <div>
@@ -243,15 +243,15 @@ if(isset($_GET['logout'])){
 					</div>
 					<div class="row1">
 						<div>
-							<img src="imgs/Soporte.jpg" alt="">
+							<img src="imgs/LimpiezaProfesional.jpg" alt="">
 						</div>
-						<p>Soporte 24/7</p>
+						<p>Limpieza profesional</p>
 					</div>
 					<div class="row1">
 						<div>
 							<img src="imgs/ServicioWiFi.jpg" alt="">
 						</div>
-						<p>Servicio wifi</p>
+						<p>Wifi de alta velocidad</p>
 					</div>
 					<div class="row2">
 						<div>
@@ -261,52 +261,52 @@ if(isset($_GET['logout'])){
 					</div>
 					<div class="row2">
 						<div>
-							<img src="imgs/LimpiezaProfesional.jpg" alt="">
+							<img src="imgs/Toallas.jpg" alt="">
 						</div>
-						<p>Limpieza profesional</p>
+						<p>Toallas frescas</p>
 					</div>
 					<div class="row2">
 						<div>
-							<img src="imgs/Toallas.jpg" alt="">
+							<img src="imgs/LimpiezaProfesional.jpg" alt="">
 						</div>
-						<p>Toallas y articulos de ducha</p>
+						<p>Lavandería</p>
 					</div>
 					<!-- <div id="hide-amenities"> -->
-						<div class="row3">
-							<div>
-								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
-							</div>
-							<p>Auto Check-in</p>
+					<div class="row3">
+						<div>
+							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
 						</div>
-						<div class="row3">
-							<div>
-								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
-							</div>
-							<p>Auto Check-in</p>
+						<p>Camas confortables</p>
+					</div>
+					<div class="row3">
+						<div>
+							<img src="imgs/Soporte.jpg" alt="">
 						</div>
+						<p>Soporte 24/7</p>
+					</div>
 						<div class="row3">
 							<div>
 								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
 							</div>
-							<p>Auto Check-in</p>
+							<p>Cafe artesanal</p>
 						</div>
 						<div class="row4">
 							<div>
 								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
 							</div>
-							<p>Auto Check-in</p>
+							<p>Amenities de baño</p>
 						</div>
 						<div class="row4">
 							<div>
 								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
 							</div>
-							<p>Auto Check-in</p>
+							<p>Guías locales</p>
 						</div>
 						<div class="row4">
 							<div>
 								<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
 							</div>
-							<p>Auto Check-in</p>
+							<p>Kit de bienvenida</p>
 						</div>
 					<!-- </div> -->
 				</div>
@@ -350,10 +350,30 @@ if(isset($_GET['logout'])){
 								<div class="text-wrapper">
 									<div class="text">
 										<!-- <span>‘‘</span> -->
-										<h5>Frase que no me acuerdo donde me la pasaron.</h5>
+										<h5>Somos un grupo de arquitectos, artistas y disedores que entiende como crear el espacio ideal para habitar.</h5>
+										<div>
+											<p>- Francisco Moro</p>
+											<i>Arquitecto de Reforma</i>
+										</div>
+									</div>
+								</div>
+								<div class="text-wrapper">
+									<div class="text">
+										<!-- <span>‘‘</span> -->
+										<h5>Nos reinventamos con tal de no adaptarnos.</h5>
+										<div>
+											<p>- Cristian A. Gil</p>
+											<i>Analista de proyectos</i>
+										</div>
+									</div>
+								</div>
+								<div class="text-wrapper">
+									<div class="text">
+										<!-- <span>‘‘</span> -->
+										<h5>Reforma te da la posibilidad de viajar al corazon de cada ciudad, modificando la experiencia del viajero mediante el diseño y el servicio.</h5>
 										<div>
 											<p>- Ramiro Fregonese</p>
-											<i>Marketing y Administracion</i>
+											<i>Analista de marketing</i>
 										</div>
 									</div>
 								</div>
@@ -852,6 +872,8 @@ $('figure').click(function(){
 	city = $(this).attr('data-city')
 	window.location = 'explorar.php?ciudad=' + city + '&check_in=&check_out=&huespedes=1'
 })
+
+
 // roller text quotes
 console.clear();
 var texts = $('.text-roll-mask .text');

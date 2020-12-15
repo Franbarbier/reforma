@@ -147,10 +147,10 @@ footer .cont90{
         <div>
             <b>SOCIAL</b>
             <ul>
-                <a target="_blank" href="https://www.instagram.com/reforma.stays/"><li><img src="imgs/instagram.svg" alt="">Instagram</li></a>
+                <a target="_blank" href="https://www.instagram.com/reforma.stays/"><li><img src="imgs/instagram.svg" alt="">@reforma.stays</li></a>
                 <a target="_blank" href="https://www.pinterest.es/"><li><img src="imgs/pinterest.svg" alt="">Pinterest</li></a>
-                <a target="_blank" href="https://www.facebook.com/Reforma-Stays-101407415046747"><li><img src="imgs/facebook.svg" alt="">Facebook</li></a>
-                <li><img src="imgs/edit.svg" alt="">Blog</li>
+                <a target="_blank" href="https://www.facebook.com/Reforma-Stays-101407415046747"><li><img src="imgs/facebook.svg" alt="">Reforma Stays</li></a>
+                <!-- <li><img src="imgs/edit.svg" alt="">Blog</li> -->
             </ul>
         </div>
     </div>

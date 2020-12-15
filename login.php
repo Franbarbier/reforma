@@ -110,6 +110,9 @@ if(isset($_SESSION['id_user'])){
 				<span>Inicia sesion con Google</span>
 			</button>
 		</a>
+		<a href="registrarse.php">
+			<button id="crear-cuenta">CREAR CUENTA</button>
+		</a>
 		<p>¿Olvidaste tu contraseña?</p>
     </header>
     <div>
@@ -178,6 +181,39 @@ $(document).on("click", "#loginear", function(e){
         });
 
 })
+
+
+function modal_change_pass(){
+    $(document).on("click", "main>header>p", function (e) {
+        $('#change-pass').fadeTo(0, 150)
+        e.stopPropagation()
+    });
+
+    $(document).on("click", ".cerrar-main-modal", function () {
+        $(this).parent().parent().fadeOut(150)
+    })
+    
+    
+
+    return `<div class="main-modal" id="change-pass" style="display: none">
+    <div>
+        <div class="cerrar-main-modal">
+            <img src="imgs/letter-x.svg" height="8px" alt="">
+        </div>
+        <div>
+            <div class="modal-header">Recuperar contraseña</div>
+			<div>
+				<h5>Ingresá el mail de la cuenta</h5>
+				<form>
+					<input id="mail-user" type="email">
+					<input type="submit" id="send-pass" value="RECUPERAR">
+				</form>
+			</div>
+        </div>
+    </div> </div>`;
+
+}
+$('body').append(modal_change_pass());
 
 });
 </script>

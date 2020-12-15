@@ -1,7 +1,13 @@
 {
     "require" : {
+<<<<<<< HEAD
       "braintree/braintree_php" : "5.4.0",
         "paypal/paypal-checkout-sdk": "1.0.1",
         "google/apiclient": "^2.7"
     }
   }
+=======
+      "braintree/braintree_php" : "5.4.0"
+    }
+  }
+>>>>>>> 00872e43b93e64d1d631e4562a7a04fc15ceeade

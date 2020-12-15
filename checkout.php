@@ -333,11 +333,11 @@ $(document).on("click", "#select-city-nav button", function(e){
 
 
 
-var bruto = parseFloat($('#precio-bruto').text())
-var dcto = parseFloat($('#dcto').text())
-var fee = parseFloat($('#fee').text())
-var total = parseFloat($('#total').text())
-$('#total').text(bruto+dcto+fee)
+// var bruto = parseFloat($('#precio-bruto').text())
+// var dcto = parseFloat($('#dcto').text())
+// var fee = parseFloat($('#fee').text())
+// var total = parseFloat($('#total').text())
+// $('#total').text(bruto+dcto+fee)
 
 $('.cartas').click(function(){
 	$('.cartas').removeClass('active-carta')

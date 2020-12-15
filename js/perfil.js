@@ -1,4 +1,4 @@
-const id_usuario = 2;
+const id_usuario = $('#id_usuario').val();
 var global_reservas;
 
 // Seccion de inicializacion
@@ -152,6 +152,7 @@ function init_beneficios(){
 function modal_reserva(){
     $(document).on("click", ".ver-reserva", function (e) {
         var id_reserva = $(this).closest('.actual-reserva-row').attr('id')
+        console.log('id RESERVA: ', id_reserva)
         init_modal_reserva(id_reserva)
         $('#modal-reserva').fadeTo(0, 150)
         e.stopPropagation()
@@ -280,6 +281,12 @@ function modal_favoritos(favs){
 }
 
 
+function edit_config(){
+    $('#modal-config input, #modal-config select').attr('disabled', false).addClass('editables')
+    $('#save-buttons').slideDown(150)
+    $('#save-buttons').css('display','flex')
+    $('#config-buttons').slideUp(150)
+};
 
 function modal_config(){
     $(document).on("click", "#admin-config", function (e) {
@@ -288,10 +295,96 @@ function modal_config(){
     });
 
     $(document).on("click", ".cerrar-main-modal", function () {
+        $('#modal-config input, #modal-config select').attr('disabled', true).removeClass('editables');
+        $('#save-buttons').slideUp(150);
+        $('#config-buttons').slideDown(150)
         $(this).parent().parent().fadeOut(150)
+
+    })
+    $(document).on("click", "#cerrar-config", function () {
+        $('#modal-config input, #modal-config select').attr('disabled', true).removeClass('editables');
+        $('#save-buttons').slideUp(150);
+        $('#config-buttons').slideDown(150)
+        $('#modal-config').fadeOut(150)
+
+    })
+    $(document).on("click", "#editar-config", function () {
+        edit_config();
     })
 
-    return '<div class="main-modal" id="modal-config" style="display: none"> <div> <div class="cerrar-main-modal"> <img src="imgs/letter-x.svg" height="8px" alt=""> </div> <div> <div class="modal-header">Configuración de la cuenta</div><div> <div class="profile-img"></div> </div></div> </div> </div>';
+    return `<div class="main-modal" id="modal-config" style="display: none">
+    <div>
+        <div class="cerrar-main-modal">
+            <img src="imgs/letter-x.svg" height="8px" alt="">
+        </div>
+        <div>
+            <div class="modal-header">Configuración de la cuenta</div>
+            <div id="inside-config">
+                <form>
+                    <div>
+                        <div class="profile-img">
+                            <input disabled type="file" id="myFile" name="filename" accept="image/*">
+                            <img src="imgs/no-user-pic.jpg" alt="" class="p-pic">
+                            <label for="myFile"></label>
+                        </div>
+                        <div>
+                            <input disabled id="nombre" type="text" value="Nombre">
+                            <input disabled id="apellido" type="text" value="Apellido">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="labelss" for="mail">Mail</label>
+                        <input disabled type="email" id="mail" value="ejemplo@gmail.com">
+                    </div>
+                    <div>
+                        <label class="labelss" for="mail">Teléfono</label>
+                        <input disabled type="tel" value="54 9 11 1234-5689">
+                    </div>
+                    <div>
+                        <label class="labelss" for="pais">País</label>
+                        <select disabled id="pais">
+                            <option selected>Argentina</option>
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="labelss" for="fechaNac">Fecha de nacimiento</label>
+                        <input disabled type="date" id="fechaNac" value="1998-03-03">
+                    </div>
+                    <aside id="save-buttons">
+                        <button id="descartar-config">DESCARTAR</button>
+                        <button id="guardar-config">GUARDAR</button>
+                    </aside>
+                </form>
+                <div id="config-buttons">
+                    <button id="cerrar-config">CERRAR</button>
+                    <button id="editar-config">EDITAR INFO</button>
+                </div>
+            </div>
+        </div>
+    </div> </div>`;
+
+}
+
+function getFavoritos(){
+
+    fetch('php/api/usuarios.php?func=verFavoritos')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (favs) {
+            console.log(favs)
+
+            $('body').append(modal_favoritos(favs))
+
+        });
 
 }
 
