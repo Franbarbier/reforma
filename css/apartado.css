@@ -485,9 +485,10 @@ main>div>img{
 
 #sticky-price{
   padding: 4% 7%;
+  padding-top: 0;
   border-left: 1px solid #ddd;
   position: sticky;
-  top:2%;
+  top: 2%;
 }
 .contC>button{
   display: none;
@@ -501,14 +502,14 @@ main>div>img{
 }
 .info-box{
   /* width: 91%; */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: auto;
-    border-radius: 2px;
-    padding: 2% 4%;
-    border: 1px solid #ddd;
-    margin: 5% auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  border-radius: 2px;
+  padding: 1% 4%;
+  border: 1px solid #ddd;
+  margin: 3% auto;
 }
 
 .info-box>div:first-child{
@@ -529,7 +530,7 @@ main>div>img{
     padding-left: 5%;
     padding-right: 1%;
     border-left: 1px #ddd solid;
-    font-size: .85em;
+    font-size: .8em;
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -562,6 +563,33 @@ main>div>img{
   font-size: 0.8em;
   color: #757575;
 }
+#sticky-price table {
+  width: 100%;
+  font-size: 0.9em;
+  border-bottom: 1px #ddd solid;
+  /* border-top: 1px #ddd solid; */
+  margin-bottom: 5%;
+  padding: 2% 0;
+}
+#sticky-price table td {
+  padding: 5px 0;
+}
+#por-noche ~ span {
+  margin: 0 3px;
+}
+#total-cont {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#precio-bruto:before, #fee:before, #dcto:before, #total:before {
+  content: '$';
+  margin-right: 2px;
+}
+#precio-bruto, #fee, #dcto, #total {
+  text-align: right;
+} 
+
 
 #sticky-reservar{
   

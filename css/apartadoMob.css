@@ -573,7 +573,32 @@ main>div>img{
   font-size: 0.8em;
   color: #757575;
 }
-
+#sticky-price table {
+  width: 100%;
+  font-size: 0.9em;
+  border-bottom: 1px #ddd solid;
+  /* border-top: 1px #ddd solid; */
+  margin-bottom: 5%;
+  padding: 2% 0;
+}
+#sticky-price table td {
+  padding: 5px 0;
+}
+#por-noche ~ span {
+  margin: 0 3px;
+}
+#total-cont {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#precio-bruto:before, #fee:before, #dcto:before, #total:before {
+  content: '$';
+  margin-right: 2px;
+}
+#precio-bruto, #fee, #dcto, #total {
+  text-align: right;
+} 
 #sticky-reservar{
   
   background: #d4bfaa;

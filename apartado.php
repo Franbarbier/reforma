@@ -248,7 +248,7 @@ if(isset($_SESSION['id_user'])){
                     <?php include 'calendarDesplegableApartado.php'; ?>
                 </div>
             </div>
-            <div class="info-box" id="sticky-huespedes">
+            <!-- <div class="info-box" id="sticky-huespedes">
                 <div>
                     <img src="imgs/coin.svg" alt="">
                 </div>
@@ -264,7 +264,7 @@ if(isset($_SESSION['id_user'])){
                     </div>
                     <input type="hidden"  id="precio-final-hidden">
                 </div>
-            </div>
+            </div> -->
             <!-- <div class="info-box">
                 <div>
                     <img src="imgs/users-handmade.svg" alt="">
@@ -284,6 +284,26 @@ if(isset($_SESSION['id_user'])){
                         <li>40% 30 + noches</li>
                     </ul>
                 </div>
+            </div>
+            <table>
+				<tbody>
+                    <tr>
+                        <td><span id="por-noche">$35</span><span>x</span><span id="cant-noches">5 noches</span></td>
+                        <td id="precio-bruto"></td>
+                    </tr>
+                    <tr>
+                        <td><span>Tarifa limpieza</span></td>
+                        <td id="fee">15</td>
+                    </tr>
+                    <tr>
+                        <td><span>Descuento semanal (%10)</span></td>
+                        <td id="dcto">-57</td>
+                    </tr>
+				</tbody>
+            </table>
+            <div id="total-cont">
+                <strong>Total</strong>
+                <strong id="total">NaN</strong>
             </div>
             <button id="sticky-reservar">RESERVAR</button>
 
@@ -570,6 +590,8 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
     }
 
     $('#precio-final').html('$'+tarifa_final)
+    $('#precio-bruto').html(tarifa_final)
+
     $('#precio-final-hidden').val(tarifa_final)
 
 }else{
