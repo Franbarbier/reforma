@@ -109,11 +109,19 @@ if(isset($_GET['logout'])){
 					</div>
 					<div id="n-provincia">
 						<label for="">Provincia</label>
-						<input class="grey-input" type="text">
+						<select name="" class="grey-input" id="">
+							<option value="">Argentin</option>
+							<option value="">Argentin</option>
+							<option value="">Argentin</option>
+						</select>
 					</div>
 					<div id="n-localidad">
 						<label for="">Localidad</label>
-						<input class="grey-input" type="text">
+						<select disabled name="" class="grey-input" id="">
+							<option value="">Argentin</option>
+							<option value="">Argentin</option>
+							<option value="">Argentin</option>
+						</select>
 					</div>
 					<div class="house-display">
 						<div>
@@ -131,10 +139,19 @@ if(isset($_GET['logout'])){
 							<p>Dormitorios</p>
 							<input class="grey-input" type="number">
 						</div>
-						<div id="n-camas" style="opacity:0.2">
-							<p>Dormitorio Z</p>
-							<p>Tantas camas dinamica</p>
-							<input class="grey-input" type="number">
+						<div id="n-camas">
+							<div class="dormitorio">
+								<p>Dormitorio 1</p>
+								<div class='camas-en-dormis'>
+									<select class="grey-input" name="" id="">
+										<option value="">Matrimonial</option>
+										<option value="">Individual</option>
+										<option value="">Sofa/Colchón</option>
+									</select>
+									<input class="grey-input" type="number">
+								</div>
+							</div>
+							
 						</div>
 					</div>
 					<div id="amenities">
@@ -147,14 +164,33 @@ if(isset($_GET['logout'])){
 						<p>Concepto</p>
 						<textarea class="grey-input"></textarea>
 					</div>
-					<div>
-						<p>Diseñador</p>
+					<div class="lasts">
+						<div>
+							<p>Diseñador</p>
+							<input class="grey-input" type="text">
+						</div>
+						<div>
+							<p>Ubicacion</p>
+							<input class="grey-input" type="text">
+						</div>
 					</div>
-					<div>
-						<p>Ubicacion</p>
-					</div>
-					<div>
-						<p>Tarifa por noche</p>
+					<div class="lasts">
+						<div>
+							<p>Tarifa por Limpieza</p>
+
+							<div>
+								<span>$</span>
+								<input class="grey-input" type="number">
+							</div>
+						</div>
+						<div>
+							<p>Tarifa por noche</p>
+
+							<div>
+								<span>$</span>
+								<input class="grey-input" type="number">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

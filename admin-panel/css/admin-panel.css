@@ -32,8 +32,7 @@ body {
   overflow-x: hidden;
   color: #272727;
 }
-button,
-input {
+button, select, input {
   font-family: "Century Gothic";
   outline: none;
 }
@@ -108,13 +107,17 @@ nav > div > div > div > a > img {
 #body-2>main{
   width: 82%;
   overflow: auto;
-  height: 90vh;
+  height: 81vh;
   padding-top: 10vh;
+  padding-bottom: 9vh;
 }
 main>div{
   width: 90%;
   margin: auto;
 }
+
+/* VER PROPIEDADES PROPIEDAD */
+
 #ver_propiedades>div>h2, #crear_propiedad>div>h2{
   font-size: 1.9em;
 }
@@ -186,9 +189,12 @@ main>div{
   transition: 0.15s;
 }
 
+
+/* SUBIR NUEVA PROPIEDAD */
 #crear_propiedad label{
-  font-size: 0.9em;
-  color: #6d6d6d;
+  color: #535353;
+  font-weight: 600;
+  font-size: 1.3em;
   display: block;
   margin-bottom: 3px;
 }
@@ -200,6 +206,7 @@ main>div{
   width: 26%;
   display: inline-block;
 }
+
 .grey-input{
   background: #f0f0f0;
   border: 1px solid #ddd;
@@ -222,11 +229,12 @@ main>div{
    margin-top: 60px;
 }
 .house-display>div img{
-    width: 48px;
-    margin-right: 75%;
+    width: 12%;
+    margin-right: 88%;
 }
 .house-display>div p{
   font-weight: 600;
+  color: #535353;
 }
 .house-display>div input{
   width: 15%;
@@ -235,9 +243,10 @@ main>div{
 #amenities{
   margin: 80px 0;
 }
-#amenities>p, #concepto>p{
+#amenities>p, #concepto>p, .lasts>div>p{
   font-weight: 600;
   font-size: 1.3em;
+  color: #535353;
 }
 #amenities ul{
   display: flex;
@@ -286,3 +295,23 @@ main>div{
     overflow: auto;
     margin-top: 10px;
 }
+.lasts{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.lasts>div{
+  width: 40%;
+  margin-top: 5%;
+}
+.lasts>div p{
+  margin-bottom: 3px;
+}
+.lasts>div>div span{ 
+  font-weight: 600;
+  font-size: 1.5em;
+}
+.lasts>div>div input{
+  font-size: 1.3em;
+  width: 20%;
+} 
