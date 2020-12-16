@@ -748,3 +748,59 @@ main>div>img{
   cursor: pointer;
   background-color: rgba(212, 191, 170, 0.5);
 }
+
+#galeria-expanded-cont{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.7);
+  /* display: none; */
+}
+#galeria-expanded-cont>div{
+  height: 70vh;
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  margin: 0;
+  margin-top: 10%;
+}
+
+#galeria-expanded-cont>div .flickity-viewport {
+    height: 100%!important;
+}
+#galeria-expanded-cont>div .flickity-slider{
+  /* transform: none!important; */
+  height: 100%;
+}
+
+#galeria-expanded-cont>div .carousel-cell {
+  width: 80%!important;
+}
+.galeria-grande>img {
+  width: auto!important;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  margin: auto;
+}
+.noaparece{
+  /* z-index: -99999; */
+  visibility: hidden;
+}
+#galeria-expanded-cont aside{
+  position: absolute;
+  width: 35px;
+  top: 5%;
+  right: 15%;
+  cursor: pointer;
+}
+
+#galeria-expanded-cont aside>img{ 
+  width: 100%;
+  filter: invert(1);
+  padding: 8px;
+  CURSOR: POINTER;
+  border-radius: 50%;
+  border: 2px solid black;
+}

@@ -104,14 +104,17 @@ function render_apartado(propiedad) {
 
     // renderizamos las imgs de la galeria
     var galeria = JSON.parse(propiedad.galeria)
-    var html = ''
+    var html = '';
+    var htmlGaleriaExpand = '';
     for (img in galeria) {
         html += comp_img_carrousel(galeria[img])
+        htmlGaleriaExpand += imgs_galeria_grande(galeria[img])
     }
 
     console.log('galeria: ' + html)
 
     $('#cont-carousel').load('slider-apartado.php', { galeria: html })
+    $('#galeria-expanded-cont>div').html(htmlGaleriaExpand)
 
     // Traemos la info del diseñador
     fetch('php/api/globales.php?func=verDisenador&id=' + propiedad.id_disenador)
@@ -214,6 +217,9 @@ function comp_recomendado(nombre, localidad, provincia, huespedes, banos, dormit
 
 function comp_img_carrousel(img) {
     return '<div class="carousel-cell"><img src="imgs/propiedades_imgs/' + img + '" alt=""></div>'
+}
+function imgs_galeria_grande(img) {
+    return '<div class="galeria-grande carousel-cell"><img src="imgs/propiedades_imgs/' + img + '" alt=""></div>'
 }
 
 function comp_precio_final_cont(precio, por_noche, descuento = '0') {

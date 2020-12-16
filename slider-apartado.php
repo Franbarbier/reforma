@@ -10,7 +10,7 @@ $galeria = $_POST['galeria'];
 <script src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
 
 <!-- Flickity HTML init -->
-<div class="carousel" data-flickity='{ "groupCells": true }'>
+<div class="carousel" data-flickity='{ "groupCells": true}'>
   <!-- <div onmousedown="mouseDown()" class="carousel-cell"></div> -->
   <!-- <div class="carousel-cell">
       <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="">
@@ -121,8 +121,11 @@ body { font-family: sans-serif; }
 @media only screen and (max-width: 800px) {
   .next {
     left: 88%!important;
-
   }
+  .carousel-cell {
+    width: 100%;
+  }
+
 }
 
 </style>
@@ -132,24 +135,30 @@ $(document).ready(function(){
 
 
 
-$('.carousel-cell').on('mousedown', function (evt) {
-console.log('asd')
+$(document).click(function(event) {
+      if (!$(event.target).closest("#galeria-expanded-cont>div, .carousel-cell").length) {
+        $('#galeria-expanded-cont').addClass('noaparece')
+        // console.log('asasdasdsadasdasdasadss')
+  }
+});
 
+
+$('.carousel').on( 'staticClick.flickity', function( event, pointer, cellElement, cellIndex ) {
+    console.log(cellIndex+1)
+    var cell = cellIndex+1
+   $('#galeria-expanded-cont').removeClass('noaparece')
+});
+
+$(document).on('click','#galeria-expanded-cont aside', function () {
+   $('#galeria-expanded-cont').addClass('noaparece')
 })
 
-$('.carousel-cell').on('click', function (evt) {
-console.log('click')
 
-})
-
-
-// $( "h1" )
-//   .mouseup(function() {
-//     $( this ).css( 'opacity','1');
-//   })
-//   .mousedown(function() {
-//     $( this ).css( 'opacity','0');
-//   });
+if (screen.width < 800) {
+    console.log('asas')
+}else{
+    console.log('perrrrrrr')
+}
 
 
 });

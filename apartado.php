@@ -428,6 +428,14 @@ if(isset($_SESSION['id_user'])){
 
 
 <?php include 'footer.php';?>
+
+<div id="galeria-expanded-cont" class="noaparece">
+    <aside><img src="imgs/letter-x.svg" alt=""></aside>
+    <div class="carousel" data-flickity='{ "groupCells": 1 }'>
+
+    </div>
+</div>
+
 </body>
 
 <script src="js/apartado.js"></script>
