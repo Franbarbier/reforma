@@ -485,9 +485,10 @@ main>div>img{
 
 #sticky-price{
   padding: 4% 7%;
+  padding-top: 0;
   border-left: 1px solid #ddd;
   position: sticky;
-  top:2%;
+  top: 2%;
 }
 .contC>button{
   display: none;
@@ -501,14 +502,14 @@ main>div>img{
 }
 .info-box{
   /* width: 91%; */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: auto;
-    border-radius: 2px;
-    padding: 2% 4%;
-    border: 1px solid #ddd;
-    margin: 5% auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  border-radius: 2px;
+  padding: 1% 4%;
+  border: 1px solid #ddd;
+  margin: 3% auto;
 }
 
 .info-box>div:first-child{
@@ -529,7 +530,7 @@ main>div>img{
     padding-left: 5%;
     padding-right: 1%;
     border-left: 1px #ddd solid;
-    font-size: .85em;
+    font-size: .8em;
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -562,6 +563,33 @@ main>div>img{
   font-size: 0.8em;
   color: #757575;
 }
+#sticky-price table {
+  width: 100%;
+  font-size: 0.9em;
+  border-bottom: 1px #ddd solid;
+  /* border-top: 1px #ddd solid; */
+  margin-bottom: 5%;
+  padding: 2% 0;
+}
+#sticky-price table td {
+  padding: 5px 0;
+}
+#por-noche ~ span {
+  margin: 0 3px;
+}
+#total-cont {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#precio-bruto:before, #fee:before, #dcto:before, #total:before {
+  content: '$';
+  margin-right: 2px;
+}
+#precio-bruto, #fee, #dcto, #total {
+  text-align: right;
+} 
+
 
 #sticky-reservar{
   
@@ -805,4 +833,59 @@ main>div>img{
 
 .aplicado img{
   opacity: 1!important;
+}
+#galeria-expanded-cont{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.7);
+  /* display: none; */
+}
+#galeria-expanded-cont>div{
+  height: 70vh;
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  margin: 0;
+  margin-top: 10%;
+}
+
+#galeria-expanded-cont>div .flickity-viewport {
+    height: 100%!important;
+}
+#galeria-expanded-cont>div .flickity-slider{
+  /* transform: none!important; */
+  height: 100%;
+}
+
+#galeria-expanded-cont>div .carousel-cell {
+  width: 80%!important;
+}
+.galeria-grande>img {
+  width: auto!important;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  margin: auto;
+}
+.noaparece{
+  /* z-index: -99999; */
+  visibility: hidden;
+}
+#galeria-expanded-cont aside{
+  position: absolute;
+  width: 35px;
+  top: 5%;
+  right: 15%;
+  cursor: pointer;
+}
+
+#galeria-expanded-cont aside>img{ 
+  width: 100%;
+  filter: invert(1);
+  padding: 8px;
+  CURSOR: POINTER;
+  border-radius: 50%;
+  border: 2px solid black;
 }
