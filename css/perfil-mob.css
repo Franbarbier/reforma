@@ -354,17 +354,24 @@ color: #676767;
     margin-bottom: 25px;
     border: 1px solid #ddd;
     border-radius: 2px;
+    position: relative;
 }
 .beneficios-nivel h5{
-    text-align: center;
+    text-align: left;
 }
 .beneficios-nivel h6{
-    text-align: center;
+    text-align: left;
     font-size: 3em;
 }
 .beneficios-nivel li{
     font-size: .75em;
     margin: 10px 0;
+}
+
+.moon{
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
 }
 
 .active-level{

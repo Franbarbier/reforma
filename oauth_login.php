@@ -18,6 +18,10 @@ $google_client->addScope('profile');
 
 session_start();
 
+if(isset($_GET['returnuri'])){
+	$_SESSION['returnuri'] = $_GET['returnuri'];
+}
+
 // Termina el CONFIG aca
 
 $login_url = '';
@@ -98,7 +102,11 @@ if(isset($_GET["code"]))
 
         // Creamos el usuario
         var_dump($globales->crearUsuario($nombre, $apellido, $mail, $telefono));
-        header('location: index.php');
+        if($_SESSION['returnuri']!=''){
+            header('location: ' . $_SESSION['returnuri']);
+        }else{
+            header('location: index.php');
+        }
 
    }
 
@@ -117,7 +125,11 @@ if(!isset($_SESSION['access_token']))
  //Create a URL to obtain user authorization
  $login_url = $google_client->createAuthUrl();
 }else{
-    header('location: index.php');
+    if(isset($_GET['returnuri'])){
+        $_SESSION['returnuri'] = $_GET['returnuri'];
+    }else{
+        header('location: index.php');
+    }
 }
 
 ?>

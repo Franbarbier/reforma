@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'e3035ab9935b07244e13409629238a297c76dfb3',
+    'reference' => '076d5bd0417474f2cacedf0e6b8569eafe8179ee',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,16 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'e3035ab9935b07244e13409629238a297c76dfb3',
+      'reference' => '076d5bd0417474f2cacedf0e6b8569eafe8179ee',
+    ),
+    'braintree/braintree_php' => 
+    array (
+      'pretty_version' => '5.4.0',
+      'version' => '5.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '17be7efd7a044a0608dde81f45652aec5ba673e8',
     ),
     'firebase/php-jwt' => 
     array (
@@ -31,21 +40,21 @@
     ),
     'google/apiclient' => 
     array (
-      'pretty_version' => 'v2.8.1',
-      'version' => '2.8.1.0',
+      'pretty_version' => 'v2.8.3',
+      'version' => '2.8.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c8f6d09f50f859fa9457104bb0fb72c893804ede',
+      'reference' => '81696e6206322e38c643cfcc96c4494ccfef8a32',
     ),
     'google/apiclient-services' => 
     array (
-      'pretty_version' => 'v0.153',
-      'version' => '0.153.0.0',
+      'pretty_version' => 'v0.156',
+      'version' => '0.156.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'db62bb19f32f81c9551f223c72be0682eb58ebd8',
+      'reference' => '2f5e54fdef034f856208328126bddd8376dae4b3',
     ),
     'google/auth' => 
     array (
@@ -92,14 +101,23 @@
       ),
       'reference' => 'f9eee5cec93dfb313a38b6b288741e84e53f02d5',
     ),
-    'paypal/rest-api-sdk-php' => 
+    'paypal/paypal-checkout-sdk' => 
     array (
-      'pretty_version' => '1.14.0',
-      'version' => '1.14.0.0',
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '72e2f2466975bf128a31e02b15110180f059fc04',
+      'reference' => 'ed6a55075448308b87a8b59dcb7fedf04a048cb1',
+    ),
+    'paypal/paypalhttp' => 
+    array (
+      'pretty_version' => '1.0.0',
+      'version' => '1.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1ad9b846a046f09d6135cbf2cbaa7701bbc630a3',
     ),
     'phpseclib/phpseclib' => 
     array (

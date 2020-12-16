@@ -1,0 +1,219 @@
+@font-face {
+  font-family: Century Gothic;
+  src: url(../GOTHIC.TTF)
+  /*url('./GOTHICB.TTF'),*/
+  /*url('./GOTHICBI.TTF'), */
+  /*url('./GOTHICI.TTF'), */
+}
+@font-face {
+  font-family: Century Gothic;
+  src: url(../GOTHICB.TTF);
+  font-weight: bold;
+}
+
+/*marron #d4bfaa*/
+::selection {
+  background: #d4bfaa;
+  color: white;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+li {
+  list-style: none;
+}
+body {
+  font-family: "Century Gothic";
+  overflow-x: hidden;
+  color: #272727;
+  background-color: #fafafa;
+}
+button,
+input {
+  font-family: "Century Gothic";
+  outline: none;
+}
+.cont90 {
+  width: 90%;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+}
+.contC {
+  width: 33.33%;
+}
+.contG {
+  width: 60%;
+}
+
+nav {
+  position: fixed;
+  top: 0vh;
+  left: 0;
+  width: 100%;
+  padding-top: 2vh;
+  padding-bottom: 1vh;
+  z-index: 99;
+  background-image: linear-gradient( #fafafa 0%, transparent 0%);
+  transition: .7s cubic-bezier(0.13, 0.77, 0.33, 1);
+}
+nav > div > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+nav > div > div > div {
+  width: 4%;
+  cursor: pointer;
+  z-index: 99;
+  position: relative;
+  z-index: 99;
+}
+nav > div > div > div:first-child{
+  display: flex;
+  align-items: center;
+}
+nav > div > div > div > a > img {
+  width: 3vw;
+}
+#menu-cont>div{
+  display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+#linea-menu1,
+#linea-menu2 {
+  width: 30px;
+  float: right;
+  background: #272727;
+  height: 4px;
+  margin: 3px 0%;
+  border-radius: 35px;
+  display: block;
+  transition: 0.5s cubic-bezier(0.13, 0.77, 0.33, 1);
+  transition-delay: 0.15s;
+}
+#ciudades{
+  position: absolute;
+  top: 110%;
+  background: #fafafa;
+  /* cursor: pointer; */
+  z-index: 2;
+  width: 100%;
+  border: 1px solid #dadada;
+  backdrop-filter: blur(8px);
+  display: none;
+}
+#ciudades-nav{
+    position: absolute;
+    top: 110%;
+    background: rgba(250 250 250/ 0.6);
+    left: 45px;
+z-index: 2;
+    width: max-content;
+    border: 1px solid #dadada;
+    backdrop-filter: blur(8px);
+    display: none;
+    border-radius: 2px;
+}
+#ciudades ul, #ciudades-nav ul {
+  padding: 2% 7%;
+}
+#ciudades ul li, #ciudades-nav ul li {
+  margin: 5% 0;
+  cursor: pointer;
+}
+#ciudades ul li:hover, #ciudades-nav ul li:hover {
+  font-weight: 600;
+}
+#select-city, #select-city-nav {
+  border-bottom: 0px solid transparent;
+  cursor: pointer;
+}
+#select-city p, #select-city-nav p {
+  color: #7b7b7b;
+}
+#f-ciudad-nav{
+  position: relative;
+  color: #484848;
+  margin-left: 45px;
+  width: max-content;
+}
+#select-city-nav{
+  position: relative;
+  display: flex;
+  align-items: center;
+  display: none;
+}
+#select-city-nav button{
+  margin-left: 25px;
+  background: transparent;
+  border: none;
+  padding: 5px 15px;
+  background: #d4bfaa;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  border: 1px solid #d4bfaa;
+  transition: .2s cubic-bezier(0.13, 0.77, 0.33, 1);
+}
+#select-city-nav button:hover{
+  background-color: transparent;
+  color: #d4bfaa;
+}
+
+
+/* Empiezan estilos exclusivos a gracias */
+
+main{
+  padding: 30vh 0 30vh;
+}
+
+#heading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#titles{
+    display: flex;
+   flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#titles h2{
+  font-size: 1em;
+  margin-top: 5px;
+  color: #4e4e4e;
+}
+
+#titles .classic-btn{
+  margin-top: 28px;
+}
+
+.classic-btn{
+  background: #d4bfaa;
+  border: 2px solid #d4bfaa;
+  color: white;
+  font-weight: 600;
+  font-size: 0.7em;
+  letter-spacing: .5px;
+  padding: 6px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: .15s;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.classic-btn:hover{
+  color: #d4bfaa;
+  background-color: transparent;
+}

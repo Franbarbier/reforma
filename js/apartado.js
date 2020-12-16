@@ -3,9 +3,9 @@ var urlParams = new URLSearchParams(queryString);
 const id_propiedad = urlParams.get('id')
 var global_logeado = $('#logeado').val()
 
-if(global_logeado!='si'){
-    $('#save').css('display', 'none')
-}
+// if(global_logeado!='si'){
+//     $('#save').css('display', 'none')
+// }
 
 // var global_checkin;
 // var global_checkout;
@@ -243,16 +243,120 @@ function comp_accion_confir() {
             </div>`
 }
 
+function comp_btns_login(){
+    return `<div class="mm-btns-cont">
+                <div class="mm-btn mm-negative mm-cerrar">CANCELAR</div>
+                <div class="mm-btn mm-positive mm-login">INICIAR SESION</div>
+            </div>`
+}
+
 function favear() {
     console.log(id_propiedad)
     let save_img = $('#save img');
-    if (!save_img.hasClass('fav')) {
-        save_img.attr('src','imgs/love-filled.svg')
-        save_img.addClass('fav')
 
+    // Si no esta logeado, abrimos el modal
+    if(global_logeado!='si'){
+
+        render_modal('Inicia Sesión', 'Para añadir una propiedad a favoritos necesitamos que inicies sesión en tu cuenta.', comp_btns_login())
     }else{
-        save_img.attr('src','imgs/love.svg')
-        save_img.removeClass('fav')
+        
+        if (!save_img.hasClass('fav')) {
+            save_img.attr('src','imgs/love-filled.svg')
+            save_img.addClass('fav')
+            
+        }else{
+            save_img.attr('src','imgs/love.svg')
+            save_img.removeClass('fav')
+        }
+
+    }
+}
+
+function anadirFavorito(id_favorito, action){
+    console.log('function anadirFavorito')
+
+    fetch('php/api/usuarios.php?func=anadirFavorito&favorito=' + id_favorito + '&action='+action) 
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (res) {
+        console.log(res)
+        if(res.error==0){
+            console.log('Favorito modificado con exito!')
+        }
+    });
+
+}
+
+// Funcion que chequea si la propiedad pertenece a los favoritos del usuario
+function checkFavorito(){
+
+    fetch('php/api/usuarios.php?func=checkFavorito&id_propiedad=' + id_propiedad) 
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (res) {
+        console.log('check fav res')
+        console.log(res)
+        if(res.error==0){
+
+            if(res.favorito==1){
+
+                console.log('holu')
+
+                $('#save img').addClass('fav');
+                $('#save img').attr('src','imgs/love-filled.svg')
+
+            }
+
+        }
+    });
+
+
+}
+
+
+// Componente main modal
+function comp_main_modal(){
+
+    $(document).on('click', '#mm-cerrar, .mm-cerrar, #main-modal-cont, #mm-entendido-btn', function(){
+        $('#main-modal-cont').fadeOut(100)
+    })
+
+    $(document).on('click', '#main-modal', function(e){
+        e.stopPropagation()
+    })
+
+    $(document).on('click', '.mm-login', function(){
+        var returnuri = window.location.href
+        window.location="login.php?returnuri="+returnuri
+    })
+
+    return `<div id="main-modal-cont" style="display:none">
+
+                <div id="main-modal">
+
+                    <div id="mm-cerrar">x</div>
+
+                    <div id="mm-heading">
+                        <div id="mm-titulo">Titulo de prueba</div>
+                        <div id="mm-descripcion">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt magni.</div>
+                    </div>
+
+                    <div id="mm-contenido">
+                        
+                    </div>
+                
+                </div>
+
+            </div>` 
+}
+
+// Funcion que abre el modal inyectandole cierto contenido
+function render_modal(titulo, descripcion='', contenido='ENTENDIDO'){
+
+    if(contenido=='ENTENDIDO'){
+        contenido = `<div id="mm-entendido-btn">ENTENDIDO</div>`
     }
 }
 

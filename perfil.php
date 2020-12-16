@@ -161,7 +161,7 @@ if(isset($_SESSION['id_user'])){
 			foreach($reservas_activas as $key=>$reserva){
 			
 			?>
-					<div class="actual-reserva-row">
+					<div class="actual-reserva-row" id="<?php echo $reserva['id'] ?>">
 						<div class="foto-prop-cont">
 							<img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="">
 						</div>
@@ -234,7 +234,7 @@ if(isset($_SESSION['id_user'])){
 				</div>
 			</div>
 			<div id="beneficios-cont">
-				<h4>Beneficios por niveles</h4>
+				<h4>Beneficios por puntos</h4>
 				<div>
 					
 				</div>
@@ -254,6 +254,9 @@ if(isset($_SESSION['id_user'])){
 
 <script src="js/perfil.js"></script>
 <script>
+
+var global_nivel;
+
 $( document ).ready( function(){
 
 $('body').append(modal_reserva())

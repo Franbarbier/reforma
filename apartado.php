@@ -280,8 +280,8 @@ if(isset($_SESSION['id_user'])){
                 <div id="descuentos">
                     <p>Descuentos por estadias largas:</p>
                     <ul>
-                        <li>20% 14 + noches</li>
-                        <li>40% 30 + noches</li>
+                        <li class="descuento" id="d-seis"><b>6%</b> 7 + noches <img src="imgs/checked.svg" height="16px"></li>
+                        <li class="descuento" id="d-doce"><b>12%</b> 30 + noches <img src="imgs/checked.svg" height="16px"></li>
                     </ul>
                 </div>
             </div>
@@ -462,8 +462,14 @@ if(isset($_SESSION['id_user'])){
 <script>
 
 const logeado = $('#logeado').val()
+var global_days_to_stay;
+var global_descuento = '';
 
 $(document).ready(function(){
+
+if(logeado=='si'){
+    checkFavorito();
+}
 
 $('body').append(comp_main_modal())
 
@@ -576,11 +582,31 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
     days_to_stay = days_to_stay / day_in_milli
 
     console.log('Days to stay: ', days_to_stay)
+    global_days_to_stay = days_to_stay
+
     
     var tarifa = $('#tarifa').html()
     console.log('tarifa: '+ tarifa)
-
+    
     var tarifa_final = tarifa * days_to_stay
+
+    if(days_to_stay>=7 && days_to_stay<30){
+        console.log('Descuento del 6%')
+        $('.descuento').removeClass('aplicado')
+        $('#d-seis').addClass('aplicado')
+        // Le sacamos el 6%
+        tarifa_final = Math.round(tarifa_final * 0.94)
+        global_descuento = 6
+    }else if(days_to_stay >= 30){
+        console.log('Descuento del 12%')
+        $('.descuento').removeClass('aplicado')
+        $('#d-doce').addClass('aplicado')
+        tarifa_final = Math.round(tarifa_final * 0.88)
+        global_descuento = 12
+    }else{
+        $('.descuento').removeClass('aplicado')
+    }
+    
 
     console.log('Precio final: ', tarifa_final)
 
@@ -632,6 +658,7 @@ $(document).on('click', '#sticky-reservar', function(){
     if(logeado=='no'){
 
         // Si no está logeado, le abrimos el modal para logearse
+        render_modal('Inicia Sesión', 'Para proceder con la reserva necesitamos que inicies sesión en tu cuenta.', comp_btns_login())
     
     }else if(logeado=='si'){
 
@@ -649,7 +676,7 @@ $(document).on('click', '#sticky-reservar', function(){
             const checkout = $('#checkout input').val()
 
             // Lo llevamos al checkout pasando los parametros checkin, checkout y precio final
-            fetch('init_checkout.php?importe_total=' + importe_total + '&checkin=' + checkin + '&checkout=' + checkout + '&id_propiedad='+id_propiedad)
+            fetch('init_checkout.php?importe_total=' + importe_total + '&checkin=' + checkin + '&checkout=' + checkout + '&id_propiedad='+id_propiedad+'&days_to_stay='+global_days_to_stay+'&descuento='+global_descuento)
             .then(function (response) {
                 return response.json();
             })

@@ -119,7 +119,7 @@ class Usuarios{
             $reservas_array[$c]['check_in'] =  substr($reserva['check_in'], 5);
             $reservas_array[$c]['check_out'] =  substr($reserva['check_out'], 5);
             $reservas_array[$c]['galeria'] =  $propiedad['galeria'];
-            $reservas_array[$c]['precio_final'] =  $reserva['precio_final'];
+            $reservas_array[$c]['importe_total'] =  $reserva['importe_total'];
             $reservas_array[$c]['huespedes'] =  $propiedad['huespedes'];
             $reservas_array[$c]['fecha_creada'] =  $reserva['fecha_creada'];
             $reservas_array[$c]['id_propiedad'] =  $reserva['id_propiedad'];
@@ -152,7 +152,7 @@ class Usuarios{
         // Calculamos el nivel del usuario
 
         // Traemos sus reservas para obtener el score
-        $q = $pdo->prepare("SELECT SUM(precio_final) as score FROM reservas WHERE id_usuario=:id_usuario");
+        $q = $pdo->prepare("SELECT SUM(importe_total) as score FROM reservas WHERE id_usuario=:id_usuario");
         $q->execute(['id_usuario' => $this->id]); 
         $q = $q->fetch();
 
@@ -165,6 +165,7 @@ class Usuarios{
 
         $nivel_usuario = '';
         $nivel_numero = 0;
+        $next_level = null;
 
         foreach($q as $key=>$nivel){
             if($score>=$nivel['score']){
@@ -181,8 +182,16 @@ class Usuarios{
             $score = 0;
         }
 
-        return ["score"=>$score, "nivel"=>$nivel_usuario, "numero"=>$nivel_numero, "next_level_score"=>$next_level['score']];
+        $q = $pdo->prepare("SELECT noches_gratis_usadas FROM usuarios WHERE id=:id_usuario");
+        $q->execute(['id_usuario' => $this->id]); 
+        $q = $q->fetch();
+        $noches_usadas = $q['noches_gratis_usadas'];
 
+        if($noches_usadas == ''){
+            $noches_usadas = '[]';
+        }
+
+        return ["score"=>$score, "nivel"=>$nivel_usuario, "numero"=>$nivel_numero, "next_level_score"=>$next_level['score'], "noches_usadas"=>$noches_usadas];
 
     }
 

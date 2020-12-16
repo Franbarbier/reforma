@@ -429,7 +429,7 @@ if(isset($_GET['logout'])){
 	</article>
 	<article id="paso5">
 		<header>
-			<span>05.</span>
+			<span>055.</span>
 			<h4>Experimentamos el espacio habitandolo nosotros mismos.</h4>
 			<p>Una vez finalizada la reforma, un integrante del equipo habita en el inmueble el tiempo necesario para asegurarnos de pulir hasta el ultimo detalle previo a la llegada de nuestro primer cliente.</p>
 		</header>

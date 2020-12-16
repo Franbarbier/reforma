@@ -9,6 +9,18 @@ if(isset($_SESSION['id_user'])){
 }
 
 $importe_total = $_SESSION['checkout_importe_total'];
+$checkout_id = $_SESSION['checkout_id'];
+$days_to_stay = $_SESSION['checkout_days_to_stay'];
+$descuento = $_SESSION['checkout_descuento'];
+
+if($descuento!=''){
+	$se_ahorra = round($importe_total * ($descuento/100));
+	if($descuento==6){
+		$tipo_descuento = 'semanal';
+	}else if($descuento==12){
+		$tipo_descuento = 'mensual';
+	}
+}
 
 if(isset($_GET['logout'])){
 	session_destroy();
@@ -23,6 +35,8 @@ $usuario = $usuarios->verUsuario();
 
 $propiedades = new Propiedades();
 $propiedad = $propiedades->verPropiedad($_SESSION['checkout_id_propiedad']);
+
+$thumbnail = json_decode($propiedad['galeria'])[0];
 
 // var_dump($propiedad);
 
@@ -78,7 +92,7 @@ $propiedad = $propiedades->verPropiedad($_SESSION['checkout_id_propiedad']);
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 	<!-- SDK de cliente para PayPal -->
-	<script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+	<script src="https://www.paypal.com/sdk/js?client-id=AcSOQzXrlRL_ERTh5svonn3GXR-HYzxEsdGqsjNczLmJUueoLS96o6byOgYsPEGWtc4MzMQ-KfPyXLv4"></script>
 
 </head>
 
@@ -88,6 +102,7 @@ $propiedad = $propiedades->verPropiedad($_SESSION['checkout_id_propiedad']);
 <nav>
     <input type="hidden" value="<?php echo $logeado ?>" id="logeado">	
     <input type="hidden" value="<?php echo $importe_total ?>" id="importe_total">	
+    <input type="hidden" value="<?php echo $checkout_id ?>" id="checkout_id">	
 	<div class="cont90">
 		<div>
 
@@ -203,7 +218,7 @@ $propiedad = $propiedades->verPropiedad($_SESSION['checkout_id_propiedad']);
 				<button>VER DETALLE</button>
 				<div id="sticky-price">
 					<div>
-						<img src="imgs/propiedades_imgs/la-buena-choza-835139.jpg" alt="">
+						<img src="imgs/propiedades_imgs/<?php echo $thumbnail ?>" alt="">
 					</div>
 					<h3 id="nombre-propiedad2"><?php echo $propiedad['nombre']; ?></h3>
 					<div>
@@ -226,13 +241,23 @@ $propiedad = $propiedades->verPropiedad($_SESSION['checkout_id_propiedad']);
 					</div>
 					<table>
 						<tr>
-							<td><span id="por-noche">$114</span><span>x</span><span id="cant-noches">5 noches</span></td>
+							<td><span id="por-noche">$<?php echo $propiedad['tarifa'] ?></span><span>x</span><span id="cant-noches"><?php echo $days_to_stay ?> noches</span></td>
 							<td id="precio-bruto"><?php echo $importe_total ?></td>
 						</tr>
+						<?php
+
+						if($descuento!=''){
+
+						?>
 						<tr>
-							<td><span>Descuento semanal (%10)</span></td>
-							<td id="dcto">-57</td>
+							<td><span>Descuento <?php echo $tipo_descuento ?> (%<?php echo $descuento ?>)</span></td>
+							<td id="dcto">-<?php echo $se_ahorra ?></td>
 						</tr>
+						<?php
+
+						}
+
+						?>
 						<tr>
 							<td><span>Tarifa Reforma</td>
 							<td id="fee">15</td>
@@ -258,6 +283,7 @@ $propiedad = $propiedades->verPropiedad($_SESSION['checkout_id_propiedad']);
 <script>
 
 const importe_total = document.getElementById('importe_total').value
+const checkout_id = document.getElementById('checkout_id').value
 console.log('importe total: ', importe_total)
 
 paypal.Buttons({
@@ -267,7 +293,8 @@ paypal.Buttons({
 	  purchase_units: [{
 		amount: {
 		  value: importe_total
-		}
+		},
+		custom_id: checkout_id,
 	  }]
 	});
   },
@@ -275,7 +302,7 @@ paypal.Buttons({
 return actions.order.capture().then(function() {
 	console.log('data: ')
 	console.log(data)
-//   window.location = "paypal-transaction-complete.php?&orderID="+data.orderID;				
+     window.location = "paypal-transaction-complete.php?&orderID="+data.orderID;				
 });
 }
 }).render('#paypal-button-container');
@@ -306,11 +333,11 @@ $(document).on("click", "#select-city-nav button", function(e){
 
 
 
-var bruto = parseFloat($('#precio-bruto').text())
-var dcto = parseFloat($('#dcto').text())
-var fee = parseFloat($('#fee').text())
-var total = parseFloat($('#total').text())
-$('#total').text(bruto+dcto+fee)
+// var bruto = parseFloat($('#precio-bruto').text())
+// var dcto = parseFloat($('#dcto').text())
+// var fee = parseFloat($('#fee').text())
+// var total = parseFloat($('#total').text())
+// $('#total').text(bruto+dcto+fee)
 
 $('.cartas').click(function(){
 	$('.cartas').removeClass('active-carta')
