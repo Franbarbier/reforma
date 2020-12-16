@@ -82,10 +82,10 @@ class Globales{
         return $q;
     }
 
-    public function crearUsuario($nombre, $apellido='', $mail, $telefono=''){
+    public function crearUsuario($nombre, $apellido='', $mail, $telefono='', $fecha_nacimiento='', $psw=''){
         global $pdo;
 
-        $q = "INSERT INTO usuarios (nombre, apellido, mail, telefono) VALUES (?,?,?,?)";
+        $q = "INSERT INTO usuarios (nombre, apellido, mail, telefono, fecha_nacimiento, password) VALUES (?,?,?,?,?,?)";
         
         $stmt= $pdo->prepare($q);
         $stmt->execute([$nombre, $apellido, $mail, $telefono]);

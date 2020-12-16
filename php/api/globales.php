@@ -54,13 +54,17 @@ if($_GET['func']=='verLocalidades'){
 }
 
 if($_GET['func']=='crearUsuario'){
-
+    
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $mail = $_POST['mail'];
     $telefono = $_POST['telefono'];
+    $fecha_nacimiento = $_POST['fecha_nacimiento'];
+    $psw = $_POST['psw'];
+    $psw2 = $_POST['psw2'];
 
-    echo json_encode($globales->crearUsuario($nombre, $apellido, $mail, $telefono));
+    echo json_encode($globales->crearUsuario($nombre, $apellido, $mail, $telefono, $fecha_nacimiento, $psw, $psw2));
+
 }
 
 if($_GET['func']=='loginRequest'){
