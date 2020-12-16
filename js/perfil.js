@@ -1,15 +1,27 @@
 const id_usuario = $('#id_usuario').val();
+var global_reservas_expiradas;
+var global_reservas_activas;
 var global_reservas;
 
 // Seccion de inicializacion
 verHistorialReservas();
+verReservasActivas();
 verNivel();
 
 // Funcion que devuelve la reserva a partir del id
 function get_reserva_by_id(id){
 
-    for(r in global_reservas){
-        reserva = global_reservas[r]
+    console.log('id: ', id)
+
+    for(r in global_reservas_expiradas){
+        reserva = global_reservas_expiradas[r]
+        if(reserva.id == id){
+            return reserva
+        }
+    }
+
+    for(r in global_reservas_activas){
+        reserva = global_reservas_activas[r]
         if(reserva.id == id){
             return reserva
         }
@@ -26,7 +38,7 @@ function verHistorialReservas() {
         .then(function (historial_reservas) {
             console.log(historial_reservas);
 
-            global_reservas = historial_reservas
+            global_reservas_expiradas = historial_reservas
 
             // Inyectamos las reservas a la seccion de historial reservas
             var html = ''
@@ -38,6 +50,21 @@ function verHistorialReservas() {
 
         });
 }
+
+// Seccion de funciones
+function verReservasActivas() {
+    fetch('php/api/usuarios.php?func=verReservasActivas')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (reservas_activas) {
+            console.log(reservas_activas);
+
+            global_reservas_activas = reservas_activas
+
+        });
+}
+
 
 // Calculamos el nivel del usuario
 function verNivel() {
@@ -193,7 +220,7 @@ function modal_reserva(){
                                 <p>Importe total</p><strong>$ <span id="mr-total">514</span></strong>
                             </div>
                             <div>
-                                <p>Huespedes</p><strong id="mr-huespedes">3</strong>
+                                <p>Huespedes permitidos</p><strong id="mr-huespedes">3</strong>
                             </div> 
                         </div>
                         <textarea placeholder="Como estuvo tu alojamiento?" id="mr-resena"></textarea>
@@ -223,7 +250,7 @@ function init_modal_reserva(id_reserva){
     $('#modal-reserva').attr('data-reserva-id', id_reserva)
 
     // Si la info de la resena esta vacia, lo dejamos crear una. Sino, no puede dejar una resena y se muestra la resena que dejó
-    if(reserva.resena==''){
+    if(reserva.resena!='' || reserva.estado=='activa'){
         $('#mr-resena').css('display', 'none')
         $('#dejar-resena').css('display', 'none')
     }else{
@@ -288,7 +315,7 @@ function edit_config(){
     $('#config-buttons').slideUp(150)
 };
 
-function modal_config(){
+function modal_config(info_usuario){
     $(document).on("click", "#admin-config", function (e) {
         $('#modal-config').fadeTo(0, 150)
         e.stopPropagation()
@@ -312,6 +339,17 @@ function modal_config(){
         edit_config();
     })
 
+    $(document).on('click', '#guardar-config', function(e){
+        e.preventDefault();
+        console.log('click en guarar config')
+        guardar_usuario()
+    })
+
+    var html_paises = ''
+    for(p in global_paises){
+        html_paises += `<option>${global_paises[p]}</option>`
+    }
+
     return `<div class="main-modal" id="modal-config" style="display: none">
     <div>
         <div class="cerrar-main-modal">
@@ -328,40 +366,34 @@ function modal_config(){
                             <label for="myFile"></label>
                         </div>
                         <div>
-                            <input disabled id="nombre" type="text" value="Nombre">
-                            <input disabled id="apellido" type="text" value="Apellido">
+                            <input disabled id="nombre" type="text" value="${info_usuario.nombre}">
+                            <input disabled id="apellido" type="text" value="${info_usuario.apellido}">
                         </div>
                     </div>
                     <div>
                         <label class="labelss" for="mail">Mail</label>
-                        <input disabled type="email" id="mail" value="ejemplo@gmail.com">
+                        <input disabled type="email" id="mail" value="${info_usuario.mail}">
                     </div>
                     <div>
                         <label class="labelss" for="mail">Teléfono</label>
-                        <input disabled type="tel" value="54 9 11 1234-5689">
+                        <input disabled type="tel" id="telefono" value="${info_usuario.telefono}">
                     </div>
                     <div>
                         <label class="labelss" for="pais">País</label>
                         <select disabled id="pais">
-                            <option selected>Argentina</option>
-                            <option>Argentina</option>
-                            <option>Argentina</option>
-                            <option>Argentina</option>
-                            <option>Argentina</option>
-                            <option>Argentina</option>
-                            <option>Argentina</option>
-                            <option>Argentina</option>
-                            <option>Argentina</option>
+                            <option selected>${info_usuario.pais}</option>
+                            ${html_paises}
                         </select>
                     </div>
                     <div>
                         <label class="labelss" for="fechaNac">Fecha de nacimiento</label>
-                        <input disabled type="date" id="fechaNac" value="1998-03-03">
+                        <input disabled type="date" id="fechaNac" value="${info_usuario.fecha_nacimiento}">
                     </div>
                     <aside id="save-buttons">
                         <button id="descartar-config">DESCARTAR</button>
                         <button id="guardar-config">GUARDAR</button>
                     </aside>
+                    <div id="success" style="display:none"></div>
                 </form>
                 <div id="config-buttons">
                     <button id="cerrar-config">CERRAR</button>
@@ -444,4 +476,69 @@ function dejarResena(){
 
 }
 
+
 getFavoritos()
+
+// Traemos la info del usuario para guardarla en global_info_usuario
+function get_usuario(){
+
+    fetch('php/api/usuarios.php?func=verUsuario')
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (info_usuario) {
+        console.log('info usuario: ')
+        info_usuario.password = null
+        console.log(info_usuario)
+        global_info_usuario = info_usuario
+        $('body').append(modal_config(global_info_usuario))
+
+    });
+
+}
+
+get_usuario();
+
+function guardar_usuario(){
+
+    var nombre = $('#inside-config #nombre').val()
+    var apellido = $('#inside-config #apellido').val()
+    var mail = $('#inside-config #mail').val()
+    var telefono = $('#inside-config #telefono').val()
+    var pais = $('#inside-config #pais').val()
+    var fechaNac = $('#inside-config #fechaNac').val()
+
+    $.ajax({
+        url:'php/api/usuarios.php?func=guardarUsuario',
+        method:'POST',
+        cache: false,
+        data:{
+            nombre,
+            apellido,
+            mail,
+            telefono,
+            pais,
+            fecha_nacimiento:fechaNac
+        },
+        dataType:'json',
+        success:function(data){
+         console.log(data)
+         data = JSON.parse(data)
+
+         if(data.error==0){
+             console.log('Usuario guardado con exito!')
+             $('#inside-config #success').html('Usuario actualizado con éxito!')
+             $('#inside-config #success').slideDown(100)
+             setTimeout(() => {
+                window.location = 'perfil.php'
+             }, 500);
+            }else{
+                $('#inside-config #success').html('Ocurrió un error al intentar actualizar los datos del usuario.')
+                $('#inside-config #success').slideDown(100)
+            }
+        }
+    });
+    
+
+
+}

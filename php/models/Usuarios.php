@@ -84,6 +84,14 @@ class Usuarios{
             $reservas_array[$c]['nombre_propiedad'] =  $propiedad['nombre'];
             $reservas_array[$c]['check_in'] =  substr($reserva['check_in'], 5);
             $reservas_array[$c]['check_out'] =  substr($reserva['check_out'], 5);
+            $reservas_array[$c]['galeria'] =  $propiedad['galeria'];
+            $reservas_array[$c]['importe_total'] =  $reserva['importe_total'];
+            $reservas_array[$c]['huespedes'] =  $propiedad['huespedes'];
+            $reservas_array[$c]['fecha_creada'] =  $reserva['fecha_creada'];
+            $reservas_array[$c]['id_propiedad'] =  $reserva['id_propiedad'];
+            $reservas_array[$c]['estado'] =  'activa';
+            $id_reserva = $reserva['id'];
+            
 
             $c++;
 
@@ -124,6 +132,7 @@ class Usuarios{
             $reservas_array[$c]['fecha_creada'] =  $reserva['fecha_creada'];
             $reservas_array[$c]['id_propiedad'] =  $reserva['id_propiedad'];
             $id_reserva = $reserva['id'];
+            $reservas_array[$c]['estado'] =  'expirada';
 
             // Traemos la posible reseña
             $q = $pdo->prepare("SELECT * FROM resenas WHERE id_reserva=:id_reserva");
@@ -144,6 +153,9 @@ class Usuarios{
         return $reservas_array;
 
     }
+    
+
+// 
 
 
     public function verNivel(){
@@ -339,6 +351,21 @@ class Usuarios{
         }
 
         return '{"error": '.$error.'}';
+        
+    }
+
+    public function guardarUsuario($nombre, $apellido, $mail, $telefono, $pais, $fecha_nacimiento){
+        global $pdo;
+
+        $sql = "UPDATE usuarios SET nombre=?, apellido=?, mail=?, telefono=?, pais=?, fecha_nacimiento=? WHERE id=?";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$nombre, $apellido, $mail, $telefono, $pais, $fecha_nacimiento, $this->id]);
+
+        if($stmt){
+            return '{"error":0}';
+        }else{
+            return '{"error":1}';
+        }
         
     }
 
