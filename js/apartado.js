@@ -460,3 +460,59 @@ function comp_row_detalle(id, num, text){
             </tr>`
 
 }
+
+function copyToClipboard(element) {
+
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).val()).select();
+    document.execCommand("copy");
+    $temp.remove();
+}
+
+// Componente main modal
+function comp_share_modal(){
+
+    $(document).on('click', '#share', function(){
+        $('#share-modal').fadeIn(100)
+    })
+    $(document).on('click', '#share-modal .roger-that, #share-modal .mm-cerrar', function(){
+        $('#share-modal').fadeOut(100)
+    })
+
+    $(document).on('click', '#share-modal', function(e){
+        e.stopPropagation()
+    })
+    $(document).on('click', '.copy-cont', function(e){
+        $(this).addClass('copied')
+        setTimeout(() => {
+            $(this).removeClass('copied')
+        }, 1000);
+    });
+    
+
+    return `<div id="share-modal">
+
+                <div>
+
+                    <div class="mm-cerrar">x</div>
+
+                    <div class="mm-heading">
+                        <div class="mm-titulo">Compartí esta propiedad</div>
+                        <div class="mm-descripcion">Enviale el enlace a quien le quieras mostrar este alojamiento!</div>
+                    </div>
+
+                    <div class="modal-cont-share">
+                        <input id="shareLink" disabled value="${window.location.href}">
+                        <div class="copy-cont" onclick="copyToClipboard('#shareLink')">
+                            <div>
+                                <img src="imgs/copy.svg">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="roger-that">ENTENDIDO</button>
+                
+                </div>
+
+            </div>` 
+}
