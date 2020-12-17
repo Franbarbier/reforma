@@ -61,7 +61,8 @@ if(isset($_GET['logout'])){
 	<link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/home.css" />
 	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/homeMobile.css?refrescate=1" />
     
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </head>
 

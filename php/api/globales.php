@@ -61,9 +61,8 @@ if($_GET['func']=='crearUsuario'){
     $telefono = $_POST['telefono'];
     $fecha_nacimiento = $_POST['fecha_nacimiento'];
     $psw = $_POST['psw'];
-    $psw2 = $_POST['psw2'];
 
-    echo json_encode($globales->crearUsuario($nombre, $apellido, $mail, $telefono, $fecha_nacimiento, $psw, $psw2));
+    echo json_encode($globales->crearUsuario($nombre, $apellido, $mail, $telefono, $fecha_nacimiento, $psw));
 
 }
 

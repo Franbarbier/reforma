@@ -226,3 +226,8 @@ main>header>p:hover{
   color: #555555;
   font-weight: 600;
 }
+
+
+.to-be-filled{
+  border-bottom: 2px solid #d4bfaa!important;
+}

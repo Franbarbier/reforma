@@ -101,7 +101,11 @@ if(isset($_GET["code"]))
 
 
         // Creamos el usuario
-        var_dump($globales->crearUsuario($nombre, $apellido, $mail, $telefono));
+        $crear_usuario = json_decode($globales->crearUsuario($nombre, $apellido, $mail, $telefono));
+        if($crear_usuario->error==0){
+            $_SESSION['id_user'] = $crear_usuario->id;
+        }
+
         if($_SESSION['returnuri']!=''){
             header('location: ' . $_SESSION['returnuri']);
         }else{

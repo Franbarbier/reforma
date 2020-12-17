@@ -56,7 +56,8 @@ if(isset($_SESSION['id_user'])){
 	<link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/registrarse-desk.css" />
 	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/loginMob.css" />
     
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </head>
 
@@ -97,8 +98,8 @@ if(isset($_SESSION['id_user'])){
 				<input class="inputes" type="text" id="nombre">
 			</div>
 			<div>
-				<label for="apelido">Apellido</label>
-				<input class="inputes" type="text" id="apelido">
+				<label for="apellido">Apellido</label>
+				<input class="inputes" type="text" id="apellido">
 			</div>
 			<div>
 				<label for="mail">Mail</label>
@@ -122,6 +123,7 @@ if(isset($_SESSION['id_user'])){
 				<span id="no-coinciden">No coinciden</span>
 			</div>
 			<input class="matching" id="registrarse" type="submit" value="REGISTRARSE">
+			<div id="msj" style="display:none"></div>
 		</form>
 		
     </header>
@@ -205,6 +207,20 @@ $(document).on('click', '#registrarse', function(e){
 
 	console.log('Registrarse!')
 
+	var empty_input = false;
+	// Nos aseguramos de que no esten vacios
+	$('.inputes').each(function(){
+		if($(this).val()==''){
+			empty_input = true
+			$(this).addClass('to-be-filled')
+		}else{
+			$(this).removeClass('to-be-filled')
+		}
+	})
+
+	if(!empty_input){
+
+
 	var nombre = $('#nombre').val()
 	var apellido = $('#apellido').val()
 	var mail = $('#mail').val()
@@ -214,11 +230,13 @@ $(document).on('click', '#registrarse', function(e){
 	var psw2 = $('#psw2').val()
 
 	// Validamos que las psw coincidan
-
-
+	if(psw != psw2){
+		$('#msj').html('Las contraseñas no coinciden.')
+		$('#msj').slideDown(100)
+	}
 
 	$.ajax({
-        url:'php/api/usuarios.php?func=crearUsuario',
+        url:'php/api/globales.php?func=crearUsuario',
         method:'POST',
         cache: false,
         data:{
@@ -229,12 +247,25 @@ $(document).on('click', '#registrarse', function(e){
 			fecha_nacimiento,
 			psw
         },
-        dataType:'text',
+        dataType:'json',
         success:function(data){
+			console.log(data)
+			data = JSON.parse(data)
+			if(data.error==0){
+				$('#msj').html('Usuario creado con éxito! Ya podes logearte haciendo <a href="login.php">click aquí.</a>')
+				$('#msj').slideDown(100)
+			}else if(data.error==2){
+				$('#msj').html('Ya existe una cuenta asociada a este mail :/')
+				$('#msj').slideDown(100)
+			}
 
         }
     });
 
+	}else{
+		$('#msj').html('Por favor, llená los campos vacíos.')
+		$('#msj').slideDown(100)
+	}
 })
 
 
