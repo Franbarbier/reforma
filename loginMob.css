@@ -226,3 +226,14 @@ main>header>p:hover{
   color: #555555;
   font-weight: 600;
 }
+
+
+.to-be-filled{
+  border-bottom: 2px solid #d4bfaa!important;
+}
+
+#msj{
+  margin-top: 10px;
+    font-size: 0.8em;
+    font-weight: bold;
+}

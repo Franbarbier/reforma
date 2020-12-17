@@ -13,6 +13,8 @@ $checkout_id = $_SESSION['checkout_id'];
 $days_to_stay = $_SESSION['checkout_days_to_stay'];
 $descuento = $_SESSION['checkout_descuento'];
 
+$se_ahorra = 0;
+
 if($descuento!=''){
 	$se_ahorra = round($importe_total * ($descuento/100));
 	if($descuento==6){
@@ -21,6 +23,8 @@ if($descuento!=''){
 		$tipo_descuento = 'mensual';
 	}
 }
+
+$precio_final = $importe_total - $se_ahorra + 15;
 
 if(isset($_GET['logout'])){
 	session_destroy();
@@ -101,7 +105,6 @@ $thumbnail = json_decode($propiedad['galeria'])[0];
 
 <nav>
     <input type="hidden" value="<?php echo $logeado ?>" id="logeado">	
-    <input type="hidden" value="<?php echo $importe_total ?>" id="importe_total">	
     <input type="hidden" value="<?php echo $checkout_id ?>" id="checkout_id">	
 	<div class="cont90">
 		<div>
@@ -250,7 +253,7 @@ $thumbnail = json_decode($propiedad['galeria'])[0];
 
 						?>
 						<tr>
-							<td><span>Descuento <?php echo $tipo_descuento ?> (%<?php echo $descuento ?>)</span></td>
+							<td><span>Descuento <?php echo $tipo_descuento ?> (<?php echo $descuento ?>%)</span></td>
 							<td id="dcto">-<?php echo $se_ahorra ?></td>
 						</tr>
 						<?php
@@ -259,13 +262,13 @@ $thumbnail = json_decode($propiedad['galeria'])[0];
 
 						?>
 						<tr>
-							<td><span>Tarifa Reforma</td>
+							<td><span>Tarifa Limpieza</td>
 							<td id="fee">15</td>
 						</tr>
 					</table>
 					<div id="total-cont">
 						<strong>Total</strong>
-						<strong id="total"></strong>
+						<strong id="precio-final">$<?php echo $precio_final ?></strong>
 					</div>
 				</div>
 		</div>
@@ -282,9 +285,7 @@ $thumbnail = json_decode($propiedad['galeria'])[0];
 <script src="js/checkout.js"></script>
 <script>
 
-const importe_total = document.getElementById('importe_total').value
 const checkout_id = document.getElementById('checkout_id').value
-console.log('importe total: ', importe_total)
 
 paypal.Buttons({
   createOrder: function(data, actions) {
@@ -292,7 +293,7 @@ paypal.Buttons({
 	return actions.order.create({
 	  purchase_units: [{
 		amount: {
-		  value: importe_total
+		  value: <?php echo $precio_final ?>
 		},
 		custom_id: checkout_id,
 	  }]

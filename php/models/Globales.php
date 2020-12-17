@@ -82,17 +82,32 @@ class Globales{
         return $q;
     }
 
-    public function crearUsuario($nombre, $apellido='', $mail, $telefono=''){
+    public function crearUsuario($nombre, $apellido='', $mail, $telefono='', $fecha_nacimiento='', $psw=''){
         global $pdo;
 
-        $q = "INSERT INTO usuarios (nombre, apellido, mail, telefono) VALUES (?,?,?,?)";
+        // Nos aseguramos de que no exista:
+        $q = $pdo->prepare("SELECT * FROM usuarios WHERE mail=:mail");
+        $q->execute(['mail' => $mail]); 
+        $q = $q->fetch();
+
+        if($q){
+            return '{"error": 2}';
+        }
+
+        // Encriptamos la psw
+        if($psw!=''){
+            $psw = md5($psw);
+        }
+
+        $q = "INSERT INTO usuarios (nombre, apellido, mail, telefono, fecha_nacimiento, password) VALUES (?,?,?,?,?,?)";
         
         $stmt= $pdo->prepare($q);
-        $stmt->execute([$nombre, $apellido, $mail, $telefono]);
+        $stmt->execute([$nombre, $apellido, $mail, $telefono, $fecha_nacimiento, $psw]);
         if($stmt){
-            return '{"error": 0}';
+            $last_id = $pdo->lastInsertId();
+            return '{"error": 0, "id":'.$last_id.'}';
         }else{
-            return '{"error": 1}';
+            return '{"error": 1, "id":""}';
         }
     }
 

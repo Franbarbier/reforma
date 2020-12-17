@@ -651,3 +651,10 @@ color: #676767;
     color: #d4bfaa;
     background-color: transparent!important;
 }
+
+#success{
+    width: 100%!important;
+    text-align: end!important;
+    margin: 15px 0 0 0!important;
+    font-size: 0.8em!important;
+  }

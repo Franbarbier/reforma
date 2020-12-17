@@ -306,3 +306,17 @@ main>header>p:hover{
   margin-top: 5px;
   display: none;
 }
+
+#msj{
+  width: 100%;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+#msj a{
+  color: #d4bfaa;
+}
+
+.to-be-filled{
+  border-bottom: 2px solid #d4bfaa!important;
+}

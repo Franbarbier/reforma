@@ -56,7 +56,8 @@ if(isset($_SESSION['id_user'])){
 	<link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/registrarse-desk.css" />
 	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/loginMob.css" />
     
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </head>
 
@@ -97,12 +98,16 @@ if(isset($_SESSION['id_user'])){
 				<input class="inputes" type="text" id="nombre">
 			</div>
 			<div>
-				<label for="apelido">Apellido</label>
-				<input class="inputes" type="text" id="apelido">
+				<label for="apellido">Apellido</label>
+				<input class="inputes" type="text" id="apellido">
 			</div>
 			<div>
 				<label for="mail">Mail</label>
 				<input class="inputes" type="text" id="mail">
+			</div>
+			<div>
+				<label for="telefono">Telefono</label>
+				<input class="inputes" type="text" id="telefono">
 			</div>
 			<div>
 				<label style="background:white;" for="nacimiento">Fecha de nacimiento</label>
@@ -118,6 +123,7 @@ if(isset($_SESSION['id_user'])){
 				<span id="no-coinciden">No coinciden</span>
 			</div>
 			<input class="matching" id="registrarse" type="submit" value="REGISTRARSE">
+			<div id="msj" style="display:none"></div>
 		</form>
 		
     </header>
@@ -142,9 +148,9 @@ if(isset($_SESSION['id_user'])){
 </body>
 <script>
 
+var global_paises = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+
 $( document ).ready( function(){
-
-
 
 $('.inputes').focusin(function(){
 	$("label[for="+$(this).attr("id")+"]").css({'transform':'scale(1) translate(0)','color':'#d4bfaa'})
@@ -195,6 +201,72 @@ $( "#psw2" ).keyup(function() {
 
   }
 });
+
+$(document).on('click', '#registrarse', function(e){
+	e.preventDefault()
+
+	console.log('Registrarse!')
+
+	var empty_input = false;
+	// Nos aseguramos de que no esten vacios
+	$('.inputes').each(function(){
+		if($(this).val()==''){
+			empty_input = true
+			$(this).addClass('to-be-filled')
+		}else{
+			$(this).removeClass('to-be-filled')
+		}
+	})
+
+	if(!empty_input){
+
+
+	var nombre = $('#nombre').val()
+	var apellido = $('#apellido').val()
+	var mail = $('#mail').val()
+	var telefono = $('#telefono').val()
+	var fecha_nacimiento = $('#nacimiento').val()
+	var psw = $('#psw').val()
+	var psw2 = $('#psw2').val()
+
+	// Validamos que las psw coincidan
+	if(psw != psw2){
+		$('#msj').html('Las contraseñas no coinciden.')
+		$('#msj').slideDown(100)
+	}
+
+	$.ajax({
+        url:'php/api/globales.php?func=crearUsuario',
+        method:'POST',
+        cache: false,
+        data:{
+			nombre,
+			apellido,
+			mail,
+			telefono,
+			fecha_nacimiento,
+			psw
+        },
+        dataType:'json',
+        success:function(data){
+			console.log(data)
+			data = JSON.parse(data)
+			if(data.error==0){
+				$('#msj').html('Usuario creado con éxito! Ya podes logearte haciendo <a href="login.php">click aquí.</a>')
+				$('#msj').slideDown(100)
+			}else if(data.error==2){
+				$('#msj').html('Ya existe una cuenta asociada a este mail :/')
+				$('#msj').slideDown(100)
+			}
+
+        }
+    });
+
+	}else{
+		$('#msj').html('Por favor, llená los campos vacíos.')
+		$('#msj').slideDown(100)
+	}
+})
 
 
 

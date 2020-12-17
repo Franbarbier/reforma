@@ -62,7 +62,8 @@ if(isset($_SESSION['id_user'])){
 	<link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/login.css" />
 	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/loginMob.css" />
     
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </head>
 
@@ -102,6 +103,7 @@ if(isset($_SESSION['id_user'])){
 			<input class="inputes" type="text" id="mail">
 			<label for="psw">Contraseña</label>
 			<input class="inputes" type="password" id="psw">
+			<div id="msj" style="display:none"></div>
 			<input id="loginear" type="submit" value="INGRESAR">
 		</form>
 		<a href="<?php echo $login_url ?>">
@@ -157,28 +159,43 @@ $(document).on("click", "#loginear", function(e){
 
 	e.preventDefault()
 
-	var mail = $('#mail').val()
-	var psw = $('#psw').val()
+	var empty_fields = false
+	$('.inputes').each(function(){
+		if($(this).val()==''){
+			empty_fields = true
+			$(this).addClass('to-be-filled')
+		}
+	})
 
-	$.ajax({
-            url:'php/api/globales.php?func=loginRequest',
-            method:'POST',
-            cache: false,
-            data:{
-                mail,
-				psw
-            },
-            dataType:'text',
-            success:function(data){
-			 var res = JSON.parse(data)
-			 if(res.error==0){
-				 window.location = 'index.php'
-			 }else{
-				 console.log('Error al iniciar sesión.')
-			 }
-             console.log(data)
-            }
-        });
+	if(!empty_fields){
+
+		var mail = $('#mail').val()
+		var psw = $('#psw').val()
+
+		$.ajax({
+				url:'php/api/globales.php?func=loginRequest',
+				method:'POST',
+				cache: false,
+				data:{
+					mail,
+					psw
+				},
+				dataType:'text',
+				success:function(data){
+				var res = JSON.parse(data)
+				if(res.error==0){
+					window.location = 'index.php'
+				}else{
+					console.log('Error al iniciar sesión.')
+				}
+				console.log(data)
+				}
+			});
+
+	}else{
+		$('#msj').html('Por favor llená los campos vacíos.')
+		$('#msj').slideDown(100)
+	}
 
 })
 

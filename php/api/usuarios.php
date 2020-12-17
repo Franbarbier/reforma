@@ -18,6 +18,14 @@ if($_GET['func'] == 'verHistorialReservas'){
 
 }
 
+if($_GET['func'] == 'verReservasActivas'){
+
+    // $id = $_GET['id'];
+
+    echo json_encode($usuarios->verReservasActivas());
+
+}
+
 if($_GET['func'] == 'verNivel'){
 
     // $id = $_GET['id'];
@@ -68,6 +76,19 @@ if($_GET['func'] == 'dejarResena'){
 if($_GET['func'] == 'verUsuario'){
 
     echo json_encode($usuarios->verUsuario());
+
+}
+
+if($_GET['func'] == 'guardarUsuario'){
+
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $mail = $_POST['mail'];
+    $telefono = $_POST['telefono'];
+    $pais = $_POST['pais'];
+    $fecha_nacimiento = $_POST['fecha_nacimiento'];
+
+    echo json_encode($usuarios->guardarUsuario($nombre, $apellido, $mail, $telefono, $pais, $fecha_nacimiento));
 
 }
 

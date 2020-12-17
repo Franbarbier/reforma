@@ -65,10 +65,10 @@ function render_apartado(propiedad) {
 
     var tarifa = document.getElementById('tarifa')
     tarifa.innerHTML = propiedad.tarifa
-
+    
+    global_por_noche = propiedad.tarifa
+    
     tarifa_final()
-
-    global_por_noche = tarifa
 
     var concepto = document.getElementById('concepto-text')
     concepto.innerHTML = propiedad.concepto_espacio
@@ -449,5 +449,14 @@ function render_modal(titulo, descripcion='', contenido='ENTENDIDO'){
     $('#mm-contenido').html(contenido)
 
     $('#main-modal-cont').fadeIn(100)
+
+}
+
+function comp_row_detalle(id, num, text){
+
+    return `<tr class="row-detalle-descuento">
+                <td><span>${text}</span></td>
+                <td id="${id}" style="text-align:right">${num}</td>
+            </tr>`
 
 }
