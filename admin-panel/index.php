@@ -97,103 +97,7 @@ if(isset($_GET['logout'])){
 	</aside>
 	<main>
 		<div>
-			<div id="crear_propiedad">
-				<div>
-					<h2>Nueva propiedad</h2>
-					<button id="subir-propiedad">SUBIR PROPIEDAD</button>
-				</div>
-				<div>
-					<div id="n-nombre">
-						<label for="">Nombre</label>
-						<input class="grey-input" type="text">
-					</div>
-					<div id="n-provincia">
-						<label for="">Provincia</label>
-						<select name="" class="grey-input" id="">
-							<option value="">Argentin</option>
-							<option value="">Argentin</option>
-							<option value="">Argentin</option>
-						</select>
-					</div>
-					<div id="n-localidad">
-						<label for="">Localidad</label>
-						<select disabled name="" class="grey-input" id="">
-							<option value="">Argentin</option>
-							<option value="">Argentin</option>
-							<option value="">Argentin</option>
-						</select>
-					</div>
-					<div class="house-display">
-						<div>
-							<img src="../imgs/users-handmade.svg" alt="">
-							<p>Huespedes</p>
-							<input class="grey-input" type="number">
-						</div>
-						<div>
-							<img src="../imgs/ducha-handmade.svg" alt="">
-							<p>Baños</p>
-							<input class="grey-input" type="number">
-						</div>
-						<div>
-							<img src="../imgs/cama-handmade.svg" alt="">
-							<p>Dormitorios</p>
-							<input class="grey-input" type="number">
-						</div>
-						<div id="n-camas">
-							<div class="dormitorio">
-								<p>Dormitorio 1</p>
-								<div class='camas-en-dormis'>
-									<select class="grey-input" name="" id="">
-										<option value="">Matrimonial</option>
-										<option value="">Individual</option>
-										<option value="">Sofa/Colchón</option>
-									</select>
-									<input class="grey-input" type="number">
-								</div>
-							</div>
-							
-						</div>
-					</div>
-					<div id="amenities">
-						<p>Amenities</p>
-						<ul>
-
-						</ul>
-					</div>
-					<div id="concepto">
-						<p>Concepto</p>
-						<textarea class="grey-input"></textarea>
-					</div>
-					<div class="lasts">
-						<div>
-							<p>Diseñador</p>
-							<input class="grey-input" type="text">
-						</div>
-						<div>
-							<p>Ubicacion</p>
-							<input class="grey-input" type="text">
-						</div>
-					</div>
-					<div class="lasts">
-						<div>
-							<p>Tarifa por Limpieza</p>
-
-							<div>
-								<span>$</span>
-								<input class="grey-input" type="number">
-							</div>
-						</div>
-						<div>
-							<p>Tarifa por noche</p>
-
-							<div>
-								<span>$</span>
-								<input class="grey-input" type="number">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</div>
 	</main>
 </div>
@@ -206,6 +110,9 @@ if(isset($_GET['logout'])){
 $( document ).ready( function(){
 
 // $('main>div').append(ver_propiedades())
+$('main>div').append(ver_usuarios())
+
+
 
 });
 </script>
