@@ -203,7 +203,7 @@ function modal_reserva(){
                         <div class="modal-header">Detalle de tu reserva</div>
                         <div class="actual-reserva-row" id="1"> 
                             <div class="foto-prop-cont"> 
-                                <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt=""> 
+                                <img src="" id="mr-thumbnail" alt=""> 
                             </div> 
                             <div class="nombre-prop">
                                 <strong id="mr-localidad-ciudad">Localidad/ciudad</strong>
@@ -248,6 +248,7 @@ function init_modal_reserva(id_reserva){
     $('#mr-fecha-realizada').html(reserva.fecha_creada)
     $('#mr-idpropiedad').val(reserva.id_propiedad)
     $('#modal-reserva').attr('data-reserva-id', id_reserva)
+    $('#mr-thumbnail').attr('src', 'imgs/propiedades_imgs/'+reserva.thumbnail)
 
     // Si la info de la resena esta vacia, lo dejamos crear una. Sino, no puede dejar una resena y se muestra la resena que dejó
     if(reserva.resena!='' || reserva.estado=='activa'){

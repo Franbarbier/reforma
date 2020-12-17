@@ -164,7 +164,7 @@ if(isset($_SESSION['id_user'])){
 			?>
 					<div class="actual-reserva-row" id="<?php echo $reserva['id'] ?>">
 						<div class="foto-prop-cont">
-							<img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="">
+							<img src="imgs/propiedades_imgs/<?php echo $reserva['thumbnail'] ?>" alt="">
 						</div>
 						<div class="nombre-prop">
 							<h4><?php echo $reserva['nombre_propiedad'] ?></h4>

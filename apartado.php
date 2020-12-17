@@ -77,7 +77,8 @@ if(isset($_SESSION['id_user'])){
 	<link rel="stylesheet" type="text/css" media="(min-width: 1450px)" href="css/megawidth.css" />
     
     
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <!-- <link rel="preload" href="https://assets.sonder.com/packs/media/Sonder-Icons/icons-720172e6.woff2" type="font/woff2" as="font" crossorigin="crossorigin"></link> -->
     <link rel="preload" href="icons-720172e6.woff2" type="font/woff2" as="font" crossorigin="crossorigin"></link>
 
@@ -273,6 +274,7 @@ if(isset($_SESSION['id_user'])){
                     Huéspedes
                 </div>
             </div> -->
+            <input type="hidden"  id="precio-final-hidden">
             <div class="info-box">
                 <div>
                     <img src="imgs/label.png" alt="">
@@ -296,8 +298,8 @@ if(isset($_SESSION['id_user'])){
                         <td id="fee">15</td>
                     </tr>
                     <tr>
-                        <td><span>Descuento semanal (%10)</span></td>
-                        <td id="dcto">-57</td>
+                        <!-- <td><span>Descuento semanal (%10)</span></td> -->
+                        <!-- <td id="dcto">-57</td> -->
                     </tr>
 				</tbody>
             </table>

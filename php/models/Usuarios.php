@@ -49,6 +49,7 @@ class Usuarios{
             $reservas_array[$c]['nombre_propiedad'] =  $propiedad['nombre'];
             $reservas_array[$c]['check_in'] =  substr($reserva['check_in'], 5);
             $reservas_array[$c]['check_out'] =  substr($reserva['check_out'], 5);
+            $reservas_array[$c]['thumbnail'] =  json_decode($propiedad['galeria'])[0];
 
             $c++;
 
@@ -91,6 +92,7 @@ class Usuarios{
             $reservas_array[$c]['id_propiedad'] =  $reserva['id_propiedad'];
             $reservas_array[$c]['estado'] =  'activa';
             $id_reserva = $reserva['id'];
+            $reservas_array[$c]['thumbnail'] =  json_decode($propiedad['galeria'])[0];
             
 
             $c++;
@@ -133,6 +135,7 @@ class Usuarios{
             $reservas_array[$c]['id_propiedad'] =  $reserva['id_propiedad'];
             $id_reserva = $reserva['id'];
             $reservas_array[$c]['estado'] =  'expirada';
+            $reservas_array[$c]['thumbnail'] =  json_decode($propiedad['galeria'])[0];
 
             // Traemos la posible reseña
             $q = $pdo->prepare("SELECT * FROM resenas WHERE id_reserva=:id_reserva");
