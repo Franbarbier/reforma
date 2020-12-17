@@ -103,6 +103,7 @@ if(isset($_SESSION['id_user'])){
 			<input class="inputes" type="text" id="mail">
 			<label for="psw">Contraseña</label>
 			<input class="inputes" type="password" id="psw">
+			<div id="msj" style="display:none"></div>
 			<input id="loginear" type="submit" value="INGRESAR">
 		</form>
 		<a href="<?php echo $login_url ?>">
@@ -191,6 +192,9 @@ $(document).on("click", "#loginear", function(e){
 				}
 			});
 
+	}else{
+		$('#msj').html('Por favor llená los campos vacíos.')
+		$('#msj').slideDown(100)
 	}
 
 })

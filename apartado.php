@@ -288,9 +288,9 @@ if(isset($_SESSION['id_user'])){
                 </div>
             </div>
             <table>
-				<tbody>
+				<tbody id="tabla-detalle-final" style="display:none">
                     <tr>
-                        <td><span id="por-noche">$35</span><span>x</span><span id="cant-noches">5 noches</span></td>
+                        <td><span id="por-noche">$</span><span>x</span><span id="cant-noches"></span>noches</td>
                         <td id="precio-bruto"></td>
                     </tr>
                     <tr>
@@ -305,7 +305,7 @@ if(isset($_SESSION['id_user'])){
             </table>
             <div id="total-cont">
                 <strong>Total</strong>
-                <strong id="total">NaN</strong>
+                <strong id="precio-final"></strong>
             </div>
             <button id="sticky-reservar">RESERVAR</button>
 
@@ -586,28 +586,42 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
     console.log('Days to stay: ', days_to_stay)
     global_days_to_stay = days_to_stay
 
+    $('#cant-noches').html(days_to_stay)
+    $('#por-noche').html(global_por_noche)
     
-    var tarifa = $('#tarifa').html()
-    console.log('tarifa: '+ tarifa)
-    
-    var tarifa_final = tarifa * days_to_stay
+    var tarifa_bruto = global_por_noche * days_to_stay
+    var tarifa_final;
+
 
     if(days_to_stay>=7 && days_to_stay<30){
         console.log('Descuento del 6%')
         $('.descuento').removeClass('aplicado')
         $('#d-seis').addClass('aplicado')
-        // Le sacamos el 6%
-        tarifa_final = Math.round(tarifa_final * 0.94)
+        var se_ahorra = Math.round(tarifa_bruto * 0.06)
+        $('.row-detalle-descuento').remove()
+        if(!$('#rd-seis').length){
+            $('#tabla-detalle-final').append(comp_row_detalle('rd-seis', '-$'+se_ahorra, '6% Descuento (7+ noches)'))
+        }
+        // Le sacamos el 6% a la variable tarifa final
+        tarifa_final = tarifa_bruto - se_ahorra
         global_descuento = 6
     }else if(days_to_stay >= 30){
         console.log('Descuento del 12%')
         $('.descuento').removeClass('aplicado')
         $('#d-doce').addClass('aplicado')
-        tarifa_final = Math.round(tarifa_final * 0.88)
+        var se_ahorra = Math.round(tarifa_bruto * 0.12)
+        $('.row-detalle-descuento').remove()
+        if(!$('#rd-doce').length){
+            $('#tabla-detalle-final').append(comp_row_detalle('rd-doce', '-$'+se_ahorra, '12% Descuento (30+ noches)'))
+        }
+        tarifa_final = tarifa_bruto - se_ahorra
         global_descuento = 12
     }else{
         $('.descuento').removeClass('aplicado')
     }
+
+    // Le sumamos el fee de limpieza
+    tarifa_final += 15
     
 
     console.log('Precio final: ', tarifa_final)
@@ -617,10 +631,16 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
         tarifa_final = ""
     }
 
+    $('#precio-bruto').html(tarifa_bruto)
+
+    // Precio final termina siendo tarifa final + fee limpieza - posibles descuentos
     $('#precio-final').html('$'+tarifa_final)
-    $('#precio-bruto').html(tarifa_final)
 
     $('#precio-final-hidden').val(tarifa_final)
+
+    if(tarifa_final!=''){
+        $('#tabla-detalle-final').slideDown(100)
+    }
 
 }else{
     console.log('Se debe introducir una fecha de checkin y checkout')
