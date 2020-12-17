@@ -287,8 +287,10 @@ class Propiedades{
 
         $fechas_ocupadas = [];
 
-        $q = $pdo->prepare("SELECT * FROM reservas WHERE id_propiedad=:id_propiedad AND estado=1");
-        $q->execute(['id_propiedad' => $id]); 
+        $fecha_actual = date('Y-m-d');
+
+        $q = $pdo->prepare("SELECT * FROM reservas WHERE id_propiedad=:id_propiedad AND estado=1 AND check_out>:fecha_actual");
+        $q->execute(['id_propiedad' => $id, 'fecha_actual' => $fecha_actual]); 
         $q = $q->fetchAll();
 
         foreach($q as $reserva){
@@ -304,7 +306,7 @@ class Propiedades{
             
             //   Iteramos cada dia del periodo y lo vamos pusheando a fechas_ocupadas
             foreach($period as $key=>$value){
-                $fecha = $value->format('Y-m-d');
+                $fecha = $value->format('Y-n-j');
                 array_push($fechas_ocupadas, $fecha);
             }
 

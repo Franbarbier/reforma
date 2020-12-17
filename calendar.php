@@ -28,15 +28,6 @@
 
 // $( document ).ready( function(){
 
-<<<<<<< HEAD
-//  Si no esta en apartado. creamos una variable vacia para global_ocupadas
-if (!window.location.href.indexOf("apartado") > -1) {
-    var global_ocupadas = [];
-}
-=======
-// var fechasOcupas = ['2020-12-20', '2020-12-30', '2021-1-6'];
->>>>>>> b123952157fe0fd3cd0f54bcdb37b8aace178ac5
-
 
 var picker2 = new Lightpick({
     field: document.getElementById('demo-3_1'),
@@ -49,7 +40,7 @@ var picker2 = new Lightpick({
     numberOfColumns: 3,
     orientation: "top left",
     numberOfMonths: 2,
-    disableDates: global_ocupadas,
+    disableDates: fechasOcupas,
     disabledDatesInRange: false,
     tooltipNights: true,
     inline: true,

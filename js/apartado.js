@@ -470,6 +470,9 @@ function verFechasOcupadas(){
     })
     .then(function (res) {
         console.log(res)
+        fechasOcupas = res
     });
 
 }
+
+verFechasOcupadas()
