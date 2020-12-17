@@ -2,6 +2,14 @@
 
 session_start();
 
+require 'php/connection.php';
+require 'php/models/Propiedades.php';
+
+$propiedades = new Propiedades();
+
+$id_propiedad = $_GET['id'];
+$arr_fechas_ocupadas =  json_encode($propiedades->verFechasOcupadas($id_propiedad));
+
 $check_in = 'Check-In';
 $check_out = 'Check-Out';
 if(isset($_GET['check_in'])){
@@ -290,7 +298,7 @@ if(isset($_SESSION['id_user'])){
             <table>
 				<tbody id="tabla-detalle-final" style="display:none">
                     <tr>
-                        <td><span id="por-noche">$</span><span>x</span><span id="cant-noches"></span>noches</td>
+                        <td>$<span id="por-noche"></span><span>x</span><span id="cant-noches"></span>noches</td>
                         <td id="precio-bruto"></td>
                     </tr>
                     <tr>
@@ -467,6 +475,8 @@ const logeado = $('#logeado').val()
 var global_days_to_stay;
 var global_descuento = '';
 
+fechasOcupas = <?php echo $arr_fechas_ocupadas ?>
+
 $(document).ready(function(){
 
 if(logeado=='si'){
@@ -590,7 +600,7 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
     $('#por-noche').html(global_por_noche)
     
     var tarifa_bruto = global_por_noche * days_to_stay
-    var tarifa_final;
+    var tarifa_final = tarifa_bruto;
 
 
     if(days_to_stay>=7 && days_to_stay<30){
@@ -603,7 +613,7 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
             $('#tabla-detalle-final').append(comp_row_detalle('rd-seis', '-$'+se_ahorra, '6% Descuento (7+ noches)'))
         }
         // Le sacamos el 6% a la variable tarifa final
-        tarifa_final = tarifa_bruto - se_ahorra
+        tarifa_final -=  se_ahorra
         global_descuento = 6
     }else if(days_to_stay >= 30){
         console.log('Descuento del 12%')
@@ -614,7 +624,7 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
         if(!$('#rd-doce').length){
             $('#tabla-detalle-final').append(comp_row_detalle('rd-doce', '-$'+se_ahorra, '12% Descuento (30+ noches)'))
         }
-        tarifa_final = tarifa_bruto - se_ahorra
+        tarifa_final -=  se_ahorra
         global_descuento = 12
     }else{
         $('.descuento').removeClass('aplicado')

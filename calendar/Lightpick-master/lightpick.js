@@ -9,20 +9,18 @@
 
 //  Si no esta en apartado. creamos una variable vacia para global_ocupadas
 fechasOcupas = [];
-if (window.location.href.indexOf("apartado") > -1) {
-    fechasOcupas = [];
-}
+
 
 function check_ocupadas() {
     for (let index = 0; index < fechasOcupas.length; index++) {
         var ocuapa2 = fechasOcupas[index];
-        $('#'+ocuapa2).addClass('ocupa2')
+        $('#'+ocuapa2).addClass('ocupa2 is-disabled')
     }
 }
 function check_ocupadas_desplg(){
     for (let index = 0; index < fechasOcupas.length; index++) {
         var ocuapa2 = fechasOcupas[index];
-        $('body>.lightpick').find('#'+ocuapa2).css('background','red').addClass('ocupa2')
+        $('body>.lightpick').find('#'+ocuapa2).css('background','red').addClass('ocupa2 is-disabled')
         console.log('AAAAAAAAAAAAAAA')
     }
 }

@@ -55,6 +55,7 @@ var picker2 = new Lightpick({
     dropdowns: false,
 
     onSelect: function(start, end){
+        
         var str = '';
         str += start ? start.format('Do MMMM YYYY') + ' to ' : '';
         str += end ? end.format('Do MMMM YYYY') : '...';
