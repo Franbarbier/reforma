@@ -372,6 +372,39 @@ class Usuarios{
         
     }
 
+    public function checkNochesGratis(){
+
+        global $pdo;
+
+        $score = $this->verNivel();
+        $score = $score['score'];
+
+        $noches_usadas = $this->verUsuario();
+        $noches_usadas = $noches_usadas['noches_gratis_usadas'];
+        if($noches_usadas == ''){
+            $noches_usadas = '[]';
+        }
+
+        $noches_usadas = json_decode($noches_usadas);
+
+        $noches_disponibles = [];
+
+        if($score>=2000 && !in_array(2000, $noches_usadas)){
+            array_push($noches_disponibles, 2000);
+        }
+        
+        if($score>=4000 && !in_array(4000, $noches_usadas)){
+            array_push($noches_disponibles, 4000);
+        }
+        
+        if($score>=6000 && !in_array(6000, $noches_usadas)){
+            array_push($noches_disponibles, 6000);
+        }
+
+        return $noches_disponibles;
+
+    }
+
 
 
 }

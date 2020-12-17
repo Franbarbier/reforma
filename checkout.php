@@ -42,6 +42,14 @@ $propiedad = $propiedades->verPropiedad($_SESSION['checkout_id_propiedad']);
 
 $thumbnail = json_decode($propiedad['galeria'])[0];
 
+// Nos fijamos si tiene una noche gratis disponible
+$noches_gratis = $usuarios->checkNochesGratis();
+if(sizeof($noches_gratis)>0){
+	$noche_gratis = '{"noche":'.$noches_gratis[0].'}';
+}else{
+	$noche_gratis = '';
+}
+
 // var_dump($propiedad);
 
 ?>
@@ -93,7 +101,7 @@ $thumbnail = json_decode($propiedad['galeria'])[0];
 	<link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/checkout.css" />
 	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/checkoutMob.css" />
     
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	<!-- SDK de cliente para PayPal -->
 	<script src="https://www.paypal.com/sdk/js?client-id=AcSOQzXrlRL_ERTh5svonn3GXR-HYzxEsdGqsjNczLmJUueoLS96o6byOgYsPEGWtc4MzMQ-KfPyXLv4"></script>
@@ -106,6 +114,10 @@ $thumbnail = json_decode($propiedad['galeria'])[0];
 <nav>
     <input type="hidden" value="<?php echo $logeado ?>" id="logeado">	
     <input type="hidden" value="<?php echo $checkout_id ?>" id="checkout_id">	
+    <input type="hidden" value='<?php echo $noche_gratis ?>' id="noche_gratis">	
+    <input type="hidden" value='<?php echo $propiedad['tarifa'] ?>' id="tarifa">	
+    <input type="hidden" value='<?php echo $precio_final ?>' id="precio_final">	
+    <input type="hidden" value='<?php echo $days_to_stay ?>' id="days_to_stay">	
 	<div class="cont90">
 		<div>
 
@@ -243,6 +255,7 @@ $thumbnail = json_decode($propiedad['galeria'])[0];
 						</div>
 					</div>
 					<table>
+					<tbody id="tabla-detalle-final">
 						<tr>
 							<td><span id="por-noche">$<?php echo $propiedad['tarifa'] ?></span><span>x</span><span id="cant-noches"><?php echo $days_to_stay ?> noches</span></td>
 							<td id="precio-bruto"><?php echo $importe_total ?></td>
@@ -265,6 +278,7 @@ $thumbnail = json_decode($propiedad['galeria'])[0];
 							<td><span>Tarifa Limpieza</td>
 							<td id="fee">15</td>
 						</tr>
+						</tbody>
 					</table>
 					<div id="total-cont">
 						<strong>Total</strong>
@@ -286,6 +300,16 @@ $thumbnail = json_decode($propiedad['galeria'])[0];
 <script>
 
 const checkout_id = document.getElementById('checkout_id').value
+var noche_gratis = $('#noche_gratis').val()
+const global_tarifa = $('#tarifa').val()
+const precio_final = $('#precio_final').val()
+const days_to_stay = $('#days_to_stay').val()
+
+// Si existe una noche gratis, se la mostramos en el front
+if(noche_gratis!='' && days_to_stay>=2){
+	noche_gratis = JSON.parse(noche_gratis)
+	$('#tabla-detalle-final').append(comp_noche_gratis())
+}
 
 paypal.Buttons({
   createOrder: function(data, actions) {
@@ -303,7 +327,7 @@ paypal.Buttons({
 return actions.order.capture().then(function() {
 	console.log('data: ')
 	console.log(data)
-     window.location = "paypal-transaction-complete.php?&orderID="+data.orderID;				
+     window.location = "paypal-transaction-complete.php?orderID="+data.orderID;				
 });
 }
 }).render('#paypal-button-container');

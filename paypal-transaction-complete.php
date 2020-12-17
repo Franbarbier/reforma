@@ -2,14 +2,20 @@
 //1. Import the PayPal SDK client
 namespace Sample;
 
+session_start();
+
 require 'php/connection.php';
 require 'php/models/Globales.php';
 require 'php/models/Reservas.php';
+require 'php/models/Usuarios.php';
 
 require __DIR__ . '/vendor/autoload.php';
 
+$id_usuario = $_SESSION['id_user'];
+
 $globales = new \Globales();
 $reservas = new \Reservas();
+$usuarios = new \Usuarios($id_usuario);
 
 use Sample\PayPalClient;
 use PayPalCheckoutSdk\Orders\OrdersGetRequest;
@@ -17,6 +23,35 @@ use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 require 'paypal-client.php';
 
 $orderID = $_GET['orderID'];
+
+// Si usó una noche gratis, lo registramos
+$noche_gratis = '';
+if(isset($_GET['noche_gratis'])){
+
+  $noche_gratis = $_GET['noche_gratis'];
+
+  // Updateamos la columa 'noches_gratis_usadas' del usuario
+  $usuario = $usuarios->verUsuario();
+  $noches_usadas = $usuario['noches_gratis_usadas'];
+  if($noches_usadas==''){
+    $noches_usadas = '[]';
+  }
+
+  $noches_usadas = json_decode($noches_usadas);
+
+  array_push($noches_usadas, $noche_gratis);
+
+  $noches_usadas = json_encode($noches_usadas);
+  
+  $sql = "UPDATE usuarios SET noches_gratis_usadas=? WHERE id=?";
+  $stmt= $pdo->prepare($sql);
+  $stmt->execute([$noches_usadas, $id_usuario]);
+
+  if($stmt){
+    echo 'Datos actualizados con éxito.';
+  }
+
+}
 
 class GetOrder
 {
@@ -69,7 +104,7 @@ class GetOrder
           // Mandamos mail de nueva reserva creada
 
           // Redirigimos a thank you page
-          header("Location: gracias.php");
+          // header("Location: gracias.php");
 
 
         }

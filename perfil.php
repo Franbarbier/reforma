@@ -126,7 +126,7 @@ if(isset($_SESSION['id_user'])){
 			<ul id="info-perfil">
 				<li><?php echo $usuario['mail'] ?></li>
 				<li><?php echo $usuario['telefono'] ?></li>
-				<li>Argentina</li>
+				<li><?php echo $usuario['pais'] ?></li>
 			</ul>
 		</div>
 	</div>

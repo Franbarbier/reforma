@@ -310,6 +310,12 @@ class Propiedades{
                 array_push($fechas_ocupadas, $fecha);
             }
 
+            // Y por ultimo pusheamos la del checkout que no entra en el intervalo
+            $checkout_formateada = new DateTime($check_out_r);
+            $checkout_formateada = $checkout_formateada->format('Y-n-j');
+            array_push($fechas_ocupadas, $checkout_formateada);
+
+
         }
 
         return $fechas_ocupadas;
