@@ -39,7 +39,7 @@ $( document ).ready( function(){
 
 
 
-var fechasOcupas = ['2020-12-20', '2020-12-30', '2021-1-6'];
+// var fechasOcupas = ['2020-12-20', '2020-12-30', '2021-1-6'];
 
 
 var picker = new Lightpick({

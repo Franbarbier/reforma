@@ -3,7 +3,7 @@
 * @copyright: Copyright (c) 2019 Rinat G.
 * @license: Licensed under the MIT license. See http://www.opensource.org/licenses/mit-license.php
 */
-var fechasOcupas = ['2020-12-20', '2020-12-30', '2021-1-6'];
+var fechasOcupas = ['2020-12-20', '2020-12-30', '2021-1-6', , '2021-1-9'];
 function check_ocupadas() {
     for (let index = 0; index < fechasOcupas.length; index++) {
         var ocuapa2 = fechasOcupas[index];
@@ -14,7 +14,6 @@ function check_ocupadas_desplg(){
     for (let index = 0; index < fechasOcupas.length; index++) {
         var ocuapa2 = fechasOcupas[index];
         $('body>.lightpick').find('#'+ocuapa2).css('background','red').addClass('ocupa2')
-        console.log('AAAAAAAAAAAAAAA')
     }
 }
 
