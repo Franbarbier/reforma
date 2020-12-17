@@ -52,4 +52,12 @@ if($_GET['func']=='filtrarResultados'){
 
 }
 
+if($_GET['func']=='verFechasOcupadas'){
+
+	$id = $_GET['id'];
+
+	echo json_encode($propiedades->verFechasOcupadas($id));
+
+}
+
 ?>

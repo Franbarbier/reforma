@@ -5,7 +5,7 @@
 <head>
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="calendar/Lightpick-master/css/lightpick.css">
     <link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/calendar-desk-hidden.css" />
@@ -38,8 +38,11 @@
 $( document ).ready( function(){
 
 
-
-var fechasOcupas = ['2020-12-20', '2020-12-30', '2021-1-6'];
+//  Si no esta en apartado. creamos una variable vacia para global_ocupadas
+if (!window.location.href.indexOf("apartado") > -1) {
+    var global_ocupadas = [];
+}
+// var fechasOcupas = ['2020-12-20', '2020-12-30', '2021-1-6'];
 
 
 var picker = new Lightpick({
@@ -53,7 +56,7 @@ var picker = new Lightpick({
     numberOfColumns: 3,
     orientation: "bottom right",
     numberOfMonths: 2,
-    disableDates: fechasOcupas,
+    disableDates: global_ocupadas,
     disabledDatesInRange: false,
     tooltipNights: true,
 
@@ -118,22 +121,22 @@ function unix_to_ymd(timestamp){
 
 }
 
-function ymd_to_unix(ymd_date){
+// function ymd_to_unix(ymd_date){
 
-}
+// }
 
 
-function disable_dates(dates_array){
+// function disable_dates(dates_array){
 
-    for(date in dates_array){
+//     for(date in dates_array){
 
-        var unix_date = ymd_to_unix(dates_array[date])
+//         var unix_date = ymd_to_unix(dates_array[date])
 
-        $( ".lightpick__day[data-time='"+unix_date+"']").css('color', 'red')
+//         $( ".lightpick__day[data-time='"+unix_date+"']").css('color', 'red')
 
-    }
+//     }
 
-}
+// }
 
 
 // Month here is 1-indexed (January is 1, February is 2, etc). This is because we're using 0 as the day so that it returns the last day of the last month, so you have to add 1 to the month number so it returns the correct amount of days

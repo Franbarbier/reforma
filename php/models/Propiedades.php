@@ -281,6 +281,39 @@ class Propiedades{
 
     }
 
+    public function verFechasOcupadas($id){
+
+        global $pdo;
+
+        $fechas_ocupadas = [];
+
+        $q = $pdo->prepare("SELECT * FROM reservas WHERE id_propiedad=:id_propiedad AND estado=1");
+        $q->execute(['id_propiedad' => $id]); 
+        $q = $q->fetchAll();
+
+        foreach($q as $reserva){
+
+            $check_in_r = $reserva['check_in'];
+            $check_out_r = $reserva['check_out'];
+
+            $period = new DatePeriod(
+                new DateTime($check_in_r),
+                new DateInterval('P1D'),
+                new DateTime($check_out_r)
+                );
+            
+            //   Iteramos cada dia del periodo y lo vamos pusheando a fechas_ocupadas
+            foreach($period as $key=>$value){
+                $fecha = $value->format('Y-m-d');
+                array_push($fechas_ocupadas, $fecha);
+            }
+
+        }
+
+        return $fechas_ocupadas;
+
+    }
+
 
 
 }

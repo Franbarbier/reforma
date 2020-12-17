@@ -5,7 +5,7 @@
 <head>
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="calendar/Lightpick-master/css/lightpick.css">
     <link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/calendar-desk.css" />
@@ -28,7 +28,10 @@
 
 // $( document ).ready( function(){
 
-var fechasOcupas = ['2020-12-20', '2020-12-30', '2021-1-6'];
+//  Si no esta en apartado. creamos una variable vacia para global_ocupadas
+if (!window.location.href.indexOf("apartado") > -1) {
+    var global_ocupadas = [];
+}
 
 
 var picker2 = new Lightpick({
@@ -42,7 +45,7 @@ var picker2 = new Lightpick({
     numberOfColumns: 3,
     orientation: "top left",
     numberOfMonths: 2,
-    disableDates: fechasOcupas,
+    disableDates: global_ocupadas,
     disabledDatesInRange: false,
     tooltipNights: true,
     inline: true,

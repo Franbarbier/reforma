@@ -122,6 +122,7 @@ function render_apartado(propiedad) {
             return response.json();
         })
         .then(function (disenador) {
+            console.log('DISENADOR')
             console.log(disenador)
 
             document.getElementById('disenador-nombre').innerHTML = disenador.nombre
@@ -458,5 +459,17 @@ function comp_row_detalle(id, num, text){
                 <td><span>${text}</span></td>
                 <td id="${id}" style="text-align:right">${num}</td>
             </tr>`
+
+}
+
+function verFechasOcupadas(){
+
+    fetch('php/api/propiedades.php?func=verFechasOcupadas&id=' + id_propiedad)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (res) {
+        console.log(res)
+    });
 
 }
