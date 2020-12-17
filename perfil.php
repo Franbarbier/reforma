@@ -119,7 +119,7 @@ if(isset($_SESSION['id_user'])){
 <div id="datos-usuario">
 	<div>
 		<div id="foto-perfil">
-			<img src="https://cdn.urgente24.com/sites/default/files/2020-08/lionel-messi-manchester-city.jpg" alt="">
+			<img src="imgs/no-user-pic.jpg" alt="">
 		</div>
 		<div>
 			<h1>Hola, <span><?php echo $usuario['nombre'] ?></span></h1>

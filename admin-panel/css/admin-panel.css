@@ -32,8 +32,7 @@ body {
   overflow-x: hidden;
   color: #272727;
 }
-button,
-input {
+button, select, input {
   font-family: "Century Gothic";
   outline: none;
 }
@@ -110,24 +109,26 @@ nav > div > div > div > a > img {
   overflow: auto;
   height: 90vh;
   padding-top: 10vh;
+
 }
 main>div{
   width: 90%;
   margin: auto;
 }
+
+/* VER PROPIEDADES PROPIEDAD */
+
 #ver_propiedades>div>h2, #crear_propiedad>div>h2{
   font-size: 1.9em;
 }
-#ver_propiedades>div:first-child, #crear_propiedad>div:first-child{
+#ver_propiedades>div:first-child, #crear_propiedad>div:first-child, #ver_usuarios>div:first-child{
   display: flex;
   justify-content: space-between;
   width: 80%;
   align-items: center;
   margin-bottom: 40px;
 }
-.row-propiedad::before{
-  content: '1';
-}
+
 .row-propiedad{
   display: flex;
   align-items: center;
@@ -145,6 +146,7 @@ main>div{
   height: 50px;
   margin-right: 15px;
   overflow: hidden;
+  border-radius: 3px;
 }
 .foto-prop>img{
   width: 100%;
@@ -174,7 +176,7 @@ main>div{
   width: 100%;
 
 }
-#crear-propiedad, #subir-propiedad{
+#crear-propiedad, #subir-propiedad, #crear-usuario{
   background: #d4bfaa;
   border: 2px solid #d4bfaa;
   color: white;
@@ -185,10 +187,17 @@ main>div{
   cursor: pointer;
   transition: 0.15s;
 }
+#subir-propiedad:hover{
+  background: transparent;
+  color: #d4bfaa;
+}
 
+
+/* SUBIR NUEVA PROPIEDAD */
 #crear_propiedad label{
-  font-size: 0.9em;
-  color: #6d6d6d;
+  color: #535353;
+  font-weight: 600;
+  font-size: 1.3em;
   display: block;
   margin-bottom: 3px;
 }
@@ -200,6 +209,7 @@ main>div{
   width: 26%;
   display: inline-block;
 }
+
 .grey-input{
   background: #f0f0f0;
   border: 1px solid #ddd;
@@ -210,7 +220,7 @@ main>div{
   width: 80%;
 }
 .house-display{
-  display: flex;
+    display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
   }
@@ -219,25 +229,75 @@ main>div{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-   margin-top: 60px;
+    margin-top: 60px;
 }
 .house-display>div img{
-    width: 48px;
-    margin-right: 75%;
+    width: 12%;
+    margin-right: 88%;
 }
 .house-display>div p{
+  margin-bottom: 3px;
   font-weight: 600;
+  color: #535353;
+
 }
+.dormitorio{
+  margin-bottom: 25px;
+}
+.dormitorio>div{
+  position: relative;
+}
+.delete-bed{
+  width: 11px;
+  position: absolute;
+  border-radius: 50%;
+  right: 105%;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+  border: #5e5e5e 1px solid;
+  height: 11px;
+  padding: 3px;
+}
+.delete-bed img{
+  width: 50%!important;
+  margin: auto;
+  display: block;
+  transform: translate(40%, 50%);
+}
+
+
 .house-display>div input{
   width: 15%;
   margin-left: 7%
 }
+.house-display>div select{
+  margin-bottom: 3px;
+}
+
+.house-display>div span{
+  display: block;
+  font-size: 0.75em;
+  border-bottom: 1px solid #5e5e5e;
+  margin-top: 4px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.house-display>div span:hover{
+  border-bottom: 1px dashed #5e5e5e;
+
+}
+#n-camas{
+  align-items: flex-start;
+  justify-content: space-between;
+}
 #amenities{
   margin: 80px 0;
 }
-#amenities>p, #concepto>p{
+#amenities>p, #concepto>p, .lasts>div>p{
   font-weight: 600;
   font-size: 1.3em;
+  color: #535353;
 }
 #amenities ul{
   display: flex;
@@ -259,7 +319,7 @@ main>div{
   opacity: 0.7;
 }
 .ameniti-selected{
-  opacity: 1;
+  opacity: 1!important;
 }
 .ameniti-selected::before{
   content: '✓';
@@ -286,3 +346,70 @@ main>div{
     overflow: auto;
     margin-top: 10px;
 }
+.lasts{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.lasts>div{
+  width: 40%;
+  margin-top: 5%;
+}
+.lasts>div p{
+  margin-bottom: 3px;
+}
+.lasts>div>div span{ 
+  font-weight: 600;
+  font-size: 1.5em;
+}
+.lasts>div>div input{
+  font-size: 1.3em;
+  width: 20%;
+} 
+#buttons-cont{
+  margin: 10% 0;
+  display: flex;
+  justify-content: space-around;
+}
+#descartar-cambios{
+  cursor: pointer;
+}
+
+/* ver usuario */
+.row-usuario{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  FONT-VARIANT: JIS04;
+  padding: 2% 0;
+  /* margin: 1% 0; */
+  border-bottom: 1px solid #ddd;
+}
+.row-usuario:last-child{
+  border-bottom: none;
+
+}
+
+.row-usuario .options{
+  width: 10%;
+}
+.row-usuario>div:first-child{
+  display: flex;
+  align-items: center;
+  width: 90%;
+}
+.id-usuario{
+  width: 5%;
+}
+.nombre-usuario{
+  width: 40%;
+}
+.nombre-usuario p, .mail-usuario p{
+  font-size: 1em;
+}
+
+.mail-usuario p{
+  font-style: italic;
+}
+

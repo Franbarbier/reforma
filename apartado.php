@@ -437,7 +437,7 @@ if(isset($_SESSION['id_user'])){
             </div> -->
 
         </div>
-        <button>RESERVAR AHORA</button>
+        <button id="reservar-scroll">RESERVAR AHORA</button>
     </article>
     <article id="related">
         <h4>Otros alojamientos</h4>
@@ -670,6 +670,12 @@ $('#save').click(function() {
 
 
 })
+
+$("#reservar-scroll").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#seccion-calendar").offset().top - 100
+    }, 700);
+});
 
 // Cuando cliquean en reservar
 $(document).on('click', '#sticky-reservar', function(){

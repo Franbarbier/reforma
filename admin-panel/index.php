@@ -97,67 +97,7 @@ if(isset($_GET['logout'])){
 	</aside>
 	<main>
 		<div>
-			<div id="crear_propiedad">
-				<div>
-					<h2>Nueva propiedad</h2>
-					<button id="subir-propiedad">SUBIR PROPIEDAD</button>
-				</div>
-				<div>
-					<div id="n-nombre">
-						<label for="">Nombre</label>
-						<input class="grey-input" type="text">
-					</div>
-					<div id="n-provincia">
-						<label for="">Provincia</label>
-						<input class="grey-input" type="text">
-					</div>
-					<div id="n-localidad">
-						<label for="">Localidad</label>
-						<input class="grey-input" type="text">
-					</div>
-					<div class="house-display">
-						<div>
-							<img src="../imgs/users-handmade.svg" alt="">
-							<p>Huespedes</p>
-							<input class="grey-input" type="number">
-						</div>
-						<div>
-							<img src="../imgs/ducha-handmade.svg" alt="">
-							<p>Baños</p>
-							<input class="grey-input" type="number">
-						</div>
-						<div>
-							<img src="../imgs/cama-handmade.svg" alt="">
-							<p>Dormitorios</p>
-							<input class="grey-input" type="number">
-						</div>
-						<div id="n-camas" style="opacity:0.2">
-							<p>Dormitorio Z</p>
-							<p>Tantas camas dinamica</p>
-							<input class="grey-input" type="number">
-						</div>
-					</div>
-					<div id="amenities">
-						<p>Amenities</p>
-						<ul>
-
-						</ul>
-					</div>
-					<div id="concepto">
-						<p>Concepto</p>
-						<textarea class="grey-input"></textarea>
-					</div>
-					<div>
-						<p>Diseñador</p>
-					</div>
-					<div>
-						<p>Ubicacion</p>
-					</div>
-					<div>
-						<p>Tarifa por noche</p>
-					</div>
-				</div>
-			</div>
+			
 		</div>
 	</main>
 </div>
@@ -170,6 +110,9 @@ if(isset($_GET['logout'])){
 $( document ).ready( function(){
 
 // $('main>div').append(ver_propiedades())
+$('main>div').append(ver_usuarios())
+
+
 
 });
 </script>
