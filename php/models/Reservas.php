@@ -73,20 +73,21 @@ class Reservas{
 
         if(!$se_pisan_fechas){
             echo 'No se pisan las fechas con otra reserva, se puede crear la reserva';
+            // Si no se estan pisando, procedemos con la reserva
+            
+            $q = "INSERT INTO reservas (check_in, check_out, importe_total, id_usuario, id_propiedad) VALUES (?,?,?,?,?)";
+            
+            $stmt= $pdo->prepare($q);
+            $stmt->execute([$check_in, $check_out, $importe_total, $id_usuario, $id_propiedad]);
+            if($stmt){
+                return '{"error": 0}';
+            }else{
+                return '{"error": 1}';
+            }
         }else{
                 echo 'Las fechas se pisan. No se puede crear esta reserva';
+                return '{"error": 2}';
                 
-                // Si no se estan pisando, procedemos con la reserva
-                
-                $q = "INSERT INTO reservas (check_in, check_out, importe_total, id_usuario, id_propiedad) VALUES (?,?,?,?,?)";
-                
-                $stmt= $pdo->prepare($q);
-                $stmt->execute([$check_in, $check_out, $importe_total, $id_usuario, $id_propiedad]);
-                if($stmt){
-                    return '{"error": 0}';
-                }else{
-                    return '{"error": 1}';
-                }
             }
         }
     

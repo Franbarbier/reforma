@@ -92,6 +92,14 @@ if($_GET['func'] == 'guardarUsuario'){
 
 }
 
+if($_GET['func'] == 'changePassword'){
+
+    $psw_actual = $_POST['psw_actual'];
+    $psw_nueva = $_POST['psw_nueva'];
+
+    echo $usuarios->changePassword($psw_actual, $psw_nueva);
+
+}
 
 
 ?>

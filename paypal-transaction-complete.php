@@ -104,7 +104,7 @@ class GetOrder
           // Mandamos mail de nueva reserva creada
 
           // Redirigimos a thank you page
-          // header("Location: gracias.php");
+          header("Location: gracias.php");
 
 
         }
@@ -113,9 +113,9 @@ class GetOrder
         echo 'Error al actualizar el checkout';
     }
 
-    echo '<pre>';
-    var_dump($response);
-    echo '</pre>';
+    // echo '<pre>';
+    // var_dump($response);
+    // echo '</pre>';
 
   }
 }

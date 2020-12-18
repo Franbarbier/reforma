@@ -405,6 +405,38 @@ class Usuarios{
 
     }
 
+    public function changePassword($psw_actual, $psw_nueva){
+
+        global $pdo;
+
+        $psw_actual = md5($psw_actual);
+        $psw_nueva = md5($psw_nueva);
+
+        $esta_psw = $this->verUsuario();
+        $esta_psw = $esta_psw['password'];
+
+        if($psw_actual != $esta_psw){
+            return '{"error": 2}';
+        }else{
+
+            // Actualizamos la contraseña
+            $sql = "UPDATE usuarios SET password=? WHERE id=?";
+            $stmt= $pdo->prepare($sql);
+            $stmt->execute([$psw_nueva, $this->id]);
+
+            if($stmt){
+                return '{"error":0}';
+            }else{
+                return '{"error":1}';
+            }
+
+
+        }
+
+
+
+    }
+
 
 
 }

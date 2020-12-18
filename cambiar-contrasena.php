@@ -83,7 +83,24 @@ if(isset($_SESSION['id_user'])){
 	<link rel="stylesheet" type="text/css" media="(min-width: 800px)" href="css/perfil-desk.css" />
 	<link rel="stylesheet" type="text/css" media="(max-width: 799px)" href="css/perfil-mob.css?refrescate=4" />
     
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<style>
+
+	.to-be-filled{
+		border: 2px solid #d4bfaa!important;
+	}
+
+	#msj{
+		text-align: center;
+	}
+
+	#msj a{
+		font-weight: bold!important;
+		color: #d4bfaa!important;
+	}
+	
+	</style>
 
 </head>
 
@@ -116,23 +133,24 @@ if(isset($_SESSION['id_user'])){
 	<div id="cambiar-cont">
 		<h2>Cambiar contraseña</h2>
 		<form action="">
-			<div>
+			<!-- <div>
 				<label for="mail">Mail de la cuenta</label>
 				<input type="email">
-			</div>
+			</div> -->
 			<div>
 				<label for="mail">Contraseña actual</label>
-				<input type="password">
+				<input type="password" id="psw-actual">
 			</div>
 			<div>
 				<label for="mail">Nueva contraseña</label>
-				<input type="password">
+				<input type="password" id="psw1">
 			</div>
 			<div>
 				<label for="mail">Repetir nueva contraseña</label>
-				<input type="password">
+				<input type="password" id="psw2">
 			</div>
 			<input type="submit" value="CAMBIAR" id="ok-cambiar">
+			<div id="msj" style="display:none"></div>
 		</form>
 	</div>
 </main>
@@ -140,11 +158,74 @@ if(isset($_SESSION['id_user'])){
 
 </body>
 
-<script src="js/perfil.js"></script>
 <script>
 $( document ).ready( function(){
 
 
+	$(document).on('click', '#ok-cambiar', function(e){
+		console.log('holue!')
+		e.preventDefault();
+		e.stopPropagation();
+
+		var empty_fields = false
+
+		$('#cambiar-cont input').each(function(){
+
+			if($(this).val()==''){
+				empty_fields = true
+				$(this).addClass('to-be-filled')
+			}else{
+				$(this).removeClass('to-be-filled')
+			}
+		})
+
+			if(empty_fields){
+				$('#msj').html('Campos incompletos.')
+				$('#msj').slideDown(100)
+			}else{
+
+				psw_actual = $('#psw-actual').val()
+				psw1 = $('#psw1').val()
+				psw2 = $('#psw2').val()
+
+				if(psw1!=psw2){
+					$('#msj').html('Las contraseñas introducidas no coinciden')
+					$('#msj').slideDown(100)
+					$('#psw1').addClass('to-be-filled')
+					$('#psw2').addClass('to-be-filled')
+				}else{
+					
+					$.ajax({
+						url:'php/api/usuarios.php?func=changePassword',
+						method:'POST',
+						cache: false,
+						data:{
+							psw_actual:psw_actual,
+							psw_nueva:psw1
+						},
+						dataType:'text',
+						success:function(data){
+							console.log(data)
+							data=JSON.parse(data)
+							
+							if(data.error==2){
+								$('#msj').html('La contraseña introducida no coincide con la actual.')
+								$('#psw-actual').addClass('to-be-filled')
+							}else if(data.error==1){
+								$('#msj').html('Ocurrio un error al intentar actualizar la contraseña.')
+							}else if(data.error==0){
+								$('#msj').html('Contraseña actualizada con éxito! <a href="perfil.php">Regresar al perfil</a>')
+								$('#psw1, #psw2, #psw-actual').val('')
+							}
+							$('#msj').slideDown(100)
+						}
+					});
+
+				}
+
+			}
+
+	})
 
 
 

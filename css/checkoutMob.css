@@ -489,8 +489,22 @@ form>div input, form>div select{
 .canjear{
   text-align: center;
     font-size: 0.8em;
-    background-color: lightblue;
     padding: 5px 10px;
     border-radius: 3px;
+    border: 1px solid #d4bfaa;
     width: 70px;
+}
+
+.canjear:hover{
+  color: #d4bfaa;
+  cursor: pointer;
+}
+
+.ng-text{
+  font-weight: bold;
+}
+
+.canjear-cont{
+  display: flex;
+  justify-content: flex-end;
 }

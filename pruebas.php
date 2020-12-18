@@ -7,9 +7,6 @@ require 'php/models/Usuarios.php';
 
 $globales = new Globales();
 
-session_start();
-$usuario = new Usuarios($_SESSION['id_user']);
-
-var_dump($usuario->checkNochesGratis());
+echo md5('Jchskate12');
 
 ?>
