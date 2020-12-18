@@ -408,35 +408,35 @@ if(logeado=='si'){
 }
 
 // Componente main modal
-function comp_main_modal(){
+// function comp_main_modal(){
 
-    $(document).on('click', '#mm-cerrar, #main-modal-cont, #mm-entendido-btn', function(){
-        $('#main-modal-cont').fadeOut(100)
-    })
+//     $(document).on('click', '#mm-cerrar, #main-modal-cont, #mm-entendido-btn', function(){
+//         $('#main-modal-cont').fadeOut(100)
+//     })
 
-    $(document).on('click', '#main-modal', function(e){
-        e.stopPropagation()
-    })
+//     $(document).on('click', '#main-modal', function(e){
+//         e.stopPropagation()
+//     })
 
-    return `<div id="main-modal-cont" style="display:none">
+//     return `<div id="main-modal-cont" style="display:none">
 
-                <div id="main-modal">
+//                 <div id="main-modal">
 
-                    <div id="mm-cerrar">x</div>
+//                     <div id="mm-cerrar">x</div>
 
-                    <div id="mm-heading">
-                        <div id="mm-titulo">Titulo de prueba</div>
-                        <div id="mm-descripcion">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt magni.</div>
-                    </div>
+//                     <div id="mm-heading">
+//                         <div id="mm-titulo">Titulo de prueba</div>
+//                         <div id="mm-descripcion">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt magni.</div>
+//                     </div>
 
-                    <div id="mm-contenido">
+//                     <div id="mm-contenido">
                         
-                    </div>
+//                     </div>
                 
-                </div>
+//                 </div>
 
-            </div>` 
-}
+//             </div>` 
+// }
 
 // Funcion que abre el modal inyectandole cierto contenido
 function render_modal(titulo, descripcion='', contenido='ENTENDIDO'){

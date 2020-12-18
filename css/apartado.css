@@ -755,7 +755,7 @@ main>div>img{
   border: 2px solid #d4bfaa;
 }
 
-#mm-cerrar, .mm-cerrar{
+#mm-cerrar{
   position: absolute;
   right: 9px;
   top: 5px;
@@ -771,7 +771,7 @@ main>div>img{
   transition: .2s;
 }
 
-#mm-cerrar:hover, .mm-cerrar:hover{
+#mm-cerrar:hover{
   color: black;
   cursor: pointer;
   background-color: rgba(212, 191, 170, 0.5);
