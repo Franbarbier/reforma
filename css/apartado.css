@@ -716,21 +716,21 @@ main>div>img{
     width: 600px;
 }
 
-#mm-titulo{
+#mm-titulo, .mm-titulo{
   font-weight: bold;
   font-size: 1.4em;
   margin-bottom: 5px;
 }
 
-#mm-descripcion{
+#mm-descripcion, .mm-descripcion{
   font-size: 0.85em;
 }
 
-#mm-heading{
+#mm-heading, .mm-heading{
   margin-bottom: 25px;
 }
 
-#mm-contenido{
+#mm-contenido, .mm-contenido{
   display: flex;
     justify-content: center;
     align-items: center;
@@ -755,7 +755,7 @@ main>div>img{
   border: 2px solid #d4bfaa;
 }
 
-#mm-cerrar{
+#mm-cerrar, .mm-cerrar{
   position: absolute;
   right: 9px;
   top: 5px;
@@ -771,7 +771,7 @@ main>div>img{
   transition: .2s;
 }
 
-#mm-cerrar:hover{
+#mm-cerrar:hover, .mm-cerrar:hover{
   color: black;
   cursor: pointer;
   background-color: rgba(212, 191, 170, 0.5);
@@ -888,4 +888,71 @@ main>div>img{
   CURSOR: POINTER;
   border-radius: 50%;
   border: 2px solid black;
+}
+
+#share-modal{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  /* background: #ffffff66; */
+  top: 0;
+  backdrop-filter: blur(7px);
+  display: none;
+}
+#share-modal>div{
+  width: 33%;
+  padding: 3%;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.3);
+}
+
+#share-modal input{
+  padding: 9px 9px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 80%;
+    cursor: text;
+}
+.modal-cont-share{
+  display: flex;
+  /* align-items: center; */
+}
+
+.copy-cont{
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px 6px;
+  cursor: pointer;
+  width: 10%;
+  margin-left: 3%;
+}
+.copy-cont img{
+  width: 100%;
+  margin-top: 32%;
+}
+.roger-that{
+  background: #d4bfaa;
+  border: 2px solid #d4bfaa;
+  color: white;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+  padding: 8px 22px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: 0.15s;
+  display: block;
+  margin: 30px auto 0;
+}
+
+.copied{
+  background-color: rgb(139 242 139);
+
+  box-shadow: 0px 0px 4px 2px rgba(61, 170, 61, 0.3);
+  transition: .1s;
 }

@@ -484,6 +484,8 @@ if(logeado=='si'){
 }
 
 $('body').append(comp_main_modal())
+$('body').append(comp_share_modal())
+
 
 
 $('#mas').click(function () {
