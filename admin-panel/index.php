@@ -109,8 +109,48 @@ if(isset($_GET['logout'])){
 
 $( document ).ready( function(){
 
-// $('main>div').append(ver_propiedades())
-$('main>div').append(ver_usuarios())
+
+active_propiedades()
+
+
+function active_propiedades() {
+	$('main>div').html(ver_propiedades())	
+}
+function active_usuarios() {
+	$('main>div').html(ver_usuarios())
+}
+function active_localidades() {
+	$('main>div').html(ver_localidades())	
+}
+function active_artistas() {
+	$('main>div').html(ver_artistas())	
+}
+
+$('aside #propiedades').click(function(){
+	active_propiedades()
+})
+$('aside #usuarios').click(function(){
+	active_usuarios()
+})
+$('aside #localidades').click(function(){
+	active_localidades()
+})
+$('aside #artistas').click(function(){
+	active_artistas()
+})
+
+$(document).on('click', '#crear-propiedad', function () {	
+	$('main>div').html(nueva_propiedad())	
+})
+$(document).on('click', '.editar-prop', function () {	
+	let id = $(this).parent().parent().attr('id')
+	$('main>div').html(nueva_propiedad(id))
+})
+
+
+$('body').append( modal_edit_artista() )
+$('body').append( modal_edit_localidad() )
+
 
 
 
