@@ -708,7 +708,7 @@ main>div>img{
 }
 
 #main-modal{
-  background-color: white;
+    background-color: white;
     padding: 25px 30px;
     border-radius: 4px;
     box-shadow: 0 0 6px rgba(0,0,0,0.38);

@@ -1,6 +1,4 @@
 
-
-
 // for (img in galeria) {
 //     html += comp_img_carrousel(galeria[img])
 //     htmlGaleriaExpand += imgs_galeria_grande(galeria[img])
@@ -8,6 +6,8 @@
 // function imgs_galeria_grande(img) {
 //     return '<div class="galeria-grande carousel-cell"><img src="imgs/propiedades_imgs/' + img + '" alt=""></div>'
 // }
+
+
 
 function row_propiedad() {
     return `<div id="id-prop" class="row-propiedad">
@@ -20,7 +20,7 @@ function row_propiedad() {
                     </div>
                 </div>
                 <div class="options">
-                    <a class="ver-prop">
+                    <a class="ver-prop" href="../apartado.php?id=2">
                         <img src="../imgs/view.svg">
                     </a>
                     <a class="editar-prop">
@@ -52,10 +52,41 @@ function ver_propiedades() {
             </div>`
 }
 
-function nueva_propiedad(params) {
+function li_ameniti(key, value) {
+    return `<li><img src="../${value}" alt=""><p>${key}</p></li>`
+}
+
+function nueva_propiedad(id) {
+
+    if (id == undefined) {
+        // ir a buscar los datos de la propiedad y rellenar los campos
+        // cambiar el boton de confirmacion a "guardar cambios"
+    }
 
     $('aside li').removeClass('activeLi')
     $('#propiedades').addClass('activeLi')
+    let servicios = {
+        'Cocina completa': 'imgs/icons/kitchen.svg',
+        'Lavadora': 'imgs/icons/lavanderia.svg',
+        'Secadora': 'imgs/icons/secador.svg',
+        'Ascensor': 'imgs/icons/ascensor.svg',
+        'Calefaccion': 'imgs/icons/heater.svg',
+        'Aire Acondicionado': 'imgs/icons/air-conditioner.svg',
+        'Bañera': 'imgs/icons/bath.svg',
+        'Smart TV': 'imgs/icons/smart-tv.svg',
+        'Pileta': 'imgs/icons/swimming.svg',
+        'Gimnasio': 'imgs/icons/gym.svg',
+        'Wifi': 'imgs/icons/wifi.svg',
+        'Espacio para estudio/trabajo': 'imgs/icons/work-space.svg',
+        'Aparcamiento gratuito en la calle':'imgs/icons/parking.svg',
+        'Aparcamiento de pago fuera de las instalaciones':'imgs/icons/barrier.svg'
+    }
+    var html = '';
+    
+    Object.entries(servicios).forEach(([key, value]) =>  html += li_ameniti( key, value ))
+
+    // $('#amenities ul').append('<li><img src="../'+ value +'" alt=""><p>'+ key +'</p></li>')
+
 
     return `<div id="crear_propiedad">
                 <div>
@@ -119,7 +150,7 @@ function nueva_propiedad(params) {
                     <div id="amenities">
                         <p>Amenities</p>
                         <ul>
-
+                            ${html}
                         </ul>
                     </div>
                     <div id="concepto">
@@ -168,26 +199,6 @@ function nueva_propiedad(params) {
 }
 
 
-
-let servicios = {
-    'Cocina completa': 'imgs/icons/kitchen.svg',
-    'Lavadora': 'imgs/icons/lavanderia.svg',
-    'Secadora': 'imgs/icons/secador.svg',
-    'Ascensor': 'imgs/icons/ascensor.svg',
-    'Calefaccion': 'imgs/icons/heater.svg',
-    'Aire Acondicionado': 'imgs/icons/air-conditioner.svg',
-    'Bañera': 'imgs/icons/bath.svg',
-    'Smart TV': 'imgs/icons/smart-tv.svg',
-    'Pileta': 'imgs/icons/swimming.svg',
-    'Gimnasio': 'imgs/icons/gym.svg',
-    'Wifi': 'imgs/icons/wifi.svg',
-    'Espacio para estudio/trabajo': 'imgs/icons/work-space.svg',
-    'Aparcamiento gratuito en la calle':'imgs/icons/parking.svg',
-    'Aparcamiento de pago fuera de las instalaciones':'imgs/icons/barrier.svg'
-}
-
-
-Object.entries(servicios).forEach(([key, value]) => $('#amenities ul').append('<li><img src="../'+ value +'" alt=""><p>'+ key +'</p></li>') )
 
 $(document).on('click', '#amenities li', function () {
     $(this).toggleClass('ameniti-selected')
@@ -301,4 +312,171 @@ function ver_usuarios() {
                     ${html}
                 </div>
             </div>`
+}
+
+function row_localidad() {
+    return `<div id="loc-us" class="row-localidad">
+                <div>
+                    <div class="id-loc">
+                        <p>1</p>
+                    </div>
+                    <div class="nombre-loc">
+                        <p>Nombre Localidad</p>
+                    </div>
+                    <div class="nombre-prov">
+                        <p>Provincia asignada</p>
+                    </div>
+                </div>
+                <div class="options">
+                    <a class="editar-loc">
+                        <img src="../imgs/pencil.svg">
+                    </a>
+                    <a class="eliminar-loc">
+                        <img src="../imgs/delete.svg">
+                    </a>
+                </div>
+            </div>`
+}
+
+
+function ver_localidades() {
+    $('aside li').removeClass('activeLi')
+    $('#localidades').addClass('activeLi')
+    var html = '';
+    for (let index = 0; index < 5; index++) {
+        html += row_localidad()
+    }
+
+    return `<div id="ver_localidades">
+                <div>
+                    <h2>Localidades</h2>
+                    <button id="crear-usuario">NUEVA LOCALIDAD</button>
+                </div>
+                <div>
+                    ${html}
+                </div>
+            </div>`
+}
+
+function row_artista() {
+    return `<div id="artista-us" class="row-artista">
+                <div>
+                    <div class="id-artista">
+                        <p>1</p>
+                    </div>
+                    <div class="foto-artista">
+                        <img src="https://www.agora-gallery.com/advice/wp-content/uploads/Robert-Ellison.jpg">
+                    </div>
+                    <div class="nombre-artista">
+                        <p>Nombre Artista</p>
+                    </div>
+                </div>
+                <div class="options">
+                    <a class="editar-artista">
+                        <img src="../imgs/pencil.svg">
+                    </a>
+                    <a class="eliminar-artista">
+                        <img src="../imgs/delete.svg">
+                    </a>
+                </div>
+            </div>`
+}
+
+
+function ver_artistas() {
+    $('aside li').removeClass('activeLi')
+    $('#artistas').addClass('activeLi')
+    var html = '';
+    for (let index = 0; index < 5; index++) {
+        html += row_artista()
+    }
+
+    return `<div id="ver_artistas">
+                <div>
+                    <h2>Artistas</h2>
+                    <button id="crear-usuario">NUEVO ARTISTA</button>
+                </div>
+                <div>
+                    ${html}
+                </div>
+            </div>`
+}
+
+
+// Componente main modal editar artistas
+function modal_edit_artista(){
+
+    $(document).on('click', '.editar-artista', function(){
+        $('#edit-artista-modal').fadeIn(100)
+    })
+    $(document).on('click', '#edit-artista-modal .descartar-cambios, #edit-artista-modal .mm-cerrar', function(){
+        $('#edit-artista-modal').fadeOut(100)
+    })
+
+    $(document).on('click', '#edit-artista-modal', function(e){
+        e.stopPropagation()
+    })
+
+    
+
+    return `<div id="edit-artista-modal" class="m-modal">
+                <div>
+                    <div class="mm-cerrar">x</div>
+
+                    
+                    <div class="mm-heading">
+                        <div class="foto-artist">
+                            <img src="https://www.agora-gallery.com/advice/wp-content/uploads/Robert-Ellison.jpg">
+                        </div>
+                        <h4 class="mm-titulo">Nombre Artista</h4>
+                    </div>
+                    <div>
+                        <textarea placeholder="Sobre el artista..."></textarea>
+                    </div>
+                    <aside class="save-buttons">
+                        <button class="descartar-cambios">DESCARTAR</button>
+                        <button class="guardar-cambios">GUARDAR</button>
+                    </aside>
+                </div>
+            </div>` 
+}
+
+// Componente main modal editar artistas
+function modal_edit_localidad(){
+
+    $(document).on('click', '.editar-loc', function(){
+        $('#edit-localidad-modal').fadeIn(100)
+    })
+    $(document).on('click', '#edit-localidad-modal .descartar-cambios, #edit-localidad-modal .mm-cerrar', function(){
+        $('#edit-localidad-modal').fadeOut(100)
+    })
+
+    $(document).on('click', '#edit-localidad-modal', function(e){
+        e.stopPropagation()
+    })
+
+    
+
+    return `<div id="edit-localidad-modal" class="m-modal">
+                <div>
+                    <div class="mm-cerrar">x</div>
+
+                    
+                    <div class="mm-heading">
+                        <h5>Editar localidad</h5>
+                        <input class="grey-input" type="text" value="Localidad actual">
+                        <select class="grey-input">
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                        </select>
+                    </div>
+                    <aside class="save-buttons">
+                        <button class="descartar-cambios">DESCARTAR</button>
+                        <button class="guardar-cambios">GUARDAR</button>
+                    </aside>
+                </div>
+            </div>` 
 }
