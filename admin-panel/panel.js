@@ -608,6 +608,7 @@ function actualizar_propiedad(){
     var tarifa = $('#p-tarifa').val()
 
     console.log('nombre: ', nombre, ', id_localidad: ', id_localidad, ', huespedes: ', huespedes, ', banos: ', banos, ', camas: ', camas, ', concepto espacio: ', concepto_espacio, ', id_disenador: ', id_disenador, ', latitud: ', latitud, ', longitud: ', longitud, ', tarifa: ', tarifa, ', distribucion camas: ', distribucion_camas, ', amenities: ', amenities)
+}
 
 // Componente main modal editar artistas
 function modal_ver_usuario(){
