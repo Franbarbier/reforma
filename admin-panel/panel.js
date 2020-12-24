@@ -59,20 +59,27 @@ function ver_propiedades(html) {
             </div>`
 }
 
-function li_ameniti(key, value) {
-    return `<li><img src="../${value}" alt=""><p>${key}</p></li>`
+function li_ameniti(key, value, id, selected) {
+    var status = ''
+    if(selected){
+        status = 'ameniti-selected'
+    }
+    return `<li data-id="${id}" class="${status}"><img src="../${value}" alt=""><p>${key}</p></li>`
 }
 
 function nueva_propiedad(id) {
 
-    var prop = {"amenities":"","banos":"","camas":"","concepto_espacio":"","coordenadas":"","distribucion_camas": "","galeria":"","huespedes":"","id":"", "id_disenador": "","id_localidad":"","localidad":"", "nombre":"","normas":"","politica":"","provincia":"","seguridad":"","tarifa":""}
+    var prop = {"amenities":"[]","banos":"","camas":"","concepto_espacio":"","coordenadas":"","distribucion_camas": "","galeria":"","huespedes":"","id":"", "id_disenador": "","id_localidad":"","localidad":"", "nombre":"","normas":"","politica":"","provincia":"","seguridad":"","tarifa":""}
     var btn_text = 'SUBIR PROPIEDAD';
+    var amenities = JSON.parse(prop.amenities)
 
 
     if (id != undefined) {
         prop = get_object_by_id(id, global_propiedades)
         console.log('Propiedad, la tenemos! ', prop)
         btn_text = 'ACTUALIZAR PROPIEDAD'
+
+        var amenities = JSON.parse(prop.amenities)
 
         var html_dormitorios = '';
         var dormitorios = JSON.parse(prop.distribucion_camas)
@@ -105,7 +112,18 @@ function nueva_propiedad(id) {
         'Aparcamiento gratuito en la calle':'imgs/icons/parking.svg',
         'Aparcamiento de pago fuera de las instalaciones':'imgs/icons/barrier.svg'
     }
+    
     var html = '';
+
+    var c = 0;
+    for(s in servicios){
+        c+=1;
+        var selected = false;
+        if(amenities.includes(c)){
+            selected = true
+        }
+        html += li_ameniti(s, servicios[s], c, selected)
+    }
     
     Object.entries(servicios).forEach(([key, value]) =>  html += li_ameniti( key, value ))
 
@@ -143,7 +161,7 @@ function nueva_propiedad(id) {
                         <div id="dorms">
                             <img src="../imgs/cama-handmade.svg" alt="">
                             <p>Dormitorios</p>
-                            <input class="grey-input" min="1" type="number">
+                            <input class="grey-input" min="1" type="number" value="${prop.camas}">
                         </div>
                         <div id="n-camas">
                             ${html_dormitorios}                            
@@ -169,7 +187,9 @@ function nueva_propiedad(id) {
                             </select>
                         </div>
                         <div>
-                            <p>Ubicacion</p>
+                            <p>Latitud</p>
+                            <input class="grey-input" type="text">
+                            <p>Longitud</p>
                             <input class="grey-input" type="text">
                             
                         </div>
@@ -252,12 +272,13 @@ function tipo_de_cama(descripcion='', img='') {
 $(document).on('change', '#dorms input', function () {
     console.log(parseInt($(this).val()))
     var rooms = parseInt($(this).val())
+    rooms -= $('.dormitorio').length
     var html = '';
-    for (let index = 0; index < rooms; index++) {
-        html += camas_dormitorios(index)
+    for (let c = 0; c < rooms; c++) {
+        var index = $('.dormitorio').length
+        $('#n-camas').append(camas_dormitorios(index))
     }
     console.log(html)
-    $('#n-camas').html(html)
 
 })
 $(document).on('click', '.dormitorio>span', function () {
