@@ -118,7 +118,7 @@ main>div{
 
 /* VER PROPIEDADES PROPIEDAD */
 
-#ver_propiedades>div>h2, #crear_propiedad>div>h2, #ver_localidades>div>h2, #ver_artistas>div>h2{
+#ver_propiedades>div>h2, #crear_propiedad>div>h2, #ver_localidades>div>h2, #ver_artistas>div>h2, #ver_usuarios>div>h2{
   font-size: 1.9em;
 }
 #ver_propiedades>div:first-child, #crear_propiedad>div:first-child, #ver_usuarios>div:first-child, #ver_localidades>div:first-child, #ver_artistas>div:first-child{
@@ -630,4 +630,36 @@ main>div{
 }
 #edit-localidad-modal input.grey-input{
   margin-right: 5%;
+}
+
+/* datos de usuario */
+#ver-usuario-modal>div{
+  width: 44%;
+}
+#ver-usuario-modal .mm-heading{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.datos-inputs-cont:first-child{
+  width: 100%;
+}
+.datos-inputs-cont{
+  display: inline-block;
+  width: 45%;
+  margin: 3% 0;
+}
+.datos-inputs-cont label{
+    font-size: 0.8em;
+    color: #5e5e5e;
+    display: block;
+}
+
+.datos-inputs-cont input{
+  background: none;
+  border: none;
+  font-size: 1.1em;
+  font-weight: 600;
+  width: 100%;
+  color: #272727;
 }
