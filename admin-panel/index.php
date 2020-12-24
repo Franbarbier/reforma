@@ -202,6 +202,7 @@ traer_info_necesaria()
 
 $('body').append( modal_edit_artista() )
 $('body').append( modal_edit_localidad() )
+$('body').append( modal_ver_usuario() )
 
 
 

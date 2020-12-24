@@ -62,12 +62,69 @@ function ver_propiedades(html) {
             </div>`
 }
 
-function li_ameniti(key, value, id, selected) {
-    var status = ''
-    if(selected){
-        status = 'ameniti-selected'
-    }
-    return `<li data-id="${id}" class="${status}"><img src="../${value}" alt=""><p>${key}</p></li>`
+// FUNCIONES DE DELETE
+
+$(document).on('click', '.delete-prop', function () {
+    let id = $(this).parents('.row-propiedad').attr('id')
+    delete_prop(id)
+})
+
+function delete_prop(id) {
+    var r = confirm("Desea eliminar esta propiedad?");
+        if (r == true) {
+            console.log('eliminado')
+        } else {
+            console.log('cancelado')
+        }
+}
+
+$(document).on('click', '.delete-user', function () {
+    let id = $(this).parents('.row-propiedad').attr('id')
+    delete_user(id)
+})
+
+function delete_user(id) {
+    var r = confirm("Desea eliminar este usuario?");
+        if (r == true) {
+            console.log('eliminado')
+        } else {
+            console.log('cancelado')
+        }
+}
+
+$(document).on('click', '.eliminar-loc', function () {
+    let id = $(this).parents('.row-propiedad').attr('id')
+    delete_localidad(id)
+})
+
+function delete_localidad(id) {
+    var r = confirm("Desea eliminar esta localidad?");
+        if (r == true) {
+            console.log('eliminado')
+        } else {
+            console.log('cancelado')
+        }
+}
+
+$(document).on('click', '.eliminar-artista', function () {
+    let id = $(this).parents('.row-propiedad').attr('id')
+    delete_artist(id)
+})
+
+function delete_artist(id) {
+    var r = confirm("Desea eliminar este artista?");
+        if (r == true) {
+            console.log('eliminado')
+        } else {
+            console.log('cancelado')
+        }
+}
+
+// TERMINA FUNCIONES DE DELETE
+
+
+function li_ameniti(key, value) {
+    return `<li><img src="../${value}" alt=""><p>${key}</p></li>`
 }
 
 function nueva_propiedad(id) {
@@ -313,8 +370,8 @@ $(document).on('click', '.delete-bed', function () {
 
 
 
-function row_usuario() {
-    return `<div id="id-us" class="row-usuario">
+function row_usuario(id) {
+    return `<div id="${id}" class="row-usuario">
                 <div>
                     <div class="id-usuario">
                         <p>1</p>
@@ -327,10 +384,10 @@ function row_usuario() {
                     </div>
                 </div>
                 <div class="options">
-                    <a class="ver-prop">
+                    <a class="ver-usuario">
                         <img src="../imgs/view.svg">
                     </a>
-                    <a class="editar-prop">
+                    <a class="delete-user">
                         <img src="../imgs/delete.svg">
                     </a>
                 </div>
@@ -356,8 +413,8 @@ function ver_usuarios() {
             </div>`
 }
 
-function row_localidad() {
-    return `<div id="loc-us" class="row-localidad">
+function row_localidad(id) {
+    return `<div id="${id}" class="row-localidad">
                 <div>
                     <div class="id-loc">
                         <p>1</p>
@@ -400,8 +457,8 @@ function ver_localidades() {
             </div>`
 }
 
-function row_artista() {
-    return `<div id="artista-us" class="row-artista">
+function row_artista(id) {
+    return `<div id="${id}" class="row-artista">
                 <div>
                     <div class="id-artista">
                         <p>1</p>
@@ -552,4 +609,61 @@ function actualizar_propiedad(){
 
     console.log('nombre: ', nombre, ', id_localidad: ', id_localidad, ', huespedes: ', huespedes, ', banos: ', banos, ', camas: ', camas, ', concepto espacio: ', concepto_espacio, ', id_disenador: ', id_disenador, ', latitud: ', latitud, ', longitud: ', longitud, ', tarifa: ', tarifa, ', distribucion camas: ', distribucion_camas, ', amenities: ', amenities)
 
+// Componente main modal editar artistas
+function modal_ver_usuario(){
+
+    $(document).on('click', '.ver-usuario', function(){
+        $('#ver-usuario-modal').fadeIn(100)
+    })
+    $(document).on('click', '#ver-usuario-modal .descartar-cambios, #ver-usuario-modal .mm-cerrar', function(){
+        $('#ver-usuario-modal').fadeOut(100)
+    })
+
+    $(document).on('click', '#ver-usuario-modal', function(e){
+        e.stopPropagation()
+    })
+
+    
+
+    return `<div id="ver-usuario-modal" class="m-modal">
+                <div>
+                    <div class="mm-cerrar">x</div>
+
+                    
+                    <div class="mm-heading">
+                        <div class="datos-inputs-cont">
+                            <label>ID</label>
+                            <input disabled type="text" value="206">
+                        </div>
+                        <div class="datos-inputs-cont">
+                            <label>Nombre</label>
+                            <input disabled type="text" value="Nombre">
+                        </div>
+                        <div class="datos-inputs-cont">
+                            <label>Apellido</label>
+                            <input disabled type="text" value="Apellido">
+                        </div>
+                        <div class="datos-inputs-cont">
+                            <label>Fecha de nacimiento</label>
+                            <input disabled type="text" value="03/03/1198">
+                        </div>
+                        <div class="datos-inputs-cont">
+                            <label>Telefono</label>
+                            <input disabled type="text" value="11 3453-6398">
+                        </div>
+                        <div class="datos-inputs-cont">
+                            <label>Mail</label>
+                            <input disabled type="text" value="ejemplo@email.com">
+                        </div>
+                        <div class="datos-inputs-cont">
+                            <label>País</label>
+                            <input disabled type="text" value="Argentina">
+                        </div>
+                    </div>
+                    <div>
+                        
+                    </div>
+                    
+                </div>
+            </div>` 
 }
