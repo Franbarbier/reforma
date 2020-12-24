@@ -322,6 +322,22 @@ class Propiedades{
 
     }
 
+    public function actualizarPropiedad($id, $nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa){
+        
+        global $pdo;
+
+        $sql = "UPDATE propiedades SET nombre=?, id_localidad=?, huespedes=?, banos=?, camas=?, concepto_espacio=?, distribucion_camas=?, amenities=?, id_disenador=?, coordenadas=?, tarifa=? WHERE id=?";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $id]);
+
+        if($stmt){
+            return '{"error": 0}';
+        }else{
+            return '{"error": 1}';
+        }
+
+    }
+
 
 
 }

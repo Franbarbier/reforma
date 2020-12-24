@@ -142,7 +142,9 @@ function nueva_propiedad(id) {
         btn_text = 'actualizar'
 
         amenities = JSON.parse(prop.amenities)
-
+        if(prop.coordenadas==''){
+            prop.coordenadas = '[]'
+        }
         var coordenadas = JSON.parse(prop.coordenadas)
         latitud = coordenadas[0]
         longitud = coordenadas[1]
@@ -220,6 +222,7 @@ function nueva_propiedad(id) {
     return `<div id="crear_propiedad">
                 <div>
                     <h2>Nueva propiedad</h2>
+                    <input id="p-id" value="${prop.id}" type="hidden">
                 </div>
                 <div>
                     <div id="n-nombre">
@@ -582,6 +585,7 @@ function modal_edit_localidad(){
 
 function actualizar_propiedad(){
 
+    var id = $('#p-id').val()
     var nombre = $('#p-nombre').val()
     var id_localidad = $('#p-localidad').val()
     var huespedes = $('#p-huespedes').val()
@@ -595,19 +599,48 @@ function actualizar_propiedad(){
         var img = $(this).find('.cama-img').val()
         distribucion_camas.push({"descripcion":des,"img":img})
     })
+    distribucion_camas = JSON.stringify(distribucion_camas)
     var amenities = []
     $('#amenities li').each(function(){
         if($(this).hasClass('ameniti-selected')){
             amenities.push($(this).attr('data-id'))
         }
     })
+    amenities = JSON.stringify(amenities)
     
     var id_disenador = $('#p-disenador').val()
     var latitud = $('#p-latitud').val()
     var longitud = $('#p-longitud').val()
     var tarifa = $('#p-tarifa').val()
+    var coordenadas = [latitud, longitud]
+    coordenadas = JSON.stringify(coordenadas)
 
     console.log('nombre: ', nombre, ', id_localidad: ', id_localidad, ', huespedes: ', huespedes, ', banos: ', banos, ', camas: ', camas, ', concepto espacio: ', concepto_espacio, ', id_disenador: ', id_disenador, ', latitud: ', latitud, ', longitud: ', longitud, ', tarifa: ', tarifa, ', distribucion camas: ', distribucion_camas, ', amenities: ', amenities)
+
+    $.ajax({
+        url:'../php/api/propiedades.php?func=actualizarPropiedad',
+        method:'POST',
+        cache: false,
+        data:{
+            id,
+            nombre,
+            id_localidad,
+            huespedes,
+            banos,
+            camas,
+            concepto_espacio,
+            distribucion_camas,
+            amenities,
+            id_disenador,
+            coordenadas,
+            tarifa
+        },
+        dataType:'text',
+        success:function(res){
+            console.log(res)
+        }
+    });
+
 }
 
 // Componente main modal editar artistas
