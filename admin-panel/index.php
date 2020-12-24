@@ -107,6 +107,8 @@ if(isset($_GET['logout'])){
 <script src="panel.js"></script>
 <script>
 
+var global_propiedades;
+
 $( document ).ready( function(){
 
 
@@ -114,7 +116,25 @@ active_propiedades()
 
 
 function active_propiedades() {
-	$('main>div').html(ver_propiedades())	
+
+	fetch('../php/api/propiedades.php?func=verPropiedades') 
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (propiedades) {
+		console.log(propiedades)
+
+		global_propiedades = propiedades;
+		
+		var html = '';
+
+        for(p in propiedades){
+            html += row_propiedad(propiedades[p])
+        }
+
+		$('main>div').html(ver_propiedades(html))	
+    });
+
 }
 function active_usuarios() {
 	$('main>div').html(ver_usuarios())
@@ -143,7 +163,7 @@ $(document).on('click', '#crear-propiedad', function () {
 	$('main>div').html(nueva_propiedad())	
 })
 $(document).on('click', '.editar-prop', function () {	
-	let id = $(this).parent().parent().attr('id')
+	let id = $(this).closest('.row-propiedad').attr('data-id')
 	$('main>div').html(nueva_propiedad(id))
 })
 

@@ -6,7 +6,7 @@ class Propiedades{
 
 		$q = $pdo->prepare("SELECT * FROM propiedades");
         $q->execute(); 
-        $q = $q->fetch();
+        $q = $q->fetchAll();
 
         // Traemos la info de sus localidades en funcion del  id_localidad
         foreach ($q as $key => $prop) {
