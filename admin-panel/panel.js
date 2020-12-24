@@ -1,3 +1,6 @@
+var global_propiedades;
+var global_disenadores;
+var global_localidades;
 
 // for (img in galeria) {
 //     html += comp_img_carrousel(galeria[img])
@@ -92,7 +95,7 @@ function nueva_propiedad(id) {
 
         var c = 0;
         for(d in dormitorios){
-            html_dormitorios += camas_dormitorios(c, dormitorios[d].descripcion, '')
+            html_dormitorios += camas_dormitorios(c, dormitorios[d].descripcion, dormitorios[d].img)
             c+=1
         }
 
@@ -130,6 +133,17 @@ function nueva_propiedad(id) {
         }
         html += li_ameniti(s, servicios[s], c, selected)
     }
+
+    // 
+    var html_localidades = ''
+    for(l in global_localidades){
+        var selected = ''
+        loc = global_localidades[l]
+        if(loc.id==prop.id_localidad){
+            selected = 'selected'
+        }
+        html_localidades += `<option value="${loc.nombre}" data-id="${loc.id}" ${selected}>${loc.nombre } (${loc.provincia})</option>`
+    }
     
     Object.entries(servicios).forEach(([key, value]) =>  html += li_ameniti( key, value ))
     
@@ -148,9 +162,7 @@ function nueva_propiedad(id) {
                     <div id="n-localidad">
                         <label for="">Localidad</label>
                         <select name="" class="grey-input" id="">
-                            <option value="">Argentin</option>
-                            <option value="">Argentin</option>
-                            <option value="">Argentin</option>
+                            ${html_localidades}
                         </select>
                     </div>
                     <div class="house-display">
@@ -245,35 +257,26 @@ function camas_dormitorios(index, descripcion='', img='') {
 }
 
 function tipo_de_cama(descripcion='', img='') {
+
+    var imgs = ['double-bed', 'single-bed', 'sofa']
+    var html_imgs = ''
+    for(i in imgs){
+        var selected = ''
+        if(imgs[i]==img){
+            selected = 'selected'
+        }
+        html_imgs += `<option value="${imgs[i]}" ${selected}>${imgs[i]}</option>`
+    }
+
     return `<div class="camas-en-dormis">
                 <div class="delete-bed"><img src="../imgs/letter-x.svg"></div>
                 <input class="grey-input" style="width:155px" value="${descripcion}">
-                <!-- <select class="grey-input" name="" id="" >
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                    <option value="">6</option>
-                    <option value="">7</option>
-                    <option value="">8</option>
-                    <option value="">9</option>
-                </select> -->
+                <select class="grey-input cama-img" name="">
+                ${html_imgs}
+                </select>
             </div>`
 }
 
-// function tipo_de_cama() {
-//     return `<div class="camas-en-dormis">
-//                 <table>
-//                     <tr>
-//                         <td>Individual</td>
-//                         </tr>
-//                         <td></td>   
-//                     <tr></tr> 
-//                     <tr></tr> 
-//                 </table> 
-//             </div>`
-// }
 
 $(document).on('change', '#dorms input', function () {
     console.log(parseInt($(this).val()))
@@ -293,7 +296,11 @@ $(document).on('click', '.dormitorio>span', function () {
 
 
 $(document).on('click', '.delete-bed', function () {
-    $(this).closest('.camas-en-dormis').remove();
+    $(this).closest('.dormitorio').remove();
+    $('.dormitorio').each(function(){
+        var num_dorm = $(this).index()+1
+        $(this).find('p').html('Dormitorio ' + num_dorm)
+    })
 })
 
 

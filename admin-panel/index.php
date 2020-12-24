@@ -107,13 +107,7 @@ if(isset($_GET['logout'])){
 <script src="panel.js"></script>
 <script>
 
-var global_propiedades;
-
 $( document ).ready( function(){
-
-
-active_propiedades()
-
 
 function active_propiedades() {
 
@@ -136,6 +130,7 @@ function active_propiedades() {
     });
 
 }
+
 function active_usuarios() {
 	$('main>div').html(ver_usuarios())
 }
@@ -172,6 +167,37 @@ $(document).on('click', '#crear_propiedad #descartar-cambios', function(){
         window.location = "";
 })
 
+function traer_info_necesaria(){
+
+	// Primero traemos los disenadores que le van a hacer falta al apartado de editar propiedad
+	fetch('../php/api/globales.php?func=verDisenadores') 
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (disenadores) {
+		console.log(disenadores)
+
+		global_disenadores = disenadores;
+		
+		fetch('../php/api/globales.php?func=verLocalidades') 
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (localidades) {
+			console.log(localidades)
+
+			global_localidades = localidades;
+
+			active_propiedades()
+			
+		});
+	
+    });
+
+
+}
+
+traer_info_necesaria()
 
 
 $('body').append( modal_edit_artista() )
