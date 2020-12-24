@@ -1,3 +1,6 @@
+var global_propiedades;
+var global_disenadores;
+var global_localidades;
 
 // for (img in galeria) {
 //     html += comp_img_carrousel(galeria[img])
@@ -7,16 +10,27 @@
 //     return '<div class="galeria-grande carousel-cell"><img src="imgs/propiedades_imgs/' + img + '" alt=""></div>'
 // }
 
+function get_object_by_id(id, objects){
+    for(obj in objects){
+        if(id == objects[obj].id){
+            return objects[obj]
+        }
+    }
+}
 
 
-function row_propiedad(id) {
-    return `<div id="6" class="row-propiedad">
+
+function row_propiedad(p) {
+
+    var thumbnail = JSON.parse(p.galeria)[0]
+
+    return `<div id="id-prop" class="row-propiedad" data-id="${p.id}">
                 <div>
                     <div class="foto-prop">
-                        <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg">
+                        <img src="../imgs/propiedades_imgs/${thumbnail}">
                     </div>
                     <div class="nombre-prop">
-                        <h3>Nombre de la prop</h3>
+                        <h3>${p.nombre}</h3>
                     </div>
                 </div>
                 <div class="options">
@@ -33,13 +47,9 @@ function row_propiedad(id) {
             </div>`
 }
 
-function ver_propiedades() {
+function ver_propiedades(html) {
     $('aside li').removeClass('activeLi')
     $('#propiedades').addClass('activeLi')
-    var html = '';
-    for (let index = 0; index < 5; index++) {
-        html += row_propiedad()
-    }
 
     return `<div id="ver_propiedades">
                 <div>
@@ -119,10 +129,36 @@ function li_ameniti(key, value) {
 
 function nueva_propiedad(id) {
 
-    if (id == undefined) {
-        // ir a buscar los datos de la propiedad y rellenar los campos
-        // cambiar el boton de confirmacion a "guardar cambios"
+    var prop = {"amenities":"[]","banos":"","camas":"","concepto_espacio":"","coordenadas":"","distribucion_camas": "","galeria":"","huespedes":"","id":"", "id_disenador": "","id_localidad":"","localidad":"", "nombre":"","normas":"","politica":"","provincia":"","seguridad":"","tarifa":""}
+    var btn_text = 'SUBIR PROPIEDAD';
+    var amenities = JSON.parse(prop.amenities)
+    var latitud = ''
+    var longitud = ''
+
+
+    if (id != undefined) {
+        prop = get_object_by_id(id, global_propiedades)
+        console.log('Propiedad, la tenemos! ', prop)
+        btn_text = 'ACTUALIZAR PROPIEDAD'
+
+        amenities = JSON.parse(prop.amenities)
+
+        var coordenadas = JSON.parse(prop.coordenadas)
+        latitud = coordenadas[0]
+        longitud = coordenadas[1]
+
+        var html_dormitorios = '';
+        var dormitorios = JSON.parse(prop.distribucion_camas)
+
+        var c = 0;
+        for(d in dormitorios){
+            html_dormitorios += camas_dormitorios(c, dormitorios[d].descripcion, dormitorios[d].img)
+            c+=1
+        }
+
+        // {"dormitorio": "Dormitorio 1", "descripcion": "Cama matrimonial", "img": "double-bed"}
     }
+
 
     $('aside li').removeClass('activeLi')
     $('#propiedades').addClass('activeLi')
@@ -142,10 +178,32 @@ function nueva_propiedad(id) {
         'Aparcamiento gratuito en la calle':'imgs/icons/parking.svg',
         'Aparcamiento de pago fuera de las instalaciones':'imgs/icons/barrier.svg'
     }
+    
     var html = '';
+
+    var c = 0;
+    for(s in servicios){
+        c+=1;
+        var selected = false;
+        if(amenities.includes(c)){
+            selected = true
+        }
+        html += li_ameniti(s, servicios[s], c, selected)
+    }
+
+    // 
+    var html_localidades = ''
+    for(l in global_localidades){
+        var selected = ''
+        loc = global_localidades[l]
+        if(loc.id==prop.id_localidad){
+            selected = 'selected'
+        }
+        html_localidades += `<option value="${loc.nombre}" data-id="${loc.id}" ${selected}>${loc.nombre } (${loc.provincia})</option>`
+    }
     
     Object.entries(servicios).forEach(([key, value]) =>  html += li_ameniti( key, value ))
-
+    
     // $('#amenities ul').append('<li><img src="../'+ value +'" alt=""><p>'+ key +'</p></li>')
 
 
@@ -156,56 +214,32 @@ function nueva_propiedad(id) {
                 <div>
                     <div id="n-nombre">
                         <label for="">Nombre</label>
-                        <input class="grey-input" type="text">
+                        <input class="grey-input" type="text" value="${prop.nombre}">
                     </div>
                     <div id="n-localidad">
                         <label for="">Localidad</label>
                         <select name="" class="grey-input" id="">
-                            <option value="">Argentin</option>
-                            <option value="">Argentin</option>
-                            <option value="">Argentin</option>
+                            ${html_localidades}
                         </select>
                     </div>
                     <div class="house-display">
                         <div>
                             <img src="../imgs/users-handmade.svg" alt="">
                             <p>Huespedes</p>
-                            <input class="grey-input" min="1" type="number">
+                            <input class="grey-input" min="1" type="number" value="${prop.huespedes}">
                         </div>
                         <div>
                             <img src="../imgs/ducha-handmade.svg" alt="">
                             <p>Baños</p>
-                            <input class="grey-input" min="1" type="number">
+                            <input class="grey-input" min="1" type="number" value="${prop.banos}">
                         </div>
                         <div id="dorms">
                             <img src="../imgs/cama-handmade.svg" alt="">
                             <p>Dormitorios</p>
-                            <input class="grey-input" min="1" type="number">
+                            <input class="grey-input" min="1" type="number" value="${prop.camas}">
                         </div>
                         <div id="n-camas">
-                            <!-- <div class="dormitorio">
-                                <p>Dormitorio 1</p>
-                                <div class='camas-en-dormis'>
-                                    <select class="grey-input" name="" id="">
-                                        <option value="">Matrimonial</option>
-                                        <option value="">Individual</option>
-                                        <option value="">Sofa/Colchón</option>
-                                    </select>
-                                    <select class="grey-input" name="" id="">
-                                        <option value="">1</option>
-                                        <option value="">2</option>
-                                        <option value="">3</option>
-                                        <option value="">4</option>
-                                        <option value="">5</option>
-                                        <option value="">6</option>
-                                        <option value="">7</option>
-                                        <option value="">8</option>
-                                        <option value="">9</option>
-                                    </select>
-                                </div>
-                                
-                            </div> -->
-                            
+                            ${html_dormitorios}                            
                         </div>
                     </div>
                     <div id="amenities">
@@ -216,7 +250,7 @@ function nueva_propiedad(id) {
                     </div>
                     <div id="concepto">
                         <p>Concepto</p>
-                        <textarea class="grey-input"></textarea>
+                        <div class="grey-input" contenteditable="true">${prop.concepto_espacio}</div>
                     </div>
                     <div class="lasts">
                         <div>
@@ -228,13 +262,16 @@ function nueva_propiedad(id) {
                             </select>
                         </div>
                         <div>
-                            <p>Ubicacion</p>
-                            <input class="grey-input" type="text">
+                            <p>Latitud</p>
+                            <input class="grey-input" type="text" value="${latitud}">
+                            <p>Longitud</p>
+                            <input class="grey-input" type="text" value="${longitud}">
                             
                         </div>
                     </div>
                     <div class="lasts">
-                        <div>
+
+                        <div style="display:none">
                             <p>Tarifa por Limpieza</p>
 
                             <div>
@@ -242,18 +279,19 @@ function nueva_propiedad(id) {
                                 <input class="grey-input" min="1" type="number">
                             </div>
                         </div>
+
                         <div>
                             <p>Tarifa por noche</p>
 
                             <div>
                                 <span>$</span>
-                                <input class="grey-input" min="1" type="number">
+                                <input class="grey-input" min="1" type="number" value="${prop.tarifa}">
                             </div>
                         </div>
                     </div>
                     <div id="buttons-cont">
                         <button class="grey-input" id="descartar-cambios">DESCARTAR CAMBIOS</button>
-                        <button id="subir-propiedad">SUBIR PROPIEDAD</button>
+                        <button id="subir-propiedad">${btn_text}</button>
                     </div>
                 </div>
             </div>`
@@ -265,60 +303,48 @@ $(document).on('click', '#amenities li', function () {
     $(this).toggleClass('ameniti-selected')
 })
 
-function camas_dormitorios(index) {
+function camas_dormitorios(index, descripcion='', img='') {
     return `<div class="dormitorio">
                 <p id="dormitorio${index+1}">Dormitorio ${index+1}</p>
                 <div>
-                    ${tipo_de_cama()}
+                    ${tipo_de_cama(descripcion, img)}
                 </div>
-                <span>Agregar cama en el dormitorio...</span>
+                <!-- <span>Agregar cama en el dormitorio...</span> -->
             </div>`
 }
 
-function tipo_de_cama() {
+function tipo_de_cama(descripcion='', img='') {
+
+    var imgs = ['double-bed', 'single-bed', 'sofa']
+    var html_imgs = ''
+    for(i in imgs){
+        var selected = ''
+        if(imgs[i]==img){
+            selected = 'selected'
+        }
+        html_imgs += `<option value="${imgs[i]}" ${selected}>${imgs[i]}</option>`
+    }
+
     return `<div class="camas-en-dormis">
                 <div class="delete-bed"><img src="../imgs/letter-x.svg"></div>
-                <select class="grey-input" name="" id="">
-                    <option value="">Matrimonial</option>
-                    <option value="">Individual</option>
-                    <option value="">Sofa/Colchón</option>
-                </select>
-                <select class="grey-input" name="" id="">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                    <option value="">6</option>
-                    <option value="">7</option>
-                    <option value="">8</option>
-                    <option value="">9</option>
+                <input class="grey-input" style="width:155px" value="${descripcion}">
+                <select class="grey-input cama-img" name="">
+                ${html_imgs}
                 </select>
             </div>`
 }
 
-// function tipo_de_cama() {
-//     return `<div class="camas-en-dormis">
-//                 <table>
-//                     <tr>
-//                         <td>Individual</td>
-//                         </tr>
-//                         <td></td>   
-//                     <tr></tr> 
-//                     <tr></tr> 
-//                 </table> 
-//             </div>`
-// }
 
 $(document).on('change', '#dorms input', function () {
     console.log(parseInt($(this).val()))
     var rooms = parseInt($(this).val())
+    rooms -= $('.dormitorio').length
     var html = '';
-    for (let index = 0; index < rooms; index++) {
-        html += camas_dormitorios(index)
+    for (let c = 0; c < rooms; c++) {
+        var index = $('.dormitorio').length
+        $('#n-camas').append(camas_dormitorios(index))
     }
     console.log(html)
-    $('#n-camas').html(html)
 
 })
 $(document).on('click', '.dormitorio>span', function () {
@@ -327,7 +353,11 @@ $(document).on('click', '.dormitorio>span', function () {
 
 
 $(document).on('click', '.delete-bed', function () {
-    $(this).closest('.camas-en-dormis').remove();
+    $(this).closest('.dormitorio').remove();
+    $('.dormitorio').each(function(){
+        var num_dorm = $(this).index()+1
+        $(this).find('p').html('Dormitorio ' + num_dorm)
+    })
 })
 
 

@@ -21,6 +21,16 @@ class Globales{
         return $q;
     }
 
+    public function verDisenadores(){
+        global $pdo;
+
+        $q = $pdo->prepare("SELECT * FROM disenadores");
+        $q->execute(); 
+        $q = $q->fetchAll();
+
+        return $q;
+    }
+
     public function verUsuario($id){
         global $pdo;
 

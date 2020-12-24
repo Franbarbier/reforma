@@ -293,6 +293,7 @@ main>div{
 #n-camas{
   align-items: flex-start;
   justify-content: space-between;
+  flex-direction: column;
 }
 #amenities{
   margin: 80px 0;
@@ -662,4 +663,8 @@ main>div{
   font-weight: 600;
   width: 100%;
   color: #272727;
+}
+.cama-img{
+  margin-left: 7%;
+    margin-top: 7px;
 }
