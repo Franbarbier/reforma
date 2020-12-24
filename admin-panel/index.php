@@ -168,6 +168,12 @@ $(document).on('click', '.editar-prop', function () {
 })
 
 
+$(document).on('click', '#crear_propiedad #descartar-cambios', function(){
+        window.location = "";
+})
+
+
+
 $('body').append( modal_edit_artista() )
 $('body').append( modal_edit_localidad() )
 

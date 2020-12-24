@@ -72,6 +72,8 @@ function nueva_propiedad(id) {
     var prop = {"amenities":"[]","banos":"","camas":"","concepto_espacio":"","coordenadas":"","distribucion_camas": "","galeria":"","huespedes":"","id":"", "id_disenador": "","id_localidad":"","localidad":"", "nombre":"","normas":"","politica":"","provincia":"","seguridad":"","tarifa":""}
     var btn_text = 'SUBIR PROPIEDAD';
     var amenities = JSON.parse(prop.amenities)
+    var latitud = ''
+    var longitud = ''
 
 
     if (id != undefined) {
@@ -79,7 +81,11 @@ function nueva_propiedad(id) {
         console.log('Propiedad, la tenemos! ', prop)
         btn_text = 'ACTUALIZAR PROPIEDAD'
 
-        var amenities = JSON.parse(prop.amenities)
+        amenities = JSON.parse(prop.amenities)
+
+        var coordenadas = JSON.parse(prop.coordenadas)
+        latitud = coordenadas[0]
+        longitud = coordenadas[1]
 
         var html_dormitorios = '';
         var dormitorios = JSON.parse(prop.distribucion_camas)
@@ -126,7 +132,7 @@ function nueva_propiedad(id) {
     }
     
     Object.entries(servicios).forEach(([key, value]) =>  html += li_ameniti( key, value ))
-
+    
     // $('#amenities ul').append('<li><img src="../'+ value +'" alt=""><p>'+ key +'</p></li>')
 
 
@@ -188,9 +194,9 @@ function nueva_propiedad(id) {
                         </div>
                         <div>
                             <p>Latitud</p>
-                            <input class="grey-input" type="text">
+                            <input class="grey-input" type="text" value="${latitud}">
                             <p>Longitud</p>
-                            <input class="grey-input" type="text">
+                            <input class="grey-input" type="text" value="${longitud}">
                             
                         </div>
                     </div>
