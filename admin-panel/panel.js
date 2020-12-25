@@ -464,13 +464,56 @@ function ver_localidades() {
     return `<div id="ver_localidades">
                 <div>
                     <h2>Localidades</h2>
-                    <button id="crear-usuario">NUEVA LOCALIDAD</button>
+                    <button id="crear-nueva-localidad">NUEVA LOCALIDAD</button>
                 </div>
                 <div>
                     ${html}
                 </div>
             </div>`
 }
+
+
+// Componente main modal editar artistas
+function modal_crear_localidad(){
+
+    $(document).on('click', '#crear-nueva-localidad', function(){
+        $('#crear-localidad-modal').fadeIn(100)
+    })
+    $(document).on('click', '#crear-localidad-modal .descartar-cambios, #crear-localidad-modal .mm-cerrar', function(){
+        $('#crear-localidad-modal').fadeOut(100)
+    })
+
+    $(document).on('click', '#crear-localidad-modal', function(e){
+        e.stopPropagation()
+    })
+
+    
+
+    return `<div id="crear-localidad-modal" class="m-modal">
+                <div>
+                    <div class="mm-cerrar">x</div>
+
+                    
+                    <div class="mm-heading">
+                        <h5>Crear localidad</h5>
+                        <input class="grey-input" type="text" placeholder="Nueva localidad">
+                        <select class="grey-input">
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                            <option>Argentina</option>
+                        </select>
+                    </div>
+                    <aside class="save-buttons">
+                        <button class="descartar-cambios">DESCARTAR</button>
+                        <button class="guardar-cambios">GUARDAR</button>
+                    </aside>
+                </div>
+            </div>` 
+}
+
+
 
 function row_artista(id) {
     return `<div id="${id}" class="row-artista">
@@ -508,7 +551,7 @@ function ver_artistas() {
     return `<div id="ver_artistas">
                 <div>
                     <h2>Artistas</h2>
-                    <button id="crear-usuario">NUEVO ARTISTA</button>
+                    <button id="crear-artista">NUEVO ARTISTA</button>
                 </div>
                 <div>
                     ${html}
@@ -539,10 +582,12 @@ function modal_edit_artista(){
 
                     
                     <div class="mm-heading">
-                        <div class="foto-artist">
-                            <img src="https://www.agora-gallery.com/advice/wp-content/uploads/Robert-Ellison.jpg">
+                        <div class="profile-img">
+                            <input type="file" id="myFile" onchange="loadFile(event)" name="filename" accept="image/*">
+                            <img src="../imgs/no-user-pic.jpg" alt="" id="p-pic" class="p-pic">
+                            <label for="myFile"></label>
                         </div>
-                        <h4 class="mm-titulo">Nombre Artista</h4>
+                        <h4 contenteditable class="mm-titulo">Nombre Artista</h4>
                     </div>
                     <div>
                         <textarea placeholder="Sobre el artista..."></textarea>
@@ -555,7 +600,48 @@ function modal_edit_artista(){
             </div>` 
 }
 
-// Componente main modal editar artistas
+// Componente main modal crear artistas
+function modal_crear_artista(){
+
+    $(document).on('click', '#crear-artista', function(){
+        $('#crear-artista-modal').fadeIn(100)
+    })
+    $(document).on('click', '#crear-artista-modal .descartar-cambios, #crear-artista-modal .mm-cerrar', function(){
+        $('#crear-artista-modal').fadeOut(100)
+    })
+
+    $(document).on('click', '#crear-artista-modal', function(e){
+        e.stopPropagation()
+    })
+
+    
+
+    return `<div id="crear-artista-modal" class="m-modal">
+                <div>
+                    <div class="mm-cerrar">x</div>
+
+                    
+                    <div class="mm-heading">
+                        <div class="profile-img">
+                            <input type="file" id="myFile2" onchange="loadFile2(event)" name="filename" accept="image/*">
+                            <img src="../imgs/no-user-pic.jpg" alt="" id="p-pic2" class="p-pic">
+                            <label for="myFile2"></label>
+                        </div>
+                        <input type="text" class="grey-input" placeholder="Nombre del artista">
+                    </div>
+                    <div>
+                        <textarea placeholder="Sobre el artista..."></textarea>
+                    </div>
+                    <aside class="save-buttons">
+                        <button class="descartar-cambios">DESCARTAR</button>
+                        <button class="guardar-cambios">GUARDAR</button>
+                    </aside>
+                </div>
+            </div>` 
+}
+
+
+// Componente main modal editar lcoalidades
 function modal_edit_localidad(){
 
     $(document).on('click', '.editar-loc', function(){
@@ -785,3 +871,31 @@ function modal_ver_usuario(){
                 </div>
             </div>` 
 }
+
+
+// // render img from input
+// function readURL(input) {
+// 	if (input.files && input.files[0]) {
+// 		var reader = new FileReader();
+		
+// 		reader.onload = function(e) {
+// 		$('#p-pic').attr('src', e.target.result);
+//     }
+    
+//     reader.readAsDataURL(input.files[0]); // convert to base64 string
+//     console.log(input.files[0])
+// 	}
+// }
+// $(document).on('change','#myFile', function(){
+//     readURL(this);
+// });
+
+
+var loadFile2 = function(event) {
+	$('#p-pic2').attr('src', URL.createObjectURL(event.target.files[0])) ;
+    console.log(URL.createObjectURL(event.target.files[0]))
+};
+var loadFile = function(event) {
+	$('#p-pic').attr('src', URL.createObjectURL(event.target.files[0])) ;
+    console.log(URL.createObjectURL(event.target.files[0]))
+};

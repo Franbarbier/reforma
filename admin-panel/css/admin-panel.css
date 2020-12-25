@@ -179,7 +179,7 @@ main>div{
   width: 100%;
 
 }
-#crear-propiedad, #subir-propiedad, #crear-usuario, #actualizar-propiedad{
+#crear-propiedad, #subir-propiedad, #crear-usuario, #actualizar-propiedad, #crear-artista{
   background: #d4bfaa;
   border: 2px solid #d4bfaa;
   color: white;
@@ -450,6 +450,7 @@ main>div{
   font-weight: bold;
   font-size: 1.4em;
   margin-bottom: 5px;
+  max-width: 65%;
 }
 
 #mm-descripcion, .mm-descripcion{
@@ -571,7 +572,7 @@ main>div{
   align-items: center;
 }
 #edit-artista-modal .mm-heading>div{
-    width: 100px;
+    /* width: 100px; */
     overflow: hidden;
     margin-right: 5%;
 }
@@ -580,7 +581,7 @@ main>div{
   width: 100%;
   height: 100%;
 }
-#edit-artista-modal textarea{
+#edit-artista-modal textarea, #crear-artista-modal textarea{
   width: 94%;
   height: 20vh;
   font-family: "CENTURY GOTHIC";
@@ -626,11 +627,11 @@ main>div{
 }
 
 /* modal edit localidad */
-#edit-localidad-modal h5{
+#edit-localidad-modal h5, #crear-localidad-modal h5{
   font-size: 1.3em;
   margin-bottom: 15px;
 }
-#edit-localidad-modal input.grey-input{
+#edit-localidad-modal input.grey-input, #crear-localidad-modal input.grey-input{
   margin-right: 5%;
 }
 
@@ -668,4 +669,37 @@ main>div{
 .cama-img{
   margin-left: 7%;
     margin-top: 7px;
+}
+
+/* modal crear/editar artistas */
+.profile-img{
+  position: relative;
+  overflow: hidden;
+  width: 64px;
+  height: 64px;
+  background: #ddd;
+  border-radius: 50px;
+  cursor: pointer;
+}
+.profile-img img{   
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+}
+.profile-img label{
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  cursor: pointer;
+}
+#crear-artista-modal .mm-heading{
+  display: flex;
+  align-items: center;
+}
+#crear-artista-modal .mm-heading input[type=text]{
+  margin-left: 10%;
+  font-size: 1em;
 }
