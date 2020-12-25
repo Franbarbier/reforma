@@ -132,7 +132,25 @@ function active_propiedades() {
 }
 
 function active_usuarios() {
-	$('main>div').html(ver_usuarios())
+
+	fetch('../php/api/globales.php?func=verUsuarios') 
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (usuarios) {
+		console.log(usuarios)
+
+		global_usuarios = usuarios;
+		
+		var html = '';
+
+        for(u in usuarios){
+            html += row_usuario(usuarios[u])
+        }
+
+		$('main>div').html(ver_usuarios(html))
+    });
+
 }
 function active_localidades() {
 	$('main>div').html(ver_localidades())	

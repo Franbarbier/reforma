@@ -81,6 +81,12 @@ if($_GET['func']=='verDisenadores'){
 
 }
 
+if($_GET['func']=='verUsuarios'){
+
+    echo json_encode($globales->verUsuarios());
+
+}
+
 // if($_GET['func']=='verLocacion'){
 
 //     // Obtenemos estos parametros ya que los recomendados tienen que ser de la misma localidad y no pueden ser el mismo que esta viualizando al momento presente

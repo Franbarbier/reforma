@@ -338,6 +338,22 @@ class Propiedades{
 
     }
 
+    public function subirPropiedad($nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa){
+        
+        global $pdo;
+
+        $q = "INSERT INTO propiedades (nombre, id_localidad, huespedes, banos, camas, concepto_espacio, distribucion_camas, amenities, id_disenador, coordenadas, tarifa) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            
+        $stmt= $pdo->prepare($q);
+        $stmt->execute([$nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa]);
+        if($stmt){
+            return '{"error": 0}';
+        }else{
+            return '{"error": 1}';
+        }
+
+    }
+
 
 
 }

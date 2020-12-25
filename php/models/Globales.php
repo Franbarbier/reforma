@@ -40,6 +40,16 @@ class Globales{
 
         return $q;
     }
+
+    public function verUsuarios(){
+      global $pdo;
+
+      $q = $pdo->prepare("SELECT * FROM usuarios");
+      $q->execute(); 
+      $q = $q->fetchAll();
+
+      return $q;
+  }
     
 
     public function verResenas($id_propiedad, $limit){
