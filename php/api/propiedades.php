@@ -77,7 +77,7 @@ if($_GET['func']=='actualizarPropiedad'){
 	$tarifa = $_POST['tarifa'];
 	
 
-	echo json_encode($propiedades->actualizarPropiedad($id, $nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa));
+	echo $propiedades->actualizarPropiedad($id, $nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa);
 
 }
 

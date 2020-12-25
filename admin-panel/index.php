@@ -167,6 +167,13 @@ $(document).on('click', '#crear_propiedad #descartar-cambios', function(){
         window.location = "";
 })
 
+$(document).on('click', '#actualizar-propiedad', function(){
+
+	actualizar_propiedad()
+
+})
+
+
 function traer_info_necesaria(){
 
 	// Primero traemos los disenadores que le van a hacer falta al apartado de editar propiedad

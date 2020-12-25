@@ -123,8 +123,12 @@ function delete_artist(id) {
 // TERMINA FUNCIONES DE DELETE
 
 
-function li_ameniti(key, value) {
-    return `<li><img src="../${value}" alt=""><p>${key}</p></li>`
+function li_ameniti(key, value, id, selected) {
+    var clase = ''
+    if(selected){
+        clase = 'ameniti-selected'
+    }
+    return `<li class="${clase}" data-id="${id}"><img src="../${value}" alt=""><p>${key}</p></li>`
 }
 
 function nueva_propiedad(id) {
@@ -140,7 +144,9 @@ function nueva_propiedad(id) {
         prop = get_object_by_id(id, global_propiedades)
         console.log('Propiedad, la tenemos! ', prop)
         btn_text = 'actualizar'
-
+        if(prop.amenities==''){
+            prop.amenities = '[]'
+        }
         amenities = JSON.parse(prop.amenities)
         if(prop.coordenadas==''){
             prop.coordenadas = '[]'
@@ -181,7 +187,7 @@ function nueva_propiedad(id) {
         'Aparcamiento de pago fuera de las instalaciones':'imgs/icons/barrier.svg'
     }
     
-    var html = '';
+    var html_amenities = '';
 
     var c = 0;
     for(s in servicios){
@@ -190,7 +196,7 @@ function nueva_propiedad(id) {
         if(amenities.includes(c)){
             selected = true
         }
-        html += li_ameniti(s, servicios[s], c, selected)
+        html_amenities += li_ameniti(s, servicios[s], c, selected)
     }
 
     // 
@@ -258,7 +264,7 @@ function nueva_propiedad(id) {
                     <div id="amenities">
                         <p>Amenities</p>
                         <ul>
-                            ${html}
+                            ${html_amenities}
                         </ul>
                     </div>
                     <div id="concepto">
@@ -592,7 +598,7 @@ function actualizar_propiedad(){
     var banos = $('#p-banos').val()
     var camas = $('#p-camas').val()
     
-    var concepto_espacio = $('#p-concepto_espacio').val()
+    var concepto_espacio = $('#p-concepto_espacio').html()
     var distribucion_camas = []
     $('.dormitorio').each(function(){
         var des = $(this).find('.dormi-descri').val()
@@ -635,9 +641,12 @@ function actualizar_propiedad(){
             coordenadas,
             tarifa
         },
-        dataType:'text',
+        dataType:'json',
         success:function(res){
             console.log(res)
+            if(res.error==0){
+                window.location = ''
+            }
         }
     });
 
