@@ -78,13 +78,21 @@ function delete_prop(id) {
     var r = confirm("Desea eliminar esta propiedad?");
         if (r == true) {
             console.log('eliminado')
+            fetch('../php/api/globales.php?func=eliminarUsuario') 
+            .then(function (response) {
+                return response.text();
+            })
+            .then(function (res) {
+                console.log(res)
+                
+            });
         } else {
             console.log('cancelado')
         }
 }
 
 $(document).on('click', '.delete-user', function () {
-    let id = $(this).parents('.row-propiedad').attr('id')
+    let id = $(this).parents('.row-usuario').attr('id')
     delete_user(id)
 })
 
@@ -92,6 +100,18 @@ function delete_user(id) {
     var r = confirm("Desea eliminar este usuario?");
         if (r == true) {
             console.log('eliminado')
+
+            fetch('../php/api/globales.php?func=eliminarUsuario&id='+id) 
+            .then(function (response) {
+                return response.text();
+            })
+            .then(function (res) {
+                console.log(res)
+                
+            });
+
+
+
         } else {
             console.log('cancelado')
         }
@@ -390,7 +410,13 @@ $(document).on('click', '.delete-bed', function () {
 
 
 function row_usuario(user) {
-    return `<div id="${user.id}" class="row-usuario">
+
+    var clase = ''
+    if(user.estado==0){
+        clase = 'us-inactive'
+    }
+
+    return `<div id="${user.id}" class="row-usuario ${clase}">
                 <div>
                     <div class="id-usuario">
                         <p>${user.id}</p>
@@ -420,7 +446,7 @@ function ver_usuarios(html) {
     return `<div id="ver_usuarios">
                 <div>
                     <h2>Usuarios</h2>
-                    <button id="crear-usuario">CREAR USUARIO</button>
+                    <!-- <button id="crear-usuario">CREAR USUARIO</button> -->
                 </div>
                 <div>
                     ${html}
@@ -816,6 +842,18 @@ function modal_ver_usuario(){
         console.log('idusuario: ', id_usuario)
         var este_usuario = get_object_by_id(id_usuario, global_usuarios)
         console.log('este usuario: ', este_usuario)
+        $('#mu-id').val(este_usuario.id)
+        $('#mu-nombre').val(este_usuario.nombre)
+        $('#mu-apellido').val(este_usuario.apellido)
+        $('#mu-telefono').val(este_usuario.telefono)
+        $('#mu-mail').val(este_usuario.mail)
+        $('#mu-pais').val(este_usuario.pais)
+        $('#mu-fecha-nacimiento').val(este_usuario.fecha_nacimiento)
+        var estado = 'Activo'
+        if(este_usuario.estado==0){
+            estado = 'Inactivo'
+        }
+        $('#mu-estado').val(estado)
 
         $('#ver-usuario-modal').fadeIn(100)
     })
@@ -837,7 +875,7 @@ function modal_ver_usuario(){
                     <div class="mm-heading">
                         <div class="datos-inputs-cont">
                             <label>ID</label>
-                            <input disabled type="text" value="206">
+                            <input disabled type="text" value="" id="mu-id">
                         </div>
                         <div class="datos-inputs-cont">
                             <label>Nombre</label>
@@ -849,7 +887,7 @@ function modal_ver_usuario(){
                         </div>
                         <div class="datos-inputs-cont">
                             <label>Fecha de nacimiento</label>
-                            <input disabled type="text" value="03/03/1198" id="mu-fecha-nacicimento">
+                            <input disabled type="text" value="03/03/1198" id="mu-fecha-nacimiento">
                         </div>
                         <div class="datos-inputs-cont">
                             <label>Telefono</label>
@@ -862,6 +900,10 @@ function modal_ver_usuario(){
                         <div class="datos-inputs-cont">
                             <label>País</label>
                             <input disabled type="text" value="Argentina" id="mu-pais">
+                        </div>
+                        <div class="datos-inputs-cont">
+                            <label>Estado</label>
+                            <input disabled type="text" value="" id="mu-estado">
                         </div>
                     </div>
                     <div>
@@ -898,4 +940,4 @@ var loadFile2 = function(event) {
 var loadFile = function(event) {
 	$('#p-pic').attr('src', URL.createObjectURL(event.target.files[0])) ;
     console.log(URL.createObjectURL(event.target.files[0]))
-};
+}; 

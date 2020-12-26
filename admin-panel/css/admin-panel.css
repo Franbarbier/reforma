@@ -703,3 +703,7 @@ main>div{
   margin-left: 10%;
   font-size: 1em;
 }
+
+.us-inactive{
+  background-color: #eaeaea;
+}
