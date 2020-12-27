@@ -1,6 +1,7 @@
 var global_propiedades;
 var global_disenadores;
 var global_localidades;
+var global_usuarios;
 
 // for (img in galeria) {
 //     html += comp_img_carrousel(galeria[img])
@@ -22,7 +23,11 @@ function get_object_by_id(id, objects){
 
 function row_propiedad(p) {
 
-    var thumbnail = JSON.parse(p.galeria)[0]
+    if(p.galeria!=''){
+        var thumbnail = JSON.parse(p.galeria)[0]
+    }else{
+        var thumbnail = ''
+    }
 
     return `<div id="id-prop" class="row-propiedad" data-id="${p.id}">
                 <div>
@@ -73,13 +78,21 @@ function delete_prop(id) {
     var r = confirm("Desea eliminar esta propiedad?");
         if (r == true) {
             console.log('eliminado')
+            fetch('../php/api/globales.php?func=eliminarUsuario') 
+            .then(function (response) {
+                return response.text();
+            })
+            .then(function (res) {
+                console.log(res)
+                
+            });
         } else {
             console.log('cancelado')
         }
 }
 
 $(document).on('click', '.delete-user', function () {
-    let id = $(this).parents('.row-propiedad').attr('id')
+    let id = $(this).parents('.row-usuario').attr('id')
     delete_user(id)
 })
 
@@ -87,6 +100,18 @@ function delete_user(id) {
     var r = confirm("Desea eliminar este usuario?");
         if (r == true) {
             console.log('eliminado')
+
+            fetch('../php/api/globales.php?func=eliminarUsuario&id='+id) 
+            .then(function (response) {
+                return response.text();
+            })
+            .then(function (res) {
+                console.log(res)
+                
+            });
+
+
+
         } else {
             console.log('cancelado')
         }
@@ -148,6 +173,11 @@ function nueva_propiedad(id) {
             prop.amenities = '[]'
         }
         amenities = JSON.parse(prop.amenities)
+        // Parseamos a int el array
+        for(val in amenities){
+            amenities[val] = parseInt(amenities[val])
+        }
+
         if(prop.coordenadas==''){
             prop.coordenadas = '[]'
         }
@@ -379,17 +409,23 @@ $(document).on('click', '.delete-bed', function () {
 
 
 
-function row_usuario(id) {
-    return `<div id="${id}" class="row-usuario">
+function row_usuario(user) {
+
+    var clase = ''
+    if(user.estado==0){
+        clase = 'us-inactive'
+    }
+
+    return `<div id="${user.id}" class="row-usuario ${clase}">
                 <div>
                     <div class="id-usuario">
-                        <p>1</p>
+                        <p>${user.id}</p>
                     </div>
                     <div class="nombre-usuario">
-                        <p>Nombre Usuario</p>
+                        <p>${user.nombre} ${user.apellido}</p>
                     </div>
                     <div class="mail-usuario">
-                        <p>ejemplo@gmail.com</p>
+                        <p>${user.mail}</p>
                     </div>
                 </div>
                 <div class="options">
@@ -403,18 +439,14 @@ function row_usuario(id) {
             </div>`
 }
 
-function ver_usuarios() {
+function ver_usuarios(html) {
     $('aside li').removeClass('activeLi')
     $('#usuarios').addClass('activeLi')
-    var html = '';
-    for (let index = 0; index < 5; index++) {
-        html += row_usuario()
-    }
 
     return `<div id="ver_usuarios">
                 <div>
                     <h2>Usuarios</h2>
-                    <button id="crear-usuario">CREAR USUARIO</button>
+                    <!-- <button id="crear-usuario">CREAR USUARIO</button> -->
                 </div>
                 <div>
                     ${html}
@@ -738,10 +770,91 @@ function actualizar_propiedad(){
 
 }
 
+
+function subir_propiedad(){
+
+    var nombre = $('#p-nombre').val()
+    var id_localidad = $('#p-localidad').val()
+    var huespedes = $('#p-huespedes').val()
+    var banos = $('#p-banos').val()
+    var camas = $('#p-camas').val()
+    
+    var concepto_espacio = $('#p-concepto_espacio').html()
+    var distribucion_camas = []
+    $('.dormitorio').each(function(){
+        var des = $(this).find('.dormi-descri').val()
+        var img = $(this).find('.cama-img').val()
+        distribucion_camas.push({"descripcion":des,"img":img})
+    })
+    distribucion_camas = JSON.stringify(distribucion_camas)
+    var amenities = []
+    $('#amenities li').each(function(){
+        if($(this).hasClass('ameniti-selected')){
+            amenities.push($(this).attr('data-id'))
+        }
+    })
+    amenities = JSON.stringify(amenities)
+    
+    var id_disenador = $('#p-disenador').val()
+    var latitud = $('#p-latitud').val()
+    var longitud = $('#p-longitud').val()
+    var tarifa = $('#p-tarifa').val()
+    var coordenadas = [latitud, longitud]
+    coordenadas = JSON.stringify(coordenadas)
+
+    console.log('nombre: ', nombre, ', id_localidad: ', id_localidad, ', huespedes: ', huespedes, ', banos: ', banos, ', camas: ', camas, ', concepto espacio: ', concepto_espacio, ', id_disenador: ', id_disenador, ', latitud: ', latitud, ', longitud: ', longitud, ', tarifa: ', tarifa, ', distribucion camas: ', distribucion_camas, ', amenities: ', amenities)
+
+    $.ajax({
+        url:'../php/api/propiedades.php?func=subirPropiedad',
+        method:'POST',
+        cache: false,
+        data:{
+            nombre,
+            id_localidad,
+            huespedes,
+            banos,
+            camas,
+            concepto_espacio,
+            distribucion_camas,
+            amenities,
+            id_disenador,
+            coordenadas,
+            tarifa
+        },
+        dataType:'json',
+        success:function(res){
+            console.log(res)
+            if(res.error==0){
+                window.location = ''
+            }
+        }
+    });
+
+}
+
 // Componente main modal editar artistas
 function modal_ver_usuario(){
 
     $(document).on('click', '.ver-usuario', function(){
+
+        // Inicializamos el modal
+        var id_usuario = $(this).closest('.row-usuario').attr('id')
+        console.log('idusuario: ', id_usuario)
+        var este_usuario = get_object_by_id(id_usuario, global_usuarios)
+        console.log('este usuario: ', este_usuario)
+        $('#mu-id').val(este_usuario.id)
+        $('#mu-nombre').val(este_usuario.nombre)
+        $('#mu-apellido').val(este_usuario.apellido)
+        $('#mu-telefono').val(este_usuario.telefono)
+        $('#mu-mail').val(este_usuario.mail)
+        $('#mu-pais').val(este_usuario.pais)
+        $('#mu-fecha-nacimiento').val(este_usuario.fecha_nacimiento)
+        var estado = 'Activo'
+        if(este_usuario.estado==0){
+            estado = 'Inactivo'
+        }
+        $('#mu-estado').val(estado)
+
         $('#ver-usuario-modal').fadeIn(100)
     })
     $(document).on('click', '#ver-usuario-modal .descartar-cambios, #ver-usuario-modal .mm-cerrar', function(){
@@ -762,31 +875,35 @@ function modal_ver_usuario(){
                     <div class="mm-heading">
                         <div class="datos-inputs-cont">
                             <label>ID</label>
-                            <input disabled type="text" value="206">
+                            <input disabled type="text" value="" id="mu-id">
                         </div>
                         <div class="datos-inputs-cont">
                             <label>Nombre</label>
-                            <input disabled type="text" value="Nombre">
+                            <input disabled type="text" value="Nombre" id="mu-nombre">
                         </div>
                         <div class="datos-inputs-cont">
                             <label>Apellido</label>
-                            <input disabled type="text" value="Apellido">
+                            <input disabled type="text" value="Apellido" id="mu-apellido">
                         </div>
                         <div class="datos-inputs-cont">
                             <label>Fecha de nacimiento</label>
-                            <input disabled type="text" value="03/03/1198">
+                            <input disabled type="text" value="03/03/1198" id="mu-fecha-nacimiento">
                         </div>
                         <div class="datos-inputs-cont">
                             <label>Telefono</label>
-                            <input disabled type="text" value="11 3453-6398">
+                            <input disabled type="text" value="11 3453-6398" id="mu-telefono">
                         </div>
                         <div class="datos-inputs-cont">
                             <label>Mail</label>
-                            <input disabled type="text" value="ejemplo@email.com">
+                            <input disabled type="text" value="ejemplo@email.com" id="mu-mail">
                         </div>
                         <div class="datos-inputs-cont">
                             <label>País</label>
-                            <input disabled type="text" value="Argentina">
+                            <input disabled type="text" value="Argentina" id="mu-pais">
+                        </div>
+                        <div class="datos-inputs-cont">
+                            <label>Estado</label>
+                            <input disabled type="text" value="" id="mu-estado">
                         </div>
                     </div>
                     <div>
@@ -874,4 +991,4 @@ var loadFile2 = function(event) {
 var loadFile = function(event) {
 	$('#p-pic').attr('src', URL.createObjectURL(event.target.files[0])) ;
     console.log(URL.createObjectURL(event.target.files[0]))
-};
+}; 

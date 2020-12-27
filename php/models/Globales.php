@@ -40,6 +40,16 @@ class Globales{
 
         return $q;
     }
+
+    public function verUsuarios(){
+      global $pdo;
+
+      $q = $pdo->prepare("SELECT * FROM usuarios");
+      $q->execute(); 
+      $q = $q->fetchAll();
+
+      return $q;
+  }
     
 
     public function verResenas($id_propiedad, $limit){
@@ -795,6 +805,24 @@ class Globales{
         
 
     }
+
+
+    public function eliminarUsuario($id){
+    
+      global $pdo;
+
+        $sql = "UPDATE usuarios SET estado=? WHERE id=?";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([0, $id]);
+
+        if($stmt){
+            return '{"error": 0}';
+        }else{
+            return '{"error": 1}';
+        }
+		
+    }
+
 
 }
 

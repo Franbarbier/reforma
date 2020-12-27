@@ -81,4 +81,23 @@ if($_GET['func']=='actualizarPropiedad'){
 
 }
 
+if($_GET['func']=='subirPropiedad'){
+
+	$nombre = $_POST['nombre'];
+	$id_localidad = $_POST['id_localidad'];
+	$huespedes = $_POST['huespedes'];
+	$banos = $_POST['banos'];
+	$camas = $_POST['camas'];
+	$concepto_espacio = $_POST['concepto_espacio'];
+	$distribucion_camas = $_POST['distribucion_camas'];
+	$amenities = $_POST['amenities'];
+	$id_disenador = $_POST['id_disenador'];
+	$coordenadas = $_POST['coordenadas'];
+	$tarifa = $_POST['tarifa'];
+	
+
+	echo $propiedades->subirPropiedad($nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa);
+
+}
+
 ?>
