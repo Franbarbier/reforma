@@ -878,13 +878,13 @@ class Globales{
         }
     }
 
-    public function crearArtista($nombre, $descripcion){
+    public function crearArtista($nombre, $descripcion, $img_name){
       
       global $pdo;
-      $q = "INSERT INTO disenadores (nombre, descripcion) VALUES (?,?)";
+      $q = "INSERT INTO disenadores (nombre, descripcion, img) VALUES (?,?,?)";
         
         $stmt= $pdo->prepare($q);
-        $stmt->execute([$nombre, $descripcion]);
+        $stmt->execute([$nombre, $descripcion, $img_name]);
         if($stmt){
             $last_id = $pdo->lastInsertId();
             return '{"error": 0, "id":'.$last_id.'}';

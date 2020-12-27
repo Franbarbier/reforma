@@ -136,8 +136,9 @@ if($_GET['func']=='crearArtista'){
 
     $nombre = $_POST['nombre'];
     $descripcion = $_POST['descripcion'];
+    $img_name = $_POST['img_name'];
 
-    echo $globales->crearArtista($nombre, $descripcion);
+    echo $globales->crearArtista($nombre, $descripcion, $img_name);
 
 }
 

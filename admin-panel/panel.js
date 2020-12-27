@@ -748,6 +748,21 @@ function modal_crear_artista(){
         var nombre = $('#mcd-nombre').val()
         var descripcion = $('#mcd-descripcion').val()
 
+        var profile_pic = $('#crear-artista-modal #myFile2')[0].files
+        console.log(profile_pic)
+        var fd = new FormData();
+        fd.append('file',profile_pic[0]);
+        var img_name = profile_pic[0].name
+
+        fetch('../subir_imgs.php?func=subirImgArtista', {
+            method: 'post',
+            body: fd
+        }).then(function(response) {
+            return response.text()
+        }).then(function(res) {
+            console.log(res);
+        });
+
         if(nombre!=''){
 
             
@@ -757,7 +772,8 @@ function modal_crear_artista(){
                 cache: false,
                 data:{
                     nombre,
-                    descripcion
+                    descripcion,
+                    img_name
                 },
                 dataType:'json',
                 success:function(res){
