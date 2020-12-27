@@ -864,6 +864,50 @@ class Globales{
         }
     }
 
+    public function actualizarDisenador($id, $nombre, $descripcion){
+      global $pdo;
+
+        $sql = "UPDATE disenadores SET nombre=?, descripcion=? WHERE id=?";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$nombre, $descripcion, $id]);
+
+        if($stmt){
+            return '{"error": 0}';
+        }else{
+            return '{"error": 1}';
+        }
+    }
+
+    public function crearArtista($nombre, $descripcion){
+      
+      global $pdo;
+      $q = "INSERT INTO disenadores (nombre, descripcion) VALUES (?,?)";
+        
+        $stmt= $pdo->prepare($q);
+        $stmt->execute([$nombre, $descripcion]);
+        if($stmt){
+            $last_id = $pdo->lastInsertId();
+            return '{"error": 0, "id":'.$last_id.'}';
+        }else{
+            return '{"error": 1, "id":""}';
+        }
+
+    }
+
+    public function eliminarArtista($id){
+      global $pdo;
+
+      $q = $pdo->prepare("DELETE FROM disenadores WHERE id =:id");
+      $q->execute(['id' => $id]); 
+      
+      if($q){
+          return '{"error": 0}';
+      }else{
+          return '{"error": 1}';
+      }
+
+    }
+
 
 }
 

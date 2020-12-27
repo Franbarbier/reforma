@@ -122,6 +122,34 @@ if($_GET['func']=='actualizarLocalidad'){
 
 }
 
+if($_GET['func']=='actualizarDisenador'){
+
+    $id = $_POST['id'];
+    $nombre = $_POST['nombre'];
+    $descripcion = $_POST['descripcion'];
+
+    echo $globales->actualizarDisenador($id, $nombre, $descripcion);
+
+}
+
+if($_GET['func']=='crearArtista'){
+
+    $nombre = $_POST['nombre'];
+    $descripcion = $_POST['descripcion'];
+
+    echo $globales->crearArtista($nombre, $descripcion);
+
+}
+
+
+if($_GET['func']=='eliminarArtista'){
+
+    $id = $_GET['id'];
+
+    echo $globales->eliminarArtista($id);
+
+}
+
 // if($_GET['func']=='verLocacion'){
 
 //     // Obtenemos estos parametros ya que los recomendados tienen que ser de la misma localidad y no pueden ser el mismo que esta viualizando al momento presente

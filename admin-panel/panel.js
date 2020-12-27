@@ -145,7 +145,7 @@ function delete_localidad(id) {
 }
 
 $(document).on('click', '.eliminar-artista', function () {
-    let id = $(this).parents('.row-propiedad').attr('id')
+    let id = $(this).parents('.row-artista').attr('id')
     delete_artist(id)
 })
 
@@ -153,6 +153,21 @@ function delete_artist(id) {
     var r = confirm("Desea eliminar este artista?");
         if (r == true) {
             console.log('eliminado')
+
+            fetch('../php/api/globales.php?func=eliminarArtista&id='+id) 
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (res) {
+                console.log(res)
+                if(res.error==0){
+                    window.location = ""
+                }else{
+                    alert('Ocurrió un error al eliminar esta localidad.')
+                }
+            });
+
+
         } else {
             console.log('cancelado')
         }
@@ -585,17 +600,17 @@ function modal_crear_localidad(){
 
 
 
-function row_artista(id) {
-    return `<div id="${id}" class="row-artista">
+function row_artista(dis) {
+    return `<div id="${dis.id}" class="row-artista">
                 <div>
                     <div class="id-artista">
-                        <p>1</p>
+                        <p>${dis.id}</p>
                     </div>
                     <div class="foto-artista">
-                        <img src="https://www.agora-gallery.com/advice/wp-content/uploads/Robert-Ellison.jpg">
+                        <img src="../imgs/disenadores/${dis.img}">
                     </div>
                     <div class="nombre-artista">
-                        <p>Nombre Artista</p>
+                        <p>${dis.nombre}</p>
                     </div>
                 </div>
                 <div class="options">
@@ -613,9 +628,11 @@ function row_artista(id) {
 function ver_artistas() {
     $('aside li').removeClass('activeLi')
     $('#artistas').addClass('activeLi')
-    var html = '';
-    for (let index = 0; index < 5; index++) {
-        html += row_artista()
+
+    var html_disenadores = ''
+    for(d in global_disenadores){
+        dis = global_disenadores[d]
+        html_disenadores += row_artista(dis)
     }
 
     return `<div id="ver_artistas">
@@ -624,7 +641,7 @@ function ver_artistas() {
                     <button id="crear-artista">NUEVO ARTISTA</button>
                 </div>
                 <div>
-                    ${html}
+                    ${html_disenadores}
                 </div>
             </div>`
 }
@@ -634,6 +651,15 @@ function ver_artistas() {
 function modal_edit_artista(){
 
     $(document).on('click', '.editar-artista', function(){
+
+        var id = $(this).closest('.row-artista').attr('id')
+        var este_disenador = get_object_by_id(id, global_disenadores)
+        $('#md-nombre').html(este_disenador.nombre)
+        $('#md-descripcion').html(este_disenador.descripcion)
+        $('#md-id').val(este_disenador.id)
+
+
+
         $('#edit-artista-modal').fadeIn(100)
 
     })
@@ -645,6 +671,37 @@ function modal_edit_artista(){
         e.stopPropagation()
     })
 
+    $(document).on('click', '#edit-artista-modal .guardar-cambios', function(){
+        console.log('clicked!')
+
+        var id = $('#md-id').val()
+        var nombre = $('#md-nombre').html()
+        var descripcion = $('#md-descripcion').html()
+
+        console.log('nombre: ', nombre, ' descripcion: ', descripcion, ' id: ', id)
+
+        $.ajax({
+            url:'../php/api/globales.php?func=actualizarDisenador',
+            method:'POST',
+            cache: false,
+            data:{
+                id,
+                nombre,
+                descripcion
+            },
+            dataType:'json',
+            success:function(res){
+                console.log(res)
+                if(res.error==0){
+                    window.location = ''
+                }
+            }
+        });
+
+
+
+    })
+
     
 
     return `<div id="edit-artista-modal" class="m-modal">
@@ -653,15 +710,16 @@ function modal_edit_artista(){
 
                     
                     <div class="mm-heading">
+                    <input type="hidden" id="md-id">
                         <div class="profile-img">
                             <input type="file" id="myFile" onchange="loadFile(event)" name="filename" accept="image/*">
                             <img src="../imgs/no-user-pic.jpg" alt="" id="p-pic" class="p-pic">
                             <label for="myFile"></label>
                         </div>
-                        <h4 contenteditable class="mm-titulo">Nombre Artista</h4>
+                        <h4 contenteditable class="mm-titulo" id="md-nombre"></h4>
                     </div>
                     <div>
-                        <textarea placeholder="Sobre el artista..."></textarea>
+                        <div id="md-descripcion" contenteditable="true"></div>
                     </div>
                     <aside class="save-buttons">
                         <button class="descartar-cambios">DESCARTAR</button>
@@ -685,6 +743,38 @@ function modal_crear_artista(){
         e.stopPropagation()
     })
 
+    $(document).on('click', '#crear-artista-modal .guardar-cambios', function(){
+        console.log('clicked!')
+        var nombre = $('#mcd-nombre').val()
+        var descripcion = $('#mcd-descripcion').val()
+
+        if(nombre!=''){
+
+            
+            $.ajax({
+                url:'../php/api/globales.php?func=crearArtista',
+                method:'POST',
+                cache: false,
+                data:{
+                    nombre,
+                    descripcion
+                },
+                dataType:'json',
+                success:function(res){
+                    console.log(res)
+                    if(res.error==0){
+                        window.location = ''
+                    }
+                }
+            });
+            
+        }else{
+            alert('Debes introducir un nombre al artista.')
+        }
+
+
+    })
+
     
 
     return `<div id="crear-artista-modal" class="m-modal">
@@ -698,10 +788,10 @@ function modal_crear_artista(){
                             <img src="../imgs/no-user-pic.jpg" alt="" id="p-pic2" class="p-pic">
                             <label for="myFile2"></label>
                         </div>
-                        <input type="text" class="grey-input" placeholder="Nombre del artista">
+                        <input type="text" class="grey-input" placeholder="Nombre del artista" id="mcd-nombre">
                     </div>
                     <div>
-                        <textarea placeholder="Sobre el artista..."></textarea>
+                        <textarea placeholder="Sobre el artista..." id="mcd-descripcion"></textarea>
                     </div>
                     <aside class="save-buttons">
                         <button class="descartar-cambios">DESCARTAR</button>
