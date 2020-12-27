@@ -95,6 +95,33 @@ if($_GET['func']=='eliminarUsuario'){
 
 }
 
+if($_GET['func']=='crearLocalidad'){
+
+    $nombre = $_POST['nombre'];
+    $provincia = $_POST['provincia'];
+
+    echo $globales->crearLocalidad($nombre, $provincia);
+
+}
+
+if($_GET['func']=='eliminarLocalidad'){
+
+    $id = $_GET['id'];
+
+    echo $globales->eliminarLocalidad($id);
+
+}
+
+if($_GET['func']=='actualizarLocalidad'){
+
+    $id = $_POST['id'];
+    $nombre = $_POST['nombre'];
+    $provincia = $_POST['provincia'];
+
+    echo $globales->actualizarLocalidad($id, $nombre, $provincia);
+
+}
+
 // if($_GET['func']=='verLocacion'){
 
 //     // Obtenemos estos parametros ya que los recomendados tienen que ser de la misma localidad y no pueden ser el mismo que esta viualizando al momento presente

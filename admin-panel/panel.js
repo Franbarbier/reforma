@@ -2,6 +2,7 @@ var global_propiedades;
 var global_disenadores;
 var global_localidades;
 var global_usuarios;
+var global_provincias = [{"nombre_completo":"Provincia de Misiones","fuente":"IGN","iso_id":"AR-N","nombre":"Misiones","id":"54","categoria":"Provincia","iso_nombre":"Misiones","centroide":{"lat":-26.8753965086829,"lon":-54.6516966230371}},{"nombre_completo":"Provincia de San Luis","fuente":"IGN","iso_id":"AR-D","nombre":"San Luis","id":"74","categoria":"Provincia","iso_nombre":"San Luis","centroide":{"lat":-33.7577257449137,"lon":-66.0281298195836}},{"nombre_completo":"Provincia de San Juan","fuente":"IGN","iso_id":"AR-J","nombre":"San Juan","id":"70","categoria":"Provincia","iso_nombre":"San Juan","centroide":{"lat":-30.8653679979618,"lon":-68.8894908486844}},{"nombre_completo":"Provincia de Entre Ríos","fuente":"IGN","iso_id":"AR-E","nombre":"Entre Ríos","id":"30","categoria":"Provincia","iso_nombre":"Entre Ríos","centroide":{"lat":-32.0588735436448,"lon":-59.2014475514635}},{"nombre_completo":"Provincia de Santa Cruz","fuente":"IGN","iso_id":"AR-Z","nombre":"Santa Cruz","id":"78","categoria":"Provincia","iso_nombre":"Santa Cruz","centroide":{"lat":-48.8154851827063,"lon":-69.9557621671973}},{"nombre_completo":"Provincia de Río Negro","fuente":"IGN","iso_id":"AR-R","nombre":"Río Negro","id":"62","categoria":"Provincia","iso_nombre":"Río Negro","centroide":{"lat":-40.4057957178801,"lon":-67.229329893694}},{"nombre_completo":"Provincia del Chubut","fuente":"IGN","iso_id":"AR-U","nombre":"Chubut","id":"26","categoria":"Provincia","iso_nombre":"Chubut","centroide":{"lat":-43.7886233529878,"lon":-68.5267593943345}},{"nombre_completo":"Provincia de Córdoba","fuente":"IGN","iso_id":"AR-X","nombre":"Córdoba","id":"14","categoria":"Provincia","iso_nombre":"Córdoba","centroide":{"lat":-32.142932663607,"lon":-63.8017532741662}},{"nombre_completo":"Provincia de Mendoza","fuente":"IGN","iso_id":"AR-M","nombre":"Mendoza","id":"50","categoria":"Provincia","iso_nombre":"Mendoza","centroide":{"lat":-34.6298873058957,"lon":-68.5831228183798}},{"nombre_completo":"Provincia de La Rioja","fuente":"IGN","iso_id":"AR-F","nombre":"La Rioja","id":"46","categoria":"Provincia","iso_nombre":"La Rioja","centroide":{"lat":-29.685776298315,"lon":-67.1817359694432}},{"nombre_completo":"Provincia de Catamarca","fuente":"IGN","iso_id":"AR-K","nombre":"Catamarca","id":"10","categoria":"Provincia","iso_nombre":"Catamarca","centroide":{"lat":-27.3358332810217,"lon":-66.9476824299928}},{"nombre_completo":"Provincia de La Pampa","fuente":"IGN","iso_id":"AR-L","nombre":"La Pampa","id":"42","categoria":"Provincia","iso_nombre":"La Pampa","centroide":{"lat":-37.1315537735949,"lon":-65.4466546606951}},{"nombre_completo":"Provincia de Santiago del Estero","fuente":"IGN","iso_id":"AR-G","nombre":"Santiago del Estero","id":"86","categoria":"Provincia","iso_nombre":"Santiago del Estero","centroide":{"lat":-27.7824116550944,"lon":-63.2523866568588}},{"nombre_completo":"Provincia de Corrientes","fuente":"IGN","iso_id":"AR-W","nombre":"Corrientes","id":"18","categoria":"Provincia","iso_nombre":"Corrientes","centroide":{"lat":-28.7743047046407,"lon":-57.8012191977913}},{"nombre_completo":"Provincia de Santa Fe","fuente":"IGN","iso_id":"AR-S","nombre":"Santa Fe","id":"82","categoria":"Provincia","iso_nombre":"Santa Fe","centroide":{"lat":-30.7069271588117,"lon":-60.9498369430241}},{"nombre_completo":"Provincia de Tucumán","fuente":"IGN","iso_id":"AR-T","nombre":"Tucumán","id":"90","categoria":"Provincia","iso_nombre":"Tucumán","centroide":{"lat":-26.9478001830786,"lon":-65.3647579441481}},{"nombre_completo":"Provincia del Neuquén","fuente":"IGN","iso_id":"AR-Q","nombre":"Neuquén","id":"58","categoria":"Provincia","iso_nombre":"Neuquén","centroide":{"lat":-38.6417575824599,"lon":-70.1185705180601}},{"nombre_completo":"Provincia de Salta","fuente":"IGN","iso_id":"AR-A","nombre":"Salta","id":"66","categoria":"Provincia","iso_nombre":"Salta","centroide":{"lat":-24.2991344492002,"lon":-64.8144629600627}},{"nombre_completo":"Provincia del Chaco","fuente":"IGN","iso_id":"AR-H","nombre":"Chaco","id":"22","categoria":"Provincia","iso_nombre":"Chaco","centroide":{"lat":-26.3864309061226,"lon":-60.7658307438603}},{"nombre_completo":"Provincia de Formosa","fuente":"IGN","iso_id":"AR-P","nombre":"Formosa","id":"34","categoria":"Provincia","iso_nombre":"Formosa","centroide":{"lat":-24.894972594871,"lon":-59.9324405800872}},{"nombre_completo":"Provincia de Jujuy","fuente":"IGN","iso_id":"AR-Y","nombre":"Jujuy","id":"38","categoria":"Provincia","iso_nombre":"Jujuy","centroide":{"lat":-23.3200784211351,"lon":-65.7642522180337}},{"nombre_completo":"Provincia de Buenos Aires","fuente":"IGN","iso_id":"AR-B","nombre":"Buenos Aires","id":"06","categoria":"Provincia","iso_nombre":"Buenos Aires","centroide":{"lat":-36.6769415180527,"lon":-60.5588319815719}},{"nombre_completo":"Provincia de Tierra del Fuego, Antártida e Islas del Atlántico Sur","fuente":"IGN","iso_id":"AR-V","nombre":"Tierra del Fuego","id":"94","categoria":"Provincia","iso_nombre":"Tierra del Fuego","centroide":{"lat":-82.52151781221,"lon":-50.7427486049785}}]
 
 // for (img in galeria) {
 //     html += comp_img_carrousel(galeria[img])
@@ -118,14 +119,26 @@ function delete_user(id) {
 }
 
 $(document).on('click', '.eliminar-loc', function () {
-    let id = $(this).parents('.row-propiedad').attr('id')
+    let id = $(this).closest('.row-localidad').attr('id')
     delete_localidad(id)
 })
 
 function delete_localidad(id) {
-    var r = confirm("Desea eliminar esta localidad?");
+    var r = confirm("Desea eliminar esta localidad? id: "+ id);
         if (r == true) {
             console.log('eliminado')
+            fetch('../php/api/globales.php?func=eliminarLocalidad&id='+id) 
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (res) {
+                console.log(res)
+                if(res.error==0){
+                    window.location = ""
+                }else{
+                    alert('Ocurrió un error al eliminar esta localidad.')
+                }
+            });
         } else {
             console.log('cancelado')
         }
@@ -454,17 +467,17 @@ function ver_usuarios(html) {
             </div>`
 }
 
-function row_localidad(id) {
-    return `<div id="${id}" class="row-localidad">
+function row_localidad(loc) {
+    return `<div id="${loc.id}" class="row-localidad">
                 <div>
                     <div class="id-loc">
-                        <p>1</p>
+                        <p>${loc.id}</p>
                     </div>
                     <div class="nombre-loc">
-                        <p>Nombre Localidad</p>
+                        <p>${loc.nombre}</p>
                     </div>
                     <div class="nombre-prov">
-                        <p>Provincia asignada</p>
+                        <p>${loc.provincia}</p>
                     </div>
                 </div>
                 <div class="options">
@@ -482,9 +495,10 @@ function row_localidad(id) {
 function ver_localidades() {
     $('aside li').removeClass('activeLi')
     $('#localidades').addClass('activeLi')
-    var html = '';
-    for (let index = 0; index < 5; index++) {
-        html += row_localidad()
+    var html_localidades = '';
+    for (l in global_localidades) {
+        loc = global_localidades[l]
+        html_localidades += row_localidad(loc)
     }
 
     return `<div id="ver_localidades">
@@ -493,7 +507,7 @@ function ver_localidades() {
                     <button id="crear-nueva-localidad">NUEVA LOCALIDAD</button>
                 </div>
                 <div>
-                    ${html}
+                    ${html_localidades}
                 </div>
             </div>`
 }
@@ -501,6 +515,13 @@ function ver_localidades() {
 
 // Componente main modal editar artistas
 function modal_crear_localidad(){
+    
+    var html_provincias = ''
+    for(p in global_provincias){
+        var prov = global_provincias[p]
+        html_provincias += `<option data-name="${prov.nombre}" value="${prov.nombre}">${prov.nombre}</option>`
+    }
+    
 
     $(document).on('click', '#crear-nueva-localidad', function(){
         $('#crear-localidad-modal').fadeIn(100)
@@ -513,6 +534,33 @@ function modal_crear_localidad(){
         e.stopPropagation()
     })
 
+    $(document).on('click', '#crear-localidad-modal .guardar-cambios', function(e){
+        console.log('holu')
+        e.stopPropagation()
+        var nombre = $('#mcl-nombre').val()
+        var provincia = $('#mcl-provincia').val()
+
+        $.ajax({
+            url:'../php/api/globales.php?func=crearLocalidad',
+            method:'POST',
+            cache: false,
+            data:{
+                nombre,
+                provincia
+            },
+            dataType:'json',
+            success:function(res){
+                console.log(res)
+                if(res.error==0){
+                    window.location = ""
+                }else{
+                    alert('Ocurrió un error al intentar añadir la localidad.')
+                }
+
+            }
+        });
+    })
+
     
 
     return `<div id="crear-localidad-modal" class="m-modal">
@@ -522,18 +570,14 @@ function modal_crear_localidad(){
                     
                     <div class="mm-heading">
                         <h5>Crear localidad</h5>
-                        <input class="grey-input" type="text" placeholder="Nueva localidad">
-                        <select class="grey-input">
-                            <option>Argentina</option>
-                            <option>Argentina</option>
-                            <option>Argentina</option>
-                            <option>Argentina</option>
-                            <option>Argentina</option>
+                        <input class="grey-input" type="text" placeholder="Nueva localidad" id="mcl-nombre">
+                        <select class="grey-input" id="mcl-provincia">
+                        ${html_provincias}
                         </select>
                     </div>
                     <aside class="save-buttons">
                         <button class="descartar-cambios">DESCARTAR</button>
-                        <button class="guardar-cambios">GUARDAR</button>
+                        <button class="guardar-cambios">CREAR</button>
                     </aside>
                 </div>
             </div>` 
@@ -591,6 +635,7 @@ function modal_edit_artista(){
 
     $(document).on('click', '.editar-artista', function(){
         $('#edit-artista-modal').fadeIn(100)
+
     })
     $(document).on('click', '#edit-artista-modal .descartar-cambios, #edit-artista-modal .mm-cerrar', function(){
         $('#edit-artista-modal').fadeOut(100)
@@ -670,8 +715,22 @@ function modal_crear_artista(){
 // Componente main modal editar lcoalidades
 function modal_edit_localidad(){
 
+    var html_provincias = ''
+    for(p in global_provincias){
+        var prov = global_provincias[p]
+        html_provincias += `<option data-name="${prov.nombre}" value="${prov.nombre}">${prov.nombre}</option>`
+    }
     $(document).on('click', '.editar-loc', function(){
         $('#edit-localidad-modal').fadeIn(100)
+        var id = $(this).closest('.row-localidad').attr('id')
+        var esta_localidad = get_object_by_id(id, global_localidades)
+        console.log('esta localidad: ', esta_localidad)
+
+        $('#ml-id').val(esta_localidad.id)
+        $('#ml-nombre').val(esta_localidad.nombre)
+        $( "#ml-provincia option[data-name='"+esta_localidad.provincia+"']" ).attr('selected', true)
+
+
     })
     $(document).on('click', '#edit-localidad-modal .descartar-cambios, #edit-localidad-modal .mm-cerrar', function(){
         $('#edit-localidad-modal').fadeOut(100)
@@ -679,6 +738,32 @@ function modal_edit_localidad(){
 
     $(document).on('click', '#edit-localidad-modal', function(e){
         e.stopPropagation()
+    })
+
+    $(document).on('click', '#edit-localidad-modal .guardar-cambios', function(e){
+
+        var nombre = $('#ml-nombre').val()
+        var provincia = $('#ml-provincia').val()
+        var id = $('#ml-id').val()
+
+        $.ajax({
+            url:'../php/api/globales.php?func=actualizarLocalidad',
+            method:'POST',
+            cache: false,
+            data:{
+                id,
+                nombre,
+                provincia
+            },
+            dataType:'json',
+            success:function(res){
+                console.log(res)
+                if(res.error==0){
+                    window.location = ''
+                }
+            }
+        });
+
     })
 
     
@@ -690,13 +775,10 @@ function modal_edit_localidad(){
                     
                     <div class="mm-heading">
                         <h5>Editar localidad</h5>
-                        <input class="grey-input" type="text" value="Localidad actual">
-                        <select class="grey-input">
-                            <option>Argentina</option>
-                            <option>Argentina</option>
-                            <option>Argentina</option>
-                            <option>Argentina</option>
-                            <option>Argentina</option>
+                        <input type="hidden" id="ml-id">
+                        <input class="grey-input" type="text" value="" id="ml-nombre">
+                        <select class="grey-input" id="ml-provincia">
+                            ${html_provincias}
                         </select>
                     </div>
                     <aside class="save-buttons">

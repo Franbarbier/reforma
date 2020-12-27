@@ -823,6 +823,47 @@ class Globales{
 		
     }
 
+    public function crearLocalidad($nombre, $provincia){
+      global $pdo;
+      $q = "INSERT INTO localidades (nombre, provincia) VALUES (?,?)";
+            
+      $stmt= $pdo->prepare($q);
+      $stmt->execute([$nombre, $provincia]);
+      if($stmt){
+          return '{"error": 0}';
+      }else{
+          return '{"error": 1}';
+      }
+    }
+
+    public function eliminarLocalidad($id){
+      global $pdo;
+
+		  $q = $pdo->prepare("DELETE FROM localidades WHERE id =:id");
+      $q->execute(['id' => $id]); 
+      
+      if($q){
+          return '{"error": 0}';
+      }else{
+          return '{"error": 1}';
+      }
+
+    }
+
+    public function actualizarLocalidad($id, $nombre, $provincia){
+      global $pdo;
+
+        $sql = "UPDATE localidades SET nombre=?, provincia=? WHERE id=?";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$nombre, $provincia, $id]);
+
+        if($stmt){
+            return '{"error": 0}';
+        }else{
+            return '{"error": 1}';
+        }
+    }
+
 
 }
 
