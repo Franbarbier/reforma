@@ -213,6 +213,7 @@ $('body').append( modal_ver_usuario() )
 
 $('body').append( modal_crear_localidad() )
 $('body').append( modal_crear_artista() )
+$('body').append( modal_crear_usuario() )
 
 
 

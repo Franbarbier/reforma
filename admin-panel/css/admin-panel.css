@@ -179,7 +179,7 @@ main>div{
   width: 100%;
 
 }
-#crear-propiedad, #subir-propiedad, #crear-usuario, #actualizar-propiedad, #crear-artista{
+#crear-propiedad, #subir-propiedad, #crear-usuario, #actualizar-propiedad, #crear-artista, #crear-nueva-localidad{
   background: #d4bfaa;
   border: 2px solid #d4bfaa;
   color: white;
@@ -636,10 +636,13 @@ main>div{
 }
 
 /* datos de usuario */
+#crear-usuario-modal>div{
+  width: 55%;
+}
 #ver-usuario-modal>div{
   width: 44%;
 }
-#ver-usuario-modal .mm-heading{
+#ver-usuario-modal .mm-heading, #crear-usuario-modal .mm-heading{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -647,15 +650,18 @@ main>div{
 .datos-inputs-cont:first-child{
   width: 100%;
 }
-.datos-inputs-cont{
+.datos-inputs-cont, #crear-usuario-modal .mm-heading>div{
   display: inline-block;
   width: 45%;
   margin: 3% 0;
 }
-.datos-inputs-cont label{
+.datos-inputs-cont label, #crear-usuario-modal .mm-heading label{
     font-size: 0.8em;
     color: #5e5e5e;
     display: block;
+}
+#crear-usuario-modal select, #crear-usuario-modal input{
+  width: 70%;
 }
 
 .datos-inputs-cont input{

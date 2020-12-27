@@ -797,23 +797,74 @@ function modal_ver_usuario(){
             </div>` 
 }
 
+// Componente main modal editar artistas
+function modal_crear_usuario(){
 
-// // render img from input
-// function readURL(input) {
-// 	if (input.files && input.files[0]) {
-// 		var reader = new FileReader();
-		
-// 		reader.onload = function(e) {
-// 		$('#p-pic').attr('src', e.target.result);
-//     }
+    $(document).on('click', '#crear-usuario', function(){
+        $('#crear-usuario-modal').fadeIn(100)
+    })
+    $(document).on('click', '#crear-usuario-modal .descartar-cambios, #crear-usuario-modal .mm-cerrar', function(){
+        $('#crear-usuario-modal').fadeOut(100)
+    })
+
+    $(document).on('click', '#crear-usuario-modal', function(e){
+        e.stopPropagation()
+    })
+
     
-//     reader.readAsDataURL(input.files[0]); // convert to base64 string
-//     console.log(input.files[0])
-// 	}
-// }
-// $(document).on('change','#myFile', function(){
-//     readURL(this);
-// });
+    return `<div id="crear-usuario-modal" class="m-modal">
+                <div>
+                    <div class="mm-cerrar">x</div>
+
+                    
+                    <div class="mm-heading">
+                        <div>
+                            <label>Nombre</label>
+                            <input class="grey-input" type="text">
+                        </div>
+                        <div>
+                            <label>Apellido</label>
+                            <input class="grey-input" type="text">
+                        </div>
+                        <div>
+                            <label>Fecha de nacimiento</label>
+                            <input class="grey-input" type="date">
+                        </div>
+                        <div>
+                            <label>Telefono</label>
+                            <input class="grey-input" type="tel">
+                        </div>
+                        <div>
+                            <label>Mail</label>
+                            <input class="grey-input" type="email">
+                        </div>
+                        <div>
+                            <label>País</label>
+                            <select class="grey-input">
+                                <option>Argentina</option>
+                                <option>Argentina</option>
+                                <option>Argentina</option>
+                                <option>Argentina</option>
+                                <option>Argentina</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Contraseña</label>
+                            <input class="grey-input" type="password">
+                        </div>
+                        <div>
+                            <label>Repetir contraseña</label>
+                            <input class="grey-input" type="password">
+                        </div>
+                    </div>
+                    <aside class="save-buttons">
+                        <button class="descartar-cambios">DESCARTAR</button>
+                        <button class="guardar-cambios">GUARDAR</button>
+                    </aside>
+                    
+                </div>
+            </div>` 
+}
 
 
 var loadFile2 = function(event) {
