@@ -367,13 +367,9 @@ class Propiedades{
         }
         $galeria = json_decode($q['galeria']);
         foreach ($galeria as $key => $value) {
-            echo 'value: ' . $value;
             $path = $_SERVER['DOCUMENT_ROOT'].'/reforma/imgs/propiedades_imgs/'.$value;
             if (file_exists($path)) {
                 unlink($path);
-                echo '{"error": 10}'; 
-            }else{
-                echo '{"error": 11}'; 
             }
         }
 

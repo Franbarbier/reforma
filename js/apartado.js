@@ -98,7 +98,7 @@ function render_apartado(propiedad) {
 
     html = ''
     for (c in distribucion_camas) {
-        html += comp_distribucion(distribucion_camas[c].dormitorio, distribucion_camas[c].descripcion, distribucion_camas[c].img)
+        html += comp_distribucion(c, distribucion_camas[c].descripcion, distribucion_camas[c].img)
     }
     $('#distribucion_de_camas').html(html)
 
@@ -201,8 +201,10 @@ function render_apartado(propiedad) {
 }
 
 // Seccion de componentes
-function comp_distribucion(dormitorio, descripcion, img) {
-    return '<div><img src="imgs/' + img + '.svg" alt=""><h5>' + dormitorio + '</h5><p>' + descripcion + '</p></div>'
+function comp_distribucion(num, descripcion, img) {
+    num = parseInt(num)
+    num += 1
+    return '<div><img src="imgs/' + img + '.svg" alt=""><h5>Dormitorio ' + num + '</h5><p>' + descripcion + '</p></div>'
 }
 
 function comp_amenity(img, nombre, status) {
