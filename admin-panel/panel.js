@@ -294,7 +294,9 @@ function nueva_propiedad(id) {
     
     // $('#amenities ul').append('<li><img src="../'+ value +'" alt=""><p>'+ key +'</p></li>')
 
-
+    setTimeout(() => {
+        gallery_uploader();
+    }, 600);
     return `<div id="crear_propiedad">
                 <div>
                     <h2>Nueva propiedad</h2>
@@ -376,6 +378,31 @@ function nueva_propiedad(id) {
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <div id="modal-add-img">
+                            <div>
+                                <div>
+                                    <h4>Selecciona o arrastra las imagenes</h4>
+                                    <div id="">
+                                        <label for="image_uploads" id="label-imgs">
+                                            <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple>
+                                        </label>
+                                        <div class="preview">
+                                            <li>No hay archivos seleccionados.</li>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="upload_thumbnail">
+                            <h4>Imagen principal/thumbnail</h4>
+                            <div class="profile-img">
+                                <input type="file" id="myFile2" onchange="loadFile2(event)" name="filename" accept="image/*">
+                                <img src="" alt="" id="p-pic2" class="p-pic">
+                                <label for="myFile2"></label>
+                            </div>
+                        </div>
+                    </div>
                     <div id="buttons-cont">
                         <button class="grey-input" id="descartar-cambios">DESCARTAR CAMBIOS</button>
                         <button id="${btn_text}-propiedad">${btn_text} propiedad</button>
@@ -384,7 +411,96 @@ function nueva_propiedad(id) {
             </div>`
 }
 
+var files_to_upload = []
 
+
+function gallery_uploader() {
+    
+    // validacion del subidor de archivos multiples
+    var inputFiles = document.getElementById('image_uploads');
+    var preview = document.querySelector('.preview');
+
+    // inputFiles.style.opacity = 0;
+
+    inputFiles.addEventListener('change', updateImageDisplay);
+
+    function updateImageDisplay() {
+
+        files_to_upload = []
+
+
+        while (preview.firstChild) {
+            preview.removeChild(preview.firstChild);
+        }
+
+        const curFiles = inputFiles.files;
+        if (curFiles.length === 0) {
+            const para = document.createElement('p');
+            para.textContent = 'No files currently selected for upload';
+            preview.appendChild(para);
+        } else {
+            const list = document.createElement('ol');
+            preview.appendChild(list);
+
+            for (const file of curFiles) {
+
+                files_to_upload.push(file)
+
+                const listItem = document.createElement('li');
+                const imgCont = document.createElement('div');
+                const para = document.createElement('p');
+
+                if (validFileType(file)) {
+                    para.textContent = `${file.name}`;
+                    const image = document.createElement('img');
+                    image.src = URL.createObjectURL(file);
+                    if (file.type === 'application/pdf') {
+                        image.src = 'https://www.flaticon.com/svg/static/icons/svg/46/46438.svg';
+                    }
+
+                    listItem.append(imgCont);
+                    imgCont.append(image);
+                    listItem.appendChild(para);
+                } else {
+                    para.textContent = `${file.name} No es un archivo valido. Pruebe otro archivo.`;
+                    listItem.appendChild(para);
+                }
+
+                list.appendChild(listItem);
+            }
+        }
+    }
+
+    // https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
+    const fileTypes = [
+        'image/apng',
+        'image/bmp',
+        'image/gif',
+        'image/jpeg',
+        'image/pjpeg',
+        'image/png',
+        'image/svg+xml',
+        'image/tiff',   
+        'image/webp',
+        `image/x-icon`,
+        'application/pdf'
+    ];
+
+    function validFileType(file) {
+        return fileTypes.includes(file.type);
+    }
+
+    function returnFileSize(number) {
+        if (number < 1024) {
+            return number + 'bytes';
+        } else if (number > 1024 && number < 1048576) {
+            return (number / 1024).toFixed(1) + 'KB';
+        } else if (number > 1048576) {
+            return (number / 1048576).toFixed(1) + 'MB';
+        }
+    }
+    // termina: validacion del subidor de archivos multiples
+}
 
 $(document).on('click', '#amenities li', function () {
     $(this).toggleClass('ameniti-selected')
@@ -1225,4 +1341,6 @@ var loadFile2 = function(event) {
 var loadFile = function(event) {
 	$('#p-pic').attr('src', URL.createObjectURL(event.target.files[0])) ;
     console.log(URL.createObjectURL(event.target.files[0]))
-}; 
+};
+
+
