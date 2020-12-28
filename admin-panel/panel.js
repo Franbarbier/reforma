@@ -3,6 +3,7 @@ var global_disenadores;
 var global_localidades;
 var global_usuarios;
 var global_provincias = [{"nombre_completo":"Provincia de Misiones","fuente":"IGN","iso_id":"AR-N","nombre":"Misiones","id":"54","categoria":"Provincia","iso_nombre":"Misiones","centroide":{"lat":-26.8753965086829,"lon":-54.6516966230371}},{"nombre_completo":"Provincia de San Luis","fuente":"IGN","iso_id":"AR-D","nombre":"San Luis","id":"74","categoria":"Provincia","iso_nombre":"San Luis","centroide":{"lat":-33.7577257449137,"lon":-66.0281298195836}},{"nombre_completo":"Provincia de San Juan","fuente":"IGN","iso_id":"AR-J","nombre":"San Juan","id":"70","categoria":"Provincia","iso_nombre":"San Juan","centroide":{"lat":-30.8653679979618,"lon":-68.8894908486844}},{"nombre_completo":"Provincia de Entre Ríos","fuente":"IGN","iso_id":"AR-E","nombre":"Entre Ríos","id":"30","categoria":"Provincia","iso_nombre":"Entre Ríos","centroide":{"lat":-32.0588735436448,"lon":-59.2014475514635}},{"nombre_completo":"Provincia de Santa Cruz","fuente":"IGN","iso_id":"AR-Z","nombre":"Santa Cruz","id":"78","categoria":"Provincia","iso_nombre":"Santa Cruz","centroide":{"lat":-48.8154851827063,"lon":-69.9557621671973}},{"nombre_completo":"Provincia de Río Negro","fuente":"IGN","iso_id":"AR-R","nombre":"Río Negro","id":"62","categoria":"Provincia","iso_nombre":"Río Negro","centroide":{"lat":-40.4057957178801,"lon":-67.229329893694}},{"nombre_completo":"Provincia del Chubut","fuente":"IGN","iso_id":"AR-U","nombre":"Chubut","id":"26","categoria":"Provincia","iso_nombre":"Chubut","centroide":{"lat":-43.7886233529878,"lon":-68.5267593943345}},{"nombre_completo":"Provincia de Córdoba","fuente":"IGN","iso_id":"AR-X","nombre":"Córdoba","id":"14","categoria":"Provincia","iso_nombre":"Córdoba","centroide":{"lat":-32.142932663607,"lon":-63.8017532741662}},{"nombre_completo":"Provincia de Mendoza","fuente":"IGN","iso_id":"AR-M","nombre":"Mendoza","id":"50","categoria":"Provincia","iso_nombre":"Mendoza","centroide":{"lat":-34.6298873058957,"lon":-68.5831228183798}},{"nombre_completo":"Provincia de La Rioja","fuente":"IGN","iso_id":"AR-F","nombre":"La Rioja","id":"46","categoria":"Provincia","iso_nombre":"La Rioja","centroide":{"lat":-29.685776298315,"lon":-67.1817359694432}},{"nombre_completo":"Provincia de Catamarca","fuente":"IGN","iso_id":"AR-K","nombre":"Catamarca","id":"10","categoria":"Provincia","iso_nombre":"Catamarca","centroide":{"lat":-27.3358332810217,"lon":-66.9476824299928}},{"nombre_completo":"Provincia de La Pampa","fuente":"IGN","iso_id":"AR-L","nombre":"La Pampa","id":"42","categoria":"Provincia","iso_nombre":"La Pampa","centroide":{"lat":-37.1315537735949,"lon":-65.4466546606951}},{"nombre_completo":"Provincia de Santiago del Estero","fuente":"IGN","iso_id":"AR-G","nombre":"Santiago del Estero","id":"86","categoria":"Provincia","iso_nombre":"Santiago del Estero","centroide":{"lat":-27.7824116550944,"lon":-63.2523866568588}},{"nombre_completo":"Provincia de Corrientes","fuente":"IGN","iso_id":"AR-W","nombre":"Corrientes","id":"18","categoria":"Provincia","iso_nombre":"Corrientes","centroide":{"lat":-28.7743047046407,"lon":-57.8012191977913}},{"nombre_completo":"Provincia de Santa Fe","fuente":"IGN","iso_id":"AR-S","nombre":"Santa Fe","id":"82","categoria":"Provincia","iso_nombre":"Santa Fe","centroide":{"lat":-30.7069271588117,"lon":-60.9498369430241}},{"nombre_completo":"Provincia de Tucumán","fuente":"IGN","iso_id":"AR-T","nombre":"Tucumán","id":"90","categoria":"Provincia","iso_nombre":"Tucumán","centroide":{"lat":-26.9478001830786,"lon":-65.3647579441481}},{"nombre_completo":"Provincia del Neuquén","fuente":"IGN","iso_id":"AR-Q","nombre":"Neuquén","id":"58","categoria":"Provincia","iso_nombre":"Neuquén","centroide":{"lat":-38.6417575824599,"lon":-70.1185705180601}},{"nombre_completo":"Provincia de Salta","fuente":"IGN","iso_id":"AR-A","nombre":"Salta","id":"66","categoria":"Provincia","iso_nombre":"Salta","centroide":{"lat":-24.2991344492002,"lon":-64.8144629600627}},{"nombre_completo":"Provincia del Chaco","fuente":"IGN","iso_id":"AR-H","nombre":"Chaco","id":"22","categoria":"Provincia","iso_nombre":"Chaco","centroide":{"lat":-26.3864309061226,"lon":-60.7658307438603}},{"nombre_completo":"Provincia de Formosa","fuente":"IGN","iso_id":"AR-P","nombre":"Formosa","id":"34","categoria":"Provincia","iso_nombre":"Formosa","centroide":{"lat":-24.894972594871,"lon":-59.9324405800872}},{"nombre_completo":"Provincia de Jujuy","fuente":"IGN","iso_id":"AR-Y","nombre":"Jujuy","id":"38","categoria":"Provincia","iso_nombre":"Jujuy","centroide":{"lat":-23.3200784211351,"lon":-65.7642522180337}},{"nombre_completo":"Provincia de Buenos Aires","fuente":"IGN","iso_id":"AR-B","nombre":"Buenos Aires","id":"06","categoria":"Provincia","iso_nombre":"Buenos Aires","centroide":{"lat":-36.6769415180527,"lon":-60.5588319815719}},{"nombre_completo":"Provincia de Tierra del Fuego, Antártida e Islas del Atlántico Sur","fuente":"IGN","iso_id":"AR-V","nombre":"Tierra del Fuego","id":"94","categoria":"Provincia","iso_nombre":"Tierra del Fuego","centroide":{"lat":-82.52151781221,"lon":-50.7427486049785}}]
+var global_cur_galeria;
 
 // for (img in galeria) {
 //     html += comp_img_carrousel(galeria[img])
@@ -40,7 +41,7 @@ function row_propiedad(p) {
         var thumbnail = ''
     }
 
-    return `<div id="id-prop" class="row-propiedad" data-id="${p.id}">
+    return `<div class="row-propiedad" data-id="${p.id}">
                 <div>
                     <div class="foto-prop">
                         <img src="../imgs/propiedades_imgs/${thumbnail}">
@@ -50,7 +51,7 @@ function row_propiedad(p) {
                     </div>
                 </div>
                 <div class="options">
-                    <a class="ver-prop" href="../apartado.php?id=2">
+                    <a class="ver-prop" href="../apartado.php?id=${p.id}">
                         <img src="../imgs/view.svg">
                     </a>
                     <a class="editar-prop">
@@ -81,15 +82,16 @@ function ver_propiedades(html) {
 // FUNCIONES DE DELETE
 
 $(document).on('click', '.delete-prop', function () {
-    let id = $(this).parents('.row-propiedad').attr('id')
+    let id = $(this).parents('.row-propiedad').attr('data-id')
     delete_prop(id)
 })
 
 function delete_prop(id) {
+    console.log('id: '+id)
     var r = confirm("Desea eliminar esta propiedad?");
         if (r == true) {
             console.log('eliminado')
-            fetch('../php/api/globales.php?func=eliminarUsuario') 
+            fetch('../php/api/propiedades.php?func=eliminarPropiedad&id='+id) 
             .then(function (response) {
                 return response.text();
             })
@@ -198,11 +200,14 @@ function li_ameniti(key, value, id, selected) {
 
 function nueva_propiedad(id) {
 
+    global_cur_galeria = []
+
     var prop = {"amenities":"[]","banos":"","camas":"","concepto_espacio":"","coordenadas":"","distribucion_camas": "","galeria":"","huespedes":"","id":"", "id_disenador": "","id_localidad":"","localidad":"", "nombre":"","normas":"","politica":"","provincia":"","seguridad":"","tarifa":""}
     var btn_text = 'subir';
     var amenities = JSON.parse(prop.amenities)
     var latitud = ''
     var longitud = ''
+    var html_imgs_preview = '<li>No hay archivos seleccionados.</li>'
 
 
     if (id != undefined) {
@@ -232,6 +237,28 @@ function nueva_propiedad(id) {
         for(d in dormitorios){
             html_dormitorios += camas_dormitorios(c, dormitorios[d].descripcion, dormitorios[d].img)
             c+=1
+        }
+
+        if(prop.galeria == ''){
+            prop.galeria = '[]'
+        }
+        var galeria = JSON.parse(prop.galeria)
+        global_cur_galeria = galeria
+        if(galeria.length>0){
+
+            html_imgs_preview = '<ol>'
+            for(i in galeria){
+                html_imgs_preview += `
+                <li style="position: relative">
+                <div class="delete-prop-img" data-name="${galeria[i]}"><img src="../imgs/letter-x.svg" height="10px"></div>
+                <div>
+                <img src="../imgs/propiedades_imgs/${galeria[i]}">
+                </div>
+                <p>${galeria[i]}</p>
+                </li>
+                `
+            }
+            html_imgs_preview += '</ol>'
         }
 
         // {"dormitorio": "Dormitorio 1", "descripcion": "Cama matrimonial", "img": "double-bed"}
@@ -297,6 +324,21 @@ function nueva_propiedad(id) {
     setTimeout(() => {
         gallery_uploader();
     }, 600);
+
+    $(document).on('click', '.delete-prop-img', function(){
+        
+        if(confirm('Estás seguro que deseas eliminar esta imagen?')){
+
+            console.log(global_cur_galeria)
+            var index = global_cur_galeria.indexOf($(this).attr('data-name'));
+            global_cur_galeria.splice(index, 1);
+            console.log(global_cur_galeria)
+            $(this).closest('li').remove()
+        }
+
+
+    })
+
     return `<div id="crear_propiedad">
                 <div>
                     <h2>Nueva propiedad</h2>
@@ -388,19 +430,19 @@ function nueva_propiedad(id) {
                                             <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple>
                                         </label>
                                         <div class="preview">
-                                            <li>No hay archivos seleccionados.</li>
+                                            ${html_imgs_preview}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="upload_thumbnail">
+                        <!-- <div id="upload_thumbnail">
                             <h4>Imagen principal/thumbnail</h4>
                             <div class="profile-img">
                                 <input type="file" id="myFile2" onchange="loadFile2(event)" name="filename" accept="image/*">
                                 <img src="" alt="" id="p-pic2" class="p-pic">
                                 <label for="myFile2"></label>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div id="buttons-cont">
@@ -1089,6 +1131,8 @@ function actualizar_propiedad(){
     var coordenadas = [latitud, longitud]
     coordenadas = JSON.stringify(coordenadas)
 
+    var galeria = JSON.stringify(global_cur_galeria)
+
     console.log('nombre: ', nombre, ', id_localidad: ', id_localidad, ', huespedes: ', huespedes, ', banos: ', banos, ', camas: ', camas, ', concepto espacio: ', concepto_espacio, ', id_disenador: ', id_disenador, ', latitud: ', latitud, ', longitud: ', longitud, ', tarifa: ', tarifa, ', distribucion camas: ', distribucion_camas, ', amenities: ', amenities)
 
     $.ajax({
@@ -1107,7 +1151,8 @@ function actualizar_propiedad(){
             amenities,
             id_disenador,
             coordenadas,
-            tarifa
+            tarifa,
+            galeria
         },
         dataType:'json',
         success:function(res){
@@ -1154,6 +1199,25 @@ function subir_propiedad(){
 
     console.log('nombre: ', nombre, ', id_localidad: ', id_localidad, ', huespedes: ', huespedes, ', banos: ', banos, ', camas: ', camas, ', concepto espacio: ', concepto_espacio, ', id_disenador: ', id_disenador, ', latitud: ', latitud, ', longitud: ', longitud, ', tarifa: ', tarifa, ', distribucion camas: ', distribucion_camas, ', amenities: ', amenities)
 
+    var prop_imgs = $('#image_uploads')[0].files
+    var galeria = [];
+
+    for(i in prop_imgs){
+        if(prop_imgs[i].size!=undefined){
+
+            var p_img = prop_imgs[i]
+            img_name = p_img.name
+            img_name = get_identifier() + get_extension(img_name)
+            galeria.push(img_name)
+            console.log('putin: ', p_img)
+        }
+
+    }
+
+    galeria = JSON.stringify(galeria)
+
+    console.log('galeria: ', galeria)
+
     $.ajax({
         url:'../php/api/propiedades.php?func=subirPropiedad',
         method:'POST',
@@ -1169,13 +1233,43 @@ function subir_propiedad(){
             amenities,
             id_disenador,
             coordenadas,
-            tarifa
+            tarifa,
+            galeria
         },
         dataType:'json',
         success:function(res){
             console.log(res)
             if(res.error==0){
-                window.location = ''
+                // window.location = ''
+
+            // Empieza script de suba de imagenes
+            if(prop_imgs.length>0){
+
+                for(i in prop_imgs){
+
+                    // Este conficional evita que se itere sobre un no archivo
+                    if(prop_imgs[i].size!=undefined){
+                        
+                        var p_img = prop_imgs[i]
+                        console.log(p_img)
+                        var fd = new FormData();
+                        fd.append('file',p_img, JSON.parse(galeria)[i]);
+                        
+                        fetch('../subir_imgs.php?func=subirImgPropiedad', {
+                            method: 'post',
+                            body: fd
+                        }).then(function(response) {
+                            return response.text()
+                        }).then(function(res) {
+                            console.log(res);
+                        });
+
+                    }
+                }
+
+            }
+            // Termina script de suba de imagenes
+
             }
         }
     });

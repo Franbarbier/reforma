@@ -75,9 +75,10 @@ if($_GET['func']=='actualizarPropiedad'){
 	$id_disenador = $_POST['id_disenador'];
 	$coordenadas = $_POST['coordenadas'];
 	$tarifa = $_POST['tarifa'];
+	$galeria = $_POST['galeria'];
 	
 
-	echo $propiedades->actualizarPropiedad($id, $nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa);
+	echo $propiedades->actualizarPropiedad($id, $nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria);
 
 }
 
@@ -94,9 +95,18 @@ if($_GET['func']=='subirPropiedad'){
 	$id_disenador = $_POST['id_disenador'];
 	$coordenadas = $_POST['coordenadas'];
 	$tarifa = $_POST['tarifa'];
+	$galeria = $_POST['galeria'];
 	
 
-	echo $propiedades->subirPropiedad($nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa);
+	echo $propiedades->subirPropiedad($nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria);
+
+}
+
+if($_GET['func'] == 'eliminarPropiedad'){
+
+	$id = $_GET['id'];
+
+	echo $propiedades->eliminarPropiedad($id);
 
 }
 

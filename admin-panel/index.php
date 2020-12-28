@@ -191,6 +191,12 @@ $(document).on('click', '#actualizar-propiedad', function(){
 
 })
 
+$(document).on('click', '#subir-propiedad', function(){
+
+	subir_propiedad()
+
+})
+
 
 function traer_info_necesaria(){
 

@@ -7,6 +7,6 @@ require 'php/models/Usuarios.php';
 
 $globales = new Globales();
 
-echo md5('Jchskate12');
+echo $_SERVER['DOCUMENT_ROOT'];
 
 ?>

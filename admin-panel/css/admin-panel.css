@@ -829,3 +829,20 @@ main>div{
 #upload_thumbnail .profile-img input{
   opacity: 0;
 }
+
+
+/* Clases extra de juan */
+.delete-prop-img{
+  position: absolute;
+  right: 0;
+  width: 20px!important;
+  height: 20px!important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.delete-prop-img img{
+  height: 6px!important;
+  width: 6px!important;
+}

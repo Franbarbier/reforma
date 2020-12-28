@@ -322,13 +322,13 @@ class Propiedades{
 
     }
 
-    public function actualizarPropiedad($id, $nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa){
+    public function actualizarPropiedad($id, $nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria){
         
         global $pdo;
 
-        $sql = "UPDATE propiedades SET nombre=?, id_localidad=?, huespedes=?, banos=?, camas=?, concepto_espacio=?, distribucion_camas=?, amenities=?, id_disenador=?, coordenadas=?, tarifa=? WHERE id=?";
+        $sql = "UPDATE propiedades SET nombre=?, id_localidad=?, huespedes=?, banos=?, camas=?, concepto_espacio=?, distribucion_camas=?, amenities=?, id_disenador=?, coordenadas=?, tarifa=?, galeria=? WHERE id=?";
         $stmt= $pdo->prepare($sql);
-        $stmt->execute([$nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $id]);
+        $stmt->execute([$nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria, $id]);
 
         if($stmt){
             return '{"error": 0}';
@@ -338,15 +338,50 @@ class Propiedades{
 
     }
 
-    public function subirPropiedad($nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa){
+    public function subirPropiedad($nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria){
         
         global $pdo;
 
-        $q = "INSERT INTO propiedades (nombre, id_localidad, huespedes, banos, camas, concepto_espacio, distribucion_camas, amenities, id_disenador, coordenadas, tarifa) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        $q = "INSERT INTO propiedades (nombre, id_localidad, huespedes, banos, camas, concepto_espacio, distribucion_camas, amenities, id_disenador, coordenadas, tarifa, galeria) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             
         $stmt= $pdo->prepare($q);
-        $stmt->execute([$nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa]);
+        $stmt->execute([$nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria]);
         if($stmt){
+            return '{"error": 0}';
+        }else{
+            return '{"error": 1}';
+        }
+
+    }
+
+    public function eliminarPropiedad($id){
+
+        global $pdo;
+
+        // Eliminamos las fotos asociadas
+        $q = $pdo->prepare("SELECT galeria FROM propiedades WHERE id=:id");
+        $q->execute(['id' => $id]); 
+        $q = $q->fetch();
+        if($q['galeria']==''){
+            $q['galeria'] = '[]';
+        }
+        $galeria = json_decode($q['galeria']);
+        foreach ($galeria as $key => $value) {
+            echo 'value: ' . $value;
+            $path = $_SERVER['DOCUMENT_ROOT'].'/reforma/imgs/propiedades_imgs/'.$value;
+            if (file_exists($path)) {
+                unlink($path);
+                echo '{"error": 10}'; 
+            }else{
+                echo '{"error": 11}'; 
+            }
+        }
+
+
+        $q = $pdo->prepare("DELETE FROM propiedades WHERE id =:id");
+        $q->execute(['id' => $id]); 
+        
+        if($q){
             return '{"error": 0}';
         }else{
             return '{"error": 1}';

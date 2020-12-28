@@ -186,6 +186,9 @@ function render_apartado(propiedad) {
             var html = ''
             // Las inyectamos en el html
             for (c in recomendados) {
+                if(recomendados[c].galeria == ''){
+                    recomendados[c].galeria = '[]'
+                }
                 var thumbnail = "'imgs/propiedades_imgs/" + JSON.parse(recomendados[c].galeria)[0] + "'"
                 var dormitorios = JSON.parse(recomendados[c].distribucion_camas).length
                 html += comp_recomendado(recomendados[c].nombre, recomendados[c].localidad, recomendados[c].provincia, recomendados[c].huespedes, recomendados[c].banos, dormitorios, recomendados[c].camas, thumbnail, recomendados[c].id)
