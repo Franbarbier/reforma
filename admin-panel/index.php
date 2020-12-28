@@ -2,10 +2,8 @@
 
 session_start();
 
-// Chequeando si el usuario esta logeado o no
-$logeado = 'no';
-if(isset($_SESSION['id_user'])){
-	$logeado = 'si';
+if(!isset($_SESSION['super_admin'])){
+	header('location: login.php');
 }
 
 if(isset($_GET['logout'])){
