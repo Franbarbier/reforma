@@ -1,0 +1,367 @@
+@font-face {
+  font-family: Century Gothic;
+  src: url(../GOTHIC.TTF)
+  /*url('./GOTHICB.TTF'),*/
+  /*url('./GOTHICBI.TTF'), */
+  /*url('./GOTHICI.TTF'), */
+}
+@font-face {
+  font-family: Century Gothic;
+  src: url(../GOTHICB.TTF);
+  font-weight: bold;
+}
+
+/*marron #d4bfaa*/
+::selection {
+  background: #d4bfaa;
+  color: white;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+li {
+  list-style: none;
+}
+body {
+  font-family: "Century Gothic";
+  overflow-x: hidden;
+  color: #272727;
+  background-color: #fafafa;
+}
+button,
+input {
+  font-family: "Century Gothic";
+  outline: none;
+}
+.cont90 {
+  width: 90%;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+}
+.contC {
+  width: 33.33%;
+}
+.contG {
+  width: 60%;
+}
+
+nav {
+  position: fixed;
+  top: 0vh;
+  left: 0;
+  width: 100%;
+  padding-top: 2vh;
+  padding-bottom: 1vh;
+  z-index: 99;
+  background-image: linear-gradient( #fafafa 0%, transparent 0%);
+  transition: .7s cubic-bezier(0.13, 0.77, 0.33, 1);
+}
+nav > div > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+nav > div > div > div {
+  width: 4%;
+  cursor: pointer;
+  z-index: 99;
+  position: relative;
+  z-index: 99;
+}
+nav > div > div > div:first-child{
+  display: flex;
+  align-items: center;
+}
+nav > div > div > div > a > img {
+  width: 3vw;
+}
+#menu-cont>div{
+  display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+#linea-menu1,
+#linea-menu2 {
+  width: 30px;
+  float: right;
+  background: #272727;
+  height: 4px;
+  margin: 3px 0%;
+  border-radius: 35px;
+  display: block;
+  transition: 0.5s cubic-bezier(0.13, 0.77, 0.33, 1);
+  transition-delay: 0.15s;
+}
+#ciudades{
+  position: absolute;
+  top: 110%;
+  background: #fafafa;
+  /* cursor: pointer; */
+  z-index: 2;
+  width: 100%;
+  border: 1px solid #dadada;
+  backdrop-filter: blur(8px);
+  display: none;
+}
+#ciudades-nav{
+    position: absolute;
+    top: 110%;
+    background: rgba(250 250 250/ 0.6);
+    left: 45px;
+z-index: 2;
+    width: max-content;
+    border: 1px solid #dadada;
+    backdrop-filter: blur(8px);
+    display: none;
+    border-radius: 2px;
+}
+#ciudades ul, #ciudades-nav ul {
+  padding: 2% 7%;
+}
+#ciudades ul li, #ciudades-nav ul li {
+  margin: 5% 0;
+  cursor: pointer;
+}
+#ciudades ul li:hover, #ciudades-nav ul li:hover {
+  font-weight: 600;
+}
+#select-city, #select-city-nav {
+  border-bottom: 0px solid transparent;
+  cursor: pointer;
+}
+#select-city p, #select-city-nav p {
+  color: #7b7b7b;
+}
+#f-ciudad-nav{
+  position: relative;
+  color: #484848;
+  margin-left: 45px;
+  width: max-content;
+}
+#select-city-nav{
+  position: relative;
+  display: flex;
+  align-items: center;
+  display: none;
+}
+#select-city-nav button{
+  margin-left: 25px;
+  background: transparent;
+  border: none;
+  padding: 5px 15px;
+  background: #d4bfaa;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  border: 1px solid #d4bfaa;
+  transition: .2s cubic-bezier(0.13, 0.77, 0.33, 1);
+}
+#select-city-nav button:hover{
+  background-color: transparent;
+  color: #d4bfaa;
+}
+
+
+body>header{
+  padding: 7% 0;
+}
+body>header>div>div:first-child{
+width: 30%;
+overflow: hidden;
+margin: auto;
+}
+body>header img{
+  width: 100%;
+}
+body>header h1{
+  text-align: center;
+  margin: 2% 0;
+}
+body>header h2{
+    font-size: 0.9em;
+    text-align: center;
+    width: 40%;
+    margin: auto;
+    color: #4c4c4c;
+}
+body>header button{
+    margin: 3% auto;
+    display: block;
+    background: none;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 3px;
+}
+body>main{
+  padding: 5% 0;
+}
+main>div, section>article>.cont90{
+  display: flex;
+  justify-content: space-between;
+}
+main>div>div, #clientes-img, #clientes{
+  width: 45%;
+}
+#porque-reforma>h3{
+  font-size: 1.9em;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+}
+#porque-reforma>p{
+  text-align: center;
+  width: 80%;
+  margin: 3% auto;
+  font-size: 0.9em;
+}
+.beneficios{
+  margin-top: 15%;
+}
+.beneficios hr{
+  border: none;
+  background: #d4bfaa;
+  width: 40%;
+  height: 3px;
+  margin: auto;
+
+}
+.beneficios h5{
+  margin-top: 2%;
+  text-align: center;
+  font-size: 1.1em;
+}
+.beneficios p{
+  margin: auto;
+  width: 80%;
+  text-align: center;
+  margin-top: 2%;
+  font-size: 0.9em;
+}
+#porque-img{
+  height: auto;
+  position: relative;
+  overflow: hidden;
+}
+#porque-img>img{
+  position: absolute;
+  left: 0;
+  top: 0%;
+  height: 100%;
+}
+/* clientes */
+
+section article{
+  padding: 10% 0;
+}
+#clientes button{
+  cursor: pointer;
+  margin-top: 10%;
+  /* font: status-bar; */
+  background: none;
+  border: none;
+  font-weight: 600;
+  font-size: 0.8em;
+  position: relative;
+  transform: translateX(50%);
+  transition: color 0.2s .25s;
+  color: #888687;
+}
+
+#clientes button::before {
+  content: "";
+  border-radius: -2px;
+  width: 35%;
+  display: block;
+  height: 3px;
+  position: absolute;
+  background: #d4bfaa;
+  left: -50%;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 0.2s;
+  z-index: -1;
+  transition: left 0.2s, width 0.2s, height 0.2s 0.25s;
+}
+
+#clientes button:hover::before {
+  left: -20%;
+  width: 140%;
+  height: 160%;
+}
+#clientes button:hover {
+  color: white
+}
+#clientes h6{
+  font-size: 2.25em;
+}
+#clientes p{
+  font-size: 0.9em;
+  margin: 3% 0;
+  width: 90%;
+}
+#clientes-img{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#clientes-img>div{
+  width: 210px;
+  margin-bottom: 5%;
+}
+#clientes-img>div>div{ 
+  height: 210px;
+  overflow: hidden;
+}
+#clientes-img>div>div img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+} 
+#clientes-img>div p{
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+/* contacto  */
+
+#logo-cont>div{
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+#logo-cont>div img{
+  width: 64px;
+  transform: translateY(1%);
+}
+#logo-cont>div h4{
+  font-size: 78px;
+}
+#logo-cont>p{
+  width: 40%;
+  margin: auto;
+  text-align: center;
+  font-size: 0.9em;
+}
+#logo-cont button{
+  display: block;
+  margin: 2% auto;
+  background: none;
+  border: none;
+  font-weight: 600;
+  font-size: 0.9em;
+  border-bottom: 2px solid #d4bfaa;
+  padding: 3px 10px;
+  cursor: pointer;
+}
+#logo-cont>span{
+    text-align: center;
+    display: block;
+}
