@@ -127,8 +127,9 @@ if($_GET['func']=='actualizarDisenador'){
     $id = $_POST['id'];
     $nombre = $_POST['nombre'];
     $descripcion = $_POST['descripcion'];
+    $img_name = $_POST['img_name'];
 
-    echo $globales->actualizarDisenador($id, $nombre, $descripcion);
+    echo $globales->actualizarDisenador($id, $nombre, $descripcion, $img_name);
 
 }
 
@@ -150,6 +151,18 @@ if($_GET['func']=='eliminarArtista'){
     echo $globales->eliminarArtista($id);
 
 }
+
+// if($_GET['func'] == 'delete_file'){
+//     $file_path = $_GET['file_path'];
+    
+
+//     if (file_exists($file_path)) {
+//         unlink($file_path);
+//         echo '{"error": 0}'; 
+//     }else{
+//         echo '{"error": 1}'; 
+//     }
+// }
 
 // if($_GET['func']=='verLocacion'){
 

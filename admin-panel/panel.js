@@ -12,6 +12,16 @@ var global_provincias = [{"nombre_completo":"Provincia de Misiones","fuente":"IG
 //     return '<div class="galeria-grande carousel-cell"><img src="imgs/propiedades_imgs/' + img + '" alt=""></div>'
 // }
 
+// Funcion para generar ids
+function get_identifier(){
+    return Math.floor((Math.random() * 1000000) + 1);
+}
+
+function get_extension(file_name){
+    var re = /(?:\.([^.]+))?$/;
+    return re.exec(file_name)[0]
+}
+
 function get_object_by_id(id, objects){
     for(obj in objects){
         if(id == objects[obj].id){
@@ -163,9 +173,11 @@ function delete_artist(id) {
                 if(res.error==0){
                     window.location = ""
                 }else{
-                    alert('Ocurrió un error al eliminar esta localidad.')
+                    alert('Ocurrió un error al eliminar este artista.')
                 }
             });
+
+            
 
 
         } else {
@@ -657,6 +669,8 @@ function modal_edit_artista(){
         $('#md-nombre').html(este_disenador.nombre)
         $('#md-descripcion').html(este_disenador.descripcion)
         $('#md-id').val(este_disenador.id)
+        $('#md-img_name').val(este_disenador.img)
+        $('#p-pic').attr('src', '../imgs/disenadores/'+este_disenador.img)
 
 
 
@@ -677,7 +691,28 @@ function modal_edit_artista(){
         var id = $('#md-id').val()
         var nombre = $('#md-nombre').html()
         var descripcion = $('#md-descripcion').html()
+        var img_name = $('#md-img_name').val()
 
+        var profile_pic = $('#edit-artista-modal #myFile')[0].files
+
+        // Si efectivamente se modificó la imagen, subimos la nueva
+        if(profile_pic.length>0){
+
+            console.log(profile_pic)
+            var fd = new FormData();
+            fd.append('file',profile_pic[0]);
+            img_name = profile_pic[0].name
+            
+            fetch('../subir_imgs.php?func=subirImgArtista', {
+                method: 'post',
+                body: fd
+            }).then(function(response) {
+                return response.text()
+            }).then(function(res) {
+                console.log(res);
+            });
+        }
+            
         console.log('nombre: ', nombre, ' descripcion: ', descripcion, ' id: ', id)
 
         $.ajax({
@@ -687,7 +722,8 @@ function modal_edit_artista(){
             data:{
                 id,
                 nombre,
-                descripcion
+                descripcion,
+                img_name
             },
             dataType:'json',
             success:function(res){
@@ -710,6 +746,8 @@ function modal_edit_artista(){
 
                     
                     <div class="mm-heading">
+
+                    <input type="hidden" id="md-img_name">
                     <input type="hidden" id="md-id">
                         <div class="profile-img">
                             <input type="file" id="myFile" onchange="loadFile(event)" name="filename" accept="image/*">
@@ -749,22 +787,30 @@ function modal_crear_artista(){
         var descripcion = $('#mcd-descripcion').val()
 
         var profile_pic = $('#crear-artista-modal #myFile2')[0].files
-        console.log(profile_pic)
-        var fd = new FormData();
-        fd.append('file',profile_pic[0]);
-        var img_name = profile_pic[0].name
+        var img_name = ''
 
-        fetch('../subir_imgs.php?func=subirImgArtista', {
-            method: 'post',
-            body: fd
-        }).then(function(response) {
-            return response.text()
-        }).then(function(res) {
-            console.log(res);
-        });
+        if(profile_pic.length>0){
+
+            console.log(profile_pic)
+            var fd = new FormData();
+            img_name = profile_pic[0].name
+            img_name = get_identifier() + get_extension(img_name)
+            fd.append('file',profile_pic[0], img_name);
+            
+
+            console.log('img name: ', img_name)
+
+            fetch('../subir_imgs.php?func=subirImgArtista', {
+                method: 'post',
+                body: fd
+            }).then(function(response) {
+                return response.text()
+            }).then(function(res) {
+                console.log(res);
+            });
+        }
 
         if(nombre!=''){
-
             
             $.ajax({
                 url:'../php/api/globales.php?func=crearArtista',

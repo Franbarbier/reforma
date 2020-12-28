@@ -65,6 +65,8 @@ function comp_resultado(propiedad) {
         dormitorios = dormitorios += ' dormitorio'
     }
 
+    var thumbnail = JSON.parse(propiedad.galeria)[0]
+
     var huespedes = propiedad.huespedes
     if (huespedes > 1) {
         huespedes += ' huéspedes'
@@ -96,7 +98,7 @@ function comp_resultado(propiedad) {
 
     return `<a class="propiedad" href="apartado.php?id=${propiedad.id}${dates_to_stay}" id="${propiedad.id}">
         <div class="foto-cont">
-            <img src="https://a0.muscache.com/im/pictures/a4193aea-dd1b-45d9-b120-380f6fc280b4.jpg" alt="">
+            <img src="imgs/propiedades_imgs/${thumbnail}" alt="">
         </div>
         <div class="prop-info">
             <div>

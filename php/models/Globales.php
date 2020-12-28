@@ -864,12 +864,12 @@ class Globales{
         }
     }
 
-    public function actualizarDisenador($id, $nombre, $descripcion){
+    public function actualizarDisenador($id, $nombre, $descripcion, $img_name){
       global $pdo;
 
-        $sql = "UPDATE disenadores SET nombre=?, descripcion=? WHERE id=?";
+        $sql = "UPDATE disenadores SET nombre=?, descripcion=?, img=? WHERE id=?";
         $stmt= $pdo->prepare($sql);
-        $stmt->execute([$nombre, $descripcion, $id]);
+        $stmt->execute([$nombre, $descripcion, $img_name, $id]);
 
         if($stmt){
             return '{"error": 0}';
@@ -896,6 +896,21 @@ class Globales{
 
     public function eliminarArtista($id){
       global $pdo;
+
+      // Eliminamos la foto vieja
+      // $q = $pdo->prepare("SELECT * FROM disenadores WHERE id=:id");
+      // $q->execute(['id' => $id]); 
+      // $q = $q->fetch();
+      // $prev_img = $q['img'];
+      // echo 'prev img: '. $prev_img;
+      // $path = 'http://localhost/reforma/imgs/disenadores/'.$prev_img;
+
+      // if (file_exists($path)) {
+      //     unlink($path);
+      //     echo '{"error": 10}'; 
+      // }else{
+      //     echo '{"error": 11}'; 
+      // }
 
       $q = $pdo->prepare("DELETE FROM disenadores WHERE id =:id");
       $q->execute(['id' => $id]); 

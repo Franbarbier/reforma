@@ -127,7 +127,7 @@ function render_apartado(propiedad) {
 
             document.getElementById('disenador-nombre').innerHTML = disenador.nombre
             document.getElementById('disenador-descripcion').innerHTML = disenador.descripcion
-            document.getElementById('disenador-img').src = disenador.img
+            document.getElementById('disenador-img').src = 'imgs/disenadores/'+disenador.img
 
         });
 
