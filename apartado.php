@@ -10,6 +10,9 @@ $propiedades = new Propiedades();
 $id_propiedad = $_GET['id'];
 $arr_fechas_ocupadas =  json_encode($propiedades->verFechasOcupadas($id_propiedad));
 
+$prop = $propiedades->verPropiedad($id_propiedad);
+$tarifa_limpieza = $prop['tarifa_limpieza'];
+
 $check_in = 'Check-In';
 $check_out = 'Check-Out';
 if(isset($_GET['check_in'])){
@@ -101,6 +104,7 @@ if(isset($_SESSION['id_user'])){
 <nav>
     <input type="hidden" value="<?php echo $logeado ?>" id="logeado">
     <input type="hidden" id="id_propiedad">
+    <input type="hidden" id="tarifa_limpieza" value="<?php echo $tarifa_limpieza ?>">
 	<div class="cont90">
 		<div>
 
@@ -303,7 +307,7 @@ if(isset($_SESSION['id_user'])){
                     </tr>
                     <tr>
                         <td><span>Tarifa limpieza</span></td>
-                        <td id="fee">15</td>
+                        <td id="fee"></td>
                     </tr>
                     <tr>
                         <!-- <td><span>Descuento semanal (%10)</span></td> -->
@@ -472,6 +476,8 @@ if(isset($_SESSION['id_user'])){
 <script>
 
 const logeado = $('#logeado').val()
+const global_tarifa_limpieza = $('#tarifa_limpieza').val()
+
 var global_days_to_stay;
 var global_descuento = '';
 
@@ -633,7 +639,7 @@ if(!checkin.includes('Check') && !checkout.includes('Check')){
     }
 
     // Le sumamos el fee de limpieza
-    tarifa_final += 15
+    tarifa_final += parseInt(global_tarifa_limpieza)
     
 
     console.log('Precio final: ', tarifa_final)
@@ -716,7 +722,7 @@ $(document).on('click', '#sticky-reservar', function(){
             const checkout = $('#checkout input').val()
 
             // Lo llevamos al checkout pasando los parametros checkin, checkout y precio final
-            fetch('init_checkout.php?importe_total=' + importe_total + '&checkin=' + checkin + '&checkout=' + checkout + '&id_propiedad='+id_propiedad+'&days_to_stay='+global_days_to_stay+'&descuento='+global_descuento)
+            fetch('init_checkout.php?importe_total=' + importe_total + '&checkin=' + checkin + '&checkout=' + checkout + '&id_propiedad='+id_propiedad+'&days_to_stay='+global_days_to_stay+'&descuento='+global_descuento+'&tarifa_limpieza='+global_tarifa_limpieza)
             .then(function (response) {
                 return response.json();
             })

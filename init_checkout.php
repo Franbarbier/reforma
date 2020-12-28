@@ -13,6 +13,7 @@ $_SESSION['checkout_checkout'] = $_GET['checkout'];
 $_SESSION['checkout_id_propiedad'] = $_GET['id_propiedad'];
 $_SESSION['checkout_days_to_stay'] = $_GET['days_to_stay'];
 $_SESSION['checkout_descuento'] = $_GET['descuento'];
+$_SESSION['checkout_tarifa_limpieza'] = $_GET['tarifa_limpieza'];
 
 // Formateamos checkin y checkout para poder meterlas en la base de datos
 $check_in = DateTime::createFromFormat('d/m/Y', $_GET['checkin']);

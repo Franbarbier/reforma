@@ -76,9 +76,10 @@ if($_GET['func']=='actualizarPropiedad'){
 	$coordenadas = $_POST['coordenadas'];
 	$tarifa = $_POST['tarifa'];
 	$galeria = $_POST['galeria'];
+	$tarifa_limpieza = $_POST['tarifa_limpieza'];
 	
 
-	echo $propiedades->actualizarPropiedad($id, $nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria);
+	echo $propiedades->actualizarPropiedad($id, $nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria, $tarifa_limpieza);
 
 }
 
@@ -96,9 +97,10 @@ if($_GET['func']=='subirPropiedad'){
 	$coordenadas = $_POST['coordenadas'];
 	$tarifa = $_POST['tarifa'];
 	$galeria = $_POST['galeria'];
+	$tarifa_limpieza = $_POST['tarifa_limpieza'];
 	
 
-	echo $propiedades->subirPropiedad($nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria);
+	echo $propiedades->subirPropiedad($nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria, $tarifa_limpieza);
 
 }
 

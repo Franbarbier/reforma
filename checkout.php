@@ -12,6 +12,7 @@ $importe_total = $_SESSION['checkout_importe_total'];
 $checkout_id = $_SESSION['checkout_id'];
 $days_to_stay = $_SESSION['checkout_days_to_stay'];
 $descuento = $_SESSION['checkout_descuento'];
+$tarifa_limpieza = $_SESSION['checkout_tarifa_limpieza'];
 
 $se_ahorra = 0;
 
@@ -24,7 +25,7 @@ if($descuento!=''){
 	}
 }
 
-$precio_final = $importe_total - $se_ahorra + 15;
+$precio_final = $importe_total - $se_ahorra + $tarifa_limpieza;
 
 if(isset($_GET['logout'])){
 	session_destroy();

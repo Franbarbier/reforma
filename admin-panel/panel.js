@@ -93,10 +93,13 @@ function delete_prop(id) {
             console.log('eliminado')
             fetch('../php/api/propiedades.php?func=eliminarPropiedad&id='+id) 
             .then(function (response) {
-                return response.text();
+                return response.json();
             })
             .then(function (res) {
                 console.log(res)
+                if(res.error==0){
+                    window.location = ''
+                }
                 
             });
         } else {
@@ -202,7 +205,7 @@ function nueva_propiedad(id) {
 
     global_cur_galeria = []
 
-    var prop = {"amenities":"[]","banos":"","camas":"","concepto_espacio":"","coordenadas":"","distribucion_camas": "","galeria":"","huespedes":"","id":"", "id_disenador": "","id_localidad":"","localidad":"", "nombre":"","normas":"","politica":"","provincia":"","seguridad":"","tarifa":""}
+    var prop = {"amenities":"[]","banos":"","camas":"","concepto_espacio":"","coordenadas":"","distribucion_camas": "","galeria":"","huespedes":"","id":"", "id_disenador": "","id_localidad":"","localidad":"", "nombre":"","normas":"","politica":"","provincia":"","seguridad":"","tarifa":"", "tarifa_limpieza":""}
     var btn_text = 'subir';
     var amenities = JSON.parse(prop.amenities)
     var latitud = ''
@@ -402,14 +405,14 @@ function nueva_propiedad(id) {
                     </div>
                     <div class="lasts">
 
-                       <!-- <div>
+                       <div>
                             <p>Tarifa por Limpieza</p>
 
                             <div>
                                 <span>$</span>
-                                <input class="grey-input" min="1" type="number">
+                                <input class="grey-input" min="1" type="number" id="p-tarifa_limpieza" value="${prop.tarifa_limpieza}">
                             </div>
-                        </div> -->
+                        </div>
 
                         <div>
                             <p>Tarifa por noche</p>
@@ -1107,6 +1110,7 @@ function actualizar_propiedad(){
     var huespedes = $('#p-huespedes').val()
     var banos = $('#p-banos').val()
     var camas = $('#p-camas').val()
+    var tarifa_limpieza = $('#p-tarifa_limpieza').val()
     
     var concepto_espacio = $('#p-concepto_espacio').html()
     var distribucion_camas = []
@@ -1152,7 +1156,8 @@ function actualizar_propiedad(){
             id_disenador,
             coordenadas,
             tarifa,
-            galeria
+            galeria,
+            tarifa_limpieza
         },
         dataType:'json',
         success:function(res){
@@ -1173,6 +1178,7 @@ function subir_propiedad(){
     var huespedes = $('#p-huespedes').val()
     var banos = $('#p-banos').val()
     var camas = $('#p-camas').val()
+    var tarifa_limpieza = $('#p-tarifa_limpieza').val()
     
     var concepto_espacio = $('#p-concepto_espacio').html()
     var distribucion_camas = []
@@ -1234,10 +1240,12 @@ function subir_propiedad(){
             id_disenador,
             coordenadas,
             tarifa,
-            galeria
+            galeria,
+            tarifa_limpieza
         },
         dataType:'json',
         success:function(res){
+            console.log('res: ')
             console.log(res)
             if(res.error==0){
                 // window.location = ''
@@ -1271,7 +1279,13 @@ function subir_propiedad(){
             // Termina script de suba de imagenes
 
             }
-        }
+        },
+        error: function(xhr, status, error) {
+            // var err = eval("(" + xhr.responseText + ")");
+            // alert(err.Message);
+            // console.log(xhr.responseText)
+            // console.log(error)
+          }
     });
 
 }

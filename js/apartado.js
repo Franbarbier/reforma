@@ -111,6 +111,9 @@ function render_apartado(propiedad) {
         htmlGaleriaExpand += imgs_galeria_grande(galeria[img])
     }
 
+    var fee_limpieza = $('#fee')
+    fee_limpieza.html(propiedad.tarifa_limpieza)
+
     console.log('galeria: ' + html)
 
     $('#cont-carousel').load('slider-apartado.php', { galeria: html })

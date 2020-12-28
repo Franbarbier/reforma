@@ -322,13 +322,13 @@ class Propiedades{
 
     }
 
-    public function actualizarPropiedad($id, $nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria){
+    public function actualizarPropiedad($id, $nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria, $tarifa_limpieza){
         
         global $pdo;
 
-        $sql = "UPDATE propiedades SET nombre=?, id_localidad=?, huespedes=?, banos=?, camas=?, concepto_espacio=?, distribucion_camas=?, amenities=?, id_disenador=?, coordenadas=?, tarifa=?, galeria=? WHERE id=?";
+        $sql = "UPDATE propiedades SET nombre=?, id_localidad=?, huespedes=?, banos=?, camas=?, concepto_espacio=?, distribucion_camas=?, amenities=?, id_disenador=?, coordenadas=?, tarifa=?, galeria=?, tarifa_limpieza=? WHERE id=?";
         $stmt= $pdo->prepare($sql);
-        $stmt->execute([$nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria, $id]);
+        $stmt->execute([$nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria, $tarifa_limpieza, $id]);
 
         if($stmt){
             return '{"error": 0}';
@@ -338,14 +338,14 @@ class Propiedades{
 
     }
 
-    public function subirPropiedad($nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria){
+    public function subirPropiedad($nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria, $tarifa_limpieza){
         
         global $pdo;
 
-        $q = "INSERT INTO propiedades (nombre, id_localidad, huespedes, banos, camas, concepto_espacio, distribucion_camas, amenities, id_disenador, coordenadas, tarifa, galeria) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        $q = "INSERT INTO propiedades (nombre, id_localidad, huespedes, banos, camas, concepto_espacio, distribucion_camas, amenities, id_disenador, coordenadas, tarifa, galeria, tarifa_limpieza) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             
         $stmt= $pdo->prepare($q);
-        $stmt->execute([$nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria]);
+        $stmt->execute([$nombre, $id_localidad, $huespedes, $banos, $camas, $concepto_espacio, $distribucion_camas, $amenities, $id_disenador, $coordenadas, $tarifa, $galeria, $tarifa_limpieza]);
         if($stmt){
             return '{"error": 0}';
         }else{
