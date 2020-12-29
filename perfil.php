@@ -1,4 +1,3 @@
-<!-- Renderizamos lo mas importante  -->
 <?php
 session_start();
 
@@ -267,7 +266,7 @@ $( document ).ready( function(){
 $('body').append(modal_reserva())
 
 $(document).on('click', '#salir', function(){
-	window.location = '?logout=1'
+	window.location = 'login.php?logout=1'
 })
 
 // Esta variable corresponde a el valor que lleva .circulito-svg en algunas de sus propiedades de CSS

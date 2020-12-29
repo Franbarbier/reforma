@@ -211,6 +211,7 @@ function nueva_propiedad(id) {
     var latitud = ''
     var longitud = ''
     var html_imgs_preview = '<li>No hay archivos seleccionados.</li>'
+    var html_dormitorios = ''
 
 
     if (id != undefined) {
@@ -233,7 +234,7 @@ function nueva_propiedad(id) {
         latitud = coordenadas[0]
         longitud = coordenadas[1]
 
-        var html_dormitorios = '';
+        html_dormitorios = '';
         var dormitorios = JSON.parse(prop.distribucion_camas)
 
         var c = 0;
@@ -1252,9 +1253,9 @@ function subir_propiedad(){
 
             // Empieza script de suba de imagenes
             if(prop_imgs.length>0){
-
-                for(i in prop_imgs){
-
+                var c = 0
+                for(i in prop_imgs){    
+                    
                     // Este conficional evita que se itere sobre un no archivo
                     if(prop_imgs[i].size!=undefined){
                         
@@ -1269,12 +1270,20 @@ function subir_propiedad(){
                         }).then(function(response) {
                             return response.text()
                         }).then(function(res) {
+                            c+=1
                             console.log(res);
+                            // Si ya se termino de iterar, refrescamos
+                            console.log('c: ', c, ' prop length: ', prop_imgs.length)
+                            if(c == prop_imgs.length){
+                                window.location = ''
+                            }
                         });
 
                     }
                 }
 
+            }else{
+                window.location = ''
             }
             // Termina script de suba de imagenes
 

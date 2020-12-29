@@ -286,7 +286,10 @@ function modal_favoritos(favs){
     for(f in favs){
 
         var fav = favs[f]
-
+        console.log(fav)
+        if(fav.galeria==''){
+            fav.galeria = '[]'
+        }
         var thumbnail = JSON.parse(fav.galeria)[0]
 
         html += `<div class="row-fav" data-id="${fav.id}"> 
@@ -406,20 +409,6 @@ function modal_config(info_usuario){
 
 }
 
-function getFavoritos(){
-
-    fetch('php/api/usuarios.php?func=verFavoritos')
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (favs) {
-            console.log(favs)
-
-            $('body').append(modal_favoritos(favs))
-
-        });
-
-}
 
 function getFavoritos(){
 

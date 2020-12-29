@@ -137,7 +137,7 @@ class Usuarios{
             $reservas_array[$c]['estado'] =  'expirada';
             $reservas_array[$c]['thumbnail'] =  json_decode($propiedad['galeria'])[0];
 
-            // Traemos la posible reseña
+            // Traemos la posible rese単a
             $q = $pdo->prepare("SELECT * FROM resenas WHERE id_reserva=:id_reserva");
             $q->execute(['id_reserva' => $id_reserva]); 
             $resena = $q->fetch();
@@ -319,9 +319,13 @@ class Usuarios{
 
         foreach ($favoritos as $key => $fav) {
         
-            $q = $pdo->prepare("SELECT * FROM propiedades WHERE id=:id");
-            $q->execute(['id' => $fav]); 
-            $q = $q->fetch();
+            $query = $pdo->prepare("SELECT * FROM propiedades WHERE id=:id");
+            $query->execute(['id' => $fav]); 
+            $q = $query->fetch();
+            
+            if ($query->rowCount() < 1) {
+              continue;
+            } 
 
             // Traer la info de localidad y provincia a partir del id_localidad
             $id_localidad = $q['id_localidad'];
@@ -419,7 +423,7 @@ class Usuarios{
             return '{"error": 2}';
         }else{
 
-            // Actualizamos la contraseña
+            // Actualizamos la contrase単a
             $sql = "UPDATE usuarios SET password=? WHERE id=?";
             $stmt= $pdo->prepare($sql);
             $stmt->execute([$psw_nueva, $this->id]);
