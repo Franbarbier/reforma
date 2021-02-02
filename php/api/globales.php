@@ -95,6 +95,14 @@ if($_GET['func']=='eliminarUsuario'){
 
 }
 
+if($_GET['func']=='activarUsuario'){
+
+    $id = $_GET['id'];
+
+    echo json_encode($globales->activarUsuario($id));
+
+}
+
 if($_GET['func']=='crearLocalidad'){
 
     $nombre = $_POST['nombre'];

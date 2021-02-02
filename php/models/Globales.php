@@ -823,6 +823,22 @@ class Globales{
 		
     }
 
+    public function activarUsuario($id){
+    
+      global $pdo;
+
+        $sql = "UPDATE usuarios SET estado=? WHERE id=?";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([1, $id]);
+
+        if($stmt){
+            return '{"error": 0}';
+        }else{
+            return '{"error": 1}';
+        }
+		
+    }
+
     public function crearLocalidad($nombre, $provincia){
       global $pdo;
       $q = "INSERT INTO localidades (nombre, provincia) VALUES (?,?)";

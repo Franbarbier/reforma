@@ -112,6 +112,11 @@ $(document).on('click', '.delete-user', function () {
     delete_user(id)
 })
 
+$(document).on('click', '.activate-user', function () {
+    let id = $(this).parents('.row-usuario').attr('id')
+    activate_user(id)
+})
+
 function delete_user(id) {
     var r = confirm("Desea eliminar este usuario?");
         if (r == true) {
@@ -119,10 +124,39 @@ function delete_user(id) {
 
             fetch('../php/api/globales.php?func=eliminarUsuario&id='+id) 
             .then(function (response) {
-                return response.text();
+                return response.json();
             })
             .then(function (res) {
                 console.log(res)
+                res = JSON.parse(res)
+                if(res.error==0){
+                    $('#usuarios').click()
+                }
+                
+            });
+
+
+
+        } else {
+            console.log('cancelado')
+        }
+}
+
+function activate_user(id) {
+    var r = confirm("Deseas reactivar este usuario?");
+        if (r == true) {
+            console.log('eliminado')
+
+            fetch('../php/api/globales.php?func=activarUsuario&id='+id) 
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (res) {
+                console.log(res)
+                res = JSON.parse(res)
+                if(res.error==0){
+                    $('#usuarios').click()
+                }
                 
             });
 
@@ -614,9 +648,20 @@ $(document).on('click', '.delete-bed', function () {
 function row_usuario(user) {
 
     var clase = ''
+    
+    var alter_user = `<a class="delete-user">
+                        <img src="../imgs/delete.svg">
+                    </a>`
+    
+
+                    
     if(user.estado==0){
+        alter_user = `<a class="activate-user">
+                        <img src="../imgs/activate.svg">
+                    </a>` 
         clase = 'us-inactive'
     }
+
 
     return `<div id="${user.id}" class="row-usuario ${clase}">
                 <div>
@@ -634,9 +679,7 @@ function row_usuario(user) {
                     <a class="ver-usuario">
                         <img src="../imgs/view.svg">
                     </a>
-                    <a class="delete-user">
-                        <img src="../imgs/delete.svg">
-                    </a>
+                    ${alter_user}
                 </div>
             </div>`
 }
