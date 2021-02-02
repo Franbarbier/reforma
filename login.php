@@ -103,7 +103,6 @@ if(isset($_SESSION['id_user'])){
 			<input class="inputes" type="text" id="mail">
 			<label for="psw">Contraseña</label>
 			<input class="inputes" type="password" id="psw">
-			<div id="msj" style="display:none"></div>
 			<input id="loginear" type="submit" value="INGRESAR">
 		</form>
 		<a href="<?php echo $login_url ?>">
@@ -115,6 +114,7 @@ if(isset($_SESSION['id_user'])){
 		<a href="registrarse.php">
 			<button id="crear-cuenta">CREAR CUENTA</button>
 		</a>
+		<div id="msj" style="display:none"></div>
 		<p>¿Olvidaste tu contraseña?</p>
     </header>
     <div>
@@ -182,11 +182,14 @@ $(document).on("click", "#loginear", function(e){
 				},
 				dataType:'text',
 				success:function(data){
+					console.log(data)
 				var res = JSON.parse(data)
 				if(res.error==0){
 					window.location = 'index.php'
 				}else{
 					console.log('Error al iniciar sesión.')
+					$('#msj').html('Error al iniciar sesión.')
+					$('#msj').slideDown()
 				}
 				console.log(data)
 				}

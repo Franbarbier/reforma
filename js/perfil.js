@@ -354,6 +354,16 @@ function modal_config(info_usuario){
         html_paises += `<option>${global_paises[p]}</option>`
     }
 
+    var pp_img = 'imgs/no-user-pic.jpg'
+    if(info_usuario.pp_img!=''){
+        pp_img = 'php/api/users_pps/'+info_usuario.pp_img
+    }
+
+    // Para cuando cambian la pp
+    $(document).on("change", "#myFile", function (event) {
+        $('#p-pic').attr('src', URL.createObjectURL(event.target.files[0])) ;
+    })
+
     return `<div class="main-modal" id="modal-config" style="display: none">
     <div>
         <div class="cerrar-main-modal">
@@ -366,7 +376,7 @@ function modal_config(info_usuario){
                     <div>
                         <div class="profile-img">
                             <input disabled type="file" id="myFile" name="filename" accept="image/*">
-                            <img src="imgs/no-user-pic.jpg" alt="" class="p-pic">
+                            <img src="${pp_img}" alt="" class="p-pic" id="p-pic">
                             <label for="myFile"></label>
                         </div>
                         <div>
@@ -498,37 +508,106 @@ function guardar_usuario(){
     var pais = $('#inside-config #pais').val()
     var fechaNac = $('#inside-config #fechaNac').val()
 
-    $.ajax({
-        url:'php/api/usuarios.php?func=guardarUsuario',
-        method:'POST',
-        cache: false,
-        data:{
-            nombre,
-            apellido,
-            mail,
-            telefono,
-            pais,
-            fecha_nacimiento:fechaNac
-        },
-        dataType:'json',
-        success:function(data){
-         console.log(data)
-         data = JSON.parse(data)
+    const input = document.getElementById('myFile');
+    var file = input.files
+    var pp_changed = false
 
-         if(data.error==0){
-             console.log('Usuario guardado con exito!')
-             $('#inside-config #success').html('Usuario actualizado con éxito!')
-             $('#inside-config #success').slideDown(100)
-             setTimeout(() => {
-                window.location = 'perfil.php'
-             }, 500);
-            }else{
-                $('#inside-config #success').html('Ocurrió un error al intentar actualizar los datos del usuario.')
-                $('#inside-config #success').slideDown(100)
-            }
-        }
-    });
+    if(file.length>0){
+
+        file = file[0]
+
+        console.log('pp changed!')
+
+        // Empezamos la carga de la imagen a la bbdd
+        // Empezamos la carga a la base de datos
+        const formData = new FormData();
+
+        var route_name = global_info_usuario.id + get_extension(file.name)
+
+        console.log('ROUTE NAME: ', route_name)
+
+        formData.append('user_pp', file, route_name)
+        
+        // Subimos la imagen al backend
+        fetch('php/api/usuarios.php?func=upload_pp', {
+            method: 'post',
+            body: formData
+        }).then(function(response) {
+            return response.text()
+        }).then(function(res) {
+            console.log(res);
+
+            $.ajax({
+                url:'php/api/usuarios.php?func=guardarUsuario',
+                method:'POST',
+                cache: false,
+                data:{
+                    nombre,
+                    apellido,
+                    mail,
+                    telefono,
+                    pais,
+                    fecha_nacimiento:fechaNac
+                },
+                dataType:'json',
+                success:function(data){
+                 console.log(data)
+                 data = JSON.parse(data)
+        
+                 if(data.error==0){
+                     console.log('Usuario guardado con exito!')
+                     $('#inside-config #success').html('Usuario actualizado con éxito!')
+                     $('#inside-config #success').slideDown(100)
+                     setTimeout(() => {
+                        window.location = 'perfil.php'
+                     }, 500);
+                    }else{
+                        $('#inside-config #success').html('Ocurrió un error al intentar actualizar los datos del usuario.')
+                        $('#inside-config #success').slideDown(100)
+                    }
+                }
+            });
+        
+        });
+
+
+    }else{
+        $.ajax({
+            url:'php/api/usuarios.php?func=guardarUsuario',
+            method:'POST',
+            cache: false,
+            data:{
+                nombre,
+                apellido,
+                mail,
+                telefono,
+                pais,
+                fecha_nacimiento:fechaNac
+            },
+            dataType:'json',
+            success:function(data){
+             console.log(data)
+             data = JSON.parse(data)
     
+             if(data.error==0){
+                 console.log('Usuario guardado con exito!')
+                 $('#inside-config #success').html('Usuario actualizado con éxito!')
+                 $('#inside-config #success').slideDown(100)
+                 setTimeout(() => {
+                    window.location = 'perfil.php'
+                 }, 500);
+                }else{
+                    $('#inside-config #success').html('Ocurrió un error al intentar actualizar los datos del usuario.')
+                    $('#inside-config #success').slideDown(100)
+                }
+            }
+        });
+    }
 
+    
+}
 
+function get_extension(file_name){
+    var re = /(?:\.([^.]+))?$/;
+    return re.exec(file_name)[0]
 }

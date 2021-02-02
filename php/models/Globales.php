@@ -71,6 +71,7 @@ class Globales{
             // Creamos el array de la resena
             $resena_completa = [];
             $resena_completa['usuario'] = $usuario['nombre'] . ' ' . $usuario['apellido'];
+            $resena_completa['pp_img'] = $usuario['pp_img'];
             $resena_completa['detalle'] = $resena['detalle'];
             $resena_completa['fecha'] = $resena['fecha'];
 
@@ -134,8 +135,8 @@ class Globales{
     public function loginRequest($mail, $psw){
         global $pdo;
         $psw = md5($psw);
-        $q = $pdo->prepare("SELECT * FROM usuarios WHERE mail=:mail AND password=:psw");
-        $q->execute(['mail' => $mail, 'psw'=>$psw]); 
+        $q = $pdo->prepare("SELECT * FROM usuarios WHERE mail=:mail AND password=:psw AND estado=:estado");
+        $q->execute(['mail' => $mail, 'psw'=>$psw, 'estado'=>1]); 
         $q = $q->fetch();
 
         if($q){

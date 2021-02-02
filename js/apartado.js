@@ -171,7 +171,7 @@ function render_apartado(propiedad) {
                 // Las inyectamos en el html
                 var html = ''
                 for (c in resenas) {
-                    html += comp_resena(resenas[c].usuario, resenas[c].detalle, resenas[c].fecha)
+                    html += comp_resena(resenas[c].usuario, resenas[c].detalle, resenas[c].fecha, resenas[c].pp_img)
                 }
                 $('#resenas-cont').html(html)
             }
@@ -211,8 +211,12 @@ function comp_amenity(img, nombre, status) {
     return '<li class="' + status + '"><img src="imgs/icons/' + img + '.svg" alt=""><p>' + nombre + '</p></li>'
 }
 
-function comp_resena(usuario, detalle, fecha) {
-    return '<div> <div> <div> <img src="" alt=""> </div> <div> <p><b>' + usuario + '</b></p> <span>' + fecha + '</span> </div> </div> <p>' + detalle + '</p> </div>'
+function comp_resena(usuario, detalle, fecha, pp_img) {
+
+    if(pp_img!=''){
+        pp_img = 'php/api/users_pps/'+pp_img
+    }
+    return '<div> <div> <div class="res-pp-container"> <img src="'+pp_img+'" alt="" class="res-pp"> </div> <div> <p><b>' + usuario + '</b></p> <span>' + fecha + '</span> </div> </div> <p>' + detalle + '</p> </div>'
 }
 
 function comp_recomendado(nombre, localidad, provincia, huespedes, banos, dormitorios, camas, thumbnail, id) {

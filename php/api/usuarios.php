@@ -101,5 +101,31 @@ if($_GET['func'] == 'changePassword'){
 
 }
 
+if($_GET['func'] == 'upload_pp'){
+
+    try{
+        // Mover el archivo subido al directorio correspondiente
+        $target_path = 'users_pps/'. basename($_FILES['user_pp']['name']);
+        move_uploaded_file($_FILES['user_pp']['tmp_name'], $target_path);
+        echo '{"error": 0}';
+
+        $pp_img = basename($_FILES['user_pp']['name']);
+
+        $sql = "UPDATE usuarios SET pp_img=? WHERE id=?";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$pp_img, $_SESSION['id_user']]);
+
+        if($stmt){
+            return '{"error": 0}';
+        }else{
+            return '{"error": 1}';
+        }
+    
+    }catch(Excaption $e){
+        echo $e;	
+        echo '{"error": 1}';
+    }
+
+}
 
 ?>

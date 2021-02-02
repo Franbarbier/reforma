@@ -118,7 +118,7 @@ if(isset($_SESSION['id_user'])){
 <div id="datos-usuario">
 	<div>
 		<div id="foto-perfil">
-			<img src="imgs/no-user-pic.jpg" alt="">
+			<img src="php/api/users_pps/<?php echo $usuario['pp_img'] ?>" alt="">
 		</div>
 		<div>
 			<h1>Hola, <span><?php echo $usuario['nombre'] ?></span></h1>

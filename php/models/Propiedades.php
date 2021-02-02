@@ -73,6 +73,7 @@ class Propiedades{
 
         // Si ningun campo esta incompleto, hacemos la busqueda entera
         if($ciudad != '' && $huespedes != '' && $check_in != '' && $check_out != ''){
+
             
             $q = $pdo->prepare("SELECT * FROM propiedades WHERE id_localidad=:id_localidad AND huespedes>=:huespedes");
             $q->execute(['id_localidad' => $id_localidad, 'huespedes'=>$huespedes]); 
@@ -136,7 +137,7 @@ class Propiedades{
 
             return $propiedades_disponibles;
 
-        }else if($ciudad!='' || $huespedes!=''){
+        }else if($ciudad!=''){
 
             $query = "SELECT * FROM propiedades WHERE id_localidad=:id_localidad AND huespedes>=:huespedes";
         
@@ -155,7 +156,32 @@ class Propiedades{
                 $q[$key]['provincia']=$localidad['provincia'];
             }
 
+
             return $q;
+
+        }else if($ciudad==''){
+
+            $query = "SELECT * FROM propiedades WHERE huespedes>=:huespedes";
+        
+            // Si huespedes esta vacio, su valor pasa a ser 0 
+            if($huespedes==''){
+                $huespedes = 0;
+            }
+
+            $q = $pdo->prepare($query);
+            $q->execute(['huespedes'=>$huespedes]); 
+            $q = $q->fetchAll();
+
+            // Asignamos provincia y localidad en fucion de los datos obtenidos a partir del id localidad
+            foreach ($q as $key => $prop) {
+                $q[$key]['localidad']=$localidad['nombre'];
+                $q[$key]['provincia']=$localidad['provincia'];
+            }
+
+
+            return $q;
+
+
         }
 
     }    
