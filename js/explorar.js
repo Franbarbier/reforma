@@ -4,6 +4,11 @@ const urlParams = new URLSearchParams(queryString);
 
 var global_checkin;
 var global_checkout;
+var global_zoom = 12;
+
+if(urlParams.get('ciudad')==''){
+    global_zoom = 5
+}
 
 function update_global_vars() {
 
@@ -297,7 +302,7 @@ function init_map(markers_obj, center_coordinates) {
 
     var center_lat_lng = new google.maps.LatLng(center_coordinates[0], center_coordinates[1]);
     const mapOptions = {
-        zoom: 12,
+        zoom: global_zoom,
         center: center_lat_lng,
         styles: [
             {

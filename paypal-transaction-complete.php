@@ -51,7 +51,7 @@ if(isset($_GET['noche_gratis'])){
   $stmt->execute([$noches_usadas, $id_usuario]);
 
   if($stmt){
-    echo 'Datos actualizados con éxito.';
+    // echo 'Datos actualizados con éxito.';
   }
 
 }
@@ -79,7 +79,7 @@ class GetOrder
     
     // Extremos el custom id para buscar a que row de "checkouts" corresponde
     $checkout_id = $response->result->purchase_units[0]->custom_id;
-    echo 'CHECKOUT ID: ' . $checkout_id;
+    // echo 'CHECKOUT ID: ' . $checkout_id;
 
     // Actualizamos el row de checkouts correspondiente a este id, con el estado a "1"
     $update_checkout = $globales->checkoutCompletado($checkout_id);
@@ -88,14 +88,14 @@ class GetOrder
 
     if($update_checkout->error==0){
 
-        echo 'checkout completado!';
-        var_dump($update_checkout);
+        // echo 'checkout completado!';
+        // var_dump($update_checkout);
 
         // Obtenemos la info del checkout
         $info_checkout = $globales->verCheckout($checkout_id);
 
-        echo 'info del checkout! ';
-        var_dump($info_checkout);
+        // echo 'info del checkout! ';
+        // var_dump($info_checkout);
 
         $propiedad = $propiedades->verPropiedad($info_checkout['id_propiedad']);
 
@@ -106,7 +106,7 @@ class GetOrder
 
         if($crear_reserva->error==0){
 
-          echo 'Reserva creada con éxito!';
+          // echo 'Reserva creada con éxito!';
 
           $email = $usuario['mail'];
           $nombre = $usuario['nombre'];
@@ -154,7 +154,7 @@ class GetOrder
         }
 
     }else{
-        echo 'Error al actualizar el checkout';
+        // echo 'Error al actualizar el checkout';
     }
 
     // echo '<pre>';

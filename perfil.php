@@ -32,6 +32,12 @@ if(isset($_SESSION['id_user'])){
 	$logeado = 'si';
 }
 
+$pp_img = 'imgs/no-user-pic.jpg';
+if($usuario['pp_img']!=''){
+
+	$pp_img = 'php/api/users_pps/'.$usuario['pp_img'];
+
+}
 
 ?>
 
@@ -118,7 +124,7 @@ if(isset($_SESSION['id_user'])){
 <div id="datos-usuario">
 	<div>
 		<div id="foto-perfil">
-			<img src="php/api/users_pps/<?php echo $usuario['pp_img'] ?>" alt="">
+			<img src="<?php echo  $pp_img ?>" alt="">
 		</div>
 		<div>
 			<h1>Hola, <span><?php echo $usuario['nombre'] ?></span></h1>

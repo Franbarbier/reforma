@@ -34,8 +34,8 @@ class Reservas{
         // Traemos las fechas tomadas
         $fechas_tomadas = $propiedades->verFechasOcupadas($id_propiedad);
 
-        echo 'RESERVADAS: ';
-        var_dump($fechas_tomadas);
+        // echo 'RESERVADAS: ';
+        // var_dump($fechas_tomadas);
 
         $fechas_a_reservar = [];
 
@@ -56,8 +56,8 @@ class Reservas{
         $checkout_formateada = $checkout_formateada->format('Y-n-j');
         array_push($fechas_a_reservar, $checkout_formateada);
 
-        echo 'A RESERVAR: ';
-        var_dump($fechas_a_reservar);
+        // echo 'A RESERVAR: ';
+        // var_dump($fechas_a_reservar);
 
         $se_pisan_fechas = false;
 
@@ -65,14 +65,14 @@ class Reservas{
         foreach($fechas_a_reservar as $key=>$fecha){
             
             if(in_array($fecha, $fechas_tomadas)){
-                echo 'La fecha ' . $fecha . ' Se pisa!';
+                // echo 'La fecha ' . $fecha . ' Se pisa!';
                 $se_pisan_fechas = true;
             }
             
         }
 
         if(!$se_pisan_fechas){
-            echo 'No se pisan las fechas con otra reserva, se puede crear la reserva';
+            // echo 'No se pisan las fechas con otra reserva, se puede crear la reserva';
             // Si no se estan pisando, procedemos con la reserva
             
             $q = "INSERT INTO reservas (check_in, check_out, importe_total, id_usuario, id_propiedad) VALUES (?,?,?,?,?)";
@@ -85,7 +85,7 @@ class Reservas{
                 return '{"error": 1}';
             }
         }else{
-                echo 'Las fechas se pisan. No se puede crear esta reserva';
+                // echo 'Las fechas se pisan. No se puede crear esta reserva';
                 return '{"error": 2}';
                 
             }

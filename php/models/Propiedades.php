@@ -175,6 +175,9 @@ class Propiedades{
 
             // Asignamos provincia y localidad en fucion de los datos obtenidos a partir del id localidad
             foreach ($q as $key => $prop) {
+                $q_l = $pdo->prepare("SELECT * FROM localidades WHERE id=:id_localidad");
+                $q_l->execute(['id_localidad' => $prop['id_localidad']]); 
+                $localidad = $q_l->fetch();
                 $q[$key]['localidad']=$localidad['nombre'];
                 $q[$key]['provincia']=$localidad['provincia'];
             }
