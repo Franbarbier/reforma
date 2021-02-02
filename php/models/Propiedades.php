@@ -1,4 +1,5 @@
 <?php
+
 class Propiedades{
 
     public function verPropiedades(){

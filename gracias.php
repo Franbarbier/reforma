@@ -110,7 +110,7 @@ $usuario = $usuarios->verUsuario();
 
         <div id="titles">
             <h1>Gracias por tu reserva!</h1>
-            <h2>Enviamos los detalles a: <span id="mail-usuario"><?php echo $usuario['mail'] ?></span></h2>
+            <!-- <h2>Enviamos los detalles a: <span id="mail-usuario"><?php echo $usuario['mail'] ?></span></h2> -->
             <a href="/"><div class="classic-btn">Regresar al Inicio</div></a>
         </div>
     

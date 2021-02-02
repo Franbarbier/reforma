@@ -8,6 +8,8 @@ require 'php/connection.php';
 require 'php/models/Globales.php';
 require 'php/models/Reservas.php';
 require 'php/models/Usuarios.php';
+// require 'php/models/Propiedades.php';
+
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -15,6 +17,7 @@ $id_usuario = $_SESSION['id_user'];
 
 $globales = new \Globales();
 $reservas = new \Reservas();
+$propiedades = new \Propiedades();
 $usuarios = new \Usuarios($id_usuario);
 
 use Sample\PayPalClient;
@@ -62,6 +65,8 @@ class GetOrder
 
     global $globales;
     global $reservas;
+    global $propiedades;
+    global $usuario;
 
     // 3. Call PayPal to get the transaction details
     $client = PayPalClient::client();
@@ -92,6 +97,8 @@ class GetOrder
         echo 'info del checkout! ';
         var_dump($info_checkout);
 
+        $propiedad = $propiedades->verPropiedad($info_checkout['id_propiedad']);
+
         // Creamos la reserva a partir de la info del row de checkouts
         $crear_reserva = $reservas->crearReserva($info_checkout['check_in'], $info_checkout['check_out'], $info_checkout['importe_total'], $info_checkout['id_usuario'], $info_checkout['id_propiedad']);
 
@@ -101,7 +108,44 @@ class GetOrder
 
           echo 'Reserva creada con éxito!';
 
+          $email = $usuario['mail'];
+          $nombre = $usuario['nombre'];
+
           // Mandamos mail de nueva reserva creada
+          // require "phpmailer/PHPMailerAutoload.php";
+          // $mail = new PHPMailer;
+
+          // $mail->SMTPDebug=3;
+  
+          // $mail->setFrom('noreply@reformastays.co', 'Reforma');
+          // $mail->addAddress($email, $nombre);
+          // $mail->addReplyTo('noreply@reformastays.co', 'Reforma');
+  
+          // $mail->isHTML(true);
+  
+          // $mail->Subject=$nombre . ', te acercamos los detalles de tu reserva.';
+
+          // $contenido = 'Gracias por tu reserva ' . $nombre . '!
+          //              <br><br>
+          //              A continuación te acercamos los detalles: 
+          //              <br>
+          //              <b>Nombre del Alojamiento: </b>'.$propiedad['nombre'].'<br>;
+          //              <b>Llegada: </b>'.$info_checkout['check_in'].'<br>;
+          //              <b>Salida: </b>'.$info_checkout['check_out'].'<br>;
+          //              <b>Importe total: </b>'.$info_checkout['importe_total'].'<br>;
+          //              <b>Huéspedes permitidos: </b>'.$propiedad['huespedes'].'<br>;
+          //              <b><a href="https://reformastays.co/apartado.php?id='.$info_checkout['id_propiedad'].'">VER PROPIEDAD</a></b><br>';
+  
+          // $mail->Body = $contenido;
+
+          // echo $contenido;
+  
+          // if(!$mail->send()){
+          //     echo 'Error al enviar mail al clientre!';
+          //   }else{
+          //     echo 'Mail al cliente enviado con exito!';
+          //     return true;
+          // }
 
           // Redirigimos a thank you page
           header("Location: gracias.php");

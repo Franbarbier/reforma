@@ -277,7 +277,7 @@ if(sizeof($noches_gratis)>0){
 						?>
 						<tr>
 							<td><span>Tarifa Limpieza</td>
-							<td id="fee">15</td>
+							<td id="fee"><?php echo $propiedad['tarifa_limpieza'] ?></td>
 						</tr>
 						</tbody>
 					</table>
