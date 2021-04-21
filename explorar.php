@@ -76,7 +76,7 @@ if(isset($_SESSION['id_user'])){
     
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- CDN Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Qo1frNfH6ocqoAIjuiygiTvzwJ8R7tI"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7G80qGdbCcOeWl4Xc0yAliQNE3CZr6zE"></script>
 
     <link rel="preload" href="icons-720172e6.woff2" type="font/woff2" as="font" crossorigin="crossorigin"></link>
 
