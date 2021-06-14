@@ -127,7 +127,7 @@ if(isset($_SESSION['id_user'])){
 <main class="historia hist2">
 	<div class="cont90">
 		<div>
-			<img src="https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+			<img src="imgs/Quienes Somos.jpg" alt="">
 		</div>
 		<header>
 			<h3>Quienes somos</h3>
@@ -143,14 +143,14 @@ if(isset($_SESSION['id_user'])){
 			<p>El verano de 2017, nuestro fundador Pedro Grampa, para ese entonces estudiante universitario de la carrera de Arquitectura, decidio subarrendar su apartamento en Buenos Aires.</p><p>Impulsado por el deseo de hacer valer y poner a prueba sus habilidades como diseñador de un espacio y una experiencia, paso sus dias recibiendo visitantes de todas partes del mundo con distintas visiones y perspectivas acerca de la experiencia que habian vivido en sus departamentos.</p><p>En este proceso, no solo encontro su verdadera pasion, sino que ademas aprendio y perfecciono la idea de lo que significa “ofrecer una buena experiencia”.</p><p>Con el paso de los meses fue adquiriendo propiedades y formando un grupo de trabajo excepcional, cuya unica mision es brindar una experiencia excepcional a todos las personas que se hospedan en las propiedades Reforma. Hoy, la start up ofrece sus propiedades mediante su propio sitio web, la experiencia esta al alcance de todos…</p>
 		</header>
 		<div>
-			<img src="https://images.pexels.com/photos/2102416/pexels-photo-2102416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+			<img src="imgs/Como empezamos.jpg" alt="">
 		</div>
 	</div>
 </div>
 <div class="historia hist2">
 	<div class="cont90">
 		<div>
-			<img src="https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+			<img src="imgs/Hacia donde vamos.jpg" alt="">
 		</div>
 		<header>
 			<h3>Hacia donde vamos</h3>
@@ -199,6 +199,27 @@ if(isset($_SESSION['id_user'])){
 					</div>
 					<h5>Ramiro Fregonese</h5>
 					<p>Marketing y Administración</p>
+				</div>
+				<div class="member">
+					<div>
+						<img id="malena" src="https://aws.glamour.es/prod/designs/v1/assets/620x620/655515.jpeg" alt="">
+					</div>
+					<h5>Malena Occhione</h5>
+					<p>Arquitectura y Diseño</p>
+				</div>
+				<div class="member">
+					<div>
+						<img id="matias" src="https://aws.glamour.es/prod/designs/v1/assets/620x620/655515.jpeg" alt="">
+					</div>
+					<h5>Matias Urquiza</h5>
+					<p>Logística de obra y mudanzas</p>
+				</div>
+				<div class="member">
+					<div>
+						<img id="ignacio" src="https://aws.glamour.es/prod/designs/v1/assets/620x620/655515.jpeg" alt="">
+					</div>
+					<h5>Ignacio Gonzalez </h5>
+					<p>Finanzas y Administración</p>
 				</div>
 			</div>
 		</div>

@@ -391,7 +391,7 @@ if(isset($_GET['logout'])){
 	<article id="paso1">
 		<header>
 			<span>01.</span>
-			<h4>Entendemos la ciudad y el barrio</h4>
+			<h4>Estudiamos la ciudad y el barrio.</h4>
 			<p>Estamos constantemente en la búsqueda de nuevos vecindarios que despierten nuestra inspiración y curiosidad para ofrecerlos a nuestros clientes. Los caminamos, los observamos y una vez que los entendemos decidimos donde ubicarnos.</p>
 		</header>
 		<div>
@@ -404,7 +404,7 @@ if(isset($_GET['logout'])){
 		</div>
 		<header>
 			<span>02.</span>
-			<h4>Conocemos y estudiamos el inmueble.</h4>
+			<h4>Conocemos el inmueble.</h4>
 			<p>Contamos con un grupo especializado en busqueda de inmbueles con potencial para habitarlos dentro de cada vecindario. Nuevos espacios que cumplan con nuestros requisitos y despierten nuestra inspiracion para reformarlos.</p>
 		</header>
 	</article>
@@ -424,14 +424,14 @@ if(isset($_GET['logout'])){
 		</div>
 		<header>
 			<span>04.</span>
-			<h4>Comienza el proceso de diseño junto al artista.</h4>
+			<h4>Comenzamos el proceso de diseño junto al artista.</h4>
 			<p>Acompañamos a cada artista en el proceso de diseño del espacio para asegurarnos que los mismos tengan la comodidad de un hogar, ademas de tener el toque y la identidad que cada artista plasma en ellos.</p>
 		</header>
 	</article>
 	<article id="paso5">
 		<header>
-			<span>055.</span>
-			<h4>Experimentamos el espacio habitandolo nosotros mismos.</h4>
+			<span>05.</span>
+			<h4>Experimentamos el espacio habitándolo nosotros mismos.</h4>
 			<p>Una vez finalizada la reforma, un integrante del equipo habita en el inmueble el tiempo necesario para asegurarnos de pulir hasta el ultimo detalle previo a la llegada de nuestro primer cliente.</p>
 		</header>
 		<div>
@@ -444,7 +444,7 @@ if(isset($_GET['logout'])){
 		</div>
 		<header>
 			<span>06.</span>
-			<h4>Lanzamiento y llegada de nuestros clientes.</h4>
+			<h4>Lanzamos y esperamos la llegada de nuestros clientes.</h4>
 			<p>Luego de un proceso largo, le damos la bienvenida a nuestro primer cliente. Ademas de las comodidades que ofrece el espacio de por si, nos aseguramos de acompañarlo con servicio y soporte 24/7 durante toda su estadia.</p>
 		</header>
 	</article>
