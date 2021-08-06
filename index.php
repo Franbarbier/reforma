@@ -258,7 +258,7 @@ if(isset($_GET['logout'])){
 						<div>
 							<img src="https://images.sonder.com/image/upload/q_auto,f_auto,c_scale,dpr_auto,w_400,h_400/v1566420631/catalina/standards/check-in.jpg" alt="">
 						</div>
-						<p>Cocina totalemnte equipada</p>
+						<p>Cocina totalmente equipada</p>
 					</div>
 					<div class="row2">
 						<div>
